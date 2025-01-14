@@ -4,7 +4,6 @@ description: Test description for the new post
 author: Aniket T
 date: 2025-01-14T17:29:00.000Z
 tags:
-  - featured
   - post
 image: /assets/blog/img_33d7cd47ed3b-1.jpeg
 imageAlt: Test image alt tag
