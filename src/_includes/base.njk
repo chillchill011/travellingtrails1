@@ -1,13 +1,13 @@
 {# base.njk - UPDATED #}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if title %}{{ title }}{% else %}Travelling Trails{% endif %}</title>
     <link rel="stylesheet" href="{{ '/styles/main.css' | url }}">
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-100"></body>
     {% include "header.njk" %}
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">

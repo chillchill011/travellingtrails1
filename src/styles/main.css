@@ -3,30 +3,112 @@
 @tailwind utilities;
 
 @layer components {
+  /* Layout Components */
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   
-  .blog-card {
-    @apply bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-lg;
-  }
-  
+  /* Navigation Components */
   .nav-link {
-    @apply text-travel-700 hover:text-travel-900 px-3 py-2 rounded-md text-sm font-medium;
+    @apply text-travel-700 dark:text-gray-300 
+           hover:text-travel-900 dark:hover:text-white 
+           px-3 py-2 rounded-md text-sm font-medium 
+           transition-colors duration-200;
   }
   
+  /* Footer Components */
   .footer {
-    @apply bg-gray-800 text-white py-12;
+    @apply bg-gray-800 dark:bg-gray-900 text-white py-12;
   }
   
   .footer-link {
-    @apply text-gray-300 hover:text-white;
+    @apply text-gray-300 dark:text-gray-400 
+           hover:text-white dark:hover:text-white 
+           transition-colors duration-200;
+  }
+  
+  /* Blog Card Components */
+  .blog-card {
+    @apply bg-white dark:bg-gray-800 
+           rounded-lg shadow-md p-6;
+  }
+
+  .blog-card h2 a {
+    @apply text-gray-900 dark:text-white 
+           text-xl font-semibold 
+           hover:text-travel-700 dark:hover:text-travel-500 
+           block;
+  }
+
+  .blog-card h3 a {
+    @apply text-gray-900 dark:text-white 
+           text-xl font-semibold 
+           hover:text-travel-700 dark:hover:text-travel-500;
+  }
+
+  .blog-card p {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  .blog-card time,
+  .blog-card span {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  /* Article Snippet Components */
+  .snippet {
+    @apply bg-white dark:bg-gray-800 
+           rounded-lg shadow-md p-6 
+           transition-colors duration-200;
+  }
+
+  .snippet__title a {
+    @apply text-gray-900 dark:text-white 
+           text-xl font-semibold 
+           hover:text-travel-700 dark:hover:text-travel-500 
+           transition-colors duration-200;
+  }
+
+
+  .snippet__meta {
+    @apply text-gray-600 dark:text-gray-300
+           mt-2;
+  }
+
+  .snippet__body {
+    @apply text-gray-700 dark:text-gray-200 
+           mt-4;
+  }
+
+  .btn--primary {
+    @apply inline-block mt-4 px-4 py-2 
+           bg-travel-700 dark:bg-travel-600 
+           text-white 
+           rounded-md 
+           hover:bg-travel-800 dark:hover:bg-travel-700 
+           transition-colors duration-200;
+  }
+
+
+  /* Article Components */
+  .article-title {
+    @apply text-gray-900 dark:text-white text-4xl font-bold;
   }
 }
 
-/* Make sure Tailwind's utilities are being applied */
 @layer utilities {
   .text-shadow {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .debug-dark {
+    @apply dark:border-2 dark:border-red-500;
+  }
+}
+
+@layer base {
+  .dark {
+    @apply bg-gray-900;
+    color-scheme: dark;
   }
 }
