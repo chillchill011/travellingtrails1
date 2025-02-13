@@ -1,16 +1,26 @@
 {
-  "name": "travellingtrails1",
+  "name": "travellingtrails",
   "version": "1.0.0",
-  "description": "These are the starting files used by [Kevin Powell](https://kevinpowell.co) to create a personal blog site for the [Codementor](https://www.codementor.io/) DevProjects Challenge, [Create a fast and secure blog using JAMStack](https://www.codementor.io/projects/web/create-a-fast-and-secure-blog-using-jamstack-c93coupnxb). You are free to use them however you want to get started with the challenge, if you'd like to start working on creating the site without worrying about the content itself.",
+  "description": "A travel blog built with 11ty",
   "main": "index.js",
   "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy"
+    "build": "ELEVENTY_ENV=production npm run build:css && ELEVENTY_ENV=production eleventy",
+    "build:css": "postcss src/styles/main.css -o public/styles/main.css",
+    "watch:css": "postcss src/styles/main.css -o public/styles/main.css --watch",
+    "start": "ELEVENTY_ENV=development npm run watch:css & ELEVENTY_ENV=development eleventy --serve",
+    "serve:prod": "ELEVENTY_ENV=production npm run watch:css & ELEVENTY_ENV=production eleventy --serve"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^2.0.1",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^6.1.2",
+    "postcss": "^8.5.2",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "tailwindcss": "^3.4.17"
   }
 }

@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .blog-card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-lg;
+  }
+  
+  .nav-link {
+    @apply text-travel-700 hover:text-travel-900 px-3 py-2 rounded-md text-sm font-medium;
+  }
+  
+  .footer {
+    @apply bg-gray-800 text-white py-12;
+  }
+  
+  .footer-link {
+    @apply text-gray-300 hover:text-white;
+  }
+}
+
+/* Make sure Tailwind's utilities are being applied */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+}

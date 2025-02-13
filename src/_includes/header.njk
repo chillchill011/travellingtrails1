@@ -1,20 +1,41 @@
-<header class="page-header">
-    <div class="container">
-      <div class="page-header__content">
-        <div>
-  <p style="font-size: 28px;" class="section-title"> Travelling Trails </p>
+{# header.njk - NEW VERSION #}
+<nav class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                {# Logo #}
+                <a href="{{ '/' | url }}" class="flex items-center">
+                    <span class="text-2xl font-bold text-travel-700">Travelling Trails</span>
+                </a>
+            </div>
+            
+            {# Desktop Navigation #}
+            <div class="hidden md:flex md:items-center md:space-x-4">
+                <a href="{{ '/' | url }}" class="nav-link">Home</a>
+                <a href="{{ '/blog' | url }}" class="nav-link">Blog</a>
+                <a href="{{ '/about' | url }}" class="nav-link">About</a>
+                <a href="{{ '/contact' | url }}" class="nav-link">Contact</a>
+            </div>
+
+            {# Mobile menu button #}
+            <div class="flex items-center md:hidden">
+                <button type="button" class="mobile-menu-button">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
         </div>
-        <nav>
-          
-          <ul role="list" class="nav-list flex-group">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/blog/">Blog</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+
+        {# Mobile Navigation #}
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="{{ '/' | url }}" class="nav-link block">Home</a>
+                <a href="{{ '/blog' | url }}" class="nav-link block">Blog</a>
+                <a href="{{ '/about' | url }}" class="nav-link block">About</a>
+                <a href="{{ '/contact' | url }}" class="nav-link block">Contact</a>
+            </div>
+        </div>
     </div>
-  </header>
+</nav>

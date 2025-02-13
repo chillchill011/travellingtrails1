@@ -1,30 +1,21 @@
+{# base.njk - UPDATED #}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/style.css">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <title>{% if title %}{{ title }}{% else %}Travelling Trails{% endif %}</title>
+    <link rel="stylesheet" href="{{ '/styles/main.css' | url }}">
 </head>
-<body>
-    {% include 'header.njk' %}
-    <main>
-    {{ content | safe }}
+<body class="min-h-screen bg-gray-50">
+    {% include "header.njk" %}
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {{ content | safe }}
     </main>
-    {% include 'footer.njk' %}
 
-    <script>
-        if (window.netlifyIdentity) {
-          window.netlifyIdentity.on("init", (user) => {
-            if (!user) {
-              window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-              });
-            }
-          });
-        }
-      </script>
+    {% include "footer.njk" %}
 
+    <script src="{{ '/assets/js/main.js' | url }}"></script>
 </body>
 </html>

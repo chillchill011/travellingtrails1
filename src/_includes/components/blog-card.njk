@@ -1,0 +1,32 @@
+<article class="blog-card">
+    {% if post.data.featuredImage %}
+    <div class="relative">
+        <img 
+            src="{{ post.data.featuredImage | url }}" 
+            alt="{{ post.data.title }}"
+            class="w-full h-48 object-cover"
+        >
+    </div>
+    {% endif %}
+    
+    <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">
+            <a href="{{ post.url | url }}" class="text-gray-900 hover:text-travel-700">
+                {{ post.data.title }}
+            </a>
+        </h2>
+        
+        {% if post.data.description %}
+        <p class="text-gray-600 mb-4">{{ post.data.description }}</p>
+        {% endif %}
+        
+        <div class="flex items-center justify-between">
+            {% if post.data.author %}
+            <span class="text-sm text-gray-600">By {{ post.data.author }}</span>
+            {% endif %}
+            <time class="text-sm text-gray-500" datetime="{{ post.date }}">
+                {{ post.date | postDate }}
+            </time>
+        </div>
+    </div>
+</article>

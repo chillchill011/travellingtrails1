@@ -1,13 +1,18 @@
 ---
-title : Blog | Travelling Trails
-layout: 'base.njk'
+layout: base
+title: Blog | Travelling Trails
+permalink: "/blog/index.html"
 ---
 
-<div class="section container">
-<h1 class="section-title">Recent articles</h1>
-<ul role="list" class="articles__list flow">
-  {%- for post in collections.post | reverse -%}
-    {% include 'article-snippet.njk' %}
-  {%- endfor -%} 
-</ul>
+<div class="max-w-7xl mx-auto">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Travel Stories & Adventures</h1>
+        <p class="text-xl text-gray-600">Discover our latest adventures and travel tips</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {%- for post in collections.post | reverse -%}
+            {% include "components/blog-card.njk" %}
+        {%- endfor -%}
+    </div>
 </div>
