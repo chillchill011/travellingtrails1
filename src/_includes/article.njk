@@ -1,26 +1,49 @@
 ---
 layout: 'base.njk'
 ---
-       
-<article class="main-article dark:bg-gray-800 dark:text-gray-100">
-<div class="container container--narrow flow">
-  
-    <h1 class="article-title text-gray-900 dark:text-white">
-      {{ title }}
-    </h1>
-   
-    <p class="snippet__meta text-gray-600 dark:text-gray-400">
-     Author:  {{ author }} | Tags: {{ tags }} 
-    </p>
 
-    <figure class="main-article__figure">
-      <img src="{{ image }}" alt="{{ imageAlt }}">
-      <figcaption>
-        {{ imageAlt }}
-      </figcaption>
+<article class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            {{ title }}
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
+            {% if author %}
+            <div>Author: {{ author }}</div>
+            {% endif %}
+            
+            {% if categories %}
+            <div class="flex items-center gap-2">
+                <span>Categories:</span>
+                <div class="flex flex-wrap gap-2">
+                    {% for category in categories %}
+                    <a href="{{ '/travellingtrails1/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
+                       class="inline-block px-3 py-1 text-sm bg-travel-600 text-white dark:bg-travel-700 rounded-full hover:bg-travel-700 dark:hover:bg-travel-600 transition-colors duration-200">
+                        {{ category }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </header>
+
+    {% if featuredImage %}
+    <figure class="mb-8">
+        <img src="{{ featuredImage | url }}" 
+             alt="{{ imageAlt if imageAlt else title }}"
+             class="w-full h-auto rounded-lg shadow-lg object-cover"
+        >
+        {% if imageAlt %}
+        <figcaption class="text-center text-gray-600 dark:text-gray-400 mt-2">
+            {{ imageAlt }}
+        </figcaption>
+        {% endif %}
     </figure>
-    
-    {{ content | safe }}
+    {% endif %}
 
-</div>
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+        {{ content | safe }}
+    </div>
 </article>

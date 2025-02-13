@@ -69,7 +69,6 @@
            transition-colors duration-200;
   }
 
-
   .snippet__meta {
     @apply text-gray-600 dark:text-gray-300
            mt-2;
@@ -89,11 +88,90 @@
            transition-colors duration-200;
   }
 
-
   /* Article Components */
   .article-title {
-    @apply text-gray-900 dark:text-white text-4xl font-bold;
+    @apply text-gray-900 dark:text-white text-4xl font-bold mb-6;
   }
+
+  .main-article {
+    @apply max-w-4xl mx-auto px-4 py-8;
+  }
+
+  .main-article__figure {
+    @apply mb-8 relative;
+  }
+
+  .main-article__figure img {
+    @apply w-full h-auto rounded-lg shadow-lg object-cover;
+  }
+
+  .main-article__figure figcaption {
+    @apply text-center text-gray-600 dark:text-gray-400 mt-2;
+  }
+
+  /* Prose Customization */
+  .prose {
+    @apply max-w-none dark:prose-invert;
+  }
+
+  .prose img {
+    @apply rounded-lg shadow-md;
+  }
+
+  .prose a {
+    @apply text-travel-600 hover:text-travel-700 
+           dark:text-travel-500 hover:dark:text-travel-400;
+  }
+
+  /* Category Components */
+  .category-tag {
+    @apply inline-block px-3 py-1 text-sm 
+           bg-travel-100 text-travel-600
+           dark:bg-travel-900 dark:text-travel-100 
+           rounded-full hover:bg-travel-200 
+           dark:hover:bg-travel-800 
+           transition-colors duration-200;
+  }
+
+  .categories-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  /* Add these to your existing main.css under the @layer components section */
+  .prose {
+      @apply max-w-none dark:prose-invert;
+  }
+
+  .prose h1 {
+      @apply text-3xl font-bold text-gray-900 dark:text-white mb-4;
+  }
+
+  .prose p {
+      @apply text-gray-700 dark:text-gray-300 mb-4;
+  }
+
+  .prose img {
+      @apply w-full h-auto rounded-lg shadow-lg object-cover my-8;
+  }
+
+  .article-header {
+      @apply mb-8;
+  }
+
+  .article-meta {
+      @apply flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400;
+  }
+
+  .category-badges {
+      @apply flex flex-wrap gap-2;
+  }
+
+  .category-badge {
+      @apply inline-block px-3 py-1 text-sm bg-travel-600 text-white 
+            dark:bg-travel-700 rounded-full hover:bg-travel-700 
+            dark:hover:bg-travel-600 transition-colors duration-200;
+  }
+
 }
 
 @layer utilities {

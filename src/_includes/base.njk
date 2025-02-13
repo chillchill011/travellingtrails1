@@ -17,5 +17,10 @@
     {% include "footer.njk" %}
 
     <script src="{{ '/assets/js/main.js' | url }}"></script>
+
+    <!-- Add this before the closing </body> tag in base.njk -->
+    {% if page.url === '/search/' %}
+    <script src="{{ '/assets/js/search.js' | url }}"></script>
+    {% endif %}
 </body>
 </html>

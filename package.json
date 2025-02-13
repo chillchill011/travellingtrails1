@@ -8,7 +8,8 @@
     "build:css": "postcss src/styles/main.css -o public/styles/main.css",
     "watch:css": "postcss src/styles/main.css -o public/styles/main.css --watch",
     "start": "ELEVENTY_ENV=development npm run watch:css & ELEVENTY_ENV=development eleventy --serve",
-    "serve:prod": "ELEVENTY_ENV=production npm run watch:css & ELEVENTY_ENV=production eleventy --serve"
+    "serve:prod": "ELEVENTY_ENV=production npm run watch:css & ELEVENTY_ENV=production eleventy --serve",
+    "build:js": "esbuild src/assets/js/search.js --bundle --outfile=public/assets/js/search.js"
   },
   "keywords": [],
   "author": "",
@@ -18,9 +19,13 @@
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.20",
     "cssnano": "^6.1.2",
+    "esbuild": "^0.20.1",
     "postcss": "^8.5.2",
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.1.0",
     "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "lunr": "^2.3.9"
   }
 }

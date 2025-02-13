@@ -26,7 +26,7 @@
         <p class="text-gray-600 dark:text-gray-300 mb-4">{{ post.data.description }}</p>
         {% endif %}
 
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mb-4 dark:mb-4">
             {% if post.data.author %}
             <span class="text-sm text-gray-600 dark:text-gray-400">By {{ post.data.author }}</span>
             {% endif %}
@@ -34,5 +34,16 @@
                 {{ post.date | postDate }}
             </time>
         </div>
+
+        {% if post.data.categories %}
+<div class="flex flex-wrap gap-2">
+    {% for category in post.data.categories %}
+    <a href="{{ '/' | url }}categories/{{ category | lower | replace(' ', '-') }}/"
+       class="inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+        {{ category }}
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
     </div>
 </article>

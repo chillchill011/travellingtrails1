@@ -2,9 +2,13 @@
 title: First Blog Post
 description: This is our first blog post
 date: 2025-02-12
-tags: post
+author: John Doe
+layout: article.njk
 featured: true
-layout: base.njk
+featuredImage: /assets/images/article-1.jpg
+imageAlt: First blog post image
+categories: 
+  - Hiking
 ---
 
 # First Blog Post

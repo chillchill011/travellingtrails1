@@ -4,7 +4,7 @@ description: Our first adventure begins here
 date: 2025-02-12
 author: Travel Team
 tags: post
-layout: base
+layout: article.njk
 ---
 
 # Welcome to Our Travel Blog
