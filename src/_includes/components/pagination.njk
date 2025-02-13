@@ -1,0 +1,23 @@
+{% macro blogGrid(posts, startIndex, endIndex) %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 posts-grid">
+    {%- for post in posts | slice(startIndex, endIndex) -%}
+        {% include "components/blog-card.njk" %}
+    {%- endfor -%}
+</div>
+{% endmacro %}
+
+<div class="pagination-container" data-total-posts="{{ posts.length }}">
+    <div class="posts-container">
+        {{ blogGrid(posts, 0, 9) }}
+    </div>
+    {% if posts.length > 9 %}
+    <div class="flex justify-center mt-8">
+        <button 
+            class="load-more-btn bg-travel-600 text-white px-6 py-2 rounded-md hover:bg-travel-700 transition-colors duration-200"
+            data-current-page="1"
+        >
+            Load More
+        </button>
+    </div>
+    {% endif %}
+</div>

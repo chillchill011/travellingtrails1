@@ -9,9 +9,9 @@
             <div>
                 <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="{{ '/blog' | url }}" class="footer-link">Blog</a></li>
-                    <li><a href="{{ '/about' | url }}" class="footer-link">About</a></li>
-                    <li><a href="{{ '/contact' | url }}" class="footer-link">Contact</a></li>
+                    <li><a href="{{ '/blog/' | url }}" class="footer-link">Blog</a></li>
+                    <li><a href="{{ '/about/' | url }}" class="footer-link">About</a></li>
+                    <li><a href="{{ '/contact/' | url }}" class="footer-link">Contact</a></li>
                 </ul>
             </div>
             <div>
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="mt-8 border-t border-gray-700 pt-8 text-center">
-            <p class="text-gray-300">&copy; {{ "now" | date("yyyy") }} Travelling Trails. All rights reserved.</p>
+            <p class="text-gray-300">&copy; {% year %} Travelling Trails. All rights reserved.</p>
         </div>
     </div>
 </footer>

@@ -68,3 +68,37 @@ themeToggleBtn.addEventListener('click', function() {
     console.log('New theme:', localStorage.getItem('color-theme'));
     console.log('Dark class after change:', document.documentElement.classList.contains('dark'));
 });
+
+// Load More functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const loadMoreBtns = document.querySelectorAll('.load-more-btn');
+    
+    loadMoreBtns.forEach(btn => {
+        let currentPage = 1;
+        btn.addEventListener('click', function() {
+            currentPage++;
+            const container = this.closest('section').querySelector('.posts-container .grid');
+            const postsGrid = container.querySelector('.grid');
+            
+            // Get all posts that are currently hidden
+            const allPosts = Array.from(document.querySelectorAll('.blog-card[data-page="' + currentPage + '"]'));
+            
+            if (allPosts.length === 0) {
+                // No more posts to show
+                this.style.display = 'none';
+                return;
+            }
+            
+            // Show next set of posts
+            allPosts.slice(0, 9).forEach(post => {
+                post.classList.remove('hidden');
+                container.appendChild(post);
+            });
+            
+            // Hide button if no more posts
+            if (allPosts.length <= 9) {
+                this.style.display = 'none';
+            }
+        });
+    });
+});
