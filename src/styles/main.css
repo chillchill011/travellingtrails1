@@ -137,41 +137,139 @@
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
   }
 
-  /* Add these to your existing main.css under the @layer components section */
-  .prose {
-      @apply max-w-none dark:prose-invert;
+  /* Enhanced Image Components */
+  .image-loading {
+    @apply relative bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden;
   }
 
-  .prose h1 {
-      @apply text-3xl font-bold text-gray-900 dark:text-white mb-4;
+  .image-container {
+    @apply relative overflow-hidden rounded-lg shadow-md;
   }
 
-  .prose p {
-      @apply text-gray-700 dark:text-gray-300 mb-4;
+  /* Remove the ::before since we're using aspect-ratio directly */
+  .image-loading, 
+  .image-container {
+    @apply aspect-[3/2]; /* Modern aspect-ratio */
   }
 
-  .prose img {
-      @apply w-full h-auto rounded-lg shadow-lg object-cover my-8;
+  .image-loading img,
+  .image-container img {
+    @apply absolute inset-0 w-full h-full object-cover;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:scale-105;
+    /* Remove opacity transitions to prevent flickering */
   }
 
-  .article-header {
-      @apply mb-8;
+  /* Image captions */
+  .image-caption {
+    @apply mt-2 text-sm text-gray-600 dark:text-gray-400;
   }
 
-  .article-meta {
-      @apply flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400;
+  .gallery-container {
+    @apply w-full max-w-7xl mx-auto mb-16; /* Increased bottom margin */
   }
 
-  .category-badges {
-      @apply flex flex-wrap gap-2;
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1rem;
   }
 
-  .category-badge {
-      @apply inline-block px-3 py-1 text-sm bg-travel-600 text-white 
-            dark:bg-travel-700 rounded-full hover:bg-travel-700 
-            dark:hover:bg-travel-600 transition-colors duration-200;
+  @screen sm {
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
+  .gallery-item {
+    @apply relative overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800;
+    height: 300px;
+  }
+
+  .gallery-image-wrapper {
+    @apply h-full w-full overflow-hidden;
+  }
+
+  .gallery-image {
+    @apply w-full h-full object-cover transition-transform duration-300;
+  }
+
+  .gallery-image:hover {
+    @apply scale-105;
+  }
+
+  .gallery-caption {
+    @apply absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent;
+  }
+
+  .gallery-title {
+    @apply text-lg font-medium text-white mb-1;
+  }
+
+  .gallery-credit {
+    @apply text-sm text-white/90;
+  }
+
+  /* Single image styles */
+  .single-image {
+    @apply my-8;
+  }
+
+  /* Base figure reset */
+  figure {
+    @apply m-0;
+  }
+
+  /* Lightbox Component */
+  .lightbox {
+  @apply fixed inset-0 z-50 
+         bg-black/90 backdrop-blur-sm
+         flex items-center justify-center p-8
+         opacity-0 pointer-events-none 
+         transition-all duration-300;
+  }
+
+  .lightbox.active {
+  @apply opacity-100 pointer-events-auto;
+  }
+
+  .lightbox-content {
+  @apply relative max-w-6xl mx-auto 
+         rounded-lg overflow-hidden
+         shadow-2xl;
+  }
+
+  .lightbox-image {
+  @apply w-auto max-h-[85vh] 
+         rounded-lg shadow-xl
+         object-contain;
+  }
+
+  .lightbox-close {
+  @apply fixed top-6 right-6 
+         bg-black/50 backdrop-blur-sm
+         p-2 rounded-full 
+         text-white hover:text-gray-300
+         transition-colors duration-200 
+         cursor-pointer z-[60]
+         opacity-100;  /* Always visible */
+  }
+
+  /* Prevent flickering */
+  .lightbox:not(.active) .lightbox-image {
+    @apply opacity-0;
+  }
+
+  .lightbox.active .lightbox-image {
+    @apply opacity-100;
+  }
+
+  /* Cursor styles for clickable images */
+  [data-lightbox-trigger] {
+  @apply cursor-zoom-in;
+}
 }
 
 @layer utilities {
@@ -182,11 +280,25 @@
   .debug-dark {
     @apply dark:border-2 dark:border-red-500;
   }
+
+  .aspect-3-2 {
+    aspect-ratio: 3/2;
+  }
 }
 
 @layer base {
   .dark {
     @apply bg-gray-900;
     color-scheme: dark;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

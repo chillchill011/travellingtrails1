@@ -1,0 +1,23 @@
+// Create new file at: src/_includes/components/enhanced-image.njk
+{% macro enhancedImage(src, alt, caption, credit, className = '') %}
+<figure class="relative group cursor-zoom-in" data-lightbox>
+  <img
+    src="{{ src }}"
+    alt="{{ alt }}"
+    loading="lazy"
+    class="w-full h-auto rounded-lg transition duration-300 {{ className }}"
+    data-lightbox-trigger
+  />
+  
+  {% if caption or credit %}
+    <figcaption class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+      {% if caption %}
+        <span class="block">{{ caption }}</span>
+      {% endif %}
+      {% if credit %}
+        <span class="block text-xs mt-1">Photo by: {{ credit }}</span>
+      {% endif %}
+    </figcaption>
+  {% endif %}
+</figure>
+{% endmacro %}

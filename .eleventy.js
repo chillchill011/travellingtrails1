@@ -7,6 +7,12 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
     eleventyConfig.addPassthroughCopy({"src/styles": "styles"});
     eleventyConfig.addPassthroughCopy("src/admin");
+    eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
+    eleventyConfig.addPassthroughCopy({ "src/assets/js/lightbox.js": "assets/js/lightbox.js" });
+
+    eleventyConfig.on('beforeBuild', () => {
+        console.log('Site prefix:', eleventyConfig.pathPrefix);
+      });
 
     // Watch targets
     eleventyConfig.addWatchTarget("./src/styles/");
@@ -135,6 +141,58 @@ module.exports = function(eleventyConfig) {
     });
 
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+
+    eleventyConfig.addShortcode("blogImage", function(src, alt, caption) {
+        return `
+          <figure class="single-image" data-lightbox>
+            <div class="image-container">
+              <img 
+                src="/travellingtrails1${src}"
+                alt="${alt || ''}"
+                class="w-full h-full object-cover cursor-zoom-in"
+                loading="lazy"
+                data-lightbox-trigger
+              />
+            </div>
+            ${caption ? `
+              <figcaption class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                ${caption}
+              </figcaption>
+            ` : ''}
+          </figure>
+        `;
+      });
+      
+      eleventyConfig.addShortcode("imageGallery", function(images) {
+        if (!images || !Array.isArray(images)) {
+          return '';
+        }
+      
+        const galleryHTML = images.map((image, index) => 
+          `<div class="gallery-item">
+            <div class="gallery-image-wrapper">
+              <img
+                src="/travellingtrails1${image.src}"
+                alt="${image.alt}"
+                class="gallery-image"
+                loading="lazy"
+                data-lightbox-trigger
+              />
+            </div>
+          </div>`
+        ).join('');
+      
+        // Note: Only one lightbox for the entire page
+        return `
+          <div class="gallery-container" data-lightbox-gallery>
+            <div class="gallery-grid">
+              ${galleryHTML}
+            </div>
+          </div>
+        `;
+      });
+
+
 
     // General filters
     eleventyConfig.addFilter("limit", function (arr, limit) {
