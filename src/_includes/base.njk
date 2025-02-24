@@ -1,6 +1,7 @@
 {# base.njk - UPDATED #}
 {# Import macros #}
 {% from "components/navigation-enhancements.njk" import navigationEnhancements %}
+{% from "components/breadcrumb.njk" import breadcrumb %}
 
 <!DOCTYPE html>
 <html lang="en" class="light">
@@ -28,6 +29,13 @@
     {{ navigationEnhancements() }}
     
     {% include "header.njk" %}
+
+    <!-- Add breadcrumb after header -->
+    {% if page.url !== "/" and page.url !== "/about/" and page.url !== "/contact/" %}
+    <div class="container mx-auto">
+        {{ breadcrumb(page, title, category.title) }}
+    </div>
+    {% endif %}
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {{ content | safe }}
@@ -60,10 +68,10 @@
             // Improved error handling
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('error', function() {
-                    if (!this.src.includes('placeholder.jpg')) {  // Prevent infinite loop
+                    if (!this.src.includes('placeholder.jpg')) { // Prevent infinite loop
                         this.src = '/travellingtrails1/assets/images/placeholder.jpg';
                         this.alt = 'Image not available';
-                        this.onerror = null;  // Prevent further error events
+                        this.onerror = null; // Prevent further error events
                     }
                 });
             });
@@ -86,9 +94,9 @@
 
         document.addEventListener('DOMContentLoaded', adjustImageBrightness);
         const observer = new MutationObserver(adjustImageBrightness);
-        observer.observe(document.documentElement, { 
-            attributes: true, 
-            attributeFilter: ['class'] 
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class']
         });
     </script>
 </body>
