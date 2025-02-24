@@ -2,7 +2,19 @@
 layout: 'base.njk'
 ---
 
+{% from "components/breadcrumb.njk" import breadcrumb %}
+<div class="container mx-auto">
+    {{ breadcrumb({
+        url: page.url,
+        data: {
+            title: title,
+            categories: categories
+        }
+    }) }}
+</div>
+
 <article class="max-w-4xl mx-auto px-4 py-8">
+    {# Rest of your article template remains exactly the same #}
     <header class="mb-8">
         <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             {{ title }}

@@ -5,7 +5,7 @@ date: 2024-02-15
 author: John Doe
 featured: true
 layout: article.njk
-featuredImage: /assets/images/article-1.jpg
+featuredImage: /assets/images/article-2.jpg
 categories: 
   - Hiking
   - Adventure

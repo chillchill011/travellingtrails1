@@ -7,11 +7,12 @@
     
     {% if post.data.featuredImage %}
     <div class="relative h-48">
-        <img
-            src="{{ post.data.featuredImage | url }}"
-            alt="{{ post.data.title }}"
-            class="w-full h-full object-cover"
-        >
+    <img
+        src="{{ post.data.featuredImage | url }}"
+        alt="{{ post.data.title }}"
+        class="w-full h-full object-cover"
+        onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/travellingtrails1/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
+    >
     </div>
     {% endif %}
 

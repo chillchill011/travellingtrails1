@@ -65,8 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Handle image errors
     lightboxImage.addEventListener('error', function() {
-      if (currentImageSrc) {
-        this.src = currentImageSrc;
-      }
+      this.src = '/travellingtrails1/assets/images/placeholder.jpg';
+      this.alt = 'Image not available';
+      // Prevent infinite error loop
+      this.onerror = null;
     });
   });

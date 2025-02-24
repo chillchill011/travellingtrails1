@@ -1,4 +1,7 @@
 {# base.njk - UPDATED #}
+{# Import macros #}
+{% from "components/navigation-enhancements.njk" import navigationEnhancements %}
+
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
@@ -21,6 +24,9 @@
     </style>
 </head>
 <body class="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-100">
+    {# Add navigation enhancements at the start of body #}
+    {{ navigationEnhancements() }}
+    
     {% include "header.njk" %}
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -32,6 +38,7 @@
     <!-- Scripts -->
     <script src="{{ '/assets/js/main.js' | url }}"></script>
     <script src="{{ '/assets/js/lightbox.js' | url }}"></script>
+    <script src="{{ '/assets/js/navigation.js' | url }}"></script>
 
     {% if page.url === '/search/' %}
     <script src="{{ '/assets/js/search.js' | url }}"></script>
@@ -40,18 +47,24 @@
     <!-- Image optimization script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Add lazy loading
             document.querySelectorAll('img:not([loading])').forEach(img => {
                 img.setAttribute('loading', 'lazy');
             });
-
+            
+            // Add async decoding
             document.querySelectorAll('img:not([decoding])').forEach(img => {
                 img.setAttribute('decoding', 'async');
             });
-
+            
+            // Improved error handling
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('error', function() {
-                    this.src = '/assets/images/placeholder.jpg';
-                    this.alt = 'Image not available';
+                    if (!this.src.includes('placeholder.jpg')) {  // Prevent infinite loop
+                        this.src = '/travellingtrails1/assets/images/placeholder.jpg';
+                        this.alt = 'Image not available';
+                        this.onerror = null;  // Prevent further error events
+                    }
                 });
             });
         });
