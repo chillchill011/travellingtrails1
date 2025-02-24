@@ -59,6 +59,37 @@ module.exports = function(eleventyConfig) {
         return JSON.stringify(value || "");
     });
 
+    eleventyConfig.addFilter("getRelatedPosts", function(currentPost, allPosts, categories) {
+      // Use the categories passed directly
+      if (!categories || !Array.isArray(categories) || categories.length === 0) {
+        return [];
+      }
+    
+      // Get all posts except the current one
+      const otherPosts = allPosts.filter(post => post.url !== currentPost.url);
+    
+      // Score each post based on category matches
+      const scoredPosts = otherPosts.map(post => {
+        if (!post.data.categories || !Array.isArray(post.data.categories)) {
+          return { post, score: 0 };
+        }
+        
+        const score = post.data.categories.reduce((count, category) => {
+          return categories.includes(category) ? count + 1 : count;
+        }, 0);
+        
+        return { post, score };
+      });
+    
+      // Sort by score (highest first) and take top 3
+      return scoredPosts
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map(item => item.post);
+    });
+
+
     // Collections
     eleventyConfig.addCollection("searchData", function(collection) {
         let posts = collection.getFilteredByGlob("src/blog/**/*.md");
