@@ -5,22 +5,34 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  
-  // Default to requiring consent
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied'
-  });
-  
-  // Check for existing consent
-  document.addEventListener('DOMContentLoaded', function() {
-    const cookieConsent = localStorage.getItem('cookie-consent');
-    if (cookieConsent === 'accepted') {
-      gtag('consent', 'update', {
-        'analytics_storage': 'granted'
-      });
+
+  // Configure with custom dimensions
+  gtag('config', '{{ measurementId }}', {
+    'custom_map': {
+      'dimension1': 'user_dark_mode',
+      'dimension2': 'post_category'
     }
   });
   
-  gtag('config', '{{ measurementId }}');
+  // Track initial page load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Track dark mode
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    gtag('event', 'dark_mode_status', {
+      'user_dark_mode': isDarkMode ? 'dark' : 'light'
+    });
+    
+    // Track post categories
+    const categories = [];
+    document.querySelectorAll('.category-tag').forEach(cat => {
+      categories.push(cat.textContent.trim());
+    });
+    
+    if (categories.length > 0) {
+      gtag('event', 'view_post_category', {
+        'post_category': categories.join(',')
+      });
+    }
+  });
 </script>
 {% endmacro %}

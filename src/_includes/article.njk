@@ -19,7 +19,7 @@ layout: 'base.njk'
                 <div class="flex flex-wrap gap-2">
                     {% for category in categories %}
                     <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
-                       class="inline-block px-3 py-1 text-sm bg-travel-600 text-white dark:bg-travel-700 rounded-full hover:bg-travel-700 dark:hover:bg-travel-600 transition-colors duration-200">
+                       class="category-tag inline-block px-3 py-1 text-sm bg-travel-600 text-white dark:bg-travel-700 rounded-full hover:bg-travel-700 dark:hover:bg-travel-600 transition-colors duration-200">
                         {{ category }}
                     </a>
                     {% endfor %}
@@ -81,7 +81,7 @@ layout: 'base.njk'
                         <div class="flex flex-wrap gap-2">
                             {% for category in post.data.categories %}
                             <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
-                                class="inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                                class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
                                 {{ category }}
                             </a>
                             {% endfor %}

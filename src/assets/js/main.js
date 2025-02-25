@@ -211,3 +211,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+// Add this inside your existing DOMContentLoaded event listener or at the end of the file
+document.addEventListener('DOMContentLoaded', function() {
+  // Only run if gtag is defined (analytics is loaded and consent was given)
+  if (typeof gtag === 'function') {
+    // Track dark mode usage
+    gtag('event', 'page_view', {
+      'user_dark_mode': document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+    });
+    
+    // Track post categories on article pages
+    const articleCategories = document.querySelectorAll('article .category-tag');
+    if (articleCategories.length > 0) {
+      const categories = Array.from(articleCategories).map(tag => tag.textContent.trim()).join(',');
+      gtag('event', 'page_view', {
+        'post_category': categories
+      });
+    }
+  }
+});
