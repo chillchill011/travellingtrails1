@@ -256,7 +256,7 @@ module.exports = function(eleventyConfig) {
             includes: "_includes",
             layouts: "_includes"
         },
-        pathPrefix: "/travellingtrails1/",
+        pathPrefix: process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1/",
         templateFormats: ["md", "njk", "html"],
         markdownTemplateEngine: "njk",
         htmlTemplateEngine: "njk",
