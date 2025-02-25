@@ -4,8 +4,8 @@
   "description": "A travel blog built with 11ty",
   "main": "index.js",
   "scripts": {
-    "build": "ELEVENTY_ENV=production npx @11ty/eleventy && npm run build:js",
-    "start": "ELEVENTY_ENV=development npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy && npm run build:js",
+    "start": "npx @11ty/eleventy --serve",
     "build:js": "esbuild src/assets/js/search.js --bundle --outfile=public/assets/js/search.js"
   },
   "keywords": [],
