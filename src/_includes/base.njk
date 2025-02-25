@@ -19,8 +19,8 @@
     {% endif %}
 
     <script>
-      // Store the site base path prefix for JavaScript to use
-      window.siteBasePathPrefix = "{{ site.basePathPrefix }}";
+      // Store the path prefix - will be empty string in production
+      window.siteBasePathPrefix = "{{ site.basePathPrefix | default('') }}";
     </script>
 
     <!--  <link rel="stylesheet" href="{{ '/styles/main.css' | url }}"> -->

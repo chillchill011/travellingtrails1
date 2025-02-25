@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // In production, this will be empty string
+    const basePathPrefix = window.siteBasePathPrefix || '';
+    
     function switchLogos() {
       const isDarkMode = document.documentElement.classList.contains('dark');
       const headerLogo = document.getElementById('header-logo');
@@ -6,14 +9,14 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (headerLogo) {
         headerLogo.src = isDarkMode 
-          ? '/travellingtrails1/assets/images/logo-white.png' 
-          : '/travellingtrails1/assets/images/logo.png';
+          ? basePathPrefix + 'assets/images/logo-white.png' 
+          : basePathPrefix + 'assets/images/logo.png';
       }
       
       if (footerLogo) {
         footerLogo.src = isDarkMode 
-          ? '/travellingtrails1/assets/images/logo-white.png' 
-          : '/travellingtrails1/assets/images/logo.png';
+          ? basePathPrefix + 'assets/images/logo-white.png' 
+          : basePathPrefix + 'assets/images/logo.png';
       }
     }
     
@@ -21,11 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
     switchLogos();
     
     // Watch for dark mode changes
-    const observer = new MutationObserver(function() {
+    const logoObserver = new MutationObserver(function() {
       switchLogos();
     });
     
-    observer.observe(document.documentElement, {
+    logoObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']
     });
