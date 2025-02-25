@@ -6,6 +6,9 @@ let currentFilters = {
     dateRange: ''
 };
 
+// Get the path prefix based on environment
+const pathPrefix = '';  // Empty for production
+
 async function initializeSearch() {
     try {
         console.log('Initializing search...');
@@ -144,9 +147,10 @@ function createResultCard(post) {
     const article = document.createElement('article');
     article.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md p-6';
     
+    // Fix the URL construction - don't add pathPrefix as we're in production
     article.innerHTML = `
         <h2 class="text-xl font-semibold mb-2">
-            <a href="${pathPrefix}${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 
+            <a href="${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 
                                        dark:hover:text-travel-500">
                 ${post.title}
             </a>
@@ -163,7 +167,7 @@ function createResultCard(post) {
         ${post.categories ? `
         <div class="mt-4 flex flex-wrap gap-2">
             ${post.categories.map(category => `
-                <a href="${pathPrefix}/categories/${category.toLowerCase().replace(/\s+/g, '-')}/"
+                <a href="/categories/${category.toLowerCase().replace(/\s+/g, '-')}/"
                    class="inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 
                           dark:bg-travel-900 dark:text-travel-100 rounded-full">
                     ${category}
@@ -195,7 +199,8 @@ function showSuggestions(query) {
             <div class="text-sm text-gray-600 dark:text-gray-400">${post.description || ''}</div>
         `;
         div.addEventListener('click', () => {
-            window.location.href = `${pathPrefix}${post.url}`;
+            // Fix the URL construction here too
+            window.location.href = post.url;
         });
         suggestionsContainer.appendChild(div);
     });
