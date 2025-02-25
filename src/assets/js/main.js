@@ -313,3 +313,42 @@ if (typeof gtag === 'function') {
   }
 }
 });
+
+// Function to toggle logo based on dark mode
+function toggleLogoDarkMode() {
+  const isDark = document.documentElement.classList.contains('dark');
+  const logos = document.querySelectorAll('.logo-switchable');
+  
+  logos.forEach(logo => {
+    if (isDark) {
+      logo.src = "/assets/images/logo-white.svg";
+      logo.onerror = function() { 
+        this.onerror = null; 
+        this.src = "/assets/images/logo-white.png";
+      };
+    } else {
+      logo.src = "/assets/images/logo.svg";
+      logo.onerror = function() { 
+        this.onerror = null; 
+        this.src = "/assets/images/logo.png";
+      };
+    }
+  });
+}
+
+// Run on initial load
+document.addEventListener('DOMContentLoaded', toggleLogoDarkMode);
+
+// Watch for changes to dark mode
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    if (mutation.attributeName === 'class') {
+      toggleLogoDarkMode();
+    }
+  });
+});
+
+observer.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['class']
+});

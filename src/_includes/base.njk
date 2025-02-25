@@ -3,6 +3,7 @@
 {% from "components/navigation-enhancements.njk" import navigationEnhancements %}
 {% from "components/breadcrumb.njk" import breadcrumb %}
 {% from "components/analytics.njk" import googleAnalytics %}
+{% from "head-meta.njk" import faviconMeta %}
 
 <!DOCTYPE html>
 <html lang="en" class="light">
@@ -11,9 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if title %}{{ title }}{% else %}Travelling Trails{% endif %}</title>
 
+    {{ faviconMeta() }}
+
     {% if site.analyticsId and site.url == "https://travellingtrails.in" %}
       {{ googleAnalytics(site.analyticsId) }}
     {% endif %}
+
+    <script>
+      // Store the site base path prefix for JavaScript to use
+      window.siteBasePathPrefix = "{{ site.basePathPrefix }}";
+    </script>
 
     <!--  <link rel="stylesheet" href="{{ '/styles/main.css' | url }}"> -->
         <!-- With Tailwind CDN -->
@@ -270,6 +278,8 @@
   {% if page.url.includes("/blog/") and not page.url.endsWith("/blog/") %}
   <script src="{{ '/assets/js/analytics-enhancement.js' | url }}"></script>
   {% endif %}  
+
+  <script src="{{ '/assets/js/logo-switcher.js' | url }}"></script>
 
   {% from "components/cookie-consent.njk" import cookieConsent %}
   {{ cookieConsent() }}
