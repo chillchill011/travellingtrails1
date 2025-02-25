@@ -1,12 +1,7 @@
 [build]
-  command = "npm run build"
+  command = "npm install && npm run build"
   publish = "public"
 
 [build.environment]
   NODE_ENV = "production"
   ELEVENTY_ENV = "production"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

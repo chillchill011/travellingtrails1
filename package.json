@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "ELEVENTY_ENV=production npx @11ty/eleventy && npm run build:js",
-  "start": "ELEVENTY_ENV=development npx @11ty/eleventy --serve",
-  "build:js": "esbuild src/assets/js/search.js --bundle --outfile=public/assets/js/search.js"
+    "start": "ELEVENTY_ENV=development npx @11ty/eleventy --serve",
+    "build:js": "esbuild src/assets/js/search.js --bundle --outfile=public/assets/js/search.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "tailwindcss-cli": "^0.1.2"
   },
   "dependencies": {
-    "lunr": "^2.3.9"
+    "lunr": "^2.3.9",
+    "luxon": "^3.4.4"
   }
 }
