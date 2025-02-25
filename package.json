@@ -4,7 +4,8 @@
   "description": "A travel blog built with 11ty",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i src/styles/main.css -o public/styles/main.css --minify && ELEVENTY_ENV=production eleventy",
+    "build:tailwind": "tailwindcss -i src/styles/main.css -o public/styles/main.css --minify",
+    "build": "npm run build:tailwind && ELEVENTY_ENV=production eleventy",
     "build:css": "postcss src/styles/main.css -o public/styles/main.css",
     "dev": "ELEVENTY_ENV=development npm run watch:css & ELEVENTY_ENV=development eleventy --serve",
     "watch:css": "postcss src/styles/main.css -o public/styles/main.css --watch",
@@ -24,7 +25,8 @@
     "postcss": "^8.5.2",
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.1.0",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-cli": "^0.1.2"
   },
   "dependencies": {
     "lunr": "^2.3.9"
