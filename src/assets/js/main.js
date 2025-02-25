@@ -166,3 +166,48 @@ document.addEventListener('DOMContentLoaded', function() {
       this.src = '';
     });
   });
+
+  // Google Analytics Event Tracking
+document.addEventListener('DOMContentLoaded', function() {
+  // Only run if gtag is defined (analytics is loaded)
+  if (typeof gtag === 'function') {
+    
+    // Track outbound link clicks
+    document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.host + '"])').forEach(link => {
+      link.addEventListener('click', function(e) {
+        gtag('event', 'click', {
+          'event_category': 'outbound',
+          'event_label': this.href,
+          'transport_type': 'beacon'
+        });
+      });
+    });
+    
+    // Track category clicks
+    document.querySelectorAll('a[href^="/categories/"]').forEach(link => {
+      link.addEventListener('click', function() {
+        const category = this.textContent.trim();
+        gtag('event', 'category_click', {
+          'event_category': 'engagement',
+          'event_label': category
+        });
+      });
+    });
+    
+    // Track search usage
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      let searchTimeout;
+      searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          if (this.value.length > 2) {
+            gtag('event', 'search', {
+              'search_term': this.value
+            });
+          }
+        }, 1000);
+      });
+    }
+  }
+});

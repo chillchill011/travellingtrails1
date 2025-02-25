@@ -16,5 +16,6 @@ module.exports = {
       { text: "About", url: "/about/" },
       { text: "Contact", url: "/contact/" }
     ],
-    basePathPrefix: process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1/"
+    basePathPrefix: process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1/",
+    analyticsId: process.env.ELEVENTY_ENV === "production" ? "G-M9Y3FC1B03" : ""
   };

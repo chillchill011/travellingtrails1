@@ -2,6 +2,7 @@
 {# Import macros #}
 {% from "components/navigation-enhancements.njk" import navigationEnhancements %}
 {% from "components/breadcrumb.njk" import breadcrumb %}
+{% from "components/analytics.njk" import googleAnalytics %}
 
 <!DOCTYPE html>
 <html lang="en" class="light">
@@ -9,6 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if title %}{{ title }}{% else %}Travelling Trails{% endif %}</title>
+
+    {% if site.analyticsId and site.url == "https://travellingtrails.in" %}
+      {{ googleAnalytics(site.analyticsId) }}
+    {% endif %}
+
     <!--  <link rel="stylesheet" href="{{ '/styles/main.css' | url }}"> -->
         <!-- With Tailwind CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -259,5 +265,8 @@
             attributeFilter: ['class']
         });
     </script>
+
+  {% from "components/cookie-consent.njk" import cookieConsent %}
+  {{ cookieConsent() }}
 </body>
 </html>
