@@ -131,7 +131,7 @@
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('error', function() {
                     if (!this.src.includes('placeholder.jpg')) { // Prevent infinite loop
-                        this.src = '/travellingtrails1/assets/images/placeholder.jpg';
+                        this.src = '/assets/images/placeholder.jpg';
                         this.alt = 'Image not available';
                         this.onerror = null; // Prevent further error events
                     }

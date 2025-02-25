@@ -39,7 +39,7 @@
         {% if post.data.categories %}
 <div class="flex flex-wrap gap-2">
     {% for category in post.data.categories %}
-    <a href="{{ '/' | url }}categories/{{ category | lower | replace(' ', '-') }}/"
+    <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
        class="inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
         {{ category }}
     </a>

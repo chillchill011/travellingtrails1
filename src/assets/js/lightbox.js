@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Handle image errors
     lightboxImage.addEventListener('error', function() {
-      this.src = '/travellingtrails1/assets/images/placeholder.jpg';
+      this.src = '/assets/images/placeholder.jpg';
       this.alt = 'Image not available';
       // Prevent infinite error loop
       this.onerror = null;

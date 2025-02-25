@@ -169,7 +169,7 @@ module.exports = function(eleventyConfig) {
     // Shortcodes
     eleventyConfig.addShortcode("categoryUrl", function(category) {
         const slug = category.toLowerCase().replace(/\s+/g, '-');
-        return `/travellingtrails1/categories/${slug}/`;
+        return `${site.basePathPrefix || ''}/categories/${slug}/`;
     });
 
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);

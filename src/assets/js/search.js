@@ -9,7 +9,7 @@ let currentFilters = {
 async function initializeSearch() {
     try {
         console.log('Initializing search...');
-        const response = await fetch('/travellingtrails1/search-data.json');
+        const response = await fetch('/search-data.json');
         console.log('Search response:', response);
         searchData = await response.json();
         console.log('Search data loaded:', searchData);
@@ -146,7 +146,7 @@ function createResultCard(post) {
     
     article.innerHTML = `
         <h2 class="text-xl font-semibold mb-2">
-            <a href="/travellingtrails1${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 
+            <a href="${pathPrefix}${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 
                                        dark:hover:text-travel-500">
                 ${post.title}
             </a>
@@ -163,7 +163,7 @@ function createResultCard(post) {
         ${post.categories ? `
         <div class="mt-4 flex flex-wrap gap-2">
             ${post.categories.map(category => `
-                <a href="/travellingtrails1/categories/${category.toLowerCase().replace(/\s+/g, '-')}/"
+                <a href="${pathPrefix}/categories/${category.toLowerCase().replace(/\s+/g, '-')}/"
                    class="inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 
                           dark:bg-travel-900 dark:text-travel-100 rounded-full">
                     ${category}
@@ -195,7 +195,7 @@ function showSuggestions(query) {
             <div class="text-sm text-gray-600 dark:text-gray-400">${post.description || ''}</div>
         `;
         div.addEventListener('click', () => {
-            window.location.href = `/travellingtrails1${post.url}`;
+            window.location.href = `${pathPrefix}${post.url}`;
         });
         suggestionsContainer.appendChild(div);
     });

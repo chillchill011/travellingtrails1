@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
       img.addEventListener('error', function() {
         // Only replace if not already a placeholder
         if (!this.src.includes('placeholder.jpg') && !this.classList.contains('error-handled')) {
-          this.src = '/travellingtrails1/assets/images/placeholder.jpg';
+          this.src = '/assets/images/placeholder.jpg';
           this.alt = this.alt || 'Image not available';
           this.classList.add('error-handled');
         }
