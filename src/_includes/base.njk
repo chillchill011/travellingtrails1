@@ -6,7 +6,7 @@
 {% from "head-meta.njk" import faviconMeta %}
 
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +17,35 @@
     {% if site.analyticsId and site.url == "https://travellingtrails.in" %}
       {{ googleAnalytics(site.analyticsId) }}
     {% endif %}
+
+    <!-- Dark mode detection script - Must be at the top -->
+    <script>
+      // Immediately set the correct theme before page renders
+      (function() {
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('color-theme');
+        
+        // Default to light mode
+        let darkMode = false;
+        
+        // If we have a saved theme, use it
+        if (savedTheme === 'dark') {
+          darkMode = true;
+        } else if (savedTheme === 'light') {
+          darkMode = false;
+        } else {
+          // Otherwise check system preference
+          darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+        
+        // Apply theme immediately to prevent flash
+        if (darkMode) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
 
     <script>
       // Store the full site URL for JavaScript
