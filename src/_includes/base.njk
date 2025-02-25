@@ -9,20 +9,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if title %}{{ title }}{% else %}Travelling Trails{% endif %}</title>
-    <link rel="stylesheet" href="{{ '/styles/main.css' | url }}">
-    {% if featuredImage %}
-    <link rel="preload" as="image" href="{{ featuredImage | url }}">
-    <meta property="og:image" content="{{ featuredImage | url }}">
-    <meta name="twitter:image" content="{{ featuredImage | url }}">
-    <meta name="twitter:card" content="summary_large_image">
-    {% endif %}
-    <style>
-        @media (min-width: 640px) {
-          .gallery-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    <!--  <link rel="stylesheet" href="{{ '/styles/main.css' | url }}"> -->
+        <!-- With Tailwind CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+          tailwind.config = {
+            darkMode: 'class',
+            theme: {
+              extend: {
+                colors: {
+                  'travel': {
+                    50: '#f0f9ff',
+                    100: '#e0f2fe',
+                    200: '#bae6fd',
+                    300: '#7dd3fc',
+                    400: '#38bdf8',
+                    500: '#0ea5e9',
+                    600: '#0284c7',
+                    700: '#0369a1',
+                    800: '#075985',
+                    900: '#0c4a6e',
+                    950: '#082f49'
+                  }
+                }
+              }
+            },
+            plugins: []
           }
+        </script>
+        
+        <!-- Add critical custom components -->
+        <style type="text/tailwindcss">
+          @layer components {
+            /* Layout Components */
+            .container { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 }
+            
+            /* Navigation Components */
+            .nav-link { @apply text-travel-700 dark:text-gray-300 hover:text-travel-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 }
+            
+            /* Footer Components */
+            .footer { @apply bg-gray-800 dark:bg-gray-900 text-white py-12 }
+            .footer-link { @apply text-gray-300 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors duration-200 }
+            
+            /* Blog Card Components */
+            .blog-card { @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 }
+            .blog-card h2 a { @apply text-gray-900 dark:text-white text-xl font-semibold hover:text-travel-700 dark:hover:text-travel-500 block }
+            .blog-card h3 a { @apply text-gray-900 dark:text-white text-xl font-semibold hover:text-travel-700 dark:hover:text-travel-500 }
+            .blog-card p { @apply text-gray-700 dark:text-gray-300 }
+            .blog-card time, .blog-card span { @apply text-gray-600 dark:text-gray-400 }
+            
+            /* Add other most-used components as needed */
+          }
+          
+          @layer utilities {
+            .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.1) }
+            .aspect-3-2 { aspect-ratio: 3/2 }
+          }
+          
+          @layer base {
+            .dark { @apply bg-gray-900; color-scheme: dark }
+          }
+        </style>
+        
+        {% if featuredImage %}
+        <link rel="preload" as="image" href="{{ featuredImage | url }}">
+        <meta property="og:image" content="{{ featuredImage | url }}">
+        <meta name="twitter:image" content="{{ featuredImage | url }}">
+        <meta name="twitter:card" content="summary_large_image">
+        {% endif %}
+        
+        <style>
+        @media (min-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
         }
-    </style>
+        </style>
 </head>
 <body class="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-100">
     {# Add navigation enhancements at the start of body #}

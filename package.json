@@ -4,12 +4,8 @@
   "description": "A travel blog built with 11ty",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production npm run build:css && ELEVENTY_ENV=production eleventy",
-    "build:css": "postcss src/styles/main.css -o public/styles/main.css",
-    "dev": "ELEVENTY_ENV=development npm run watch:css & ELEVENTY_ENV=development eleventy --serve",
-    "watch:css": "postcss src/styles/main.css -o public/styles/main.css --watch",
-    "start": "NODE_ENV=development npm run watch:css & ELEVENTY_ENV=development eleventy --serve",
-    "serve:prod": "ELEVENTY_ENV=production npm run watch:css & ELEVENTY_ENV=production eleventy --serve",
+    "build": "ELEVENTY_ENV=production eleventy",
+    "start": "ELEVENTY_ENV=development eleventy --serve",
     "build:js": "esbuild src/assets/js/search.js --bundle --outfile=public/assets/js/search.js"
   },
   "keywords": [],
