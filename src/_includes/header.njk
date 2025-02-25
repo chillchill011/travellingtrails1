@@ -5,13 +5,11 @@
             <div class="flex items-center">
                 {# Logo #}
                 <a href="{{ '/' | url }}" class="flex items-center">
-                    <!-- Logo with correct path prefix -->
                     <img 
-                        src="{{ site.basePathPrefix }}assets/images/logo.svg" 
+                        src="/travellingtrails1/assets/images/logo.png" 
                         alt="Travelling Trails" 
                         class="h-16 w-auto"
-                        id="header-logo"
-                        onerror="this.onerror=null; this.src='{{ site.basePathPrefix }}assets/images/logo.png'">
+                        id="header-logo">
                     <span class="ml-3 text-xl font-bold text-travel-700 dark:text-travel-500 hidden sm:block">Travelling Trails</span>
                 </a>
             </div>
