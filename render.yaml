@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: travellingtrails
+    env: static
+    buildCommand: npx tailwindcss -i src/styles/main.css -o public/styles/main.css --minify && ELEVENTY_ENV=production eleventy
+    staticPublishPath: ./public
+    envVars:
+      - key: ELEVENTY_ENV
+        value: production
+      - key: NODE_ENV
+        value: production

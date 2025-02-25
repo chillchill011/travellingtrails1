@@ -7,8 +7,8 @@ module.exports = {
     require('tailwindcss/nesting'),
     require('tailwindcss'),
     require('autoprefixer'),
-    process.env.ELEVENTY_ENV === 'production' && require('cssnano')({
+    require('cssnano')({
       preset: 'default'
     })
-  ].filter(Boolean)
+  ]
 };
