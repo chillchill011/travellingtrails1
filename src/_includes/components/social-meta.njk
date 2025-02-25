@@ -1,0 +1,26 @@
+{% macro socialMeta(title, description, url, image, author) %}
+{# Primary Meta Tags #}
+<meta name="title" content="{{ title }}">
+<meta name="description" content="{{ description }}">
+
+{# Open Graph / Facebook #}
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ site.url }}{{ url }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:image" content="{{ site.url }}{{ image | url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+{% if author %}
+<meta property="article:author" content="{{ author }}">
+{% endif %}
+
+{# Twitter #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ site.url }}{{ url }}">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ site.url }}{{ image | url }}">
+{% if site.authorTwitter %}
+<meta name="twitter:creator" content="{{ site.authorTwitter }}">
+{% endif %}
+{% endmacro %}
