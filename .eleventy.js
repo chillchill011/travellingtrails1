@@ -168,18 +168,20 @@ module.exports = function(eleventyConfig) {
 
     // Shortcodes
     eleventyConfig.addShortcode("categoryUrl", function(category) {
-        const slug = category.toLowerCase().replace(/\s+/g, '-');
-        return `${site.basePathPrefix || ''}/categories/${slug}/`;
+      const slug = category.toLowerCase().replace(/\s+/g, '-');
+      const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
+      return `${pathPrefix}/categories/${slug}/`;
     });
 
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
     eleventyConfig.addShortcode("blogImage", function(src, alt, caption) {
+        const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
         return `
           <figure class="single-image" data-lightbox>
             <div class="image-container">
               <img 
-                src="/travellingtrails1${src}"
+                src="${pathPrefix}${src}"
                 alt="${alt || ''}"
                 class="w-full h-full object-cover cursor-zoom-in"
                 loading="lazy"
@@ -199,12 +201,14 @@ module.exports = function(eleventyConfig) {
         if (!images || !Array.isArray(images)) {
           return '';
         }
-      
+        
+        const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
+
         const galleryHTML = images.map((image, index) => 
           `<div class="gallery-item">
             <div class="gallery-image-wrapper">
               <img
-                src="/travellingtrails1${image.src}"
+                src="${pathPrefix}${image.src}"
                 alt="${image.alt}"
                 class="gallery-image"
                 loading="lazy"
