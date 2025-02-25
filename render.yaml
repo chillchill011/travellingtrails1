@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: travellingtrails
-    env: static
-    buildCommand: npm run build:tailwind && ELEVENTY_ENV=production eleventy
-    staticPublishPath: ./public
-    envVars:
-      - key: NODE_ENV
-        value: production
