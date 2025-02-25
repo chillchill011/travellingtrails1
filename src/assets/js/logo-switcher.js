@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // In production, this will be empty string
-    const basePathPrefix = window.siteBasePathPrefix || '';
+    // Get the absolute base URL from a global variable or construct it
+    const baseUrl = window.siteBaseUrl || window.location.origin;
     
     function switchLogos() {
       const isDarkMode = document.documentElement.classList.contains('dark');
@@ -9,18 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (headerLogo) {
         headerLogo.src = isDarkMode 
-          ? basePathPrefix + 'assets/images/logo-white.png' 
-          : basePathPrefix + 'assets/images/logo.png';
+          ? baseUrl + '/assets/images/logo-white.png' 
+          : baseUrl + '/assets/images/logo.png';
       }
       
       if (footerLogo) {
         footerLogo.src = isDarkMode 
-          ? basePathPrefix + 'assets/images/logo-white.png' 
-          : basePathPrefix + 'assets/images/logo.png';
+          ? baseUrl + '/assets/images/logo-white.png' 
+          : baseUrl + '/assets/images/logo.png';
       }
     }
     
-    // Run on initial page load
+    // Run once on page load
     switchLogos();
     
     // Watch for dark mode changes
