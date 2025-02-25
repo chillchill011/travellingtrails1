@@ -1,0 +1,103 @@
+{% macro websiteSchema() %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/search/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endmacro %}
+
+{% macro articleSchema(title, description, image, url, author, datePublished) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ url }}"
+  },
+  "headline": "{{ title }}",
+  "description": "{{ description }}",
+  "image": "{{ site.url }}{{ image | url }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/assets/images/logo.png"
+    }
+  },
+  "datePublished": "{{ datePublished | isoDate }}",
+  "dateModified": "{{ datePublished | isoDate }}"
+}
+</script>
+{% endmacro %}
+
+{% macro breadcrumbSchema(breadcrumbs) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {% for breadcrumb in breadcrumbs %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "name": "{{ breadcrumb.name }}",
+      "item": "{{ site.url }}{{ breadcrumb.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endmacro %}
+
+{% macro courseSchema(title, description, provider, image) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "{{ title }}",
+  "description": "{{ description }}",
+  "provider": {
+    "@type": "Organization",
+    "name": "{{ provider }}",
+    "sameAs": "{{ site.url }}"
+  }{% if image %},
+  "image": "{{ site.url }}{{ image | url }}"{% endif %}
+}
+</script>
+{% endmacro %}
+
+{% macro faqSchema(questions) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for question in questions %}
+    {
+      "@type": "Question",
+      "name": "{{ question.question }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ question.answer }}"
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endmacro %}
