@@ -10,6 +10,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
     eleventyConfig.addPassthroughCopy({ "src/assets/js/lightbox.js": "assets/js/lightbox.js" });
     eleventyConfig.addPassthroughCopy({ "src/assets/js/navigation.js": "assets/js/navigation.js" });
+    eleventyConfig.addPassthroughCopy({"src/assets/js/analytics-enhancement.js": "assets/js/analytics-enhancement.js"});
 
     eleventyConfig.on('beforeBuild', () => {
         console.log('Site prefix:', eleventyConfig.pathPrefix);

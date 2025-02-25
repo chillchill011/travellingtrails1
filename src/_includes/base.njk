@@ -266,6 +266,11 @@
         });
     </script>
 
+  <!-- Add this just before the closing body tag -->
+  {% if page.url.includes("/blog/") and not page.url.endsWith("/blog/") %}
+  <script src="{{ '/assets/js/analytics-enhancement.js' | url }}"></script>
+  {% endif %}  
+
   {% from "components/cookie-consent.njk" import cookieConsent %}
   {{ cookieConsent() }}
 </body>
