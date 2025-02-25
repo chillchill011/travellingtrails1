@@ -178,54 +178,54 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addShortcode("blogImage", function(src, alt, caption) {
         const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
         return `
-          <figure class="single-image" data-lightbox>
-            <div class="image-container">
+          <figure class="single-image" style="margin: 2rem 0;">
+            <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
               <img 
                 src="${pathPrefix}${src}"
                 alt="${alt || ''}"
                 class="w-full h-full object-cover cursor-zoom-in"
                 loading="lazy"
                 data-lightbox-trigger
+                style="width: 100%; height: auto;"
               />
             </div>
             ${caption ? `
-              <figcaption class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              <figcaption style="margin-top: 0.5rem; font-size: 0.875rem; color: #4B5563; text-align: center;">
                 ${caption}
               </figcaption>
             ` : ''}
           </figure>
         `;
-      });
+    });
       
       eleventyConfig.addShortcode("imageGallery", function(images) {
-        if (!images || !Array.isArray(images)) {
-          return '';
-        }
-        
-        const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
-
-        const galleryHTML = images.map((image, index) => 
-          `<div class="gallery-item">
-            <div class="gallery-image-wrapper">
-              <img
-                src="${pathPrefix}${image.src}"
-                alt="${image.alt}"
-                class="gallery-image"
-                loading="lazy"
-                data-lightbox-trigger
-              />
+          if (!images || !Array.isArray(images)) {
+            return '';
+          }
+          
+          const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
+          
+          const galleryHTML = images.map((image, index) => 
+            `<div class="gallery-item">
+              <div class="gallery-image-wrapper">
+                <img
+                  src="${pathPrefix}${image.src}"
+                  alt="${image.alt}"
+                  class="gallery-image"
+                  loading="lazy"
+                  data-lightbox-trigger
+                />
+              </div>
+            </div>`
+          ).join('');
+          
+          return `
+            <div class="gallery-container">
+              <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; width: 100%; padding: 1rem;">
+                ${galleryHTML}
+              </div>
             </div>
-          </div>`
-        ).join('');
-      
-        // Note: Only one lightbox for the entire page
-        return `
-          <div class="gallery-container" data-lightbox-gallery>
-            <div class="gallery-grid">
-              ${galleryHTML}
-            </div>
-          </div>
-        `;
+          `;
       });
 
 
