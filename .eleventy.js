@@ -99,7 +99,10 @@ module.exports = function(eleventyConfig) {
 
     // Collections
     eleventyConfig.addCollection("searchData", function(collection) {
-        let posts = collection.getFilteredByGlob("src/blog/**/*.md");
+        let posts = collection.getFilteredByGlob("src/blog/**/*.md")
+            // Filter out draft posts in production
+            .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+            
         return posts.map(post => ({
             title: post.data.title || "",
             url: post.url,
@@ -112,7 +115,10 @@ module.exports = function(eleventyConfig) {
     });
 
     eleventyConfig.addCollection("post", function(collection) {
-        const posts = collection.getFilteredByGlob("src/blog/**/*.md");
+        const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+            // Filter out draft posts in production
+            .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+        
         console.log("Found posts:", posts.length);
         return posts;
     });
@@ -120,6 +126,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("featuredPosts", function(collection) {
         return collection.getFilteredByGlob("src/blog/**/*.md")
             .filter(post => post.data.featured)
+            // Filter out draft posts in production
+            .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft)
             .sort((a, b) => b.date - a.date)
             .slice(0, 6);
     });
@@ -127,6 +135,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("homeFeatured", function(collection) {
         return collection.getFilteredByGlob("src/blog/**/*.md")
             .filter(post => post.data.featured)
+            // Filter out draft posts in production
+            .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft)
             .sort((a, b) => b.date - a.date)
             .slice(0, 3);
     });
@@ -134,6 +144,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("homeRecent", function(collection) {
         return collection.getFilteredByGlob("src/blog/**/*.md")
             .filter(post => !post.data.featured)
+            // Filter out draft posts in production
+            .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft)
             .sort((a, b) => b.date - a.date)
             .slice(0, 9);
     });
@@ -141,11 +153,15 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("paginatedPosts", function(collection) {
         return collection.getFilteredByGlob("src/blog/**/*.md")
             .filter(post => !post.data.featured)
+            // Filter out draft posts in production
+            .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft)
             .sort((a, b) => b.date - a.date);
     });
 
     eleventyConfig.addCollection("categories", function(collection) {
-        const posts = collection.getFilteredByGlob("src/blog/**/*.md");
+        const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+            // Filter out draft posts in production
+            .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
         
         const categoriesSet = new Set();
         posts.forEach(post => {
@@ -205,46 +221,35 @@ module.exports = function(eleventyConfig) {
         `;
     });
       
-      eleventyConfig.addShortcode("imageGallery", function(images) {
-          if (!images || !Array.isArray(images)) {
-            return '';
-          }
-          
-          const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
-          
-          const galleryHTML = images.map((image, index) => 
-            `<div class="gallery-item">
-              <div class="gallery-image-wrapper">
-                <img
-                  src="${pathPrefix}${image.src}"
-                  alt="${image.alt}"
-                  class="gallery-image"
-                  loading="lazy"
-                  data-lightbox-trigger
-                />
-              </div>
-            </div>`
-          ).join('');
-          
-          return `
-            <div class="gallery-container">
-              <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; width: 100%; padding: 1rem;">
-                ${galleryHTML}
-              </div>
+    eleventyConfig.addShortcode("imageGallery", function(images) {
+        if (!images || !Array.isArray(images)) {
+          return '';
+        }
+        
+        const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
+        
+        const galleryHTML = images.map((image, index) => 
+          `<div class="gallery-item">
+            <div class="gallery-image-wrapper">
+              <img
+                src="${pathPrefix}${image.src}"
+                alt="${image.alt}"
+                class="gallery-image"
+                loading="lazy"
+                data-lightbox-trigger
+              />
             </div>
-          `;
-      });
-
-
-    // Add to your .eleventy.js
-    eleventyConfig.addCollection("post", function(collection) {
-      // Filter out draft posts in production
-      return collection.getFilteredByGlob("src/blog/**/*.md")
-          .filter(post => {
-              return process.env.ELEVENTY_ENV !== "production" || !post.data.draft;
-          });
-    });  
-
+          </div>`
+        ).join('');
+        
+        return `
+          <div class="gallery-container">
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; width: 100%; padding: 1rem;">
+              ${galleryHTML}
+            </div>
+          </div>
+        `;
+    });
 
     // General filters
     eleventyConfig.addFilter("limit", function (arr, limit) {
