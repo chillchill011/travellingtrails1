@@ -1,0 +1,53 @@
+{% macro touristAttractionSchema(title, description, url, image, address, latitude, longitude, openingHours, priceRange) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "{{ title }}",
+  "description": "{{ description }}",
+  "url": "{{ site.url }}{{ url }}",
+  {% if image %}"image": "{{ site.url }}{{ image }}",{% endif %}
+  {% if address %}
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "{{ address.country }}",
+    "addressLocality": "{{ address.locality }}",
+    "addressRegion": "{{ address.region }}"
+  },
+  {% endif %}
+  {% if latitude and longitude %}
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "{{ latitude }}",
+    "longitude": "{{ longitude }}"
+  },
+  {% endif %}
+  {% if openingHours %}"openingHours": "{{ openingHours }}",{% endif %}
+  {% if priceRange %}"priceRange": "{{ priceRange }}"{% endif %}
+}
+</script>
+{% endmacro %}
+
+{% macro touristDestinationSchema(title, description, url, image, containsAttractions) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "{{ title }}",
+  "description": "{{ description }}",
+  "url": "{{ site.url }}{{ url }}",
+  {% if image %}"image": "{{ site.url }}{{ image }}",{% endif %}
+  {% if containsAttractions %}
+  "containsAttraction": [
+    {% for attraction in containsAttractions %}
+    {
+      "@type": "TouristAttraction",
+      "name": "{{ attraction.name }}",
+      "url": "{{ site.url }}{{ attraction.url }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+  {% endif %}
+}
+</script>
+{% endmacro %}

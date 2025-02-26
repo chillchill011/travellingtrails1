@@ -274,6 +274,60 @@ module.exports = function(eleventyConfig) {
         return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
     });
 
+
+    // Add destinations collection
+    eleventyConfig.addCollection("destinations", function(collection) {
+      const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+          // Filter out draft posts in production
+          .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+      
+      const destinationsSet = new Set();
+      
+      posts.forEach(post => {
+          if (post.data.destination) {
+              destinationsSet.add(post.data.destination);
+          }
+      });
+      
+      const destinations = Array.from(destinationsSet).sort();
+      
+      return destinations.map(destination => {
+          const filteredPosts = posts.filter(post => 
+              post.data.destination === destination
+          ).sort((a, b) => b.date - a.date);
+          
+          return {
+              title: destination,
+              slug: destination.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, ''),
+              posts: filteredPosts,
+              count: filteredPosts.length
+          };
+      });
+    });
+
+    // Function to parse duration
+    eleventyConfig.addFilter("durationToDays", function(duration) {
+      if (typeof duration === "number") return duration;
+      
+      if (typeof duration === "string") {
+          const daysMatch = duration.match(/(\d+)\s*day/i);
+          if (daysMatch && daysMatch[1]) {
+              return parseInt(daysMatch[1]);
+          }
+          
+          const weeksMatch = duration.match(/(\d+)\s*week/i);
+          if (weeksMatch && weeksMatch[1]) {
+              return parseInt(weeksMatch[1]) * 7;
+          }
+          
+          if (/^\d+$/.test(duration)) {
+              return parseInt(duration);
+          }
+      }
+      
+      return 0;
+    });
+
     return {
         dir: {
             input: "src",

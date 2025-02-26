@@ -12,7 +12,11 @@ eleventyExcludeFromCollections: true
             "categories": [{% if post.data.categories %}{% for category in post.data.categories %}"{{ category }}"{% if not loop.last %},{% endif %}{% endfor %}{% endif %}],
             "author": {{ post.data.author | json | safe }},
             "date": {{ post.date | json | safe }},
-            "content": {{ post.template.inputContent | striptags | json | safe }}
+            "content": {{ post.template.inputContent | striptags | json | safe }},
+            "destination": {{ post.data.destination | json | safe }},
+            "duration": {{ post.data.duration | json | safe }},
+            "travelType": {{ post.data.travelType | json | safe }},
+            "featuredImage": {{ post.data.featuredImage | json | safe }}
         }{% if not loop.last %},{% endif %}
         {%- endfor -%}
     ]

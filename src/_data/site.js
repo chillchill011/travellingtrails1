@@ -12,6 +12,7 @@ module.exports = {
   navigation: [
     { text: "Home", url: "/" },
     { text: "Blog", url: "/blog/" },
+    { text: "Explore", url: "/explore/" },
     { text: "Categories", url: "/categories/" },
     { text: "About", url: "/about/" },
     { text: "Contact", url: "/contact/" }

@@ -16,11 +16,9 @@
 
             {# Desktop Navigation #}
             <div class="hidden md:flex md:items-center md:space-x-4">
-                <a href="{{ '/' | url }}" class="nav-link dark:text-gray-300 dark:hover:text-white">Home</a>
-                <a href="{{ '/blog/' | url }}" class="nav-link">Blog</a>
-                <a href="{{ '/categories/' | url }}" class="nav-link">Categories</a>
-                <a href="{{ '/about/' | url }}" class="nav-link">About</a>
-                <a href="{{ '/contact/' | url }}" class="nav-link">Contact</a>
+                {% for item in site.navigation %}
+                <a href="{{ item.url | url }}" class="nav-link dark:text-gray-300 dark:hover:text-white">{{ item.text }}</a>
+                {% endfor %}
                 <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
@@ -46,10 +44,9 @@
         {# Mobile Navigation #}
         <div class="mobile-menu hidden md:hidden">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="{{ '/' | url }}" class="nav-link block">Home</a>
-                <a href="{{ '/blog/' | url }}" class="nav-link block">Blog</a>
-                <a href="{{ '/about/' | url }}" class="nav-link block">About</a>
-                <a href="{{ '/contact/' | url }}" class="nav-link block">Contact</a>
+                {% for item in site.navigation %}
+                <a href="{{ item.url | url }}" class="nav-link block">{{ item.text }}</a>
+                {% endfor %}
                 <a href="{{ '/search/' | url }}" class="nav-link block">Search</a>
             </div>
         </div>
