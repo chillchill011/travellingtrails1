@@ -57,7 +57,9 @@ collections:
         file: "src/about.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Content", name: "body", widget: "markdown" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/about/index.html" }
+          - { label: "Body", name: "body", widget: "code", default_language: "html", allow_language_selection: false }
       
       - label: "Contact Page"
         name: "contact"
@@ -66,8 +68,8 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
           - { label: "Permalink", name: "permalink", widget: "hidden", default: "/contact/index.html" }
-          - { label: "Body", name: "body", widget: "markdown" }
-          
+          - { label: "Body", name: "body", widget: "code", default_language: "html", allow_language_selection: false }
+      
       - label: "Privacy Policy"
         name: "privacy"
         file: "src/privacy-policy.njk"
@@ -75,4 +77,4 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
           - { label: "Permalink", name: "permalink", widget: "hidden", default: "/privacy-policy/index.html" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Body", name: "body", widget: "code", default_language: "html", allow_language_selection: false }
