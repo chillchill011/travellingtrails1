@@ -18,6 +18,9 @@
       {{ googleAnalytics(site.analyticsId) }}
     {% endif %}
 
+    <!-- Add this before your search.js script -->
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+
     <!-- Dark mode detection script - Must be at the top -->
     <script>
       // Immediately set the correct theme before page renders
@@ -305,8 +308,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', adjustImageBrightness);
-        const observer = new MutationObserver(adjustImageBrightness);
-        observer.observe(document.documentElement, {
+        const darkModeObserver = new MutationObserver(adjustImageBrightness);
+        darkModeObserver.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ['class']
         });
