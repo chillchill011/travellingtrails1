@@ -1,7 +1,7 @@
-# Decap CMS Configuration matching your existing structure
+# Decap CMS Configuration - Final version
 backend:
   name: git-gateway
-  branch: render-blog  # Replace with your actual branch name
+  branch: render-blog  # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
@@ -57,9 +57,7 @@ collections:
         file: "src/about.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/about/index.html" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Content", name: "body", widget: "markdown" }
       
       - label: "Contact Page"
         name: "contact"
