@@ -310,6 +310,25 @@
 
   <script src="{{ '/assets/js/logo-switcher.js' | url }}"></script>
 
+
+    <!-- Add this right before the closing </body> tag in your base.njk template -->
+    <!-- Only add this script on the main site, not in the admin section -->
+    {% if page.url != "/admin/" and site.url == "https://travellingtrails.in" %}
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+    {% endif %}
+
+
   {% from "components/cookie-consent.njk" import cookieConsent %}
   {{ cookieConsent() }}
 </body>

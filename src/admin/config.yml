@@ -1,22 +1,70 @@
+# This is the updated configuration file for Decap CMS (formerly Netlify CMS)
+# src/admin/config.yml
+
 backend:
   name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  branch: main # Branch to update (defaults to master)
 
-media_folder: "public/assets/blog" # Media files will be stored in the repo under static/images/uploads
-public_folder: "/assets/blog" # The src attribute for uploaded media will begin with /images/uploads
+# Publish mode options:
+# - editorial (default): All entries require review before they're published
+# - simple: All entries are published instantly
+publish_mode: editorial
 
+# Media and public folders
+# Media files will be stored in the repo under this path
+media_folder: "src/assets/blog" 
+# The src attribute for uploaded media will begin with this path
+public_folder: "/assets/blog"
+
+# Enable the Netlify Identity widget for signup (if using Netlify Identity)
+local_backend: true
+
+# Collections define the structure for the different content types
 collections:
   - name: "blog"
-    label: "Blog"
+    label: "Blog Posts"
     folder: "src/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields: 
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Description", name: "description", widget: "text" }
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Image Caption", name: "imageAlt", widget: "string" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { 
+          label: "Categories", 
+          name: "categories", 
+          widget: "list",
+          allow_add: true
+        }
+      - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - { 
+          label: "Gallery", 
+          name: "gallery", 
+          widget: "list", 
+          required: false,
+          fields: [
+            { label: "Image", name: "src", widget: "image" },
+            { label: "Alt Text", name: "alt", widget: "string" },
+            { label: "Caption", name: "caption", widget: "string", required: false },
+            { label: "Credit", name: "credit", widget: "string", required: false }
+          ]
+        }
+      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "article.njk" }
+
+  - name: "pages"
+    label: "Pages"
+    folder: "src/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+      - { label: "Permalink", name: "permalink", widget: "string", pattern: ['^\/[a-zA-Z0-9-_\/]+\/$', 'Must start and end with a slash'] }

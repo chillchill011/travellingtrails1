@@ -4,11 +4,106 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
+    <title>Travelling Trails Admin</title>
+    
+    <!-- Load the Netlify Identity Widget for authentication -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <title>Content Manager</title>
+    
+    <!-- Custom styles for the admin interface -->
+    <style>
+      :root {
+        --primary-color: #0284c7;
+        --secondary-color: #0ea5e9;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      
+      /* Custom styling for the Decap CMS interface */
+      [data-slate-editor] {
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      /* Style the header */
+      header[class*="AppHeader"] {
+        background-color: var(--primary-color) !important;
+      }
+      
+      /* Style the publish button */
+      button[class*="PublishButton"] {
+        background-color: var(--secondary-color) !important;
+      }
+      
+      /* Add loading indicator */
+      .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #f9fafb;
+        z-index: 9999;
+      }
+      
+      .loader.hidden {
+        display: none;
+      }
+      
+      .loader-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid var(--primary-color);
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
+    <!-- Loading indicator -->
+    <div class="loader" id="loader">
+      <div class="loader-spinner"></div>
+    </div>
+    
+    <!-- Decap CMS is loaded here -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <script>
+      // Handle Netlify Identity login and redirect
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+      
+      // Hide the loader when CMS is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          document.getElementById('loader').classList.add('hidden');
+        }, 1000);
+      });
+      
+      // Add preview styles for improved editing experience
+      // This helps format content in the editor similar to the live site
+      if (window.CMS) {
+        window.CMS.registerPreviewStyle("/styles/main.css");
+        
+        // Optional: Register custom preview templates if needed
+        // Example: window.CMS.registerPreviewTemplate("blog", BlogPostPreview);
+      }
+    </script>
   </body>
 </html>
