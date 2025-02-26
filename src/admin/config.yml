@@ -3,12 +3,12 @@
 
 backend:
   name: git-gateway
-  branch: main # Branch to update (defaults to master)
+  branch: render-blog # Branch to update (defaults to master)
 
 # Publish mode options:
 # - editorial (default): All entries require review before they're published
 # - simple: All entries are published instantly
-publish_mode: editorial
+publish_mode: simple
 
 # Media and public folders
 # Media files will be stored in the repo under this path
