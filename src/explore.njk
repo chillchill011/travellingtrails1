@@ -1,13 +1,13 @@
 ---
 layout: base
-title: Discover Destinations | Travelling Trails
+title: Explore Destinations | Travelling Trails
 permalink: /explore/index.html
 ---
 
 <div class="max-w-7xl mx-auto px-4 py-8">
   <header class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Discover Travel Destinations</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-300">Browse adventures by location, activity, and more</p>
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Explore Travel Destinations</h1>
+    <p class="text-xl text-gray-600 dark:text-gray-300">Discover adventures by location, activity, and more</p>
   </header>
 
   <!-- Search and Filter Section -->
@@ -18,7 +18,7 @@ permalink: /explore/index.html
         <div class="relative">
           <input 
             type="text" 
-            id="searchInput"
+            id="exploreSearch"
             class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
                   bg-white dark:bg-gray-700 text-gray-900 dark:text-white
                   focus:ring-2 focus:ring-travel-500 focus:border-travel-500"
@@ -29,17 +29,13 @@ permalink: /explore/index.html
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <div id="searchSuggestions" 
-               class="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-200 
-                    dark:border-gray-700 rounded-lg shadow-lg hidden">
-          </div>
         </div>
       </div>
       
       <!-- Filters -->
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Destination</label>
-        <select id="categoryFilter" 
+        <select id="destinationFilter" 
                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                        rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
           <option value="">All Destinations</option>
@@ -65,34 +61,30 @@ permalink: /explore/index.html
       
       <div>
         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Duration</label>
-        <select id="dateFilter" 
+        <select id="durationFilter" 
                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                        rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
           <option value="">Any Duration</option>
-          <option value="7">Last Week</option>
-          <option value="30">Last Month</option>
-          <option value="365">Last Year</option>
+          <option value="day-trip">Day Trip</option>
+          <option value="weekend">Weekend (2-3 days)</option>
+          <option value="short">Short Trip (4-7 days)</option>
+          <option value="medium">Medium Trip (8-14 days)</option>
+          <option value="long">Long Trip (15+ days)</option>
         </select>
       </div>
     </div>
   </div>
 
-  <!-- Destinations Map (Placeholder for now) -->
-  <div id="destinations-map" class="bg-gray-100 dark:bg-gray-700 rounded-lg h-64 mb-12 flex items-center justify-center text-gray-500 dark:text-gray-400">
-    <p>Destinations map coming soon</p>
-  </div>
-
-  <!-- Search Results Section (Initially Hidden) -->
-  <div id="searchResultsSection" class="mb-8 hidden">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Search Results</h2>
-    <div id="searchResults" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
-    <div id="noResults" class="text-center text-gray-600 dark:text-gray-400 hidden">
-      No destinations found matching your criteria.
-    </div>
+  <!-- Destinations Map -->
+  <div 
+  id="destinations-map" 
+  class="map-container loading mb-12"
+  data-destinations="{{ collections.destinations | getDestinationsMapData | json | escape }}"
+  aria-label="Map of all destinations">
   </div>
 
   <!-- Results Section -->
-  <div class="mb-8" id="destinationsSection">
+  <div class="mb-8">
     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Explore All Destinations</h2>
     <div id="explorePosts" class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {% for destination in collections.destinations %}
@@ -134,23 +126,5 @@ permalink: /explore/index.html
       });
       card.style.cursor = 'pointer';
     });
-
-    // Show search results section when search is performed
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-      searchInput.addEventListener('input', function() {
-        const query = this.value.trim();
-        const searchResultsSection = document.getElementById('searchResultsSection');
-        const destinationsSection = document.getElementById('destinationsSection');
-        
-        if (query.length >= 2) {
-          searchResultsSection.classList.remove('hidden');
-          destinationsSection.classList.add('hidden');
-        } else {
-          searchResultsSection.classList.add('hidden');
-          destinationsSection.classList.remove('hidden');
-        }
-      });
-    }
   });
 </script>

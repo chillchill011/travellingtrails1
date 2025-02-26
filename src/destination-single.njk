@@ -18,9 +18,14 @@ eleventyComputed:
   </header>
 
   {% if destination.posts[0].data.coordinates %}
-  <!-- Destination Map (placeholder) -->
-  <div class="mb-12 bg-gray-100 dark:bg-gray-700 rounded-lg h-64 flex items-center justify-center">
-    <p class="text-gray-500 dark:text-gray-400">Map of {{ destination.title }} coming soon</p>
+  <!-- Destination Map -->
+  <div 
+    id="destination-map" 
+    class="map-container loading mb-12"
+    data-latitude="{{ destination.posts[0].data.coordinates.latitude }}"
+    data-longitude="{{ destination.posts[0].data.coordinates.longitude }}"
+    data-title="{{ destination.title }}"
+    aria-label="Map of {{ destination.title }}">
   </div>
   {% endif %}
 
@@ -55,3 +60,5 @@ eleventyComputed:
     {%- endfor -%}
   </div>
 </div>
+
+<script src="{{ '/assets/js/map-handler.js' | url }}"></script>

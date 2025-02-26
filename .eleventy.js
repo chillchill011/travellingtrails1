@@ -17,10 +17,11 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/images/logo-white.svg": "assets/images/logo-white.svg"});
     eleventyConfig.addPassthroughCopy({"src/assets/images/logo-white.png": "assets/images/logo-white.png"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/logo-switcher.js": "assets/js/logo-switcher.js"});
+    eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
 
     eleventyConfig.on('beforeBuild', () => {
         console.log('Site prefix:', eleventyConfig.pathPrefix);
-      });
+    });
 
     // Watch targets
     eleventyConfig.addWatchTarget("./src/styles/");
@@ -303,6 +304,33 @@ module.exports = function(eleventyConfig) {
               count: filteredPosts.length
           };
       });
+    });
+
+    // Add map data filter with corrected implementation
+    eleventyConfig.addFilter("getDestinationsMapData", function(destinations) {
+      if (!destinations || !Array.isArray(destinations)) {
+        return [];
+      }
+      
+      return destinations.map(destination => {
+        // Find first post with coordinates
+        const postWithCoordinates = destination.posts.find(post => 
+          post.data.coordinates && 
+          post.data.coordinates.latitude && 
+          post.data.coordinates.longitude
+        );
+        
+        const coordinates = postWithCoordinates?.data?.coordinates || {};
+        const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
+        
+        return {
+          title: destination.title,
+          lat: coordinates.latitude,
+          lng: coordinates.longitude,
+          count: destination.count,
+          url: `${pathPrefix}/destinations/${destination.slug}/`
+        };
+      }).filter(d => d.lat && d.lng); // Only include destinations with coordinates
     });
 
     // Function to parse duration
