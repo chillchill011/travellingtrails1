@@ -1,15 +1,17 @@
 ---
-title: Hiking the Pacific Crest Trail
+title: Hiking the Pacific Crest Trail and Fun
 description: A 2-week adventure through stunning landscapes
-date: 2024-02-15
 author: John Doe
+date: 2024-02-15
 featured: true
-layout: article.njk
-featuredImage: /assets/images/article-2.jpg
-categories: 
+draft: false
+categories:
   - Hiking
   - Adventure
   - Long Distance
+featuredImage: /assets/images/article-2.jpg
+imageAlt: Test test
+layout: article.njk
 ---
 
 # Welcome to Our Travel Blog
