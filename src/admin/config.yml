@@ -3,10 +3,10 @@
 
 backend:
   name: git-gateway
-  branch: render-blog # Branch to update (defaults to master)
+  branch: render-blog # Branch to update (using your actual branch name)
 
-# Publish mode options:
-# - editorial (default): All entries require review before they're published
+# Publish mode can only be 'editorial' or 'simple'
+# - editorial: All entries require review before they're published
 # - simple: All entries are published instantly
 publish_mode: simple
 
@@ -16,8 +16,28 @@ media_folder: "src/assets/blog"
 # The src attribute for uploaded media will begin with this path
 public_folder: "/assets/blog"
 
+# Additional media libraries
+media_library:
+  name: uploadcare
+  config:
+    publicKey: "bb20971db194c2e52968" # Replace with your actual Uploadcare public key
+    multiple: true
+    tabs: "file camera url gdrive gphotos"
+    effects: "crop,rotate,enhance,grayscale"
+    previewStep: true
+    
+# Alternative media library (pick one)
+# media_library:
+#   name: cloudinary
+#   config:
+#     cloud_name: your-cloud-name
+#     api_key: your-api-key
+
 # Enable the Netlify Identity widget for signup (if using Netlify Identity)
 local_backend: true
+
+# Add drafts handling
+show_preview_links: true
 
 # Collections define the structure for the different content types
 collections:
@@ -26,12 +46,18 @@ collections:
     folder: "src/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # Add draft support
+    editor:
+      preview: true
+    # Add drafts functionality
+    publish: true
     fields: 
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true, hint: "Set to true to save as draft" }
       - { 
           label: "Categories", 
           name: "categories", 
@@ -58,13 +84,27 @@ collections:
 
   - name: "pages"
     label: "Pages"
-    folder: "src/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-      - { label: "Permalink", name: "permalink", widget: "string", pattern: ['^\/[a-zA-Z0-9-_\/]+\/$', 'Must start and end with a slash'] }
+    files:
+      - name: "about"
+        label: "About Page"
+        file: "src/about.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Body", name: "body", widget: "markdown" }
+          
+      - name: "contact"
+        label: "Contact Page"
+        file: "src/contact.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Body", name: "body", widget: "markdown" }
+          
+      - name: "privacy"
+        label: "Privacy Policy"
+        file: "src/privacy-policy.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Body", name: "body", widget: "markdown" }

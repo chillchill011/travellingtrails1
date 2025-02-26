@@ -236,6 +236,15 @@ module.exports = function(eleventyConfig) {
       });
 
 
+    // Add to your .eleventy.js
+    eleventyConfig.addCollection("post", function(collection) {
+      // Filter out draft posts in production
+      return collection.getFilteredByGlob("src/blog/**/*.md")
+          .filter(post => {
+              return process.env.ELEVENTY_ENV !== "production" || !post.data.draft;
+          });
+    });  
+
 
     // General filters
     eleventyConfig.addFilter("limit", function (arr, limit) {
