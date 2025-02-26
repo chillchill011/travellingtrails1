@@ -120,6 +120,17 @@
         <meta name="twitter:image" content="{{ featuredImage | url }}">
         <meta name="twitter:card" content="summary_large_image">
         {% endif %}
+
+        <!-- Structured Data -->
+        {% if page.data.destination %}
+          {% from "components/travel-schema.njk" import touristDestinationSchema %}
+          {{ touristDestinationSchema(
+            title=title,
+            description=description | default(site.description),
+            url=page.url,
+            image=featuredImage
+          ) }}
+        {% endif %}
         
         <style>
         @media (min-width: 640px) {
@@ -250,10 +261,8 @@
     <script src="{{ '/assets/js/main.js' | url }}"></script>
     <script src="{{ '/assets/js/lightbox.js' | url }}"></script>
     <script src="{{ '/assets/js/navigation.js' | url }}"></script>
-
-    {% if page.url === '/search/' %}
     <script src="{{ '/assets/js/search.js' | url }}"></script>
-    {% endif %}
+    
 
     <!-- Image optimization script -->
     <script>

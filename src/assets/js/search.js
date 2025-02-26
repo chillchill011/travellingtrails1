@@ -10,10 +10,22 @@ let currentFilters = {
 const pathPrefix = '';  // Empty for production
 
 async function initializeSearch() {
+    // Check if we're on a page that has search functionality
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) {
+        console.log('Search input not found, skipping search initialization');
+        return; // Exit if search input doesn't exist on this page
+    }
+    
     try {
         console.log('Initializing search...');
         const response = await fetch('/search-data.json');
         console.log('Search response:', response);
+        
+        if (!response.ok) {
+            throw new Error(`Failed to fetch search data: ${response.status} ${response.statusText}`);
+        }
+        
         searchData = await response.json();
         console.log('Search data loaded:', searchData);
 
@@ -50,6 +62,11 @@ function setupEventListeners() {
     const dateFilter = document.getElementById('dateFilter');
     const searchSuggestions = document.getElementById('searchSuggestions');
 
+    if (!searchInput || !searchSuggestions) {
+        console.error('Required search elements not found');
+        return;
+    }
+
     let debounceTimeout;
 
     searchInput.addEventListener('input', (e) => {
@@ -66,30 +83,47 @@ function setupEventListeners() {
         }, 300);
     });
 
-    categoryFilter.addEventListener('change', (e) => {
-        currentFilters.category = e.target.value;
-        const searchQuery = searchInput.value;
-        if (searchQuery.length >= 2) {
-            performSearch(searchQuery);
-        }
-    });
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', (e) => {
+            currentFilters.category = e.target.value;
+            const searchQuery = searchInput.value;
+            if (searchQuery.length >= 2) {
+                performSearch(searchQuery);
+            }
+        });
+    }
 
-    dateFilter.addEventListener('change', (e) => {
-        currentFilters.dateRange = e.target.value;
-        const searchQuery = searchInput.value;
-        if (searchQuery.length >= 2) {
-            performSearch(searchQuery);
-        }
-    });
+    if (dateFilter) {
+        dateFilter.addEventListener('change', (e) => {
+            currentFilters.dateRange = e.target.value;
+            const searchQuery = searchInput.value;
+            if (searchQuery.length >= 2) {
+                performSearch(searchQuery);
+            }
+        });
+    }
 
     document.addEventListener('click', (e) => {
-        if (!searchSuggestions.contains(e.target) && e.target !== searchInput) {
+        if (searchSuggestions && !searchSuggestions.contains(e.target) && e.target !== searchInput) {
             hideSuggestions();
         }
     });
 }
 
 function performSearch(query) {
+    if (!searchIndex) {
+        console.error('Search index not initialized');
+        return;
+    }
+    
+    const resultsContainer = document.getElementById('searchResults');
+    const noResults = document.getElementById('noResults');
+    
+    if (!resultsContainer || !noResults) {
+        console.error('Search results containers not found');
+        return;
+    }
+    
     try {
         console.log('Performing search for:', query);
         const results = searchIndex.search(query);
@@ -105,6 +139,7 @@ function performSearch(query) {
 function filterResults(results) {
     return results.filter(result => {
         const post = searchData.posts.find(p => p.url === result.ref);
+        if (!post) return false;
         
         if (currentFilters.category && (!post.categories || 
             !post.categories.includes(currentFilters.category))) {
@@ -127,6 +162,8 @@ function displayResults(results) {
     const resultsContainer = document.getElementById('searchResults');
     const noResults = document.getElementById('noResults');
     
+    if (!resultsContainer || !noResults) return;
+    
     resultsContainer.innerHTML = '';
 
     if (results.length === 0) {
@@ -138,8 +175,10 @@ function displayResults(results) {
 
     results.forEach(result => {
         const post = searchData.posts.find(p => p.url === result.ref);
-        const article = createResultCard(post);
-        resultsContainer.appendChild(article);
+        if (post) {
+            const article = createResultCard(post);
+            resultsContainer.appendChild(article);
+        }
     });
 }
 
@@ -181,8 +220,12 @@ function createResultCard(post) {
 }
 
 function showSuggestions(query) {
-    const results = searchIndex.search(query).slice(0, 5);
+    if (!searchIndex) return;
+    
     const suggestionsContainer = document.getElementById('searchSuggestions');
+    if (!suggestionsContainer) return;
+    
+    const results = searchIndex.search(query).slice(0, 5);
     
     if (results.length === 0) {
         hideSuggestions();
@@ -192,6 +235,8 @@ function showSuggestions(query) {
     suggestionsContainer.innerHTML = '';
     results.forEach(result => {
         const post = searchData.posts.find(p => p.url === result.ref);
+        if (!post) return;
+        
         const div = document.createElement('div');
         div.className = 'p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
         div.innerHTML = `
@@ -199,7 +244,6 @@ function showSuggestions(query) {
             <div class="text-sm text-gray-600 dark:text-gray-400">${post.description || ''}</div>
         `;
         div.addEventListener('click', () => {
-            // Fix the URL construction here too
             window.location.href = post.url;
         });
         suggestionsContainer.appendChild(div);
@@ -209,12 +253,23 @@ function showSuggestions(query) {
 }
 
 function hideSuggestions() {
-    document.getElementById('searchSuggestions').classList.add('hidden');
+    const suggestionsContainer = document.getElementById('searchSuggestions');
+    if (suggestionsContainer) {
+        suggestionsContainer.classList.add('hidden');
+    }
 }
 
 function clearResults() {
-    document.getElementById('searchResults').innerHTML = '';
-    document.getElementById('noResults').classList.add('hidden');
+    const resultsContainer = document.getElementById('searchResults');
+    const noResults = document.getElementById('noResults');
+    
+    if (resultsContainer) {
+        resultsContainer.innerHTML = '';
+    }
+    
+    if (noResults) {
+        noResults.classList.add('hidden');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initializeSearch);
