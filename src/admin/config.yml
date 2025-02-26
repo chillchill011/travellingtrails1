@@ -1,56 +1,22 @@
-# This is the updated configuration file for Decap CMS (formerly Netlify CMS)
-# src/admin/config.yml
-
+# Decap CMS Configuration matching your existing structure
 backend:
   name: git-gateway
-  branch: render-blog # Branch to update (using your actual branch name)
+  branch: render-blog  # Replace with your actual branch name
 
-# Publish mode can only be 'editorial' or 'simple'
-# - editorial: All entries require review before they're published
-# - simple: All entries are published instantly
+# Publish mode
 publish_mode: simple
 
-# Media and public folders
-# Media files will be stored in the repo under this path
-media_folder: "src/assets/blog" 
-# The src attribute for uploaded media will begin with this path
-public_folder: "/assets/blog"
+# Media folder paths - using your existing structure
+media_folder: "src/assets/images"  # Where media will be stored
+public_folder: "/assets/images"    # Public path to that media
 
-# Additional media libraries
-media_library:
-  name: uploadcare
-  config:
-    publicKey: "bb20971db194c2e52968" # Replace with your actual Uploadcare public key
-    multiple: true
-    tabs: "file camera url gdrive gphotos"
-    effects: "crop,rotate,enhance,grayscale"
-    previewStep: true
-    
-# Alternative media library (pick one)
-# media_library:
-#   name: cloudinary
-#   config:
-#     cloud_name: your-cloud-name
-#     api_key: your-api-key
-
-# Enable the Netlify Identity widget for signup (if using Netlify Identity)
-local_backend: true
-
-# Add drafts handling
-show_preview_links: true
-
-# Collections define the structure for the different content types
+# Collections
 collections:
   - name: "blog"
     label: "Blog Posts"
     folder: "src/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    # Add draft support
-    editor:
-      preview: true
-    # Add drafts functionality
-    publish: true
     fields: 
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
@@ -82,29 +48,33 @@ collections:
       - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
       - { label: "Layout", name: "layout", widget: "hidden", default: "article.njk" }
 
+  # Pages as separate file collection entries
   - name: "pages"
     label: "Pages"
     files:
-      - name: "about"
-        label: "About Page"
+      - label: "About Page"
+        name: "about"
         file: "src/about.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/about/index.html" }
           - { label: "Body", name: "body", widget: "markdown" }
-          
-      - name: "contact"
-        label: "Contact Page"
+      
+      - label: "Contact Page"
+        name: "contact"
         file: "src/contact.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/contact/index.html" }
           - { label: "Body", name: "body", widget: "markdown" }
           
-      - name: "privacy"
-        label: "Privacy Policy"
+      - label: "Privacy Policy"
+        name: "privacy"
         file: "src/privacy-policy.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/privacy-policy/index.html" }
           - { label: "Body", name: "body", widget: "markdown" }
