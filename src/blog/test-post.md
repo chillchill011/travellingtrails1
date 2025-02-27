@@ -37,6 +37,4 @@ Here is the normal image:
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quis metus justo. Sed dignissim aliquam consequat. Maecenas et posuere lacus. Mauris nisi metus, mollis quis turpis eget, venenatis vestibulum risus. Phasellus vel turpis mi. Cras egestas vel mauris a cursus. Morbi justo enim, malesuada et nibh imperdiet, pretium iaculis augue.
 
 
-
-
 {% imageGallery gallery %}

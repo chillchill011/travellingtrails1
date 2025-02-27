@@ -34,9 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Setup load more functionality
   setupLoadMore();
   
-  // Setup lightbox functionality
-  setupLightbox();
-  
   // Setup analytics tracking
   setupAnalyticsTracking();
 });
@@ -173,100 +170,6 @@ function setupLoadMore() {
   });
 }
 
-// Function to setup lightbox functionality
-function setupLightbox() {
-  const lightbox = document.getElementById('gallery-lightbox');
-  const lightboxImage = document.getElementById('lightbox-image');
-  const lightboxClose = document.getElementById('lightbox-close');
-
-  if (!lightbox || !lightboxImage || !lightboxClose) return;
-
-  // Open lightbox
-  document.addEventListener('click', function(e) {
-    const trigger = e.target.closest('[data-lightbox-trigger]');
-    if (trigger) {
-      e.preventDefault();
-      // Set image source before showing lightbox
-      lightboxImage.src = trigger.src;
-      lightboxImage.alt = trigger.alt;
-      
-      // Show lightbox after a brief delay to ensure image is loaded
-      requestAnimationFrame(() => {
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        // Track lightbox open in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'lightbox_open', {
-            'event_category': 'engagement',
-            'event_label': trigger.alt || 'Image lightbox'
-          });
-        }
-      });
-    }
-  });
-
-  // Close lightbox
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-    
-    // Don't clear src until transition is complete
-    lightbox.addEventListener('transitionend', function handler() {
-      lightboxImage.src = '';
-      lightbox.removeEventListener('transitionend', handler);
-    }, { once: true });
-  }
-
-  // Close button click
-  lightboxClose.addEventListener('click', function(e) {
-    e.stopPropagation();
-    closeLightbox();
-
-    // Track lightbox close in analytics
-    if (typeof gtag === 'function') {
-      gtag('event', 'lightbox_close', {
-        'event_category': 'engagement',
-        'event_label': 'Close button'
-      });
-    }
-  });
-
-  // Background click
-  lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-      closeLightbox();
-
-      // Track lightbox close in analytics
-      if (typeof gtag === 'function') {
-        gtag('event', 'lightbox_close', {
-          'event_category': 'engagement',
-          'event_label': 'Background click'
-        });
-      }
-    }
-  });
-
-  // Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      closeLightbox();
-
-      // Track lightbox close in analytics
-      if (typeof gtag === 'function') {
-        gtag('event', 'lightbox_close', {
-          'event_category': 'engagement',
-          'event_label': 'Escape key'
-        });
-      }
-    }
-  });
-
-  // Prevent 404 errors
-  lightboxImage.addEventListener('error', function() {
-    this.src = '';
-  });
-}
 
 // Function to setup analytics tracking
 function setupAnalyticsTracking() {

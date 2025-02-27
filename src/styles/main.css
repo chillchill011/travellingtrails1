@@ -223,55 +223,6 @@
     @apply m-0;
   }
 
-  /* Lightbox Component */
-  .lightbox {
-  @apply fixed inset-0 z-50 
-         bg-black/90 backdrop-blur-sm
-         flex items-center justify-center p-8
-         opacity-0 pointer-events-none 
-         transition-all duration-300;
-  }
-
-  .lightbox.active {
-  @apply opacity-100 pointer-events-auto;
-  }
-
-  .lightbox-content {
-  @apply relative max-w-6xl mx-auto 
-         rounded-lg overflow-hidden
-         shadow-2xl;
-  }
-
-  .lightbox-image {
-  @apply w-auto max-h-[85vh] 
-         rounded-lg shadow-xl
-         object-contain;
-  }
-
-  .lightbox-close {
-  @apply fixed top-6 right-6 
-         bg-black/50 backdrop-blur-sm
-         p-2 rounded-full 
-         text-white hover:text-gray-300
-         transition-colors duration-200 
-         cursor-pointer z-[60]
-         opacity-100;  /* Always visible */
-  }
-
-  /* Prevent flickering */
-  .lightbox:not(.active) .lightbox-image {
-    @apply opacity-0;
-  }
-
-  .lightbox.active .lightbox-image {
-    @apply opacity-100;
-  }
-
-  /* Cursor styles for clickable images */
-  [data-lightbox-trigger] {
-  @apply cursor-zoom-in;
-}
-}
 
 @layer utilities {
   .text-shadow {

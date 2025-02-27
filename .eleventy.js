@@ -8,7 +8,6 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/styles": "styles"});
     eleventyConfig.addPassthroughCopy("src/admin");
     eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
-    eleventyConfig.addPassthroughCopy({ "src/assets/js/lightbox.js": "assets/js/lightbox.js" });
     eleventyConfig.addPassthroughCopy({ "src/assets/js/navigation.js": "assets/js/navigation.js" });
     eleventyConfig.addPassthroughCopy({"src/assets/js/analytics-enhancement.js": "assets/js/analytics-enhancement.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/favicon": "assets/favicon"});
@@ -207,9 +206,8 @@ module.exports = function(eleventyConfig) {
               <img 
                 src="${pathPrefix}${src}"
                 alt="${alt || ''}"
-                class="w-full h-full object-cover cursor-zoom-in"
+                class="w-full h-full object-cover"
                 loading="lazy"
-                data-lightbox-trigger
                 style="width: 100%; height: auto;"
               />
             </div>
@@ -237,7 +235,6 @@ module.exports = function(eleventyConfig) {
                 alt="${image.alt}"
                 class="gallery-image"
                 loading="lazy"
-                data-lightbox-trigger
               />
             </div>
           </div>`
