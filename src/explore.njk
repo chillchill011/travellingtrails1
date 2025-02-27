@@ -80,12 +80,13 @@ permalink: /explore/index.html
   </div>
 
   <!-- Destinations Map -->
-    <div 
-      id="destinations-map" 
-      class="map-container loading mb-12"
-      data-destinations="{{ collections.destinations | getDestinationsMapData | dump }}"
-      aria-label="Map of all destinations">
-    </div>
+  <div 
+  id="destinations-map" 
+  class="map-container loading mb-12"
+  data-destinations="{{ collections.destinations | getDestinationsMapData | dump }}"
+  aria-label="Map of all destinations"
+  style="height: 400px; width: 100%; z-index: 10; position: relative; background-color: #f3f4f6; display: block !important; overflow: hidden;">
+  </div>
 
   <!-- Search Results Section (Initially Hidden) -->
   <div id="searchResultsSection" class="mb-8 hidden">
@@ -161,3 +162,19 @@ permalink: /explore/index.html
 </script>
 
 <script src="{{ '/assets/js/map-handler.js' | url }}"></script>
+
+<script>
+  // Force map resize after a short delay
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      const mapContainer = document.getElementById('destinations-map');
+      if (mapContainer && typeof L !== 'undefined') {
+        console.log('Forcing map invalidation and resize');
+        const mapInstance = L.DomUtil.get('destinations-map')._leaflet_map;
+        if (mapInstance) {
+          mapInstance.invalidateSize(true);
+        }
+      }
+    }, 1000);
+  });
+</script>
