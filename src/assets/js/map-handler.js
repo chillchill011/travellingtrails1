@@ -5,29 +5,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check for destination map container
     const destinationMapEl = document.getElementById('destination-map');
     if (destinationMapEl) {
+      console.log('Found destination map, initializing...');
       initDestinationMap(destinationMapEl);
     }
     
     // Check for all destinations map
     const destinationsMapEl = document.getElementById('destinations-map');
     if (destinationsMapEl) {
-      initDestinationsMap(destinationsMapEl);
+      console.log('Found destinations map, initializing...');
+      try {
+        initDestinationsMap(destinationsMapEl);
+      } catch (error) {
+        console.error('Error initializing destinations map:', error);
+      }
     }
   });
   
-  // Lazy load map when it's scrolled into view
-  function setupLazyMap(mapElement, initFunction) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          initFunction(mapElement);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '100px' });
-    
-    observer.observe(mapElement);
-  }
+  // Lazy load map when it's scrolled into view - REMOVED to prevent double initialization
   
   // Initialize a single destination map
   function initDestinationMap(container) {
@@ -62,49 +56,74 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize map with multiple destinations
   function initDestinationsMap(container) {
-    // Create map centered on a default location (world-centered)
-    const map = L.map(container).setView([20, 0], 2);
-    
-    // Add OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 18
-    }).addTo(map);
-    
     // Get destination markers data from container
-    const destinationsData = JSON.parse(container.dataset.destinations || '[]');
-    const bounds = [];
+    let destinationsData = [];
     
-    // Add markers for each destination
-    destinationsData.forEach(destination => {
-      if (destination.lat && destination.lng) {
-        L.marker([destination.lat, destination.lng])
-          .addTo(map)
-          .bindPopup(`<strong><a href="${destination.url}">${destination.title}</a></strong>
-                      <p>${destination.count} adventures</p>`);
-                      
-        bounds.push([destination.lat, destination.lng]);
+    try {
+      console.log('Parsing data:', container.dataset.destinations);
+      
+      // First try to parse the data with JSON.parse
+      try {
+        destinationsData = JSON.parse(container.dataset.destinations || '[]');
+      } catch (jsonError) {
+        console.error('JSON parse error:', jsonError);
+        
+        // If that fails, try to parse it after fixing common HTML entity issues
+        const fixedData = container.dataset.destinations
+          .replace(/&quot;/g, '"')
+          .replace(/&#34;/g, '"')
+          .replace(/&apos;/g, "'")
+          .replace(/&#39;/g, "'")
+          .replace(/&amp;/g, '&')
+          .replace(/&#38;/g, '&');
+        
+        destinationsData = JSON.parse(fixedData || '[]');
       }
-    });
-    
-    // If we have destinations, fit the map to show all markers
-    if (bounds.length > 0) {
-      map.fitBounds(bounds, { padding: [50, 50] });
+      
+      console.log('Parsed destinations data:', destinationsData);
+      
+      if (!destinationsData || destinationsData.length === 0) {
+        console.warn('No destination data found or empty array');
+        container.innerHTML = '<p class="text-center text-gray-500 py-8">No destinations with map coordinates found</p>';
+        return;
+      }
+      
+      // Create map centered on a default location (world-centered)
+      const map = L.map(container).setView([20, 0], 2);
+      
+      // Add OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18
+      }).addTo(map);
+      
+      const bounds = [];
+      
+      // Add markers for each destination
+      destinationsData.forEach(destination => {
+        if (destination.lat && destination.lng) {
+          console.log(`Adding marker for ${destination.title} at ${destination.lat},${destination.lng}`);
+          
+          L.marker([destination.lat, destination.lng])
+            .addTo(map)
+            .bindPopup(`<strong><a href="${destination.url}">${destination.title}</a></strong>
+                        <p>${destination.count} adventures</p>`);
+                        
+          bounds.push([destination.lat, destination.lng]);
+        }
+      });
+      
+      // If we have destinations, fit the map to show all markers
+      if (bounds.length > 0) {
+        map.fitBounds(bounds, { padding: [50, 50] });
+      }
+      
+      // Refresh map after loading
+      setTimeout(() => { map.invalidateSize(); }, 100);
+    } catch (error) {
+      console.error('Error setting up map:', error);
+      container.innerHTML = `<p class="text-center text-gray-500 py-8">Error loading map: ${error.message}</p>`;
     }
-    
-    // Refresh map after loading
-    setTimeout(() => { map.invalidateSize(); }, 100);
   }
   
-  // Set up lazy loading for maps when the page loads
-  document.addEventListener('DOMContentLoaded', function() {
-    const destinationMapEl = document.getElementById('destination-map');
-    if (destinationMapEl) {
-      setupLazyMap(destinationMapEl, initDestinationMap);
-    }
-    
-    const destinationsMapEl = document.getElementById('destinations-map');
-    if (destinationsMapEl) {
-      setupLazyMap(destinationsMapEl, initDestinationsMap);
-    }
-  });
+  // Remove the setupLazyMap call since it's causing double initialization

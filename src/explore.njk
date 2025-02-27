@@ -80,12 +80,12 @@ permalink: /explore/index.html
   </div>
 
   <!-- Destinations Map -->
-  <div 
-    id="destinations-map" 
-    class="map-container loading mb-12"
-    data-destinations="{{ collections.destinations | getDestinationsMapData | json | escape }}"
-    aria-label="Map of all destinations">
-  </div>
+    <div 
+      id="destinations-map" 
+      class="map-container loading mb-12"
+      data-destinations="{{ collections.destinations | getDestinationsMapData | dump }}"
+      aria-label="Map of all destinations">
+    </div>
 
   <!-- Search Results Section (Initially Hidden) -->
   <div id="searchResultsSection" class="mb-8 hidden">
