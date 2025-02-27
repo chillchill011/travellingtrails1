@@ -21,8 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Lazy load map when it's scrolled into view - REMOVED to prevent double initialization
-  
   // Initialize a single destination map
   function initDestinationMap(container) {
     // Get coordinates from data attributes
@@ -37,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Create map
     const map = L.map(container).setView([lat, lng], 10);
+    container.classList.remove('loading'); // Remove loading indicator
     
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -90,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Create map centered on a default location (world-centered)
       const map = L.map(container).setView([20, 0], 2);
+      container.classList.remove('loading'); // Remove loading indicator
       
       // Add OpenStreetMap tiles
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -119,11 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Refresh map after loading
-      setTimeout(() => { map.invalidateSize(); }, 100);
+      setTimeout(() => { 
+        map.invalidateSize(); 
+        console.log('Map invalidated and resized');
+      }, 100);
     } catch (error) {
       console.error('Error setting up map:', error);
       container.innerHTML = `<p class="text-center text-gray-500 py-8">Error loading map: ${error.message}</p>`;
     }
   }
-  
-  // Remove the setupLazyMap call since it's causing double initialization
