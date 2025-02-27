@@ -1,3 +1,5 @@
+console.log('Map handler loaded');
+
 // Initialize maps when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Check for destination map container

@@ -3,7 +3,7 @@ title: "Weekend Getaway to Mountain Lodge"
 description: "Exploring the hidden gems in the mountains, with stunning views and peaceful surroundings."
 author: "Travel Blogger"
 date: 2025-02-20
-draft: true
+draft: false
 featured: false
 categories:
   - Mountain

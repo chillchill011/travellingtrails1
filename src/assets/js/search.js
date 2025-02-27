@@ -9,6 +9,8 @@ let currentFilters = {
 // Get the path prefix based on environment
 const pathPrefix = '';  // Empty for production
 
+console.log('Search script loaded');
+
 async function initializeSearch() {
     // Check if we're on a page that has search functionality
     const searchInput = document.getElementById('searchInput');
