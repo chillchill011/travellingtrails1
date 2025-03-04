@@ -1,7 +1,7 @@
 # Decap CMS Configuration - Final version
 backend:
   name: git-gateway
-  branch: render-blog  # Your confirmed branch name
+  branch: blog-netlify  # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
