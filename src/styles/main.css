@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'components/map.css';
+
+@layer components {
+  /* Layout Components */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Navigation Components */
+  .nav-link {
+    @apply text-travel-700 dark:text-gray-300 
+           hover:text-travel-900 dark:hover:text-white 
+           px-3 py-2 rounded-md text-sm font-medium 
+           transition-colors duration-200;
+  }
+  
+  /* Footer Components */
+  .footer {
+    @apply bg-gray-800 dark:bg-gray-900 text-white py-12;
+  }
+  
+  .footer-link {
+    @apply text-gray-300 dark:text-gray-400 
+           hover:text-white dark:hover:text-white 
+           transition-colors duration-200;
+  }
+  
+  /* Blog Card Components */
+  .blog-card {
+    @apply bg-white dark:bg-gray-800 
+           rounded-lg shadow-md p-6;
+  }
+
+  .blog-card h2 a {
+    @apply text-gray-900 dark:text-white 
+           text-xl font-semibold 
+           hover:text-travel-700 dark:hover:text-travel-500 
+           block;
+  }
+
+  .blog-card h3 a {
+    @apply text-gray-900 dark:text-white 
+           text-xl font-semibold 
+           hover:text-travel-700 dark:hover:text-travel-500;
+  }
+
+  .blog-card p {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  .blog-card time,
+  .blog-card span {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  /* Article Snippet Components */
+  .snippet {
+    @apply bg-white dark:bg-gray-800 
+           rounded-lg shadow-md p-6 
+           transition-colors duration-200;
+  }
+
+  .snippet__title a {
+    @apply text-gray-900 dark:text-white 
+           text-xl font-semibold 
+           hover:text-travel-700 dark:hover:text-travel-500 
+           transition-colors duration-200;
+  }
+
+  .snippet__meta {
+    @apply text-gray-600 dark:text-gray-300
+           mt-2;
+  }
+
+  .snippet__body {
+    @apply text-gray-700 dark:text-gray-200 
+           mt-4;
+  }
+
+  .btn--primary {
+    @apply inline-block mt-4 px-4 py-2 
+           bg-travel-700 dark:bg-travel-600 
+           text-white 
+           rounded-md 
+           hover:bg-travel-800 dark:hover:bg-travel-700 
+           transition-colors duration-200;
+  }
+
+  /* Article Components */
+  .article-title {
+    @apply text-gray-900 dark:text-white text-4xl font-bold mb-6;
+  }
+
+  .main-article {
+    @apply max-w-4xl mx-auto px-4 py-8;
+  }
+
+  .main-article__figure {
+    @apply mb-8 relative;
+  }
+
+  .main-article__figure img {
+    @apply w-full h-auto rounded-lg shadow-lg object-cover;
+  }
+
+  .main-article__figure figcaption {
+    @apply text-center text-gray-600 dark:text-gray-400 mt-2;
+  }
+
+  /* Prose Customization */
+  .prose {
+    @apply max-w-none dark:prose-invert;
+  }
+
+  .prose img {
+    @apply rounded-lg shadow-md;
+  }
+
+  .prose a {
+    @apply text-travel-600 hover:text-travel-700 
+           dark:text-travel-500 hover:dark:text-travel-400;
+  }
+
+  /* Category Components */
+  .category-tag {
+    @apply inline-block px-3 py-1 text-sm 
+           bg-travel-100 text-travel-600
+           dark:bg-travel-900 dark:text-travel-100 
+           rounded-full hover:bg-travel-200 
+           dark:hover:bg-travel-800 
+           transition-colors duration-200;
+  }
+
+  .categories-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  /* Enhanced Image Components */
+  .image-loading {
+    @apply relative bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden;
+  }
+
+  .image-container {
+    @apply relative overflow-hidden rounded-lg shadow-md;
+  }
+
+  /* Remove the ::before since we're using aspect-ratio directly */
+  .image-loading, 
+  .image-container {
+    @apply aspect-[3/2]; /* Modern aspect-ratio */
+  }
+
+  .image-loading img,
+  .image-container img {
+    @apply absolute inset-0 w-full h-full object-cover;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:scale-105;
+    /* Remove opacity transitions to prevent flickering */
+  }
+
+  /* Image captions */
+  .image-caption {
+    @apply mt-2 text-sm text-gray-600 dark:text-gray-400;
+  }
+
+  .gallery-container {
+    @apply w-full max-w-7xl mx-auto mb-16; /* Increased bottom margin */
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  @screen sm {
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .gallery-item {
+    @apply relative overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800;
+    height: 300px;
+  }
+
+  .gallery-image-wrapper {
+    @apply h-full w-full overflow-hidden;
+  }
+
+  .gallery-image {
+    @apply w-full h-full object-cover transition-transform duration-300;
+  }
+
+  .gallery-image:hover {
+    @apply scale-105;
+  }
+
+  .gallery-caption {
+    @apply absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent;
+  }
+
+  .gallery-title {
+    @apply text-lg font-medium text-white mb-1;
+  }
+
+  .gallery-credit {
+    @apply text-sm text-white/90;
+  }
+
+  /* Single image styles */
+  .single-image {
+    @apply my-8;
+  }
+
+  /* Base figure reset */
+  figure {
+    @apply m-0;
+  }
+
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .debug-dark {
+    @apply dark:border-2 dark:border-red-500;
+  }
+
+  .aspect-3-2 {
+    aspect-ratio: 3/2;
+  }
+}
+
+@layer base {
+  .dark {
+    @apply bg-gray-900;
+    color-scheme: dark;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

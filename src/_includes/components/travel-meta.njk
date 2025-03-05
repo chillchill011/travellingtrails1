@@ -1,0 +1,27 @@
+{% macro travelMeta(title, description, url, image, location, travelDates, travelType) %}
+{# Primary Meta Tags #}
+<meta name="title" content="{{ title }}">
+<meta name="description" content="{{ description }}">
+
+{# Travel-specific meta tags #}
+{% if location %}
+<meta name="geo.placename" content="{{ location }}">
+{% endif %}
+
+{% if travelDates %}
+<meta name="travel:start_date" content="{{ travelDates.start }}">
+<meta name="travel:end_date" content="{{ travelDates.end }}">
+{% endif %}
+
+{% if travelType %}
+<meta name="travel:type" content="{{ travelType }}">
+{% endif %}
+
+{# Open Graph / Facebook #}
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ site.url }}{{ url }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:image" content="{{ site.url }}{{ image | url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+{% endmacro %}

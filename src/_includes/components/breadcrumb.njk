@@ -1,0 +1,81 @@
+{% macro breadcrumb(page, pageTitle, categoryTitle) %}
+{% if page.url !== "/" and page.url !== "/about/" and page.url !== "/contact/" %}
+<nav aria-label="Breadcrumb" class="py-4">
+  <ol class="flex flex-wrap items-center text-sm">
+    {# Home #}
+    <li class="flex items-center">
+      <a href="{{ '/' | url }}" 
+         class="text-travel-600 hover:text-travel-800 dark:text-travel-400 dark:hover:text-travel-300">
+        Home
+      </a>
+    </li>
+    
+    {# Blog Posts #}
+    {% if page.url.includes("/blog/") %}
+      <li class="flex items-center mx-2 text-gray-400">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li class="flex items-center">
+        <a href="{{ '/blog/' | url }}" 
+           class="text-travel-600 hover:text-travel-800 dark:text-travel-400 dark:hover:text-travel-300">
+          Blog
+        </a>
+      </li>
+      {% if not page.url.endsWith("/blog/") %}
+        <li class="flex items-center mx-2 text-gray-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </li>
+        <li class="flex items-center">
+          <span class="text-gray-600 dark:text-gray-300">
+            {{ pageTitle }}
+          </span>
+        </li>
+      {% endif %}
+    
+    {# Categories #}
+    {% elif page.url.includes("/categories/") %}
+      <li class="flex items-center mx-2 text-gray-400">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li class="flex items-center">
+        <a href="{{ '/categories/' | url }}" 
+           class="text-travel-600 hover:text-travel-800 dark:text-travel-400 dark:hover:text-travel-300">
+          Categories
+        </a>
+      </li>
+      {% if not page.url.endsWith("/categories/") %}
+        <li class="flex items-center mx-2 text-gray-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </li>
+        <li class="flex items-center">
+          <span class="text-gray-600 dark:text-gray-300">
+            {{ categoryTitle }}
+          </span>
+        </li>
+      {% endif %}
+    
+    {# Other Pages #}
+    {% else %}
+      <li class="flex items-center mx-2 text-gray-400">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li class="flex items-center">
+        <span class="text-gray-600 dark:text-gray-300">
+          {{ pageTitle }}
+        </span>
+      </li>
+    {% endif %}
+  </ol>
+</nav>
+{% endif %}
+{% endmacro %}

@@ -1,35 +1,82 @@
 ---
-title: Travelling Trails | Home
-layout: 'base.njk'
+layout: base
+title: Home | Travelling Trails
 ---
- 
-     
-<section class="hero">
-  <div class="container flow">
-      <div class="hero__content flow">
-        <h1 class="section-title">Welcome to my blog!</h1>
-        <p>I use this space to document my adventures in front-end development, sharing how I’ve overcome issues I’ve run into, useful resources, and more.</p>
-        <p>Below are some of my favourite articles, or you can go to the blog page to see my most recent posts.</p>
-        <div class="flex-group">
-          <a href="#featured-articles" class="btn btn--primary">Featured articles</a>
-          <a href="./blog" class="btn btn--neutral">Most recent articles</a>
-        </div>
-      </div>
-      <div>
-        <img src="//unsplash.it/510" alt="" class="hero__image">
-      </div>
-  </div>
-</section>
 
-<section id="featured-articles" class="featured-articles">
-  <div class="container flow">
-    <h2 class="section-title text-center ">Featured articles</h2>
-    <p class="text-center">Here is a sample of articles which I feel give you a good idea of what this site is all about.</p>
-    <ul role="list" class="articles__list flow">
-        {%- for post in collections.featured | reverse -%}
-          {% include 'article-snippet.njk' %}
-        {%- endfor -%} 
-      </ul>
-  </div>
-</section> :;
-   
+<div class="max-w-7xl mx-auto">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Welcome to Travelling Trails</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300">Discover amazing travel stories and adventures</p>
+    </header>
+
+    {# Featured Posts Section #}
+    {% if collections.homeFeatured.length > 0 %}
+    <section class="mb-16">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Featured Stories</h2>
+            <a href="{{ '/blog/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-500 dark:hover:text-travel-400 font-medium">
+                View All Stories →
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {%- for post in collections.homeFeatured -%}
+                {% include "components/blog-card.njk" %}
+            {%- endfor -%}
+        </div>
+    </section>
+    {% endif %}
+
+    {# Recent Posts Section #}
+    <section class="mb-16">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Recent Adventures</h2>
+            <a href="{{ '/blog/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-500 dark:hover:text-travel-400 font-medium">
+                View All Posts →
+            </a>
+        </div>
+        <div class="posts-container">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {%- for post in collections.paginatedPosts | limit(9) -%}
+                    {% include "components/blog-card.njk" %}
+                {%- endfor -%}
+            </div>
+        </div>
+        {% if collections.paginatedPosts.length > 9 %}
+        <div class="flex justify-center mt-8">
+            <button 
+                class="load-more-btn bg-travel-600 text-white px-6 py-2 rounded-md hover:bg-travel-700 transition-colors duration-200"
+                data-current-page="1"
+            >
+                Load More
+            </button>
+        </div>
+        {% endif %}
+    </section>
+
+    {# Newsletter Section #}
+    <section class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 mb-16">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Stay Updated</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Subscribe to our newsletter for the latest travel stories and updates.</p>
+            <form name="newsletter" method="POST" action="/success/" data-netlify="true" netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-4 justify-center">
+                <input type="hidden" name="form-name" value="newsletter" />
+                <p class="hidden">
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                </p>
+                <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Enter your email" 
+                    class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-travel-500 focus:border-travel-500"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="px-6 py-2 bg-travel-600 text-white rounded-md hover:bg-travel-700 transition-colors duration-200"
+                >
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+</div>

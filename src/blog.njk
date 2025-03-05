@@ -1,13 +1,74 @@
 ---
-title : Blog | Travelling Trails
-layout: 'base.njk'
+layout: base
+title: Blog | Travelling Trails
+permalink: "/blog/index.html"
 ---
 
-<div class="section container">
-<h1 class="section-title">Recent articles</h1>
-<ul role="list" class="articles__list flow">
-  {%- for post in collections.post | reverse -%}
-    {% include 'article-snippet.njk' %}
-  {%- endfor -%} 
-</ul>
+<div class="max-w-7xl mx-auto">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Travel Stories & Adventures</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300">Discover our latest adventures and travel tips</p>
+    </header>
+
+    {# Featured Posts Section #}
+    {% if collections.featuredPosts.length > 0 %}
+    <section class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Featured Stories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {%- for post in collections.featuredPosts -%}
+                {% include "components/blog-card.njk" %}
+            {%- endfor -%}
+        </div>
+    </section>
+    {% endif %}
+
+    {# All Posts Section #}
+    <section>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">All Stories</h2>
+        <div class="posts-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {%- for post in collections.paginatedPosts -%}
+                    {% set pageNum = (loop.index0 / 9) | round(0, "floor") + 1 %}
+                    {% set hidden = pageNum > 1 %}
+                    <div class="blog-card {% if hidden %}hidden{% endif %}" data-page="{{ pageNum }}">
+                        {% include "components/blog-card.njk" %}
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+        {% if collections.paginatedPosts.length > 9 %}
+        <div class="flex justify-center mt-8">
+            <button 
+                class="load-more-btn bg-travel-600 text-white px-6 py-2 rounded-md hover:bg-travel-700 transition-colors duration-200"
+                data-current-page="1"
+            >
+                Load More
+            </button>
+        </div>
+        {% endif %}
+    </section>
+
+    {# Newsletter Section #}
+    <section class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 mt-16">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Stay Updated</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Subscribe to our newsletter for the latest travel stories and updates.</p>
+            <form class="flex flex-col sm:flex-row gap-4 justify-center">
+                <input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-travel-500 focus:border-travel-500"
+                    required
+                >
+                <button 
+                    type="submit" 
+                    class="px-6 py-2 bg-travel-600 text-white rounded-md hover:bg-travel-700 transition-colors duration-200"
+                >
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
 </div>
+
+

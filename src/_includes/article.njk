@@ -1,26 +1,164 @@
 ---
 layout: 'base.njk'
 ---
-       
-<article class="main-article">
-<div class="container container--narrow flow">
-  
-    <h1 class="article-title">
-      {{ title }}
-    </h1>
-   
-    <p class="snippet__meta">
-     Author:  {{ author }} | Tags: {{ tags }} 
-    </p>
 
-    <figure class="main-article__figure">
-      <img src="{{ image }}" alt="{{ imageAlt }}">
-      <figcaption>
-        {{ imageAlt }}
-      </figcaption>
+<article class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            {{ title }}
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
+            {% if author %}
+            <div>Author: {{ author }}</div>
+            {% endif %}
+            
+            {% if categories %}
+            <div class="flex items-center gap-2">
+                <span>Categories:</span>
+                <div class="flex flex-wrap gap-2">
+                    {% for category in categories %}
+                    <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
+                       class="category-tag inline-block px-3 py-1 text-sm bg-travel-600 text-white dark:bg-travel-700 rounded-full hover:bg-travel-700 dark:hover:bg-travel-600 transition-colors duration-200">
+                        {{ category }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        {% if destination %}
+        <div class="mb-4">
+        <span class="inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-1.5 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            {{ destination }}
+        </span>
+        
+        {% if duration %}
+        <span class="ml-2 inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-1.5 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+            </svg>
+            {{ duration }}
+        </span>
+        {% endif %}
+        </div>
+        {% endif %}
+    </header>
+
+    {% if featuredImage %}
+    <figure class="mb-8">
+        <img src="{{ featuredImage | url }}" 
+             alt="{{ imageAlt if imageAlt else title }}"
+             class="w-full h-auto rounded-lg shadow-lg object-cover">
+        {% if imageAlt %}
+        <figcaption class="text-center text-gray-600 dark:text-gray-400 mt-2">
+            {{ imageAlt }}
+        </figcaption>
+        {% endif %}
     </figure>
-    
-    {{ content | safe }}
+    {% endif %}
 
-</div>
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+        {{ content | safe }}
+    </div>
+
+    {% if categories %}
+        {% set relatedPosts = page | getRelatedPosts(collections.post, categories) %}
+        {% if relatedPosts.length > 0 %}
+        <section class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Related Adventures</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for post in relatedPosts %}
+                <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                    {% if post.data.featuredImage %}
+                    <div class="relative h-48">
+                        <img
+                            src="{{ post.data.featuredImage | url }}"
+                            alt="{{ post.data.title }}"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                            onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
+                        >
+                    </div>
+                    {% endif %}
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-2">
+                            <a href="{{ post.url | url }}" class="text-gray-900 dark:text-white hover:text-travel-700 dark:hover:text-travel-500">
+                                {{ post.data.title }}
+                            </a>
+                        </h3>
+                        
+                        {% if post.data.description %}
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{{ post.data.description }}</p>
+                        {% endif %}
+                        
+                        {% if post.data.categories %}
+                        <div class="flex flex-wrap gap-2">
+                            {% for category in post.data.categories %}
+                            <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
+                                class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                                {{ category }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    {% endif %}
+
+
+    <!-- Travel Info Box (if applicable) -->
+    {% if destination or duration or travelType %}
+    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mb-8 shadow-sm">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Trip Overview</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
+            {% if destination %}
+            <div class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-0.5 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Destination</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ destination }}</p>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if duration %}
+            <div class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-0.5 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Duration</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ duration }}</p>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if travelType %}
+            <div class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-0.5 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Travel Type</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ travelType }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
 </article>

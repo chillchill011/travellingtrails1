@@ -1,0 +1,50 @@
+<article class="blog-card relative bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+    {% if post.data.featured %}
+    <div class="absolute top-4 right-4 z-10 bg-travel-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+        Featured
+    </div>
+    {% endif %}
+    
+    {% if post.data.featuredImage %}
+    <div class="relative h-48">
+    <img
+        src="{{ post.data.featuredImage | url }}"
+        alt="{{ post.data.title }}"
+        class="w-full h-full object-cover"
+        onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
+    >
+    </div>
+    {% endif %}
+
+    <div class="p-6">
+        <h2 class="text-xl font-semibold mb-2">
+            <a href="{{ post.url | url }}" class="text-gray-900 dark:text-white hover:text-travel-700 dark:hover:text-travel-500">
+                {{ post.data.title }}
+            </a>
+        </h2>
+
+        {% if post.data.description %}
+        <p class="text-gray-600 dark:text-gray-300 mb-4">{{ post.data.description }}</p>
+        {% endif %}
+
+        <div class="flex items-center justify-between mb-4 dark:mb-4">
+            {% if post.data.author %}
+            <span class="text-sm text-gray-600 dark:text-gray-400">By {{ post.data.author }}</span>
+            {% endif %}
+            <time class="text-sm text-gray-500 dark:text-gray-400" datetime="{{ post.date }}">
+                {{ post.date | postDate }}
+            </time>
+        </div>
+
+        {% if post.data.categories %}
+        <div class="flex flex-wrap gap-2">
+        {% for category in post.data.categories %}
+        <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
+       class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+        {{ category }}
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+    </div>
+</article>

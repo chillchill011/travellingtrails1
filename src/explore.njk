@@ -1,0 +1,180 @@
+---
+layout: base
+title: Explore Destinations | Travelling Trails
+permalink: /explore/index.html
+---
+
+{% include "components/map-dependencies.njk" %}
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <header class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Explore Travel Destinations</h1>
+    <p class="text-xl text-gray-600 dark:text-gray-300">Discover adventures by location, activity, and more</p>
+  </header>
+
+  <!-- Search and Filter Section -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Search Input -->
+      <div class="md:col-span-3">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="searchInput"
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
+                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                  focus:ring-2 focus:ring-travel-500 focus:border-travel-500"
+            placeholder="Search destinations, activities, or experiences..."
+          >
+          <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <div id="searchSuggestions" 
+               class="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-200 
+                    dark:border-gray-700 rounded-lg shadow-lg hidden">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Filters -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Destination</label>
+        <select id="categoryFilter" 
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                       rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          <option value="">All Destinations</option>
+          {% for destination in collections.destinations %}
+          <option value="{{ destination.title }}">{{ destination.title }} ({{ destination.count }})</option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Activity Type</label>
+        <select id="activityFilter" 
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                       rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          <option value="">All Activities</option>
+          {% if activities %}
+            {% for activity in activities %}
+            <option value="{{ activity }}">{{ activity }}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Duration</label>
+        <select id="dateFilter" 
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
+                       rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          <option value="">Any Duration</option>
+          <option value="7">Last Week</option>
+          <option value="30">Last Month</option>
+          <option value="365">Last Year</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Destinations Map -->
+  <div 
+  id="destinations-map" 
+  class="map-container loading mb-12"
+  data-destinations="{{ collections.destinations | getDestinationsMapData | dump }}"
+  aria-label="Map of all destinations"
+  style="height: 400px; width: 100%; z-index: 10; position: relative; background-color: #f3f4f6; display: block !important; overflow: hidden;">
+  </div>
+
+  <!-- Search Results Section (Initially Hidden) -->
+  <div id="searchResultsSection" class="mb-8 hidden">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Search Results</h2>
+    <div id="searchResults" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    <div id="noResults" class="text-center text-gray-600 dark:text-gray-400 hidden">
+      No destinations found matching your criteria.
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="mb-8" id="destinationsSection">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Explore All Destinations</h2>
+    <div id="explorePosts" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {% for destination in collections.destinations %}
+        <div class="destination-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+          {% if destination.posts[0].data.featuredImage %}
+          <div class="relative h-48 overflow-hidden">
+            <img 
+              src="{{ destination.posts[0].data.featuredImage | url }}" 
+              alt="{{ destination.title }}" 
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 text-white">
+              <h3 class="text-xl font-bold">{{ destination.title }}</h3>
+              <p class="text-sm">{{ destination.count }} adventure{% if destination.count != 1 %}s{% endif %}</p>
+            </div>
+          </div>
+          {% else %}
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ destination.title }}</h3>
+            <p class="text-gray-600 dark:text-gray-400">{{ destination.count }} adventure{% if destination.count != 1 %}s{% endif %}</p>
+          </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add a link to destination cards
+    const destinationCards = document.querySelectorAll('.destination-card');
+    destinationCards.forEach(card => {
+      const destinationTitle = card.querySelector('h3').textContent;
+      const destinationSlug = destinationTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+      card.addEventListener('click', function() {
+        window.location.href = '/destinations/' + destinationSlug + '/';
+      });
+      card.style.cursor = 'pointer';
+    });
+    
+    // Show search results section when search is performed
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+        const searchResultsSection = document.getElementById('searchResultsSection');
+        const destinationsSection = document.getElementById('destinationsSection');
+        
+        if (query.length >= 2) {
+          searchResultsSection.classList.remove('hidden');
+          destinationsSection.classList.add('hidden');
+        } else {
+          searchResultsSection.classList.add('hidden');
+          destinationsSection.classList.remove('hidden');
+        }
+      });
+    }
+  });
+</script>
+
+<script src="{{ '/assets/js/map-handler.js' | url }}"></script>
+
+<script>
+  // Force map resize after a short delay
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      const mapContainer = document.getElementById('destinations-map');
+      if (mapContainer && typeof L !== 'undefined') {
+        console.log('Forcing map invalidation and resize');
+        const mapInstance = L.DomUtil.get('destinations-map')._leaflet_map;
+        if (mapInstance) {
+          mapInstance.invalidateSize(true);
+        }
+      }
+    }, 1000);
+  });
+</script>

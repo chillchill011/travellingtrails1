@@ -1,0 +1,60 @@
+{% macro cookieConsent() %}
+<div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4 shadow-lg transform translate-y-full transition-transform duration-300 z-50">
+  <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+    <div class="mb-4 md:mb-0">
+      <p class="text-sm">
+        This website uses cookies to ensure you get the best experience on our website. 
+        <a href="/privacy-policy/" class="text-travel-300 hover:text-travel-200 underline">Learn more</a>
+      </p>
+    </div>
+    <div class="flex gap-2">
+      <button id="accept-cookies" class="px-4 py-2 bg-travel-600 hover:bg-travel-700 text-white rounded-md text-sm transition-colors">
+        Accept
+      </button>
+      <button id="reject-cookies" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-md text-sm transition-colors">
+        Reject
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+    
+    // Check if user has already made a choice
+    const cookieConsent = localStorage.getItem('cookie-consent');
+    
+    if (cookieConsent === null) {
+      // Show banner after a slight delay
+      setTimeout(() => {
+        banner.classList.remove('translate-y-full');
+      }, 1000);
+    }
+    
+    acceptBtn.addEventListener('click', function() {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner.classList.add('translate-y-full');
+      // Enable analytics if it was disabled
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted'
+        });
+      }
+    });
+    
+    rejectBtn.addEventListener('click', function() {
+      localStorage.setItem('cookie-consent', 'rejected');
+      banner.classList.add('translate-y-full');
+      // Disable analytics
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'denied'
+        });
+      }
+    });
+  });
+</script>
+{% endmacro %}

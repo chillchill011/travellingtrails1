@@ -1,0 +1,17 @@
+{% macro navigationEnhancements() %}
+{# Reading Progress Bar #}
+<div class="fixed top-0 left-0 w-full h-1 z-50" id="reading-progress">
+  <div class="h-full bg-travel-600 dark:bg-travel-500 w-0 transition-all duration-150" id="progress-bar"></div>
+</div>
+
+{# Back to Top Button #}
+<button 
+  id="back-to-top"
+  class="fixed bottom-8 right-8 p-2 rounded-full bg-travel-600 dark:bg-travel-700 text-white shadow-lg transform translate-y-24 opacity-0 transition-all duration-300 hover:bg-travel-700 dark:hover:bg-travel-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-travel-500 z-40"
+  aria-label="Back to top"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+</button>
+{% endmacro %}
