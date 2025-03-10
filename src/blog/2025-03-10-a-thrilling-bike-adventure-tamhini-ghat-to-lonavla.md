@@ -10,12 +10,29 @@ draft: false
 categories:
   - Riding
 featuredImage: /assets/images/featured-images.jpg
+thumbnailImage: /assets/images/thumbnail-image.jpg
 imageAlt: Alt text
 destination: Raigad
 duration: 2 days
 travelType: road-trip
 activities:
   - Riding
+gallery:
+  - src: /assets/images/gallery-image-1.jpg
+    alt: Test 1
+    caption: Test 1
+    credit: Test 1
+    location: Test 1
+  - src: /assets/images/gallery-image-2.jpg
+    alt: Test 1
+    caption: Test 1
+    credit: Test 1
+    location: Test 1
+  - src: /assets/images/gallery-image-3.jpg
+    alt: Test 1
+    caption: Test 1
+    credit: Test 1
+    location: Test 1
 tags:
   - post
 layout: article.njk
