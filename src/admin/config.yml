@@ -1,7 +1,7 @@
 # Decap CMS Configuration - Final version
 backend:
   name: git-gateway
-  branch: main  # Your confirmed branch name
+  branch: development  # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
@@ -30,7 +30,8 @@ collections:
           widget: "list",
           allow_add: true
         }
-      - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image", hint: "Main image shown at the top of the post (1200-1600px wide)" }
+      - { label: "Thumbnail Image", name: "thumbnailImage", widget: "image", required: false, hint: "Optional smaller image for cards (400x267px). If not provided, featured image will be used." }
       - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
       
       # Travel-specific fields
@@ -84,6 +85,7 @@ collections:
           name: "gallery", 
           widget: "list", 
           required: false,
+          hint: "Gallery images should be around 800x533px for optimal display",
           fields: [
             { label: "Image", name: "src", widget: "image" },
             { label: "Alt Text", name: "alt", widget: "string" },

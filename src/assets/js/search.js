@@ -188,8 +188,28 @@ function createResultCard(post) {
     const article = document.createElement('article');
     article.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md p-6';
     
+    // Determine the image source - use thumbnail if available, otherwise featured image
+    const imageUrl = post.thumbnailImage || post.featuredImage;
+    
     // Fix the URL construction - don't add pathPrefix as we're in production
-    article.innerHTML = `
+    let cardHTML = '';
+    
+    // Add image section if an image is available
+    if (imageUrl) {
+        cardHTML += `
+        <div class="relative h-48 mb-4">
+            <img 
+                src="${imageUrl}" 
+                alt="${post.title}" 
+                class="w-full h-full object-cover rounded-lg"
+                loading="lazy"
+                onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
+            >
+        </div>`;
+    }
+    
+    // Add the rest of the card content
+    cardHTML += `
         <h2 class="text-xl font-semibold mb-2">
             <a href="${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 
                                        dark:hover:text-travel-500">
@@ -218,6 +238,7 @@ function createResultCard(post) {
         ` : ''}
     `;
     
+    article.innerHTML = cardHTML;
     return article;
 }
 
@@ -241,10 +262,33 @@ function showSuggestions(query) {
         
         const div = document.createElement('div');
         div.className = 'p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
-        div.innerHTML = `
-            <div class="font-medium">${post.title}</div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">${post.description || ''}</div>
+        
+        // Use thumbnail if available, otherwise use featured image
+        const imageUrl = post.thumbnailImage || post.featuredImage;
+        
+        let suggestionHTML = '';
+        if (imageUrl) {
+            suggestionHTML += `
+            <div class="flex items-center">
+                <div class="flex-shrink-0 w-12 h-12 mr-3">
+                    <img src="${imageUrl}" alt="${post.title}" class="w-full h-full object-cover rounded-sm">
+                </div>
+            `;
+        }
+        
+        suggestionHTML += `
+            <div>
+                <div class="font-medium">${post.title}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">${post.description || ''}</div>
+            </div>
         `;
+        
+        if (imageUrl) {
+            suggestionHTML += `</div>`;
+        }
+        
+        div.innerHTML = suggestionHTML;
+        
         div.addEventListener('click', () => {
             window.location.href = post.url;
         });
