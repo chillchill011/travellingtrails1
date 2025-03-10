@@ -16,6 +16,7 @@ eleventyExcludeFromCollections: true
             "destination": {{ post.data.destination | json | safe }},
             "duration": {{ post.data.duration | json | safe }},
             "travelType": {{ post.data.travelType | json | safe }},
+            "thumbnailImage": {{ post.data.thumbnailImage | json | safe }},
             "featuredImage": {{ post.data.featuredImage | json | safe }}
         }{% if not loop.last %},{% endif %}
         {%- endfor -%}

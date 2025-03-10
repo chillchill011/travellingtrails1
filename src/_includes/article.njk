@@ -115,6 +115,35 @@ layout: 'base.njk'
         {% endif %}
     {% endif %}
 
+    {% if gallery and gallery.length > 0 %}
+    <div class="gallery-container my-8">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Photo Gallery</h2>
+    <div class="gallery-grid">
+        {% for image in gallery %}
+        <div class="gallery-item">
+        <div class="gallery-image-wrapper">
+            <img 
+            src="{{ image.src | url }}" 
+            alt="{{ image.alt }}" 
+            class="gallery-image"
+            loading="lazy"
+            >
+            {% if image.caption or image.credit %}
+            <div class="gallery-caption">
+            {% if image.caption %}
+            <div class="gallery-title">{{ image.caption }}</div>
+            {% endif %}
+            {% if image.credit %}
+            <div class="gallery-credit">Photo: {{ image.credit }}</div>
+            {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    {% endif %}
 
     <!-- Travel Info Box (if applicable) -->
     {% if destination or duration or travelType %}

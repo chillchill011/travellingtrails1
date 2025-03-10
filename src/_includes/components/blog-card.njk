@@ -5,12 +5,23 @@
     </div>
     {% endif %}
     
-    {% if post.data.featuredImage %}
+    {% if post.data.thumbnailImage %}
+    <div class="relative h-48">
+    <img
+        src="{{ post.data.thumbnailImage | url }}"
+        alt="{{ post.data.title }}"
+        class="w-full h-full object-cover"
+        loading="lazy"
+        onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
+    >
+    </div>
+    {% elif post.data.featuredImage %}
     <div class="relative h-48">
     <img
         src="{{ post.data.featuredImage | url }}"
         alt="{{ post.data.title }}"
         class="w-full h-full object-cover"
+        loading="lazy"
         onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
     >
     </div>
