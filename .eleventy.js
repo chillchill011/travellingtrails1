@@ -19,10 +19,10 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/js/logo-switcher.js": "assets/js/logo-switcher.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
 
-    // ADD THIS SECTION: Custom markdown parser with enhanced image rendering
+    // Configure markdown parser with enhanced image rendering
     const md = markdownIt({
       html: true,
-      breaks: true,
+      breaks: false,  // Changed to false to prevent extra line breaks
       linkify: true
     });
 
@@ -39,31 +39,34 @@ module.exports = function(eleventyConfig) {
         const src = token.attrs[srcIndex][1];
         const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
         
-        // Return a figure with caption just like the blogImage shortcode
-        return `
-          <figure class="single-image" style="margin: 2rem 0;">
-            <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-              <img 
-                src="${src}"
-                alt="${altText || ''}"
-                class="w-full h-full object-cover"
-                loading="lazy"
-                style="width: 100%; height: auto;"
-              />
-            </div>
-            <figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; background: transparent; padding: 0; border: none; display: block !important; position: static !important; overflow: visible !important;">
-              ${title}
-            </figcaption>
-          </figure>
-        `;
+        // Return a figure with caption - using compact format to avoid markdown processing issues
+        return `<figure class="single-image" style="margin: 2rem 0;"><div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><img src="${src}" alt="${altText || ''}" class="w-full object-cover" loading="lazy" style="width: 100%; height: auto; display: block; margin: 0;"></div><figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; padding: 0;">${title}</figcaption></figure>`;
       }
   
-  // If no title, use the default renderer
-  return defaultImageRenderer(tokens, idx, options, env, self);
-};
+      // If no title, use the default renderer
+      return defaultImageRenderer(tokens, idx, options, env, self);
+    };
 
     eleventyConfig.setLibrary("md", md);
-    // END OF ADDED SECTION
+
+    // Add transform to clean up unwanted paragraph tags
+    eleventyConfig.addTransform("cleanupHtml", function(content, outputPath) {
+      if (outputPath && outputPath.endsWith(".html")) {
+        // Remove empty paragraphs
+        content = content.replace(/<p><\/p>/g, '');
+        
+        // Fix figure + figcaption structure by removing p tags
+        content = content.replace(/<\/div><p>(\s*)<\/p>/g, '</div>');
+        content = content.replace(/<p>(\s*)<\/p><figcaption/g, '<figcaption');
+        
+        // Remove any br tags
+        content = content.replace(/<br\s*\/?>/g, '');
+        
+        // Clean up multiple paragraphs 
+        content = content.replace(/<p>(\s*)<\/p>\s*<p>(\s*)<\/p>/g, '');
+      }
+      return content;
+    });
 
     eleventyConfig.on('beforeBuild', () => {
         console.log('Site prefix:', eleventyConfig.pathPrefix);
@@ -245,24 +248,11 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
+    // Updated blogImage shortcode with compact format
     eleventyConfig.addShortcode("blogImage", function(src, alt, caption) {
       const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
-      return `
-        <figure class="single-image" style="margin: 2rem 0;">
-          <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-            <img 
-              src="${pathPrefix}${src}"
-              alt="${alt || ''}"
-              class="w-full h-full object-cover"
-              loading="lazy"
-              style="width: 100%; height: auto;"
-            />
-          </div>
-          <figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; background: transparent; padding: 0; border: none; display: block !important; position: static !important; overflow: visible !important;">
-            ${caption || alt || ''}
-          </figcaption>
-        </figure>
-      `;
+      // Use compact format to avoid markdown processing issues
+      return `<figure class="single-image" style="margin: 2rem 0;"><div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><img src="${pathPrefix}${src}" alt="${alt || ''}" class="w-full object-cover" loading="lazy" style="width: 100%; height: auto; display: block; margin: 0;"></div>${caption ? `<figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; padding: 0;">${caption}</figcaption>` : ''}</figure>`;
     });
       
     eleventyConfig.addShortcode("imageGallery", function(images) {

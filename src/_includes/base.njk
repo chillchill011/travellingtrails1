@@ -218,7 +218,6 @@
           position: relative;
           overflow: hidden;
           border-radius: 0.5rem;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
           height: 300px;
         }
         
@@ -265,13 +264,13 @@
           flex-direction: column !important;
         }
         
-        /* Apply shadow only to the image wrapper */
+        /* Apply only border radius to the image wrapper - NO shadow */
         .gallery-image-wrapper {
           height: 250px !important;
           width: 100% !important;
           overflow: hidden !important;
           border-radius: 0.5rem !important;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+          box-shadow: none !important;
         }
         
         /* Fix gallery captions */
@@ -297,7 +296,7 @@
         /* Fix blog post single images */
         .prose img {
           border-radius: 0.5rem !important;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+          box-shadow: none !important;
           display: block !important;
           margin: 2rem auto !important;
         }
@@ -306,14 +305,31 @@
         .single-image {
           margin: 2rem 0 !important;
           background: none !important;
+          box-shadow: none !important;
+          border: none !important;
+          padding: 0 !important;
+          position: relative !important;
+          display: block !important;
+          overflow: visible !important;
         }
         
         .single-image .image-container {
           position: relative !important;
           overflow: hidden !important;
           border-radius: 0.5rem !important; 
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+          box-shadow: none !important;
           background: none !important;
+          display: block !important;
+          margin: 0 !important;
+        }
+        
+        .single-image .image-container img {
+          display: block !important;
+          width: 100% !important;
+          height: auto !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          box-shadow: none !important;
         }
         
         .single-image figcaption {
@@ -338,6 +354,50 @@
         /* Clean up any overflow issues */
         .gallery-grid {
           overflow: visible !important;
+        }
+        
+        /* Reset pseudo-elements */
+        .single-image::before,
+        .single-image::after,
+        .single-image .image-container::before,
+        .single-image .image-container::after,
+        .single-image img::before,
+        .single-image img::after,
+        .gallery-item::before,
+        .gallery-item::after,
+        .gallery-image-wrapper::before,
+        .gallery-image-wrapper::after {
+          display: none !important;
+          content: none !important;
+          background: none !important;
+          box-shadow: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          border: none !important;
+        }
+        
+        /* Complete shadow removal for all image elements */
+        .single-image,
+        .single-image .image-container,
+        .single-image img,
+        .gallery-item,
+        .gallery-image-wrapper,
+        .prose img {
+          box-shadow: none !important;
+        }
+        
+        /* Optional subtle border for visual distinction */
+        .single-image .image-container,
+        .gallery-image-wrapper,
+        .prose img {
+          border: 1px solid #e5e7eb !important; /* Light gray border */
+        }
+        
+        /* Dark mode border */
+        .dark .single-image .image-container,
+        .dark .gallery-image-wrapper,
+        .dark .prose img {
+          border: 1px solid #374151 !important; /* Darker border for dark mode */
         }
       </style>
 
