@@ -9,8 +9,8 @@ featured: true
 draft: false
 categories:
   - Ride
-featuredImage: /assets/images/featured-images.jpg
-thumbnailImage: /assets/images/thumbnail-image.jpg
+featuredImage: /assets/images/sinhagad.jpeg
+thumbnailImage: /assets/images/sinhagad-thumb.jpeg
 imageAlt: Test image alt text
 destination: Raigad
 duration: 2 days
@@ -40,7 +40,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a pellentesque dolo
 
 {% blogImage "/assets/images/placeholder.jpg", "Placeholder image", "Placeholder Image" %}
 
-![Alt text](/assets/images/placeholder.jpg "A title text")
+![Alt text](/assets/images/sinhagad-image.jpeg "A title text")
 
 Aenean non lacus sit amet neque porta consectetur. Aliquam erat volutpat. Proin nec metus sit amet est ornare dictum. Morbi laoreet ultrices tincidunt. Ut vitae neque vitae libero mollis ultricies. Aenean laoreet, elit quis pretium dignissim, felis elit tempus purus, a lobortis turpis magna non metus. Suspendisse non justo pretium, ullamcorper ex ut, tincidunt nibh. Donec a eros ut nisl ornare dapibus. Ut scelerisque non ligula ut gravida. Sed volutpat porttitor orci, quis pulvinar odio malesuada a. Fusce hendrerit enim ante, vel ullamcorper risus vestibulum at. Proin venenatis diam nec pulvinar efficitur.
 
