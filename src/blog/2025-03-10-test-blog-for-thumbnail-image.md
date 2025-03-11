@@ -41,3 +41,5 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a pellentesque dolo
 ![Alt text](/assets/images/placeholder.jpg "A title text")
 
 Aenean non lacus sit amet neque porta consectetur. Aliquam erat volutpat. Proin nec metus sit amet est ornare dictum. Morbi laoreet ultrices tincidunt. Ut vitae neque vitae libero mollis ultricies. Aenean laoreet, elit quis pretium dignissim, felis elit tempus purus, a lobortis turpis magna non metus. Suspendisse non justo pretium, ullamcorper ex ut, tincidunt nibh. Donec a eros ut nisl ornare dapibus. Ut scelerisque non ligula ut gravida. Sed volutpat porttitor orci, quis pulvinar odio malesuada a. Fusce hendrerit enim ante, vel ullamcorper risus vestibulum at. Proin venenatis diam nec pulvinar efficitur.
+
+![2nd image for test](/assets/images/thumbnail-image.jpg "Title")
