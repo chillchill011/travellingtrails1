@@ -1,5 +1,6 @@
 const { DateTime } = require("luxon");
 const execSync = require('child_process').execSync;
+const markdownIt = require("markdown-it"); // Add this line - make sure markdown-it is installed
 
 module.exports = function(eleventyConfig) {
     // Passthrough copies
@@ -17,6 +18,52 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/images/logo-white.png": "assets/images/logo-white.png"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/logo-switcher.js": "assets/js/logo-switcher.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
+
+    // ADD THIS SECTION: Custom markdown parser with enhanced image rendering
+    const md = markdownIt({
+      html: true,
+      breaks: true,
+      linkify: true
+    });
+
+    // Custom renderer for images that converts them to figures with captions
+    const defaultImageRenderer = md.renderer.rules.image;
+    md.renderer.rules.image = function(tokens, idx, options, env, self) {
+      const token = tokens[idx];
+      const altText = token.content;
+      const title = token.attrGet('title');
+      
+      if (title) {
+        // Get the src attribute
+        const srcIndex = token.attrIndex('src');
+        const src = token.attrs[srcIndex][1];
+        const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
+        
+        // Return a figure with caption just like the blogImage shortcode
+        return `
+          <figure class="single-image" style="margin: 2rem 0;">
+            <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+              <img 
+                src="${src}"
+                alt="${altText || ''}"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                style="width: 100%; height: auto;"
+              />
+            </div>
+            <figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; background: transparent; padding: 0; border: none; display: block !important; position: static !important; overflow: visible !important;">
+              ${title}
+            </figcaption>
+          </figure>
+        `;
+      }
+  
+  // If no title, use the default renderer
+  return defaultImageRenderer(tokens, idx, options, env, self);
+};
+
+    eleventyConfig.setLibrary("md", md);
+    // END OF ADDED SECTION
 
     eleventyConfig.on('beforeBuild', () => {
         console.log('Site prefix:', eleventyConfig.pathPrefix);
@@ -199,25 +246,23 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
     eleventyConfig.addShortcode("blogImage", function(src, alt, caption) {
-        const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
-        return `
-          <figure class="single-image" style="margin: 2rem 0;">
-            <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
-              <img 
-                src="${pathPrefix}${src}"
-                alt="${alt || ''}"
-                class="w-full h-full object-cover"
-                loading="lazy"
-                style="width: 100%; height: auto;"
-              />
-            </div>
-            ${caption ? `
-              <figcaption style="margin-top: 0.5rem; font-size: 0.875rem; color: #4B5563; text-align: center;">
-                ${caption}
-              </figcaption>
-            ` : ''}
-          </figure>
-        `;
+      const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
+      return `
+        <figure class="single-image" style="margin: 2rem 0;">
+          <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            <img 
+              src="${pathPrefix}${src}"
+              alt="${alt || ''}"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              style="width: 100%; height: auto;"
+            />
+          </div>
+          <figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; background: transparent; padding: 0; border: none; display: block !important; position: static !important; overflow: visible !important;">
+            ${caption || alt || ''}
+          </figcaption>
+        </figure>
+      `;
     });
       
     eleventyConfig.addShortcode("imageGallery", function(images) {

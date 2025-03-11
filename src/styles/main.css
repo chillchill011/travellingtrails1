@@ -184,33 +184,57 @@
     }
   }
 
-  .gallery-item {
+  /* Gallery item styles - UPDATED FOR FIXES */
+  figure.gallery-item {
     @apply relative overflow-hidden rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800;
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
   }
 
-  .gallery-image-wrapper {
-    @apply h-full w-full overflow-hidden;
+  figure.gallery-item .gallery-image-wrapper {
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
   }
 
-  .gallery-image {
+  figure.gallery-item .gallery-image {
     @apply w-full h-full object-cover transition-transform duration-300;
   }
 
-  .gallery-image:hover {
+  figure.gallery-item .gallery-image:hover {
     @apply scale-105;
   }
 
-  .gallery-caption {
-    @apply absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent;
+  /* Fixed figcaption styles to ensure they're visible */
+  figure.gallery-item figcaption {
+    padding: 0.75rem;
+    width: 100%;
+    background-color: inherit;
+    color: #4b5563;  /* text-gray-600 */
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.875rem; /* text-sm */
   }
 
-  .gallery-title {
-    @apply text-lg font-medium text-white mb-1;
+  .dark figure.gallery-item figcaption {
+    color: #9ca3af;  /* dark:text-gray-400 */
   }
 
-  .gallery-credit {
-    @apply text-sm text-white/90;
+  /* Make sure the spans inside figcaption are visible */
+  figure.gallery-item figcaption span.block {
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  figure.gallery-item figcaption span.block.text-xs {
+    font-size: 0.75rem;
+    color: #6b7280;  /* text-gray-500 */
+    font-style: italic;
+  }
+
+  .dark figure.gallery-item figcaption span.block.text-xs {
+    color: #9ca3af;  /* dark:text-gray-400 for better contrast in dark mode */
   }
 
   /* Single image styles */
@@ -223,6 +247,24 @@
     @apply m-0;
   }
 
+  /* Figure and caption styles */
+  figure {
+    @apply my-6;
+  }
+
+  figcaption {
+    @apply text-center text-gray-600 dark:text-gray-400 mt-2 text-sm;
+  }
+
+  /* Added styling for figcaption blocks */
+  figcaption span.block {
+    @apply mt-1;
+  }
+
+  figcaption span.block.text-xs {
+    @apply text-gray-500 dark:text-gray-500 italic;
+  }
+}
 
 @layer utilities {
   .text-shadow {
