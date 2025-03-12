@@ -82,6 +82,8 @@ collections:
         required: false
         options:
           - { label: "Adventure", value: "adventure" }
+          - { label: "Solo Bike Ride", value: "Solo Bike Ride" }
+          - { label: "Group Bike Ride", value: "Group Bike Ride" }
           - { label: "Cultural", value: "cultural" }
           - { label: "Food & Drink", value: "food" }
           - { label: "Beach", value: "beach" }
