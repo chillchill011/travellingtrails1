@@ -274,6 +274,21 @@ collections:
           - { label: "Credit", name: "credit", widget: "string", required: false }
           - { label: "Location", name: "location", widget: "string", required: false }
       
+      # Table of Contents settings
+      - label: "Table of Contents"
+        name: "showTableOfContents"
+        widget: "boolean"
+        default: true
+        hint: "Show a table of contents for this article"
+      
+      - label: "Minimum TOC Headings"
+        name: "tocMinHeadings"
+        widget: "number"
+        default: 3
+        min: 1
+        max: 10
+        hint: "Minimum number of headings required to show the table of contents"
+      
       # Original content fields
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Layout", name: "layout", widget: "hidden", default: "article.njk" }
