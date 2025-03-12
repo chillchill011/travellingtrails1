@@ -1,6 +1,6 @@
 ---
 draft: false
-featured: false
+featured: true
 date: 2025-03-08T17:25:00.000Z
 title: "Motorcycle Journey to Raigad Fort: A Solo Adventure Through
   Maharashtra's Historic Heartland"
