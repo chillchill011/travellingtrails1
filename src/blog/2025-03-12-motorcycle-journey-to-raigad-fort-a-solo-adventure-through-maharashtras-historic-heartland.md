@@ -34,8 +34,6 @@ imageAlt: Majestic Raigad Fort perched atop a hill in Maharashtra, commanding a
   Maratha Empire established by Chhatrapati Shivaji Maharaj
 imageCredit: Aniket
 thumbnailImage: /assets/images/raigad-fort-distance-thumb.jpg
-showTableOfContents: true
-tocMinHeadings: 4
 layout: article.njk
 ---
 Raigad Fort has long held a special place in my heart. Memories of visiting during monsoon season as a child with my parents, riding the ropeway to the summit, and exploring the historic fortress have stayed with me over the years. This majestic fort, which served as the capital of the Maratha Empire from 1674, is filled with the echoes of history and the legacy of Chhatrapati Shivaji Maharaj's remarkable fortification engineering.
