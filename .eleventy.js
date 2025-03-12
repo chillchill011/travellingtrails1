@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const execSync = require('child_process').execSync;
 const markdownIt = require("markdown-it");
+const cheerio = require('cheerio');
 
 module.exports = function(eleventyConfig) {
     // Passthrough copies
@@ -17,6 +18,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/js/navigation.js": "assets/js/navigation.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/analytics-enhancement.js": "assets/js/analytics-enhancement.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
+    eleventyConfig.addPassthroughCopy({"src/assets/js/toc.js": "assets/js/toc.js"});
 
     // Configure markdown parser with enhanced image rendering
     const md = markdownIt({
@@ -24,6 +26,61 @@ module.exports = function(eleventyConfig) {
       breaks: false,
       linkify: true
     });
+
+    eleventyConfig.addFilter("extractHeadings", function(content) {
+      const $ = cheerio.load(content);
+      const headings = [];
+      
+      // Select all h2 and h3 elements
+      $('h2, h3, h4').each(function(i, elem) {
+        const $elem = $(elem);
+        const level = parseInt(elem.tagName.substring(1));
+        const text = $elem.text();
+        
+        // Create ID from heading text
+        const id = text
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-');
+        
+        // Add id attribute to the heading element
+        $elem.attr('id', id);
+        
+        headings.push({
+          level: level,
+          text: text,
+          id: id
+        });
+      });
+      
+      // Return both the extracted headings and the modified content
+      return {
+        headings: headings,
+        content: $.html()
+      };
+    });
+    
+    // Add this to process content and add ids to headings
+    eleventyConfig.addFilter("addHeadingIds", function(content) {
+      const $ = cheerio.load(content);
+      
+      $('h2, h3, h4').each(function(i, elem) {
+        const $elem = $(elem);
+        const text = $elem.text();
+        
+        // Create ID from heading text
+        const id = text
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-');
+        
+        // Add id attribute to the heading element
+        $elem.attr('id', id);
+      });
+      
+      return $.html();
+    });
+
 
     // Custom renderer for images that converts them to figures with captions
     const defaultImageRenderer = md.renderer.rules.image;

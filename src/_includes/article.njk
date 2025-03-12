@@ -1,6 +1,7 @@
 ---
 layout: 'base.njk'
 ---
+{% from "components/table-of-contents.njk" import tableOfContents %}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -60,8 +61,13 @@ layout: 'base.njk'
     </figure>
     {% endif %}
 
+    {% set contentData = content | extractHeadings %}
+    {% if showTableOfContents !== false and contentData.headings.length >= (tocMinHeadings or 3) %}
+        {{ tableOfContents(contentData.headings) }}
+    {% endif %}
+
     <div class="prose prose-lg dark:prose-invert max-w-none">
-        {{ content | safe }}
+        {{ contentData.content | safe }}
     </div>
 
     {% if gallery and gallery.length > 0 %}

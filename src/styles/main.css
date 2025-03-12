@@ -264,6 +264,61 @@
   figcaption span.block.text-xs {
     @apply text-gray-500 dark:text-gray-500 italic;
   }
+
+    /* Table of Contents */
+  .toc-container {
+    @apply bg-gray-50 dark:bg-gray-800 p-4 rounded-lg mb-8 border border-gray-200 dark:border-gray-700;
+  }
+
+  .toc-header {
+    @apply flex justify-between items-center mb-4 pb-2 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .toc-content {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .toc-list {
+    @apply list-none pl-0 space-y-2;
+  }
+
+  .toc-item {
+    @apply line-clamp-2;
+  }
+
+  .toc-link {
+    @apply text-travel-600 dark:text-travel-400 hover:text-travel-800 
+          dark:hover:text-travel-300 text-sm transition-colors duration-150
+          block py-1;
+  }
+
+  .toc-link.active {
+    @apply font-medium text-travel-800 dark:text-travel-300;
+  }
+
+  /* Responsive adjustments for mobile */
+  @media (max-width: 768px) {
+     .toc-container {
+    @apply static mb-6 max-h-none;
+    }
+    
+    /* Remove the default max-height: 0 from here */
+    .toc-content {
+      @apply transition-all duration-300 ease-in-out overflow-hidden;
+    }
+    
+    /* Keep this the same */
+    .toc-content.collapsed {
+      display: none !important;
+    }
+    
+    /* Keep this the same */
+    .toc-content.expanded {
+      display: block !important;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+  }
 }
 
 @layer utilities {
