@@ -6,14 +6,22 @@ permalink: /about/index.html
 
 <div class="max-w-4xl mx-auto px-4 py-8">
   <!-- Hero Image Section -->
-  <div class="mb-8 rounded-lg overflow-hidden shadow-lg">
-    <img 
-      src="/assets/images/travelling-trails-about-us.jpeg" 
-      alt="Travelling Trails Team" 
-      class="w-full h-auto object-cover"
-      onerror="this.src='/assets/images/placeholder.jpg'; this.alt='Travelling Trails';"
-    >
-  </div>
+  <figure class="single-image mb-8">
+    <div class="image-container rounded-lg overflow-hidden shadow-lg">
+      <img 
+        src="/assets/images/travelling-trails-about-us.jpeg" 
+        alt="Jalbaug Villa Backwater photo taken in the morning" 
+        class="w-full h-auto object-cover"
+        loading="lazy"
+        onerror="if (!this.src.includes('placeholder.jpg')) { this.src='/assets/images/placeholder.jpg'; this.alt='Travelling Trails'; this.onerror = null; }"
+      >
+    </div>
+    <figcaption class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+      <span class="block">Jalbaug Villa Backwater photo taken in the morning</span>
+      <span class="block text-xs mt-1">Photo by: Aniket</span>
+    </figcaption>
+  </figure>
+
 
   <header class="mb-8 text-center">
     <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">About Us</h1>
