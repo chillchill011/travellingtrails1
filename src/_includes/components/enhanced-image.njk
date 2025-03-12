@@ -8,15 +8,10 @@
     class="w-full h-auto rounded-lg transition duration-300 {{ className }}"
   />
   
-  {% if caption or credit %}
-    <figcaption class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-      {% if caption %}
-        <span class="block">{{ caption }}</span>
-      {% endif %}
-      {% if credit %}
-        <span class="block text-xs mt-1">Photo by: {{ credit }}</span>
-      {% endif %}
-    </figcaption>
-  {% endif %}
+  <figcaption class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+    {% if alt %}<span class="block">{{ alt }}</span>{% endif %}
+    {% if caption %}<span class="block mt-1">{{ caption }}</span>{% endif %}
+    {% if credit %}<span class="block text-xs mt-1">Photo by: {{ credit }}</span>{% endif %}
+  </figcaption>
 </figure>
 {% endmacro %}

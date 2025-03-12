@@ -218,7 +218,6 @@
           position: relative;
           overflow: hidden;
           border-radius: 0.5rem;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
           height: 300px;
         }
         
@@ -237,6 +236,168 @@
         
         .gallery-image:hover {
           transform: scale(1.05);
+        }
+      </style>
+
+
+      <!-- Complete fix for image captions and backgrounds -->
+      <style>
+        /* Reset all gallery items and make them truly transparent */
+        .gallery-item,
+        .gallery-item figcaption,
+        figure.gallery-item,
+        figure.gallery-item figcaption {
+          background-color: transparent !important;
+          background: none !important;
+          box-shadow: none !important;
+          border: none !important;
+        }
+        
+        /* Fix gallery items structure */
+        .gallery-item, 
+        figure.gallery-item {
+          position: relative !important;
+          overflow: visible !important;
+          border-radius: 0 !important;
+          height: auto !important;
+          display: flex !important;
+          flex-direction: column !important;
+        }
+        
+        /* Apply only border radius to the image wrapper - NO shadow */
+        .gallery-image-wrapper {
+          height: 250px !important;
+          width: 100% !important;
+          overflow: hidden !important;
+          border-radius: 0.5rem !important;
+          box-shadow: none !important;
+        }
+        
+        /* Fix gallery captions */
+        .gallery-item figcaption,
+        figure.gallery-item figcaption {
+          position: static !important;
+          display: block !important;
+          height: auto !important;
+          width: 100% !important;
+          overflow: visible !important;
+          color: #4b5563 !important;
+          padding: 0.75rem 0 !important;
+          margin-top: 0.5rem !important;
+          text-align: center !important;
+        }
+        
+        /* Dark mode caption colors */
+        .dark .gallery-item figcaption,
+        .dark figure.gallery-item figcaption {
+          color: #d1d5db !important;
+        }
+        
+        /* Fix blog post single images */
+        .prose img {
+          border-radius: 0.5rem !important;
+          box-shadow: none !important;
+          display: block !important;
+          margin: 2rem auto !important;
+        }
+        
+        /* Fix single image captions */
+        .single-image {
+          margin: 2rem 0 !important;
+          background: none !important;
+          box-shadow: none !important;
+          border: none !important;
+          padding: 0 !important;
+          position: relative !important;
+          display: block !important;
+          overflow: visible !important;
+        }
+        
+        .single-image .image-container {
+          position: relative !important;
+          overflow: hidden !important;
+          border-radius: 0.5rem !important; 
+          box-shadow: none !important;
+          background: none !important;
+          display: block !important;
+          margin: 0 !important;
+        }
+        
+        .single-image .image-container img {
+          display: block !important;
+          width: 100% !important;
+          height: auto !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          box-shadow: none !important;
+        }
+        
+        .single-image figcaption {
+          margin-top: 0.5rem !important;
+          font-size: 0.875rem !important;
+          color: #4B5563 !important; 
+          text-align: center !important;
+          background: transparent !important;
+          background-color: transparent !important;
+          padding: 0.5rem 0 !important;
+          border: none !important;
+          box-shadow: none !important;
+          display: block !important;
+          position: static !important;
+          overflow: visible !important;
+        }
+        
+        .dark .single-image figcaption {
+          color: #d1d5db !important;
+        }
+        
+        /* Clean up any overflow issues */
+        .gallery-grid {
+          overflow: visible !important;
+        }
+        
+        /* Reset pseudo-elements */
+        .single-image::before,
+        .single-image::after,
+        .single-image .image-container::before,
+        .single-image .image-container::after,
+        .single-image img::before,
+        .single-image img::after,
+        .gallery-item::before,
+        .gallery-item::after,
+        .gallery-image-wrapper::before,
+        .gallery-image-wrapper::after {
+          display: none !important;
+          content: none !important;
+          background: none !important;
+          box-shadow: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          border: none !important;
+        }
+        
+        /* Complete shadow removal for all image elements */
+        .single-image,
+        .single-image .image-container,
+        .single-image img,
+        .gallery-item,
+        .gallery-image-wrapper,
+        .prose img {
+          box-shadow: none !important;
+        }
+        
+        /* Optional subtle border for visual distinction */
+        .single-image .image-container,
+        .gallery-image-wrapper,
+        .prose img {
+          border: 1px solid #e5e7eb !important; /* Light gray border */
+        }
+        
+        /* Dark mode border */
+        .dark .single-image .image-container,
+        .dark .gallery-image-wrapper,
+        .dark .prose img {
+          border: 1px solid #374151 !important; /* Darker border for dark mode */
         }
       </style>
 
