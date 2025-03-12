@@ -49,13 +49,11 @@
 
         {% if post.data.categories %}
         <div class="flex flex-wrap gap-2">
-        {% for category in post.data.categories %}
-        <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
-       class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-        {{ category }}
-    </a>
-    {% endfor %}
-</div>
-{% endif %}
+            <a href="{{ '/categories/' + post.data.categories | lower | replace(' ', '-') + '/' | url }}"
+            class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                Category: {{ post.data.categories }}
+            </a>
+        </div>
+        {% endif %}
     </div>
 </article>

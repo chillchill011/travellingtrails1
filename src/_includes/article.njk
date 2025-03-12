@@ -17,12 +17,10 @@ layout: 'base.njk'
             <div class="flex items-center gap-2">
                 <span>Categories:</span>
                 <div class="flex flex-wrap gap-2">
-                    {% for category in categories %}
-                    <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
+                    <a href="{{ '/categories/' + categories | lower | replace(' ', '-') + '/' | url }}"
                        class="category-tag inline-block px-3 py-1 text-sm bg-travel-600 text-white dark:bg-travel-700 rounded-full hover:bg-travel-700 dark:hover:bg-travel-600 transition-colors duration-200">
-                        {{ category }}
+                        {{ categories }}
                     </a>
-                    {% endfor %}
                 </div>
             </div>
             {% endif %}
@@ -130,12 +128,10 @@ layout: 'base.njk'
                         
                         {% if post.data.categories %}
                         <div class="flex flex-wrap gap-2">
-                            {% for category in post.data.categories %}
-                            <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
-                                class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-                                {{ category }}
+                            <a href="{{ '/categories/' + post.data.categories | lower | replace(' ', '-') + '/' | url }}"
+                               class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                                {{ post.data.categories }}
                             </a>
-                            {% endfor %}
                         </div>
                         {% endif %}
                     </div>
@@ -184,7 +180,25 @@ layout: 'base.njk'
                 </svg>
                 <div class="ml-3">
                     <h3 class="text-sm font-medium text-gray-900 dark:text-white">Travel Type</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ travelType }}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {% if travelType.length %}
+                            {{ travelType | join(', ') }}
+                        {% else %}
+                            {{ travelType }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if activities and activities.length > 0 %}
+            <div class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-0.5 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
+                </svg>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-gray-900 dark:text-white">Activities</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ activities | join(', ') }}</p>
                 </div>
             </div>
             {% endif %}
