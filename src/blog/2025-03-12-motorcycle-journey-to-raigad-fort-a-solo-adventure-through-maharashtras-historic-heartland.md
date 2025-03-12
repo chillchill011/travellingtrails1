@@ -10,7 +10,7 @@ description: Experience a thrilling 280km motorcycle ride to Raigad Fort, the
   journey to this iconic Maharashtra landmark.
 showTableOfContents: true
 tocMinHeadings: 3
-author: Aniket
+author: Aniket T
 destination: Raigad Fort
 coordinates:
   latitude: 18.22917457573863
