@@ -1,6 +1,6 @@
 const { DateTime } = require("luxon");
 const execSync = require('child_process').execSync;
-const markdownIt = require("markdown-it"); // Add this line - make sure markdown-it is installed
+const markdownIt = require("markdown-it");
 
 module.exports = function(eleventyConfig) {
     // Passthrough copies
@@ -8,21 +8,20 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
     eleventyConfig.addPassthroughCopy({"src/styles": "styles"});
     eleventyConfig.addPassthroughCopy("src/admin");
-    eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
-    eleventyConfig.addPassthroughCopy({ "src/assets/js/navigation.js": "assets/js/navigation.js" });
-    eleventyConfig.addPassthroughCopy({"src/assets/js/analytics-enhancement.js": "assets/js/analytics-enhancement.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/favicon": "assets/favicon"});
     eleventyConfig.addPassthroughCopy({"src/assets/images/logo.svg": "assets/images/logo.svg"});
     eleventyConfig.addPassthroughCopy({"src/assets/images/logo.png": "assets/images/logo.png"});
     eleventyConfig.addPassthroughCopy({"src/assets/images/logo-white.svg": "assets/images/logo-white.svg"});
     eleventyConfig.addPassthroughCopy({"src/assets/images/logo-white.png": "assets/images/logo-white.png"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/logo-switcher.js": "assets/js/logo-switcher.js"});
+    eleventyConfig.addPassthroughCopy({"src/assets/js/navigation.js": "assets/js/navigation.js"});
+    eleventyConfig.addPassthroughCopy({"src/assets/js/analytics-enhancement.js": "assets/js/analytics-enhancement.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
 
     // Configure markdown parser with enhanced image rendering
     const md = markdownIt({
       html: true,
-      breaks: false,  // Changed to false to prevent extra line breaks
+      breaks: false,
       linkify: true
     });
 
@@ -111,12 +110,17 @@ module.exports = function(eleventyConfig) {
         return JSON.stringify(obj || {});
     });
 
-    // Add this with your other filters in .eleventy.js
     eleventyConfig.addFilter("json", function(value) {
         return JSON.stringify(value || "");
     });
 
+    // Updated getRelatedPosts to handle string categories
     eleventyConfig.addFilter("getRelatedPosts", function(currentPost, allPosts, categories) {
+      // Handle single category case
+      if (typeof categories === 'string') {
+        categories = [categories];
+      }
+      
       // Use the categories passed directly
       if (!categories || !Array.isArray(categories) || categories.length === 0) {
         return [];
@@ -127,13 +131,20 @@ module.exports = function(eleventyConfig) {
     
       // Score each post based on category matches
       const scoredPosts = otherPosts.map(post => {
-        if (!post.data.categories || !Array.isArray(post.data.categories)) {
+        if (!post.data.categories) {
           return { post, score: 0 };
         }
         
-        const score = post.data.categories.reduce((count, category) => {
-          return categories.includes(category) ? count + 1 : count;
-        }, 0);
+        let score = 0;
+        if (typeof post.data.categories === 'string') {
+          // Handle single category (string)
+          score = categories.includes(post.data.categories) ? 1 : 0;
+        } else if (Array.isArray(post.data.categories)) {
+          // Handle multiple categories (array)
+          score = post.data.categories.reduce((count, category) => {
+            return categories.includes(category) ? count + 1 : count;
+          }, 0);
+        }
         
         return { post, score };
       });
@@ -145,7 +156,6 @@ module.exports = function(eleventyConfig) {
         .slice(0, 3)
         .map(item => item.post);
     });
-
 
     // Collections
     eleventyConfig.addCollection("searchData", function(collection) {
@@ -208,6 +218,7 @@ module.exports = function(eleventyConfig) {
             .sort((a, b) => b.date - a.date);
     });
 
+    // Updated categories collection to handle string categories
     eleventyConfig.addCollection("categories", function(collection) {
         const posts = collection.getFilteredByGlob("src/blog/**/*.md")
             // Filter out draft posts in production
@@ -216,19 +227,33 @@ module.exports = function(eleventyConfig) {
         const categoriesSet = new Set();
         posts.forEach(post => {
             if (post.data.categories) {
-                post.data.categories.forEach(category => {
-                    categoriesSet.add(category);
-                });
+                if (typeof post.data.categories === 'string') {
+                    // Handle single category (string)
+                    categoriesSet.add(post.data.categories);
+                } else if (Array.isArray(post.data.categories)) {
+                    // Handle multiple categories (array)
+                    post.data.categories.forEach(category => {
+                        categoriesSet.add(category);
+                    });
+                }
             }
         });
         
         const categories = Array.from(categoriesSet).sort();
         
         return categories.map(category => {
-            const filteredPosts = posts.filter(post => 
-                post.data.categories && 
-                post.data.categories.includes(category)
-            ).sort((a, b) => b.date - a.date);
+            // Updated to handle string categories
+            const filteredPosts = posts.filter(post => {
+                if (!post.data.categories) return false;
+                
+                if (typeof post.data.categories === 'string') {
+                    return post.data.categories === category;
+                } else if (Array.isArray(post.data.categories)) {
+                    return post.data.categories.includes(category);
+                }
+                
+                return false;
+            }).sort((a, b) => b.date - a.date);
             
             return {
                 title: category,
@@ -248,10 +273,8 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
-    // Updated blogImage shortcode with compact format
     eleventyConfig.addShortcode("blogImage", function(src, alt, caption) {
       const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
-      // Use compact format to avoid markdown processing issues
       return `<figure class="single-image" style="margin: 2rem 0;"><div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><img src="${pathPrefix}${src}" alt="${alt || ''}" class="w-full object-cover" loading="lazy" style="width: 100%; height: auto; display: block; margin: 0;"></div>${caption ? `<figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; padding: 0;">${caption}</figcaption>` : ''}</figure>`;
     });
       
@@ -307,7 +330,6 @@ module.exports = function(eleventyConfig) {
         return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
     });
 
-
     // Add destinations collection
     eleventyConfig.addCollection("destinations", function(collection) {
       const posts = collection.getFilteredByGlob("src/blog/**/*.md")
@@ -338,7 +360,7 @@ module.exports = function(eleventyConfig) {
       });
     });
 
-    // Add map data filter with corrected implementation
+    // Add map data filter
     eleventyConfig.addFilter("getDestinationsMapData", function(destinations) {
       if (!destinations || !Array.isArray(destinations)) {
         return [];
