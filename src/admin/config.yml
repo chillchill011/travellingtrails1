@@ -18,21 +18,12 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields: 
+      - { label: "Draft", name: "draft", widget: "boolean", default: true, hint: "Set to true to save as draft" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Author", name: "author", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Draft", name: "draft", widget: "boolean", default: true, hint: "Set to true to save as draft" }
-      - { 
-          label: "Categories", 
-          name: "categories", 
-          widget: "list",
-          allow_add: true
-        }
-      - { label: "Featured Image", name: "featuredImage", widget: "image", hint: "Main image shown at the top of the post (1200-1600px wide)" }
-      - { label: "Thumbnail Image", name: "thumbnailImage", widget: "image", required: false, hint: "Optional smaller image for cards (400x267px). If not provided, featured image will be used." }
-      - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
       
       # Travel-specific fields
       - label: "Destination"
@@ -41,15 +32,53 @@ collections:
         required: false
         hint: "Main location of this travel post (e.g. 'Bali, Indonesia')"
 
+      - label: "Coordinates"
+        name: "coordinates"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Latitude", name: "latitude", widget: "number", required: false, valueType: "float" }
+          - { label: "Longitude", name: "longitude", widget: "number", required: false, valueType: "float" }
+
       - label: "Duration"
         name: "duration"
         widget: "string"
         required: false
         hint: "Duration of the trip (e.g. '7 days', '2 weeks')"
 
+      - label: "Categories"
+        name: "categories"
+        widget: "select"
+        multiple: false
+        options:
+          - { label: "Adventure", value: "Adventure" }
+          - { label: "Photography", value: "Photography" }
+          - { label: "Food", value: "Food" }
+          - { label: "Culture", value: "Culture" }
+          - { label: "Heritage", value: "Heritage" }
+          - { label: "Wildlife", value: "Wildlife" }
+          - { label: "Wellness", value: "Wellness" }
+          - { label: "Off-Road", value: "Off-Road" }
+          - { label: "Luxury Travel", value: "Luxury Travel" }
+          - { label: "Solo Travel", value: "Solo Travel" }
+          - { label: "Family Travel", value: "Family Travel" }
+          - { label: "Sustainable Travel", value: "Sustainable Travel" }
+          - { label: "Backpacking", value: "Backpacking" }
+          - { label: "Seasonal Travel", value: "Seasonal Travel" }
+          - { label: "Hidden Gems", value: "Hidden Gems" }
+          - { label: "Urban Exploration", value: "Urban Exploration" }
+          - { label: "Rural Getaways", value: "Rural Getaways" }
+          - { label: "Coastal Journeys", value: "Coastal Journeys" }
+          - { label: "Mountain Expeditions", value: "Mountain Expeditions" }
+          - { label: "Weekend Escapes", value: "Weekend Escapes" }
+          - { label: "Long-Term Travel", value: "Long-Term Travel" }
+          - { label: "Budget Travel", value: "Budget Travel" }
+      
       - label: "Travel Type"
         name: "travelType"
         widget: "select"
+        multiple: true
         required: false
         options:
           - { label: "Adventure", value: "adventure" }
@@ -61,78 +90,188 @@ collections:
           - { label: "Road Trip", value: "road-trip" }
           - { label: "Budget", value: "budget" }
           - { label: "Luxury", value: "luxury" }
+          - { label: "Backpacking", value: "backpacking" }
+          - { label: "Ecotourism", value: "ecotourism" }
+          - { label: "Volunteer Travel", value: "volunteer-travel" }
+          - { label: "Business Travel", value: "business-travel" }
+          - { label: "Medical Tourism", value: "medical-tourism" }
+          - { label: "Religious Pilgrimage", value: "religious-pilgrimage" }
+          - { label: "Dark Tourism", value: "dark-tourism" }
+          - { label: "Educational Travel", value: "educational-travel" }
+          - { label: "Extreme Tourism", value: "extreme-tourism" }
+          - { label: "Family Vacation", value: "family-vacation" }
+          - { label: "Glamping", value: "glamping" }
+          - { label: "Heritage Tourism", value: "heritage-tourism" }
+          - { label: "Solo Travel", value: "solo-travel" }
+          - { label: "Slow Travel", value: "slow-travel" }
+          - { label: "Wellness Retreat", value: "wellness-retreat" }
+          - { label: "Winter Destination", value: "winter-destination" }
+          - { label: "Summer Getaway", value: "summer-getaway" }
+          - { label: "Monsoon Destination", value: "monsoon-destination" }
+          - { label: "Spring Bloom Location", value: "spring-bloom-location" }
         hint: "Type of travel experience"
 
       - label: "Activities"
         name: "activities"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - { label: "Hiking", value: "Hiking" }
+          - { label: "Camping", value: "Camping" }
+          - { label: "Waterfall Exploration", value: "Waterfall Exploration" }
+          - { label: "Photography", value: "Photography" }
+          - { label: "Food Tour", value: "Food Tour" }
+          - { label: "Bird Watching", value: "Bird Watching" }
+          - { label: "Cycling", value: "Cycling" }
+          - { label: "Kayaking", value: "Kayaking" }
+          - { label: "Paragliding", value: "Paragliding" }
+          - { label: "Rock Climbing", value: "Rock Climbing" }
+          - { label: "River Rafting", value: "River Rafting" }
+          - { label: "Stargazing", value: "Stargazing" }
+          - { label: "Meditation Retreat", value: "Meditation Retreat" }
+          - { label: "Cooking Class", value: "Cooking Class" }
+          - { label: "Local Crafts Workshop", value: "Local Crafts Workshop" }
+          - { label: "Temple Visit", value: "Temple Visit" }
+          - { label: "Historical Site Tour", value: "Historical Site Tour" }
+          - { label: "Museum Exploration", value: "Museum Exploration" }
+          - { label: "Wildlife Safari", value: "Wildlife Safari" }
+          - { label: "Snorkeling", value: "Snorkeling" }
+          - { label: "Scuba Diving", value: "Scuba Diving" }
+          - { label: "Motorcycle Touring", value: "Motorcycle Touring" }
+          - { label: "Zip-lining", value: "Zip-lining" }
+          - { label: "Bungee Jumping", value: "Bungee Jumping" }
+          - { label: "Wine Tasting", value: "Wine Tasting" }
+          - { label: "Hot Spring Bathing", value: "Hot Spring Bathing" }
+          - { label: "Boat Tour", value: "Boat Tour" }
+          - { label: "Architectural Tour", value: "Architectural Tour" }
+          - { label: "Street Food Sampling", value: "Street Food Sampling" }
+          - { label: "Fishing", value: "Fishing" }
+          - { label: "Horseback Riding", value: "Horseback Riding" }
+          - { label: "Festival Participation", value: "Festival Participation" }
+          - { label: "Village Home Stay", value: "Village Home Stay" }
+          - { label: "Beach Relaxation", value: "Beach Relaxation" }
+          - { label: "Shopping", value: "Shopping" }
+          - { label: "Night Market Exploration", value: "Night Market Exploration" }
+          - { label: "Trekking", value: "Trekking" }
+          - { label: "Mountain Biking", value: "Mountain Biking" }
+          - { label: "Yoga Session", value: "Yoga Session" }
+          - { label: "Sunset Viewing", value: "Sunset Viewing" }
+          - { label: "Farm Visit", value: "Farm Visit" }
+          - { label: "Train Journey", value: "Train Journey" }
+          - { label: "Hot Air Ballooning", value: "Hot Air Ballooning" }
+        hint: "Activities featured in this post"
+        
+      - label: "Tags"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        default: ["post"]
+        options:
+          - { label: "Post", value: "post" }
+          - { label: "Monsoon", value: "monsoon" }
+          - { label: "Western Ghats", value: "western-ghats" }
+          - { label: "Tent Camping", value: "tent-camping" }
+          - { label: "Wildlife", value: "wildlife" }
+          - { label: "Sunrise", value: "sunrise" }
+          - { label: "Foggy", value: "foggy" }
+          - { label: "Off-Road", value: "off-road" }
+          - { label: "Historical", value: "historical" }
+          - { label: "Sunset", value: "sunset" }
+          - { label: "Rainy Season", value: "rainy-season" }
+          - { label: "First Time Experience", value: "first-time-experience" }
+          - { label: "Family Friendly", value: "family-friendly" }
+          - { label: "Pet Friendly", value: "pet-friendly" }
+          - { label: "Instagram Worthy", value: "instagram-worthy" }
+          - { label: "Secluded", value: "secluded" }
+          - { label: "Crowd-Free", value: "crowd-free" }
+          - { label: "Breathtaking Views", value: "breathtaking-views" }
+          - { label: "Budget Friendly", value: "budget-friendly" }
+          - { label: "Luxury Experience", value: "luxury-experience" }
+          - { label: "Weekend Getaway", value: "weekend-getaway" }
+          - { label: "Day Trip", value: "day-trip" }
+          - { label: "Multi-Day Journey", value: "multi-day-journey" }
+          - { label: "Hidden Trail", value: "hidden-trail" }
+          - { label: "Local Cuisine", value: "local-cuisine" }
+          - { label: "Traditional Architecture", value: "traditional-architecture" }
+          - { label: "Colonial Heritage", value: "colonial-heritage" }
+          - { label: "Public Transport", value: "public-transport" }
+          - { label: "Accessible", value: "accessible" }
+          - { label: "Challenging Terrain", value: "challenging-terrain" }
+          - { label: "Roadside Stop", value: "roadside-stop" }
+          - { label: "Backpacker Hostel", value: "backpacker-hostel" }
+          - { label: "Boutique Stay", value: "boutique-stay" }
+          - { label: "Farm Stay", value: "farm-stay" }
+          - { label: "Homestay", value: "homestay" }
+          - { label: "Unexplored", value: "unexplored" }
+          - { label: "Under-Rated", value: "under-rated" }
+          - { label: "Must Visit", value: "must-visit" }
+          - { label: "Seasonal Attraction", value: "seasonal-attraction" }
+          - { label: "Clear Weather", value: "clear-weather" }
+          - { label: "Rough Terrain", value: "rough-terrain" }
+          - { label: "Beginner Friendly", value: "beginner-friendly" }
+          - { label: "Advanced Level", value: "advanced-level" }
+          - { label: "Guided Tour", value: "guided-tour" }
+          - { label: "Self-Guided", value: "self-guided" }
+          - { label: "Remote Location", value: "remote-location" }
+          - { label: "Urban Center", value: "urban-center" }
+          - { label: "Coastal Road", value: "coastal-road" }
+          - { label: "Mountain Pass", value: "mountain-pass" }
+          - { label: "Hairpin Bends", value: "hairpin-bends" }
+          - { label: "Forest Trail", value: "forest-trail" }
+          - { label: "Grassland", value: "grassland" }
+          - { label: "Plateau", value: "plateau" }
+          - { label: "Valley", value: "valley" }
+          - { label: "Riverside", value: "riverside" }
+          - { label: "Lakeside", value: "lakeside" }
+          - { label: "Desert", value: "desert" }
+      
+      - label: "Featured Image"
+        name: "featuredImage"
+        widget: "image"
+        hint: "Main image shown at the top of the post (1200-1600px wide recommended)"
+      
+      - label: "Featured Image Alt Text"
+        name: "imageAlt"
+        widget: "string"
+        hint: "Descriptive text for featured image accessibility"
+      
+      - label: "Featured Image Credit"
+        name: "imageCredit"
+        widget: "string"
+        required: false
+        hint: "Credit for the featured image photographer/source"
+      
+      - label: "Thumbnail Image"
+        name: "thumbnailImage"
+        widget: "image"
+        required: false
+        hint: "Optional smaller image for cards (400x267px recommended)"
+      
+      - label: "Thumbnail Image Alt Text"
+        name: "thumbnailAlt"
+        widget: "string"
+        required: false
+        hint: "Descriptive text for thumbnail image accessibility"
+      
+      - label: "Thumbnail Image Credit"
+        name: "thumbnailCredit"
+        widget: "string"
+        required: false
+        hint: "Credit for the thumbnail image photographer/source"
+      
+      - label: "Gallery"
+        name: "gallery"
         widget: "list"
         required: false
-        hint: "Activities featured in this post (e.g. hiking, beach, food tour)"
-
-      - label: "Coordinates"
-        name: "coordinates"
-        widget: "object"
-        required: false
-        collapsed: true
+        hint: "Gallery images should be around 800x533px for optimal display"
         fields:
-          - { label: "Latitude", name: "latitude", widget: "number", required: false, valueType: "float" }
-          - { label: "Longitude", name: "longitude", widget: "number", required: false, valueType: "float" }
+          - { label: "Image", name: "src", widget: "image", hint: "Recommended size: 800x533px" }
+          - { label: "Alt Text", name: "alt", widget: "string" }
+          - { label: "Caption", name: "caption", widget: "string", required: false }
+          - { label: "Credit", name: "credit", widget: "string", required: false }
+          - { label: "Location", name: "location", widget: "string", required: false }
       
       # Original content fields
       - { label: "Body", name: "body", widget: "markdown" }
-      - { 
-          label: "Gallery", 
-          name: "gallery", 
-          widget: "list", 
-          required: false,
-          hint: "Gallery images should be around 800x533px for optimal display",
-          fields: [
-            { label: "Image", name: "src", widget: "image" },
-            { label: "Alt Text", name: "alt", widget: "string" },
-            { label: "Caption", name: "caption", widget: "string", required: false },
-            { label: "Credit", name: "credit", widget: "string", required: false },
-            { label: "Location", name: "location", widget: "string", required: false }
-          ]
-        }
-      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
       - { label: "Layout", name: "layout", widget: "hidden", default: "article.njk" }
-
-  # Pages as separate file collection entries
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "About Page"
-        name: "about"
-        file: "src/about.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/about/index.html" }
-          - { label: "Body", name: "body", widget: "code", default_language: "html", allow_language_selection: false }
-      
-      - label: "Contact Page"
-        name: "contact"
-        file: "src/contact.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/contact/index.html" }
-          - { label: "Body", name: "body", widget: "code", default_language: "html", allow_language_selection: false }
-      
-      - label: "Privacy Policy"
-        name: "privacy"
-        file: "src/privacy-policy.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/privacy-policy/index.html" }
-          - { label: "Body", name: "body", widget: "code", default_language: "html", allow_language_selection: false }
-      
-      - label: "Explore Page"
-        name: "explore"
-        file: "src/explore.njk"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/explore/index.html" }
-          - { label: "Body", name: "body", widget: "code", default_language: "html", allow_language_selection: false }
