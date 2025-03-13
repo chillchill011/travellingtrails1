@@ -1,6 +1,6 @@
 ---
 draft: false
-featured: false
+featured: true
 date: 2025-03-08T17:25:00.000Z
 title: "Motorcycle Journey to Raigad Fort: A Solo Adventure Through
   Maharashtra's Historic Heartland"
@@ -8,7 +8,7 @@ description: Experience a thrilling 280km motorcycle ride to Raigad Fort, the
   majestic capital of the Maratha Empire. Discover breathtaking routes through
   Tamhini Ghat, historic Pachad Fort, and practical tips for planning your own
   journey to this iconic Maharashtra landmark.
-author: gauri
+author: aniket
 destination: Raigad Fort
 coordinates:
   latitude: 18.22917457573863
