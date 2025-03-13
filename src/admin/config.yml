@@ -28,7 +28,7 @@ collections:
         name: "author"
         widget: "select"
         options:
-          - { label: "Aniket", value: "Aniket" }
+          - { label: "Aniket", value: "aniket" }
           - { label: "Gauri", value: "gauri" }
           - { label: "Yogesh", value: "yogesh" }
           - { label: "Archana", value: "archana" }
