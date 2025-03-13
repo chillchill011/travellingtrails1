@@ -309,7 +309,7 @@ collections:
         file: "src/_data/authors.json"
         fields:
           - label: "Authors List"
-            name: "root"
+            name: ""  # This is the critical change - empty string means edit the root array
             widget: "list"
             label_singular: "Author"
             summary: "{{fields.name}}"
