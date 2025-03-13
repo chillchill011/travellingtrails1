@@ -153,6 +153,11 @@ module.exports = function(eleventyConfig) {
       linkify: true
     });
 
+    // Add a custom filter to get object keys
+    eleventyConfig.addFilter("getObjectKeys", function(obj) {
+      return obj ? Object.keys(obj) : [];
+    });  
+
     eleventyConfig.addFilter("extractHeadings", function(content) {
       const $ = cheerio.load(content);
       const headings = [];
