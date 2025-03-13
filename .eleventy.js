@@ -20,7 +20,6 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/toc.js": "assets/js/toc.js"});
 
-
     // Add authorPages collection to generate author pages
     eleventyConfig.addCollection("authorPages", function(collectionApi) {
       // Get authors from the global data we defined earlier
@@ -65,6 +64,14 @@ module.exports = function(eleventyConfig) {
       });
     });
 
+
+    // Add this to your list of filters
+    eleventyConfig.addFilter("getAuthorName", function(authorSlug, authors) {
+      if (!authorSlug) return "";
+      
+      const author = authors.find(author => author.slug === authorSlug);
+      return author ? author.name : authorSlug;
+    });
 
     // Create authors data from individual files
     const fs = require('fs');

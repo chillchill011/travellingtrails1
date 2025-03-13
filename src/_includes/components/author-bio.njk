@@ -1,6 +1,8 @@
 {% macro authorBio(authorSlug) %}
+  {% set authorFound = false %}
   {% for author in authors %}
     {% if author.slug == authorSlug %}
+      {% set authorFound = true %}
       <div class="author-bio bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-12 flex items-start">
         {% if author.avatar %}
           <img src="{{ author.avatar | url }}" alt="{{ author.name }}" class="w-16 h-16 rounded-full mr-4 flex-shrink-0">
@@ -60,4 +62,10 @@
       </div>
     {% endif %}
   {% endfor %}
+  
+  {% if not authorFound %}
+    <div class="author-bio bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-12">
+      <p class="text-gray-600 dark:text-gray-300">Article by {{ authorSlug }}</p>
+    </div>
+  {% endif %}
 {% endmacro %}

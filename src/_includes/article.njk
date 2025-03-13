@@ -12,11 +12,18 @@ layout: 'base.njk'
 
         <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
             {% if author %}
-            {% for authorObj in authors %}
-                {% if authorObj.slug == author %}
-                <div>Author: <a href="{{ '/authors/' + authorObj.slug + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">{{ authorObj.name }}</a></div>
-                {% endif %}
-            {% endfor %}
+            <div>Author: 
+                <a href="{{ '/authors/' + author + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
+                    {% set authorFound = false %}
+                    {% for authorObj in authors %}
+                        {% if authorObj.slug == author %}
+                            {% set authorFound = true %}
+                            {{ authorObj.name }}
+                        {% endif %}
+                    {% endfor %}
+                    {% if not authorFound %}{{ author }}{% endif %}
+                </a>
+            </div>
             {% endif %}
             
             {% if categories %}
