@@ -20,6 +20,51 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/toc.js": "assets/js/toc.js"});
 
+    // Create authors data from individual files
+    const fs = require('fs');
+    const path = require('path');
+
+    eleventyConfig.addGlobalData("authors", function() {
+      // First try to read from authors.json (legacy approach)
+      const authorsJsonPath = path.join(__dirname, 'src/_data/authors.json');
+      let authors = [];
+      
+      if (fs.existsSync(authorsJsonPath)) {
+        try {
+          authors = JSON.parse(fs.readFileSync(authorsJsonPath, 'utf8'));
+        } catch (error) {
+          console.warn('Error reading authors.json:', error);
+        }
+      }
+      
+      // Then try to read from the authors directory
+      const authorsDir = path.join(__dirname, 'src/_data/authors');
+      if (fs.existsSync(authorsDir)) {
+        try {
+          const files = fs.readdirSync(authorsDir);
+          files.forEach(file => {
+            if (file.endsWith('.json')) {
+              try {
+                const authorData = JSON.parse(fs.readFileSync(path.join(authorsDir, file), 'utf8'));
+                // Check if this author already exists in the array
+                const exists = authors.some(author => author.slug === authorData.slug);
+                if (!exists) {
+                  authors.push(authorData);
+                }
+              } catch (error) {
+                console.warn(`Error reading author file ${file}:`, error);
+              }
+            }
+          });
+        } catch (error) {
+          console.warn('Error reading authors directory:', error);
+        }
+      }
+      
+      console.log(`Loaded ${authors.length} authors`);
+      return authors;
+    });
+
     // Configure markdown parser with enhanced image rendering
     const md = markdownIt({
       html: true,
