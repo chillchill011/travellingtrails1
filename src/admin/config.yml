@@ -302,23 +302,27 @@ collections:
 
   - name: "authors"
     label: "Authors"
-    folder: "src/_data/authors"
-    create: true
-    format: "json"
-    slug: "{{slug}}"
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Slug", name: "slug", widget: "string", hint: "Used for URL, lowercase with hyphens" }
-      - { label: "Bio", name: "bio", widget: "text" }
-      - { label: "Short Bio", name: "shortBio", widget: "string", hint: "A brief one-line description (max 160 chars)", required: false }
-      - { label: "Avatar", name: "avatar", widget: "image", required: false }
-      - { label: "Role", name: "role", widget: "string", required: false, hint: "E.g., Founder, Travel Writer, Photographer" }
-      - label: "Social Links"
-        name: "social"
-        widget: "object"
-        required: false
+    files:
+      - name: "authorsList"
+        label: "Authors List"
+        file: "src/_data/authors.json"
         fields:
-          - { label: "Instagram", name: "instagram", widget: "string", required: false }
-          - { label: "Twitter", name: "twitter", widget: "string", required: false }
-          - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
-          - { label: "Website", name: "website", widget: "string", required: false }
+          - label: "Authors"
+            name: "authors"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string", hint: "Used for URL, lowercase with hyphens" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Short Bio", name: "shortBio", widget: "string", hint: "A brief one-line description (max 160 chars)", required: false }
+              - { label: "Avatar", name: "avatar", widget: "image", required: false }
+              - { label: "Role", name: "role", widget: "string", required: false, hint: "E.g., Founder, Travel Writer, Photographer" }
+              - label: "Social Links"
+                name: "social"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Instagram", name: "instagram", widget: "string", required: false }
+                  - { label: "Twitter", name: "twitter", widget: "string", required: false }
+                  - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+                  - { label: "Website", name: "website", widget: "string", required: false }
