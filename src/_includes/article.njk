@@ -2,6 +2,7 @@
 layout: 'base.njk'
 ---
 {% from "components/table-of-contents.njk" import tableOfContents %}
+{% from "components/author-bio.njk" import authorBio %}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -11,7 +12,18 @@ layout: 'base.njk'
 
         <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
             {% if author %}
-            <div>Author: {{ author }}</div>
+            <div>Author: 
+                <a href="{{ '/authors/' + author + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
+                    {% set authorFound = false %}
+                    {% for authorObj in authors %}
+                        {% if authorObj.slug == author %}
+                            {% set authorFound = true %}
+                            {{ authorObj.name }}
+                        {% endif %}
+                    {% endfor %}
+                    {% if not authorFound %}{{ author }}{% endif %}
+                </a>
+            </div>
             {% endif %}
             
             {% if categories %}
@@ -101,56 +113,14 @@ layout: 'base.njk'
     </div>
     {% endif %}
 
-    {% if categories %}
-        {% set relatedPosts = page | getRelatedPosts(collections.post, categories) %}
-        {% if relatedPosts.length > 0 %}
-        <section class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Related Adventures</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {% for post in relatedPosts %}
-                <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-                    {% if post.data.featuredImage %}
-                    <div class="relative h-48">
-                        <img
-                            src="{{ post.data.featuredImage | url }}"
-                            alt="{{ post.data.title }}"
-                            class="w-full h-full object-cover"
-                            loading="lazy"
-                            onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
-                        >
-                    </div>
-                    {% endif %}
-                    
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold mb-2">
-                            <a href="{{ post.url | url }}" class="text-gray-900 dark:text-white hover:text-travel-700 dark:hover:text-travel-500">
-                                {{ post.data.title }}
-                            </a>
-                        </h3>
-                        
-                        {% if post.data.description %}
-                        <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{{ post.data.description }}</p>
-                        {% endif %}
-                        
-                        {% if post.data.categories %}
-                        <div class="flex flex-wrap gap-2">
-                            <a href="{{ '/categories/' + post.data.categories | lower | replace(' ', '-') + '/' | url }}"
-                               class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-                                {{ post.data.categories }}
-                            </a>
-                        </div>
-                        {% endif %}
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
-        </section>
-        {% endif %}
+    <!-- Author Bio Section -->
+    {% if author %}
+        {{ authorBio(author) }}
     {% endif %}
 
     <!-- Travel Info Box (if applicable) -->
     {% if destination or duration or travelType %}
-    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mb-8 shadow-sm">
+    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Trip Overview</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
@@ -210,5 +180,52 @@ layout: 'base.njk'
             {% endif %}
         </div>
     </div>
+    {% endif %}
+
+    {% if categories %}
+        {% set relatedPosts = page | getRelatedPosts(collections.post, categories) %}
+        {% if relatedPosts.length > 0 %}
+        <section class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Related Adventures</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for post in relatedPosts %}
+                <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                    {% if post.data.featuredImage %}
+                    <div class="relative h-48">
+                        <img
+                            src="{{ post.data.featuredImage | url }}"
+                            alt="{{ post.data.title }}"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                            onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
+                        >
+                    </div>
+                    {% endif %}
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-2">
+                            <a href="{{ post.url | url }}" class="text-gray-900 dark:text-white hover:text-travel-700 dark:hover:text-travel-500">
+                                {{ post.data.title }}
+                            </a>
+                        </h3>
+                        
+                        {% if post.data.description %}
+                        <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{{ post.data.description }}</p>
+                        {% endif %}
+                        
+                        {% if post.data.categories %}
+                        <div class="flex flex-wrap gap-2">
+                            <a href="{{ '/categories/' + post.data.categories | lower | replace(' ', '-') + '/' | url }}"
+                               class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                                {{ post.data.categories }}
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
     {% endif %}
 </article>

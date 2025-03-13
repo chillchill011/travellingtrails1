@@ -20,6 +20,132 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/toc.js": "assets/js/toc.js"});
 
+    // Add authorPages collection to generate author pages
+    eleventyConfig.addCollection("authorPages", function(collectionApi) {
+      // Get authors from the global data we defined earlier
+      let authors = [];
+      
+      const fs = require('fs');
+      const path = require('path');
+      
+      // Read authors directly from files
+      const authorsDir = path.join(__dirname, 'src/_data/authors');
+      if (fs.existsSync(authorsDir)) {
+        try {
+          const files = fs.readdirSync(authorsDir);
+          files.forEach(file => {
+            if (file.endsWith('.json')) {
+              try {
+                const authorData = JSON.parse(fs.readFileSync(path.join(authorsDir, file), 'utf8'));
+                if (authorData.slug) {
+                  authors.push(authorData);
+                } else {
+                  // Add slug if missing
+                  authors.push({
+                    ...authorData,
+                    slug: file.replace('.json', '')
+                  });
+                }
+              } catch (error) {
+                console.warn(`Error reading author file ${file}:`, error);
+              }
+            }
+          });
+        } catch (error) {
+          console.warn('Error reading authors directory:', error);
+        }
+      }
+      
+      return authors.map((author, index) => {
+        return {
+          ...author,
+          permalink: `authors/${author.slug}/index.html`
+        };
+      });
+    });
+
+
+    // Add this to your list of filters
+    eleventyConfig.addFilter("getAuthorName", function(authorSlug, authors) {
+      if (!authorSlug) return "";
+      
+      const author = authors.find(author => author.slug === authorSlug);
+      return author ? author.name : authorSlug;
+    });
+
+    // Create authors data from individual files
+    const fs = require('fs');
+    const path = require('path');
+
+    eleventyConfig.addGlobalData("authors", function() {
+      let authors = [];
+      
+      // Then try to read from the authors directory
+      const authorsDir = path.join(__dirname, 'src/_data/authors');
+      if (fs.existsSync(authorsDir)) {
+        try {
+          const files = fs.readdirSync(authorsDir);
+          files.forEach(file => {
+            if (file.endsWith('.json')) {
+              try {
+                const authorData = JSON.parse(fs.readFileSync(path.join(authorsDir, file), 'utf8'));
+                
+                // Check if the author data is valid
+                if (!authorData.slug) {
+                  console.warn(`Warning: Author file ${file} is missing a slug property`);
+                  // Add a default slug based on the filename
+                  authorData.slug = file.replace('.json', '');
+                }
+                
+                // Add additional properties to help with filtering
+                authorData.sourceFile = file;
+                
+                // Check for duplicate slugs
+                const existingAuthor = authors.find(author => author.slug === authorData.slug);
+                if (existingAuthor) {
+                  console.warn(`Warning: Duplicate author slug "${authorData.slug}" found in files ${existingAuthor.sourceFile} and ${file}`);
+                  // Make the slug unique by appending a number
+                  authorData.slug = `${authorData.slug}-${authors.length + 1}`;
+                  console.log(`  • Changed slug to "${authorData.slug}" to avoid conflicts`);
+                }
+                
+                authors.push(authorData);
+              } catch (error) {
+                console.warn(`Error reading author file ${file}:`, error);
+              }
+            }
+          });
+        } catch (error) {
+          console.warn('Error reading authors directory:', error);
+        }
+      }
+      
+      // Fallback to authors.json (legacy approach)
+      if (authors.length === 0) {
+        const authorsJsonPath = path.join(__dirname, 'src/_data/authors.json');
+        if (fs.existsSync(authorsJsonPath)) {
+          try {
+            authors = JSON.parse(fs.readFileSync(authorsJsonPath, 'utf8'));
+          } catch (error) {
+            console.warn('Error reading authors.json:', error);
+          }
+        }
+      }
+      
+      // Log author info for debugging
+      if (authors.length > 0) {
+        console.log(`Author slugs: ${authors.map(a => a.slug).join(', ')}`);
+        // Verify all authors have slugs
+        const authorsWithoutSlugs = authors.filter(a => !a.slug);
+        if (authorsWithoutSlugs.length > 0) {
+          console.warn(`Warning: ${authorsWithoutSlugs.length} authors are missing slugs`);
+        }
+      }
+      
+      console.log(`Loaded ${authors.length} authors`);
+      return authors;
+    });
+
     // Configure markdown parser with enhanced image rendering
     const md = markdownIt({
       html: true,
@@ -81,6 +207,17 @@ module.exports = function(eleventyConfig) {
       return $.html();
     });
 
+
+    // Add this in the module.exports
+    eleventyConfig.addFilter("findAuthor", function(authorSlug, authors) {
+      return authors.find(author => author.slug === authorSlug);
+    });
+
+    eleventyConfig.addFilter("filter", function(array, property, value) {
+      return array.filter(item => {
+        return item.data && item.data[property] === value;
+      });
+    });
 
     // Custom renderer for images that converts them to figures with captions
     const defaultImageRenderer = md.renderer.rules.image;

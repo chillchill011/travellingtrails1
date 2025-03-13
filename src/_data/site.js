@@ -14,6 +14,7 @@ module.exports = {
     { text: "Blog", url: "/blog/" },
     { text: "Explore", url: "/explore/" },
     { text: "Categories", url: "/categories/" },
+    { text: "Team", url: "/team/" },
     { text: "About", url: "/about/" },
     { text: "Contact", url: "/contact/" }
   ],

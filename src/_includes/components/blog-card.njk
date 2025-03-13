@@ -40,7 +40,18 @@
 
         <div class="flex items-center justify-between mb-4 dark:mb-4">
             {% if post.data.author %}
-            <span class="text-sm text-gray-600 dark:text-gray-400">By {{ post.data.author }}</span>
+            <span class="text-sm text-gray-600 dark:text-gray-400">By 
+                <a href="{{ '/authors/' + post.data.author + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
+                {% set authorFound = false %}
+                {% for author in authors %}
+                    {% if author.slug == post.data.author %}
+                        {% set authorFound = true %}
+                        {{ author.name }}
+                    {% endif %}
+                {% endfor %}
+                {% if not authorFound %}{{ post.data.author }}{% endif %}
+                </a>
+            </span>
             {% endif %}
             <time class="text-sm text-gray-500 dark:text-gray-400" datetime="{{ post.date }}">
                 {{ post.date | postDate }}
