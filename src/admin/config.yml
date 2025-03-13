@@ -28,11 +28,11 @@ collections:
         name: "author"
         widget: "select"
         options:
-          - { label: "Aniket", value: "aniket" }
-          - { label: "Gauri", value: "gauri" }
-          - { label: "Yogesh", value: "yogesh" }
-          - { label: "Archana", value: "archana" }
-        hint: "Select the author of this post"
+          - { label: "Aniket", value: "aniket" } #Value should match the slug property in the author JSON file
+          - { label: "Gauri", value: "gauri" } #Value should match the slug property in the author JSON file
+          - { label: "Yogesh", value: "yogesh" } #Value should match the slug property in the author JSON file
+          - { label: "Archana", value: "archana" } #Value should match the slug property in the author JSON file
+        hint: "Select the author of this post "
       
       # Travel-specific fields
       - label: "Destination"
