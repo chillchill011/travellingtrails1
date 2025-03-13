@@ -35,21 +35,18 @@
         </h2>
 
         {% if post.data.description %}
-        <p class="text-gray-600 dark:text-gray-300 mb-4">{{ post.data.description }}</p>
+        <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{{ post.data.description }}</p>
         {% endif %}
 
         <div class="flex items-center justify-between mb-4 dark:mb-4">
             {% if post.data.author %}
             <span class="text-sm text-gray-600 dark:text-gray-400">By 
                 <a href="{{ '/authors/' + post.data.author + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
-                {% set authorFound = false %}
-                {% for author in authors %}
-                    {% if author.slug == post.data.author %}
-                        {% set authorFound = true %}
-                        {{ author.name }}
-                    {% endif %}
-                {% endfor %}
-                {% if not authorFound %}{{ post.data.author }}{% endif %}
+                {% if authors[post.data.author] and authors[post.data.author].name %}
+                    {{ authors[post.data.author].name }}
+                {% else %}
+                    {{ post.data.author }}
+                {% endif %}
                 </a>
             </span>
             {% endif %}
@@ -60,10 +57,21 @@
 
         {% if post.data.categories %}
         <div class="flex flex-wrap gap-2">
-            <a href="{{ '/categories/' + post.data.categories | lower | replace(' ', '-') + '/' | url }}"
-            class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-                Category: {{ post.data.categories }}
-            </a>
+            {% if post.data.categories %}
+                {% if post.data.categories is string %}
+                    <a href="{{ '/categories/' + post.data.categories | lower | replace(' ', '-') + '/' | url }}"
+                    class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                        {{ post.data.categories }}
+                    </a>
+                {% else %}
+                    {% for category in post.data.categories %}
+                    <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
+                    class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                        {{ category }}
+                    </a>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
         </div>
         {% endif %}
     </div>
