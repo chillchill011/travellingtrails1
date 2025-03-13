@@ -14,9 +14,63 @@ permalink: "/team/index.html"
     </p>
   </header>
 
+  <!-- Debug Information -->
+  <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg mb-8">
+    <h2 class="text-xl font-bold mb-4">Debug Information:</h2>
+    <p>Number of authors loaded: {{ authors | length }}</p>
+    
+    {% if authors and authors | length > 0 %}
+      <ul class="mt-4 list-disc pl-5">
+        {% for author in authors %}
+          <li>
+            {{ author.name }} (Slug: {{ author.slug }})
+            {% if author.role %} - {{ author.role }}{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Loop through authors and display them -->
     {% for author in authors %}
-      {{ authorCard(author) }}
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-shadow duration-200 hover:shadow-lg">
+        <a href="{{ '/authors/' + author.slug + '/' | url }}" class="block">
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              {% if author.avatar %}
+                <img src="{{ author.avatar | url }}" alt="{{ author.name }}" class="w-16 h-16 rounded-full mr-4">
+              {% else %}
+                <div class="w-16 h-16 rounded-full bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-300 flex items-center justify-center text-2xl font-bold mr-4">
+                  {{ author.name[0] | upper }}
+                </div>
+              {% endif %}
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ author.name }}</h3>
+                {% if author.role %}
+                  <p class="text-sm text-travel-600 dark:text-travel-400">{{ author.role }}</p>
+                {% endif %}
+              </div>
+            </div>
+            
+            {% if author.shortBio %}
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">{{ author.shortBio }}</p>
+            {% elif author.bio %}
+              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">{{ author.bio | truncate(120) }}</p>
+            {% endif %}
+            
+            {% if author.social %}
+              <div class="flex space-x-3">
+                <!-- Social icons here (removed for brevity) -->
+              </div>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+    {% else %}
+      <p class="col-span-3 text-center text-gray-600 dark:text-gray-400 py-12">
+        Team members information is currently being updated. Check back soon!
+      </p>
     {% endfor %}
   </div>
 </div>
