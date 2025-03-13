@@ -42,13 +42,11 @@
             {% if post.data.author %}
             <span class="text-sm text-gray-600 dark:text-gray-400">By 
                 <a href="{{ '/authors/' + post.data.author + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
-                {% set authorName = post.data.author %}
-                {% for author in authors %}
-                    {% if author.slug == post.data.author %}
-                        {% set authorName = author.name %}
-                    {% endif %}
-                {% endfor %}
-                {{ authorName }}
+                {% if authors[post.data.author] and authors[post.data.author].name %}
+                    {{ authors[post.data.author].name }}
+                {% else %}
+                    {{ post.data.author }}
+                {% endif %}
                 </a>
             </span>
             {% endif %}

@@ -31,7 +31,6 @@ collections:
           - { label: "Aniket", value: "aniket" } #Value should match the slug property in the author JSON file
           - { label: "Gauri", value: "gauri" } #Value should match the slug property in the author JSON file
           - { label: "Yogesh", value: "yogesh" } #Value should match the slug property in the author JSON file
-          - { label: "Archana", value: "archana" } #Value should match the slug property in the author JSON file
         hint: "Select the author of this post "
       
       # Travel-specific fields
