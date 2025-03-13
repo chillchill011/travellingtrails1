@@ -28,6 +28,7 @@ collections:
         name: "author"
         widget: "relation"
         collection: "authors"
+        file: "authorsList"
         value_field: "slug"
         display_fields: ["name"]
         search_fields: ["name"]
@@ -307,9 +308,11 @@ collections:
         label: "Authors List"
         file: "src/_data/authors.json"
         fields:
-          - label: "Authors"
-            name: "authors"
+          - label: "Authors List"
+            name: "root"
             widget: "list"
+            label_singular: "Author"
+            summary: "{{fields.name}}"
             fields:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Slug", name: "slug", widget: "string", hint: "Used for URL, lowercase with hyphens" }
