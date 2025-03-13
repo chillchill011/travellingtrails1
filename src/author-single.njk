@@ -4,6 +4,8 @@ pagination:
   data: authors
   size: 1
   alias: displayAuthor
+  filter:
+    - hasOwnFile # Add a property to filter duplicates
 permalink: "authors/{{ displayAuthor.slug }}/index.html"
 eleventyComputed:
   title: "{{ displayAuthor.name }} | Travelling Trails"
