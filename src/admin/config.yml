@@ -26,12 +26,12 @@ collections:
       
       - label: "Author"
         name: "author"
-        widget: "relation"
-        collection: "authors"
-        file: "authorsList"
-        value_field: "slug"
-        display_fields: ["name"]
-        search_fields: ["name"]
+        widget: "select"
+        options:
+          - { label: "Aniket", value: "aniket" }
+          - { label: "Gauri", value: "gauri" }
+          - { label: "Yogesh", value: "yogesh" }
+        hint: "Select the author of this post"
       
       # Travel-specific fields
       - label: "Destination"
