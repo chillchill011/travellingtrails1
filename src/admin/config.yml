@@ -1,7 +1,7 @@
 # Decap CMS Configuration - Final version
 backend:
   name: git-gateway
-  branch: main  # Your confirmed branch name
+  branch: development  # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
