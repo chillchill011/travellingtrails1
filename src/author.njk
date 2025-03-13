@@ -73,10 +73,19 @@ eleventyComputed:
   <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Articles by {{ authorPage.name }}</h2>
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {% set authorPosts = collections.post | reverse | filter("data.author", authorPage.slug) %}
+    <!-- Improved post filtering -->
+    {% set allPosts = collections.post | reverse %}
+    {% set filteredPosts = [] %}
     
-    {% if authorPosts.length > 0 %}
-      {%- for post in authorPosts -%}
+    <!-- Create a custom loop to filter posts by the current author -->
+    {% for post in allPosts %}
+      {% if post.data.author and post.data.author | lower == authorPage.slug | lower %}
+        {% set filteredPosts = (filteredPosts.push(post), filteredPosts) %}
+      {% endif %}
+    {% endfor %}
+    
+    {% if filteredPosts.length > 0 %}
+      {%- for post in filteredPosts -%}
         {% include "components/blog-card.njk" %}
       {%- endfor -%}
     {% else %}

@@ -213,9 +213,31 @@ module.exports = function(eleventyConfig) {
       return authors.find(author => author.slug === authorSlug);
     });
 
+    // Improved filter function with case insensitivity and data type handling
     eleventyConfig.addFilter("filter", function(array, property, value) {
+      // Make sure array is an array
+      if (!Array.isArray(array)) {
+        return [];
+      }
+      
+      // Convert value to lowercase for case-insensitive comparison
+      const searchValue = typeof value === 'string' ? value.toLowerCase() : value;
+      
       return array.filter(item => {
-        return item.data && item.data[property] === value;
+        if (!item.data || item.data[property] === undefined) return false;
+        
+        const itemValue = item.data[property];
+        
+        // Handle different data types for the comparison
+        if (typeof itemValue === 'string') {
+          return itemValue.toLowerCase() === searchValue;
+        } else if (Array.isArray(itemValue)) {
+          return itemValue.some(val => 
+            typeof val === 'string' ? val.toLowerCase() === searchValue : val === searchValue
+          );
+        } else {
+          return itemValue === searchValue;
+        }
       });
     });
 
@@ -261,8 +283,35 @@ module.exports = function(eleventyConfig) {
       return content;
     });
 
+    // Debug function to log author information and post relationships
     eleventyConfig.on('beforeBuild', () => {
-        console.log('Site prefix:', eleventyConfig.pathPrefix);
+      console.log('Site prefix:', eleventyConfig.pathPrefix);
+      
+      // This will run at the start of the build process
+      console.log('=== Debugging Author Information ===');
+      
+      // Get a list of all author files
+      const fs = require('fs');
+      const path = require('path');
+      const authorsDir = path.join(__dirname, 'src/_data/authors');
+      
+      if (fs.existsSync(authorsDir)) {
+        const files = fs.readdirSync(authorsDir);
+        console.log(`Found ${files.length} author files`);
+        
+        files.forEach(file => {
+          if (file.endsWith('.json')) {
+            try {
+              const authorData = JSON.parse(fs.readFileSync(path.join(authorsDir, file), 'utf8'));
+              console.log(`- Author: ${authorData.name}, Slug: ${authorData.slug || file.replace('.json', '')}`);
+            } catch (error) {
+              console.warn(`  Error reading ${file}: ${error.message}`);
+            }
+          }
+        });
+      } else {
+        console.log('Authors directory not found at:', authorsDir);
+      }
     });
 
     // Watch targets
