@@ -28,9 +28,10 @@ collections:
         name: "author"
         widget: "select"
         options:
-          - { label: "Aniket", value: "aniket" }
+          - { label: "Aniket", value: "Aniket" }
           - { label: "Gauri", value: "gauri" }
           - { label: "Yogesh", value: "yogesh" }
+          - { label: "Archana", value: "archana" }
         hint: "Select the author of this post"
       
       # Travel-specific fields
