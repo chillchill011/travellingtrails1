@@ -82,6 +82,17 @@ module.exports = function(eleventyConfig) {
     });
 
 
+    // Add this in the module.exports
+    eleventyConfig.addFilter("findAuthor", function(authorSlug, authors) {
+      return authors.find(author => author.slug === authorSlug);
+    });
+
+    eleventyConfig.addFilter("filter", function(array, property, value) {
+      return array.filter(item => {
+        return item.data && item.data[property] === value;
+      });
+    });
+
     // Custom renderer for images that converts them to figures with captions
     const defaultImageRenderer = md.renderer.rules.image;
     md.renderer.rules.image = function(tokens, idx, options, env, self) {
