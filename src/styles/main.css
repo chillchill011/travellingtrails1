@@ -126,7 +126,7 @@
 
   /* Category Components */
   .category-tag {
-    @apply inline-block px-3 py-1 text-sm 
+    @apply inline-block px-3 py-0.5 text-sm 
            bg-travel-100 text-travel-600
            dark:bg-travel-900 dark:text-travel-100 
            rounded-full hover:bg-travel-200 

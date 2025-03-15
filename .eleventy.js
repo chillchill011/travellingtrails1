@@ -73,6 +73,22 @@ module.exports = function(eleventyConfig) {
       return author ? author.name : authorSlug;
     });
 
+    // Add this to your .eleventy.js file along with your other filters
+    eleventyConfig.addFilter("wordCount", function(content) {
+      if (!content) return 0;
+      // Simple word count by splitting on whitespace
+      return content.trim().split(/\s+/).length;
+    });
+
+    // Add this to your .eleventy.js file in the module.exports function
+    eleventyConfig.addFilter("readingTime", function(content) {
+      const wordsPerMinute = 225; // Average adult reading speed
+      const words = content.trim().split(/\s+/).length;
+      const minutes = Math.ceil(words / wordsPerMinute);
+      
+      return minutes > 1 ? `${minutes} min read` : `1 min read`;
+    });
+
     // Create authors data from individual files
     const fs = require('fs');
     const path = require('path');
