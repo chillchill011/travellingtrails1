@@ -57,11 +57,9 @@ permalink: /explore/index.html
                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                        rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
             <option value="">All Activities</option>
-            {% if activities %}
             {% for activity in collections.activities %}
             <option value="{{ activity }}">{{ activity }}</option>
             {% endfor %}
-          {% endif %}
         </select>
       </div>
       
@@ -78,6 +76,25 @@ permalink: /explore/index.html
       </div>
     </div>
   </div>
+
+
+
+  <!-- Add this debugging section temporarily -->
+  <div style="display: none;">
+    <h3>Debug: Activities Collection</h3>
+    <pre>
+    {% for activity in collections.activities %}
+      - {{ activity }}
+    {% endfor %}
+    </pre>
+  </div>
+
+  <!-- Add this somewhere in your page for debugging -->
+  <div class="bg-red-100 p-4 my-4">
+    <p>Activities count: {{ collections.activities.length }}</p>
+    <p>First activity: {% if collections.activities[0] %}{{ collections.activities[0] }}{% else %}None{% endif %}</p>
+  </div>
+
 
   <!-- Destinations Map -->
   <div 

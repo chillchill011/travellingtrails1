@@ -599,6 +599,31 @@ module.exports = function(eleventyConfig) {
         return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
     });
 
+    // Add activities collection to gather all unique activities from posts
+    eleventyConfig.addCollection("activities", function(collection) {
+      const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+          // Filter out draft posts in production
+          .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+      
+      const activitiesSet = new Set();
+      
+      posts.forEach(post => {
+        if (post.data.activities) {
+          if (typeof post.data.activities === 'string') {
+            // Handle single activity (string)
+            activitiesSet.add(post.data.activities);
+          } else if (Array.isArray(post.data.activities)) {
+            // Handle multiple activities (array)
+            post.data.activities.forEach(activity => {
+              activitiesSet.add(activity);
+            });
+          }
+        }
+      });
+      
+      return Array.from(activitiesSet).sort();
+    });
+
     // Add destinations collection
     eleventyConfig.addCollection("destinations", function(collection) {
       const posts = collection.getFilteredByGlob("src/blog/**/*.md")
@@ -629,31 +654,6 @@ module.exports = function(eleventyConfig) {
       });
     });
 
-
-    // Add activities collection to gather all unique activities from posts
-    eleventyConfig.addCollection("activities", function(collection) {
-      const posts = collection.getFilteredByGlob("src/blog/**/*.md")
-          // Filter out draft posts in production
-          .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
-      
-      const activitiesSet = new Set();
-      
-      posts.forEach(post => {
-        if (post.data.activities) {
-          if (typeof post.data.activities === 'string') {
-            // Handle single activity (string)
-            activitiesSet.add(post.data.activities);
-          } else if (Array.isArray(post.data.activities)) {
-            // Handle multiple activities (array)
-            post.data.activities.forEach(activity => {
-              activitiesSet.add(activity);
-            });
-          }
-        }
-      });
-      
-      return Array.from(activitiesSet).sort();
-    });
 
     // Similarly, add a collection for travel types
     eleventyConfig.addCollection("travelTypes", function(collection) {
