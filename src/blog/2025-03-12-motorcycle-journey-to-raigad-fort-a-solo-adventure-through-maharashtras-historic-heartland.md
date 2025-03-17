@@ -18,6 +18,8 @@ categories: Solo Travel
 travelType:
   - Solo Bike Ride
   - mountains
+rideMode:
+  - motorcycle
 activities:
   - Photography
   - Motorcycle Touring
