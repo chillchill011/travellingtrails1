@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (destinationSection) destinationSection.classList.add('hidden');
         if (searchResultsSection) searchResultsSection.classList.remove('hidden');
         
-        // Simple search implementation (fallback if full search not working)
+        // Simple search implementation with extremely simplified cards
         try {
             const searchResults = document.getElementById('searchResults');
             if (searchResults) {
@@ -159,29 +159,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (content.toLowerCase().includes(filterState.searchQuery)) {
                         foundResults = true;
                         
-                        // Create a simplified card with just title, author and date
+                        // Create a super simple card - ONLY title, author, date
                         const card = document.createElement('div');
                         card.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md p-6';
                         
-                        // Find image if available
-                        const image = item.querySelector('img');
-                        if (image) {
-                            const imgContainer = document.createElement('div');
-                            imgContainer.className = 'relative h-48 mb-4';
-                            
-                            const img = document.createElement('img');
-                            img.src = image.src;
-                            img.alt = image.alt || 'Post image';
-                            img.className = 'w-full h-full object-cover rounded-lg';
-                            img.setAttribute('loading', 'lazy');
-                            
-                            imgContainer.appendChild(img);
-                            card.appendChild(imgContainer);
-                        }
-                        
                         // Extract title
                         let title = '';
-                        const titleElem = item.querySelector('h1, h2, h3');
+                        const titleElem = item.querySelector('h1, h2, h3, a');
                         if (titleElem) {
                             title = titleElem.textContent.trim();
                         }
