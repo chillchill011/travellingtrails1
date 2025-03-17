@@ -32,6 +32,11 @@ imageAlt: Majestic Raigad Fort perched atop a hill in Maharashtra, commanding a
   Maratha Empire established by Chhatrapati Shivaji Maharaj
 imageCredit: Aniket
 thumbnailImage: /assets/images/raigad-fort-distance-thumb.jpg
+gallery:
+  - src: /assets/images/raigad-fort-distance-thumb.jpg
+    alt: Test alt text
+  - src: /assets/images/raigad-fort-distance.jpg
+    alt: Test at text 2
 routeGallery:
   - src: /assets/images/pune-to-raigad-120-km-via-tamhini-ghat-nizampur.jpg
     title: Pune to Raigad rope way
