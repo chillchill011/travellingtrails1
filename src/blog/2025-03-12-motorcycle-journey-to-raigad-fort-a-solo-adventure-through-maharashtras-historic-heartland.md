@@ -19,7 +19,7 @@ travelType:
   - Solo Bike Ride
   - mountains
 rideMode:
-  - motorcycle
+  - Motorcycle
 activities:
   - Photography
   - Motorcycle Touring
