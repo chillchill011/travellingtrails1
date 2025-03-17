@@ -1,0 +1,38 @@
+{% macro destinationCard(destination) %}
+{% set postActivities = [] %}
+{% for post in destination.posts %}
+  {% if post.data.activities %}
+    {% if post.data.activities is string %}
+      {% set postActivities = (postActivities.push(post.data.activities), postActivities) %}
+    {% else %}
+      {% for activity in post.data.activities %}
+        {% set postActivities = (postActivities.push(activity), postActivities) %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+<div class="destination-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300"
+     data-destination="{{ destination.title }}"
+     data-activities="{{ postActivities | join(',') }}"
+     data-date="{{ destination.posts[0].date if destination.posts[0] }}">
+  {% if destination.posts[0].data.featuredImage %}
+  <div class="relative h-48 overflow-hidden">
+    <img 
+      src="{{ destination.posts[0].data.featuredImage | url }}" 
+      alt="{{ destination.title }}" 
+      class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+    >
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    <div class="absolute bottom-4 left-4 text-white">
+      <h3 class="text-xl font-bold">{{ destination.title }}</h3>
+      <p class="text-sm">{{ destination.count }} adventure{% if destination.count != 1 %}s{% endif %}</p>
+    </div>
+  </div>
+  {% else %}
+  <div class="p-6">
+    <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ destination.title }}</h3>
+    <p class="text-gray-600 dark:text-gray-400">{{ destination.count }} adventure{% if destination.count != 1 %}s{% endif %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endmacro %}
