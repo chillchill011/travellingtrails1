@@ -56,6 +56,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (searchInput) {
             // We handle search separately to allow for real-time filtering
             searchInput.addEventListener('input', handleSearchInput);
+            
+            // Check if there's an initial search query in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialQuery = urlParams.get('q');
+            if (initialQuery) {
+                searchInput.value = initialQuery;
+                // Trigger the search
+                searchInput.dispatchEvent(new Event('input'));
+            }
         }
         
         if (resetButton) {
@@ -64,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create reset button if it doesn't exist
             createResetButton();
         }
+        
+        // Apply initial filters
+        applyFilters();
     }
     
     /**
@@ -120,11 +132,47 @@ document.addEventListener('DOMContentLoaded', function() {
             if (searchResultsSection) searchResultsSection.classList.add('hidden');
             // Still apply other filters
             applyFilters();
-        } else {
-            // If there's a search query, hide destination section and show search results
-            if (destinationSection) destinationSection.classList.add('hidden');
-            if (searchResultsSection) searchResultsSection.classList.remove('hidden');
-            // Let the search functionality handle this
+            return;
+        }
+        
+        // If there's a search query, hide destination section and show search results
+        if (destinationSection) destinationSection.classList.add('hidden');
+        if (searchResultsSection) searchResultsSection.classList.remove('hidden');
+        
+        // Simple search implementation (fallback if full search not working)
+        try {
+            const searchResults = document.getElementById('searchResults');
+            if (searchResults) {
+                searchResults.innerHTML = ''; // Clear previous results
+                
+                let foundResults = false;
+                
+                // Filter through destination cards based on search query
+                destinationCards.forEach(card => {
+                    const title = card.querySelector('h3')?.textContent || '';
+                    const content = card.textContent || '';
+                    
+                    if (title.toLowerCase().includes(filterState.searchQuery) || 
+                        content.toLowerCase().includes(filterState.searchQuery)) {
+                        // Clone the card and add to search results
+                        const clonedCard = card.cloneNode(true);
+                        clonedCard.classList.remove('hidden'); // Ensure it's visible
+                        searchResults.appendChild(clonedCard);
+                        foundResults = true;
+                    }
+                });
+                
+                // Show/hide no results message
+                if (noResults) {
+                    if (!foundResults) {
+                        noResults.classList.remove('hidden');
+                    } else {
+                        noResults.classList.add('hidden');
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error with simplified search:', error);
         }
     }
     
@@ -147,8 +195,35 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
+        // Also apply filters to search results if they're visible
+        if (searchResultsSection && !searchResultsSection.classList.contains('hidden')) {
+            const searchResultCards = searchResultsSection.querySelectorAll('.destination-card');
+            let searchVisibleCount = 0;
+            
+            searchResultCards.forEach(card => {
+                const cardData = parseCardData(card);
+                const isVisible = shouldShowCard(cardData);
+                
+                if (isVisible) {
+                    card.classList.remove('hidden');
+                    searchVisibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            // Show no results message if needed
+            if (noResults) {
+                if (searchVisibleCount === 0) {
+                    noResults.classList.remove('hidden');
+                } else {
+                    noResults.classList.add('hidden');
+                }
+            }
+        }
+        
         // Show no results message if no destinations are visible
-        if (noResults) {
+        if (noResults && !searchResultsSection.classList.contains('hidden')) {
             if (visibleCount === 0 && !filterState.searchQuery) {
                 noResults.classList.remove('hidden');
             } else {
