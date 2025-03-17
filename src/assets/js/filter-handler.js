@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         applyFilters();
     }
     
-    /**
+        /**
      * Handle search input events
      */
     function handleSearchInput(event) {
@@ -154,7 +154,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     if (title.toLowerCase().includes(filterState.searchQuery) || 
                         content.toLowerCase().includes(filterState.searchQuery)) {
-                        // Clone the card and add to search results
+                        // Clone the card for search results - maintain original styling
+                        const clonedCard = card.cloneNode(true);
+                        
+                        // Make it a blog-style card if it's not already
+                        if (!clonedCard.classList.contains('blog-card')) {
+                            clonedCard.classList.add('bg-white', 'dark:bg-gray-800', 'rounded-lg', 'shadow-md', 'overflow-hidden');
+                            
+                            // Find any images and ensure they maintain aspect ratio
+                            const imageContainer = clonedCard.querySelector('.relative.h-48');
+                            if (imageContainer) {
+                                imageContainer.classList.add('aspect-3-2');
+                            }
+                        }
+                        
+                        clonedCard.classList.remove('hidden'); // Ensure it's visible
+                        searchResults.appendChild(clonedCard);
+                        foundResults = true;
+                    }
+                });
+                
+                // Also search for blog posts with matching content
+                const blogCards = document.querySelectorAll('.blog-card');
+                blogCards.forEach(card => {
+                    if (card.parentElement.id === 'searchResults') return; // Skip if already in search results
+                    
+                    const title = card.querySelector('h2 a, h3 a')?.textContent || '';
+                    const content = card.textContent || '';
+                    
+                    if (title.toLowerCase().includes(filterState.searchQuery) || 
+                        content.toLowerCase().includes(filterState.searchQuery)) {
+                        // Clone the card for search results
                         const clonedCard = card.cloneNode(true);
                         clonedCard.classList.remove('hidden'); // Ensure it's visible
                         searchResults.appendChild(clonedCard);
@@ -401,25 +431,37 @@ document.addEventListener('DOMContentLoaded', function() {
         if (categoryFilter) categoryFilter.value = '';
         if (activityFilter) activityFilter.value = '';
         if (dateFilter) dateFilter.value = '';
+        if (searchInput) searchInput.value = '';
         
         // Reset filter state
         filterState.destination = '';
         filterState.activity = '';
         filterState.dateRange = '';
+        filterState.searchQuery = '';
         
         // Show all destination cards
         destinationCards.forEach(card => {
             card.classList.remove('hidden');
         });
         
+        // Clear search results and hide the section
+        const searchResults = document.getElementById('searchResults');
+        if (searchResults) {
+            searchResults.innerHTML = '';
+        }
+        
+        if (searchResultsSection) {
+            searchResultsSection.classList.add('hidden');
+        }
+        
+        // Show destination section
+        if (destinationSection) {
+            destinationSection.classList.remove('hidden');
+        }
+        
         // Hide no results message
         if (noResults) {
             noResults.classList.add('hidden');
-        }
-        
-        // Show destination section if hidden
-        if (destinationSection && destinationSection.classList.contains('hidden')) {
-            destinationSection.classList.remove('hidden');
         }
         
         // Reset map to original data

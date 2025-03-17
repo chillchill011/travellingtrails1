@@ -108,7 +108,7 @@ permalink: /explore/index.html
   <!-- Search Results Section (Initially Hidden) -->
   <div id="searchResultsSection" class="mb-8 hidden">
     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Search Results</h2>
-    <div id="searchResults" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    <div id="searchResults" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     <div id="noResults" class="text-center text-gray-600 dark:text-gray-400 hidden py-8">
       No destinations found matching your criteria. <button id="clearSearch" class="text-travel-600 hover:text-travel-700 underline focus:outline-none">Clear filters</button>
     </div>
@@ -151,8 +151,24 @@ permalink: /explore/index.html
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
           searchInput.value = '';
-          // Trigger input event to update filters
-          searchInput.dispatchEvent(new Event('input'));
+          
+          // Clear search results
+          const searchResults = document.getElementById('searchResults');
+          if (searchResults) {
+            searchResults.innerHTML = '';
+          }
+          
+          // Hide search results section
+          const searchResultsSection = document.getElementById('searchResultsSection');
+          if (searchResultsSection) {
+            searchResultsSection.classList.add('hidden');
+          }
+          
+          // Show destinations section
+          const destinationsSection = document.getElementById('destinationsSection');
+          if (destinationsSection) {
+            destinationsSection.classList.remove('hidden');
+          }
         }
         
         // Reset filters
