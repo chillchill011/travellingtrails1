@@ -629,6 +629,54 @@ module.exports = function(eleventyConfig) {
       });
     });
 
+
+    // Add activities collection to gather all unique activities from posts
+    eleventyConfig.addCollection("activities", function(collection) {
+      const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+          // Filter out draft posts in production
+          .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+      
+      const activitiesSet = new Set();
+      
+      posts.forEach(post => {
+        if (post.data.activities) {
+          if (typeof post.data.activities === 'string') {
+            // Handle single activity (string)
+            activitiesSet.add(post.data.activities);
+          } else if (Array.isArray(post.data.activities)) {
+            // Handle multiple activities (array)
+            post.data.activities.forEach(activity => {
+              activitiesSet.add(activity);
+            });
+          }
+        }
+      });
+      
+      return Array.from(activitiesSet).sort();
+    });
+
+    // Similarly, add a collection for travel types
+    eleventyConfig.addCollection("travelTypes", function(collection) {
+      const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+          .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+      
+      const travelTypesSet = new Set();
+      
+      posts.forEach(post => {
+        if (post.data.travelType) {
+          if (typeof post.data.travelType === 'string') {
+            travelTypesSet.add(post.data.travelType);
+          } else if (Array.isArray(post.data.travelType)) {
+            post.data.travelType.forEach(type => {
+              travelTypesSet.add(type);
+            });
+          }
+        }
+      });
+      
+      return Array.from(travelTypesSet).sort();
+    });
+
     // Add map data filter
     eleventyConfig.addFilter("getDestinationsMapData", function(destinations) {
       if (!destinations || !Array.isArray(destinations)) {

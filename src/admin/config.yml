@@ -121,7 +121,6 @@ collections:
           - { label: "Spring Bloom Location", value: "spring-bloom-location" }
         hint: "Type of travel experience"
 
-      # In src/admin/config.yml, add this new field after the travelType field
 
       - label: "Ride Mode"
         name: "rideMode"

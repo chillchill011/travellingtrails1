@@ -56,9 +56,9 @@ permalink: /explore/index.html
         <select id="activityFilter" 
                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                        rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-          <option value="">All Activities</option>
-          {% if activities %}
-            {% for activity in activities %}
+            <option value="">All Activities</option>
+            {% if activities %}
+            {% for activity in collections.activities %}
             <option value="{{ activity }}">{{ activity }}</option>
             {% endfor %}
           {% endif %}
