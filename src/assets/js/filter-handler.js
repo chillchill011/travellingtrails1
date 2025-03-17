@@ -146,150 +146,98 @@ document.addEventListener('DOMContentLoaded', function() {
                 searchResults.innerHTML = ''; // Clear previous results
                 
                 let foundResults = false;
-                let matchingPosts = [];
                 
-                // First collect all matching posts - both destination cards and blog posts
-                destinationCards.forEach(card => {
-                    const title = card.querySelector('h3')?.textContent || '';
-                    const content = card.textContent || '';
+                // Filter through all content based on search query
+                const allContent = [...document.querySelectorAll('.blog-card, .destination-card, article')];
+                
+                allContent.forEach(item => {
+                    // Skip if already in search results
+                    if (item.closest('#searchResults')) return;
                     
-                    if (title.toLowerCase().includes(filterState.searchQuery) || 
-                        content.toLowerCase().includes(filterState.searchQuery)) {
-                        matchingPosts.push({
-                            type: 'destination',
-                            element: card,
-                            title: title,
-                            image: card.querySelector('img')?.src || '',
-                            alt: card.querySelector('img')?.alt || title,
-                            description: '',
-                            author: '',
-                            date: card.dataset.date || '',
-                            url: card.querySelector('a')?.href || '#'
-                        });
+                    const content = item.textContent || '';
+                    
+                    if (content.toLowerCase().includes(filterState.searchQuery)) {
                         foundResults = true;
-                    }
-                });
-                
-                // Also search for blog posts with matching content
-                const blogCards = document.querySelectorAll('.blog-card');
-                blogCards.forEach(card => {
-                    if (card.parentElement.id === 'searchResults') return; // Skip if already in search results
-                    
-                    const title = card.querySelector('h2 a, h3 a')?.textContent || '';
-                    const description = card.querySelector('p.text-gray-600, p.text-gray-700')?.textContent || '';
-                    const content = card.textContent || '';
-                    const authorElement = card.querySelector('a[href^="/authors/"]');
-                    
-                    if (title.toLowerCase().includes(filterState.searchQuery) || 
-                        content.toLowerCase().includes(filterState.searchQuery)) {
-                        matchingPosts.push({
-                            type: 'blog',
-                            element: card,
-                            title: title,
-                            image: card.querySelector('img')?.src || '',
-                            alt: card.querySelector('img')?.alt || title,
-                            description: description,
-                            author: authorElement ? authorElement.textContent.trim() : '',
-                            date: card.querySelector('time')?.textContent || card.querySelector('.text-gray-500')?.textContent || '',
-                            url: card.querySelector('a')?.href || '#',
-                            categories: Array.from(card.querySelectorAll('.category-tag')).map(tag => ({
-                                text: tag.textContent.trim(),
-                                url: tag.href
-                            }))
-                        });
-                        foundResults = true;
-                    }
-                });
-                
-                // Create consistent blog cards for all matching posts
-                matchingPosts.forEach(post => {
-                    // Create a new article element with proper blog card classes
-                    const article = document.createElement('article');
-                    article.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden';
-                    
-                    // Content for the card
-                    let cardContent = '';
-                    
-                    // Add image if available
-                    if (post.image) {
-                        cardContent += `
-                            <div class="relative h-48">
-                                <img
-                                    src="${post.image}"
-                                    alt="${post.alt}"
-                                    class="w-full h-full object-cover"
-                                    loading="lazy"
-                                    onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
-                                >
-                            </div>
-                        `;
-                    }
-                    
-                    // Add content section
-                    cardContent += `<div class="p-6">`;
-                    
-                    // Add title
-                    cardContent += `
-                        <h3 class="text-xl font-semibold mb-2">
-                            <a href="${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 dark:hover:text-travel-500">
-                                ${post.title}
-                            </a>
-                        </h3>
-                    `;
-                    
-                    // Add description if available
-                    if (post.description) {
-                        cardContent += `
-                            <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">${post.description}</p>
-                        `;
-                    }
-                    
-                    // Add author and date if available
-                    if (post.author || post.date) {
-                        cardContent += `
-                            <div class="flex items-center justify-between mb-4">
-                                ${post.author ? `<span class="text-sm text-gray-600 dark:text-gray-400">By ${post.author}</span>` : ''}
-                                ${post.date ? `<span class="text-sm text-gray-500 dark:text-gray-400">${post.date}</span>` : ''}
-                            </div>
-                        `;
-                    }
-                    
-                    // Add categories if available
-                    if (post.categories && post.categories.length > 0) {
-                        cardContent += `<div class="flex flex-wrap gap-2">`;
-                        post.categories.forEach(category => {
-                            cardContent += `
-                                <a href="${category.url}"
-                                   class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-                                    ${category.text}
-                                </a>
-                            `;
-                        });
-                        cardContent += `</div>`;
-                    } else if (post.type === 'blog') {
-                        // Try to extract categories from the original element if they exist
-                        const categoryTags = post.element.querySelectorAll('.category-tag');
-                        if (categoryTags.length > 0) {
-                            cardContent += `<div class="flex flex-wrap gap-2">`;
-                            categoryTags.forEach(tag => {
-                                cardContent += `
-                                    <a href="${tag.href}"
-                                       class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-                                        ${tag.textContent.trim()}
-                                    </a>
-                                `;
-                            });
-                            cardContent += `</div>`;
+                        
+                        // Create a simplified card with just title, author and date
+                        const card = document.createElement('div');
+                        card.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md p-6';
+                        
+                        // Find image if available
+                        const image = item.querySelector('img');
+                        if (image) {
+                            const imgContainer = document.createElement('div');
+                            imgContainer.className = 'relative h-48 mb-4';
+                            
+                            const img = document.createElement('img');
+                            img.src = image.src;
+                            img.alt = image.alt || 'Post image';
+                            img.className = 'w-full h-full object-cover rounded-lg';
+                            img.setAttribute('loading', 'lazy');
+                            
+                            imgContainer.appendChild(img);
+                            card.appendChild(imgContainer);
                         }
+                        
+                        // Extract title
+                        let title = '';
+                        const titleElem = item.querySelector('h1, h2, h3');
+                        if (titleElem) {
+                            title = titleElem.textContent.trim();
+                        }
+                        
+                        // Find URL
+                        let url = '#';
+                        const linkElem = item.querySelector('a');
+                        if (linkElem && linkElem.href) {
+                            url = linkElem.href;
+                        }
+                        
+                        // Create title element
+                        const titleEl = document.createElement('h3');
+                        titleEl.className = 'text-xl font-semibold text-gray-900 dark:text-white mb-4';
+                        
+                        const titleLink = document.createElement('a');
+                        titleLink.href = url;
+                        titleLink.textContent = title;
+                        titleLink.className = 'hover:text-travel-700 dark:hover:text-travel-500';
+                        
+                        titleEl.appendChild(titleLink);
+                        card.appendChild(titleEl);
+                        
+                        // Create footer with author and date
+                        const footer = document.createElement('div');
+                        footer.className = 'flex justify-between text-sm text-gray-600 dark:text-gray-400';
+                        
+                        // Find author
+                        let author = '';
+                        const authorElem = item.querySelector('a[href^="/authors/"]');
+                        if (authorElem) {
+                            author = authorElem.textContent.trim();
+                        }
+                        
+                        // Find date
+                        let date = '';
+                        const dateElem = item.querySelector('time') || item.querySelector('.text-gray-500');
+                        if (dateElem) {
+                            date = dateElem.textContent.trim();
+                        }
+                        
+                        if (author) {
+                            const authorEl = document.createElement('span');
+                            authorEl.textContent = 'By ' + author;
+                            footer.appendChild(authorEl);
+                        }
+                        
+                        if (date) {
+                            const dateEl = document.createElement('span');
+                            dateEl.textContent = date;
+                            footer.appendChild(dateEl);
+                        }
+                        
+                        card.appendChild(footer);
+                        searchResults.appendChild(card);
                     }
-                    
-                    cardContent += `</div>`;
-                    
-                    // Set the inner HTML of the article
-                    article.innerHTML = cardContent;
-                    
-                    // Add the article to search results
-                    searchResults.appendChild(article);
                 });
                 
                 // Show/hide no results message
