@@ -129,26 +129,27 @@ collections:
         multiple: true
         required: false
         options:
-          - { label: "Motorcycle", value: "motorcycle" }
-          - { label: "Car", value: "car" }
-          - { label: "Bicycle", value: "bicycle" }
-          - { label: "Public Bus", value: "public-bus" }
-          - { label: "Private Bus", value: "private-bus" }
-          - { label: "Train", value: "train" }
-          - { label: "Plane", value: "plane" }
-          - { label: "Taxi", value: "taxi" }
-          - { label: "Ride-sharing", value: "ride-sharing" }
-          - { label: "Ferry", value: "ferry" }
-          - { label: "Cable Car", value: "cable-car" }
-          - { label: "Walking", value: "walking" }
-          - { label: "Hiking", value: "hiking" }
-          - { label: "Boat", value: "boat" }
-          - { label: "Cruise Ship", value: "cruise-ship" }
-          - { label: "Kayak", value: "kayak" }
-          - { label: "Off-road Vehicle", value: "off-road-vehicle" }
-          - { label: "Scooter", value: "scooter" }
-          - { label: "Electric Bike", value: "electric-bike" }
-          - { label: "Helicopter", value: "helicopter" }
+          - { label: "Motorcycle", value: "Motorcycle" }
+          - { label: "Car", value: "Car" }
+          - { label: "Bicycle", value: "Bicycle" }
+          - { label: "Public Bus", value: "Public Bus" }
+          - { label: "Private Bus", value: "Private Bus" }
+          - { label: "Train", value: "Train" }
+          - { label: "Plane", value: "Plane" }
+          - { label: "Taxi", value: "Taxi" }
+          - { label: "Ride-sharing", value: "Ride-sharing" }
+          - { label: "Ferry", value: "Ferry" }
+          - { label: "Cable Car", value: "Cable Car" }
+          - { label: "Walking", value: "Walking" }
+          - { label: "Hiking", value: "Hiking" }
+          - { label: "Boat", value: "Boat" }
+          - { label: "Cruise Ship", value: "Cruise Ship" }
+          - { label: "Kayak", value: "Kayak" }
+          - { label: "Off-road Vehicle", value: "Off-road Vehicle" }
+          - { label: "Scooter", value: "Scooter" }
+          - { label: "Electric Bike", value: "Electric Bike" }
+          - { label: "Helicopter", value: "Helicopter" }
+          - { label: "Rope way", value: "Rope way" }
         hint: "Mode of transportation used during the journey"
       
 
