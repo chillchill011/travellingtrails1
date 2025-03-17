@@ -146,30 +146,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 searchResults.innerHTML = ''; // Clear previous results
                 
                 let foundResults = false;
+                let matchingPosts = [];
                 
-                // Filter through destination cards based on search query
+                // First collect all matching posts - both destination cards and blog posts
                 destinationCards.forEach(card => {
                     const title = card.querySelector('h3')?.textContent || '';
                     const content = card.textContent || '';
                     
                     if (title.toLowerCase().includes(filterState.searchQuery) || 
                         content.toLowerCase().includes(filterState.searchQuery)) {
-                        // Clone the card for search results - maintain original styling
-                        const clonedCard = card.cloneNode(true);
-                        
-                        // Make it a blog-style card if it's not already
-                        if (!clonedCard.classList.contains('blog-card')) {
-                            clonedCard.classList.add('bg-white', 'dark:bg-gray-800', 'rounded-lg', 'shadow-md', 'overflow-hidden');
-                            
-                            // Find any images and ensure they maintain aspect ratio
-                            const imageContainer = clonedCard.querySelector('.relative.h-48');
-                            if (imageContainer) {
-                                imageContainer.classList.add('aspect-3-2');
-                            }
-                        }
-                        
-                        clonedCard.classList.remove('hidden'); // Ensure it's visible
-                        searchResults.appendChild(clonedCard);
+                        matchingPosts.push({
+                            type: 'destination',
+                            element: card,
+                            title: title,
+                            image: card.querySelector('img')?.src || '',
+                            alt: card.querySelector('img')?.alt || title,
+                            description: '',
+                            author: '',
+                            date: card.dataset.date || '',
+                            url: card.querySelector('a')?.href || '#'
+                        });
                         foundResults = true;
                     }
                 });
@@ -180,16 +176,120 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (card.parentElement.id === 'searchResults') return; // Skip if already in search results
                     
                     const title = card.querySelector('h2 a, h3 a')?.textContent || '';
+                    const description = card.querySelector('p.text-gray-600, p.text-gray-700')?.textContent || '';
                     const content = card.textContent || '';
+                    const authorElement = card.querySelector('a[href^="/authors/"]');
                     
                     if (title.toLowerCase().includes(filterState.searchQuery) || 
                         content.toLowerCase().includes(filterState.searchQuery)) {
-                        // Clone the card for search results
-                        const clonedCard = card.cloneNode(true);
-                        clonedCard.classList.remove('hidden'); // Ensure it's visible
-                        searchResults.appendChild(clonedCard);
+                        matchingPosts.push({
+                            type: 'blog',
+                            element: card,
+                            title: title,
+                            image: card.querySelector('img')?.src || '',
+                            alt: card.querySelector('img')?.alt || title,
+                            description: description,
+                            author: authorElement ? authorElement.textContent.trim() : '',
+                            date: card.querySelector('time')?.textContent || card.querySelector('.text-gray-500')?.textContent || '',
+                            url: card.querySelector('a')?.href || '#',
+                            categories: Array.from(card.querySelectorAll('.category-tag')).map(tag => ({
+                                text: tag.textContent.trim(),
+                                url: tag.href
+                            }))
+                        });
                         foundResults = true;
                     }
+                });
+                
+                // Create consistent blog cards for all matching posts
+                matchingPosts.forEach(post => {
+                    // Create a new article element with proper blog card classes
+                    const article = document.createElement('article');
+                    article.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden';
+                    
+                    // Content for the card
+                    let cardContent = '';
+                    
+                    // Add image if available
+                    if (post.image) {
+                        cardContent += `
+                            <div class="relative h-48">
+                                <img
+                                    src="${post.image}"
+                                    alt="${post.alt}"
+                                    class="w-full h-full object-cover"
+                                    loading="lazy"
+                                    onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
+                                >
+                            </div>
+                        `;
+                    }
+                    
+                    // Add content section
+                    cardContent += `<div class="p-6">`;
+                    
+                    // Add title
+                    cardContent += `
+                        <h3 class="text-xl font-semibold mb-2">
+                            <a href="${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 dark:hover:text-travel-500">
+                                ${post.title}
+                            </a>
+                        </h3>
+                    `;
+                    
+                    // Add description if available
+                    if (post.description) {
+                        cardContent += `
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">${post.description}</p>
+                        `;
+                    }
+                    
+                    // Add author and date if available
+                    if (post.author || post.date) {
+                        cardContent += `
+                            <div class="flex items-center justify-between mb-4">
+                                ${post.author ? `<span class="text-sm text-gray-600 dark:text-gray-400">By ${post.author}</span>` : ''}
+                                ${post.date ? `<span class="text-sm text-gray-500 dark:text-gray-400">${post.date}</span>` : ''}
+                            </div>
+                        `;
+                    }
+                    
+                    // Add categories if available
+                    if (post.categories && post.categories.length > 0) {
+                        cardContent += `<div class="flex flex-wrap gap-2">`;
+                        post.categories.forEach(category => {
+                            cardContent += `
+                                <a href="${category.url}"
+                                   class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                                    ${category.text}
+                                </a>
+                            `;
+                        });
+                        cardContent += `</div>`;
+                    } else if (post.type === 'blog') {
+                        // Try to extract categories from the original element if they exist
+                        const categoryTags = post.element.querySelectorAll('.category-tag');
+                        if (categoryTags.length > 0) {
+                            cardContent += `<div class="flex flex-wrap gap-2">`;
+                            categoryTags.forEach(tag => {
+                                cardContent += `
+                                    <a href="${tag.href}"
+                                       class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
+                                        ${tag.textContent.trim()}
+                                    </a>
+                                `;
+                            });
+                            cardContent += `</div>`;
+                        }
+                    }
+                    
+                    cardContent += `</div>`;
+                    
+                    // Set the inner HTML of the article
+                    article.innerHTML = cardContent;
+                    
+                    // Add the article to search results
+                    searchResults.appendChild(article);
                 });
                 
                 // Show/hide no results message
