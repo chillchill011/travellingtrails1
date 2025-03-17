@@ -295,7 +295,8 @@ collections:
           - { label: "Route Distance", name: "distance", widget: "string", required: false, hint: "Total distance of this route (e.g. '120 km')" }
           - { label: "Route Duration", name: "duration", widget: "string", required: false, hint: "Approximate travel time (e.g. '2.5 hours')" }
           - { label: "Map Source", name: "mapSource", widget: "string", required: false, hint: "Source of the map (e.g. 'Google Maps', 'OpenStreetMap')" }
-      
+          - { label: "Map URL", name: "mapUrl", widget: "string", required: false, hint: "Direct link to this route on the map service" }
+
       # Table of Contents settings
       - label: "Table of Contents"
         name: "showTableOfContents"

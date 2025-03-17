@@ -97,8 +97,9 @@ layout: 'base.njk'
     {% endif %}
 
     <!-- Route Gallery -->
-    {% if page.data.routeGallery and page.data.routeGallery.length > 0 %}
-      {{ enhancedGallery(page.data.routeGallery, "Journey Routes", "route") }}
+  <!-- Route Gallery -->
+    {% if routeGallery and routeGallery.length > 0 %}
+    {{ enhancedGallery(routeGallery, "Journey Routes", "route") }}
     {% endif %}
 
     <!-- Author Bio Section -->
