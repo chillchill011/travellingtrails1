@@ -3,6 +3,7 @@ layout: 'base.njk'
 ---
 {% from "components/table-of-contents.njk" import tableOfContents %}
 {% from "components/author-bio.njk" import authorBio %}
+{% from "components/route-gallery.njk" import routeGallery %}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -120,6 +121,23 @@ layout: 'base.njk'
     </div>
     </div>
     {% endif %}
+
+    {% if gallery and gallery.length > 0 %}
+    <div class="gallery-container my-8">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Photo Gallery</h2>
+    <div class="gallery-grid">
+        {% for image in gallery %}
+        <!-- Existing gallery code -->
+        {% endfor %}
+    </div>
+    </div>
+    {% endif %}
+
+    {# Add Route Gallery #}
+    {% if routeGallery and routeGallery.length > 0 %}
+    {{ routeGallery(routeGallery) }}
+    {% endif %}
+
 
     <!-- Author Bio Section -->
     {% if author %}

@@ -1,7 +1,7 @@
 # Decap CMS Configuration - Final version
 backend:
   name: git-gateway
-  branch: development  # Your confirmed branch name
+  branch: development # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
@@ -281,6 +281,20 @@ collections:
           - { label: "Caption", name: "caption", widget: "string", required: false }
           - { label: "Credit", name: "credit", widget: "string", required: false }
           - { label: "Location", name: "location", widget: "string", required: false }
+
+      - label: "Route Gallery"
+        name: "routeGallery"
+        widget: "list"
+        required: false
+        hint: "Upload screenshots of your travel routes"
+        fields:
+          - { label: "Route Image", name: "src", widget: "image", hint: "Screenshot of your route map" }
+          - { label: "Route Title", name: "title", widget: "string", hint: "Name of this route (e.g. 'Pune to Raigad')" }
+          - { label: "Alt Text", name: "alt", widget: "string", hint: "Descriptive text for accessibility" }
+          - { label: "Key Locations", name: "locations", widget: "string", required: false, hint: "Comma-separated list of key locations along the route" }
+          - { label: "Route Distance", name: "distance", widget: "string", required: false, hint: "Total distance of this route (e.g. '120 km')" }
+          - { label: "Route Duration", name: "duration", widget: "string", required: false, hint: "Approximate travel time (e.g. '2.5 hours')" }
+          - { label: "Map Source", name: "mapSource", widget: "string", required: false, hint: "Source of the map (e.g. 'Google Maps', 'OpenStreetMap')" }
       
       # Table of Contents settings
       - label: "Table of Contents"

@@ -319,6 +319,26 @@
       overflow-y: auto;
     }
   }
+
+  /* Route Gallery specific styles */
+  .route-item figcaption {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  .route-item .gallery-image-wrapper {
+    position: relative;
+  }
+
+  .route-item .gallery-image-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
 }
 
 @layer utilities {
