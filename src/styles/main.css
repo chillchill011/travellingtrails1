@@ -320,6 +320,29 @@
     }
   }
 
+  /* Trip Details styles */
+  .trip-details-container {
+    @apply transition-all duration-300;
+  }
+
+  .trip-details-toggle {
+    @apply cursor-pointer transition-all duration-200;
+  }
+
+  .trip-details-toggle:hover {
+    @apply bg-gray-300 dark:bg-gray-600;
+  }
+
+  .trip-details-content {
+    @apply transition-all duration-300;
+  }
+
+  .toggle-icon {
+    @apply transition-transform duration-200;
+  }
+
+
+
   /* Route Gallery specific styles */
   .route-item figcaption {
     @apply text-gray-700 dark:text-gray-300;

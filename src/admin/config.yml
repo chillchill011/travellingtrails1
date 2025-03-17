@@ -1,7 +1,7 @@
 # Decap CMS Configuration - Final version
 backend:
   name: git-gateway
-  branch: main # Your confirmed branch name
+  branch: development # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
@@ -327,6 +327,106 @@ collections:
           - { label: "Route Duration", name: "duration", widget: "string", required: false, hint: "Approximate travel time (e.g. '2.5 hours')" }
           - { label: "Map Source", name: "mapSource", widget: "string", required: false, hint: "Source of the map (e.g. 'Google Maps', 'OpenStreetMap')" }
           - { label: "Map URL", name: "mapUrl", widget: "string", required: false, hint: "Direct link to this route on the map service" }
+
+
+
+      - label: "Trip Details"
+        name: "tripDetails"
+        widget: "object"
+        required: false
+        collapsed: true
+        hint: "Detailed information about this trip for readers to follow"
+        fields:
+          - label: "Itinerary"
+            name: "itinerary"
+            widget: "list"
+            required: false
+            hint: "Day-by-day or time-by-time breakdown of the journey"
+            fields:
+              - { label: "Day/Time", name: "time", widget: "string", hint: "E.g., 'Day 1', '9:00 AM'" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Activity", name: "activity", widget: "string" }
+              - { label: "Duration", name: "duration", widget: "string", required: false, hint: "E.g., '2 hours'" }
+              - { label: "Notes", name: "notes", widget: "text", required: false }
+
+      - label: "Cost Breakdown"
+        name: "costs"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Transportation", name: "transportation", widget: "string", required: false, hint: "Total transportation costs (fuel, tolls, tickets)" }
+          - { label: "Accommodation", name: "accommodation", widget: "string", required: false }
+          - { label: "Food & Drinks", name: "food", widget: "string", required: false }
+          - { label: "Activities & Entrance Fees", name: "activities", widget: "string", required: false }
+          - { label: "Miscellaneous", name: "misc", widget: "string", required: false }
+          - { label: "Total Budget", name: "total", widget: "string", required: false, hint: "Approximate total cost of trip" }
+          - { label: "Notes", name: "notes", widget: "text", required: false, hint: "Additional cost information" }
+
+      - label: "Seasonal Information"
+        name: "seasonal"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - label: "Best Season"
+            name: "bestSeason"
+            widget: "select"
+            multiple: true
+            required: false
+            options:
+              - { label: "Spring (Mar-May)", value: "spring" }
+              - { label: "Summer (Jun-Aug)", value: "summer" }
+              - { label: "Monsoon (Jun-Sep)", value: "monsoon" }
+              - { label: "Post-Monsoon (Oct-Nov)", value: "post-monsoon" }
+              - { label: "Winter (Dec-Feb)", value: "winter" }
+          - { label: "Seasonal Notes", name: "notes", widget: "text", required: false, hint: "How seasons affect this trip" }
+
+      - label: "Difficulty Rating"
+        name: "difficulty"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - label: "Overall Difficulty"
+            name: "overall"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Easy - Beginner Friendly", value: "easy" }
+              - { label: "Moderate - Some Experience Needed", value: "moderate" }
+              - { label: "Challenging - Experienced Travelers", value: "challenging" }
+              - { label: "Difficult - Experts Only", value: "difficult" }
+          - { label: "Physical Demand", name: "physical", widget: "number", required: false, min: 1, max: 5, hint: "1 (Low) to 5 (High)" }
+          - { label: "Technical Difficulty", name: "technical", widget: "number", required: false, min: 1, max: 5, hint: "1 (Easy) to 5 (Technical)" }
+          - { label: "Notes", name: "notes", widget: "text", required: false, hint: "Details about challenging sections" }
+
+      - label: "Local Resources"
+        name: "localResources"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Emergency Contacts", name: "emergency", widget: "text", required: false }
+          - { label: "Mechanic Shops", name: "mechanics", widget: "text", required: false, hint: "Useful for motorcycle/vehicle trips" }
+          - { label: "Accommodation Options", name: "accommodation", widget: "text", required: false }
+          - { label: "Food Recommendations", name: "food", widget: "text", required: false }
+          - { label: "Fuel Stations", name: "fuel", widget: "text", required: false }
+          - { label: "Medical Facilities", name: "medical", widget: "text", required: false }
+
+      - label: "Alternative Transportation"
+        name: "altTransportation"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Public Transport Options", name: "public", widget: "text", required: false }
+          - { label: "Private Vehicle Options", name: "private", widget: "text", required: false }
+          - { label: "Tour Operators", name: "tours", widget: "text", required: false }
+          - { label: "Notes", name: "notes", widget: "text", required: false }
+
+
+
 
       # Table of Contents settings
       - label: "Table of Contents"
