@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
      * Initialize the filter handlers
      */
     function initFilters() {
+        console.log('Initializing filters');
+        
         // Add event listeners to all filter elements
         if (categoryFilter) {
             categoryFilter.addEventListener('change', handleFilterChange);
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (searchInput) {
+            console.log('Adding search input listener');
             // We handle search separately to allow for real-time filtering
             searchInput.addEventListener('input', handleSearchInput);
             
@@ -124,10 +127,13 @@ document.addEventListener('DOMContentLoaded', function() {
      * Handle search input events
      */
     function handleSearchInput(event) {
+        console.log('Search input event triggered');
         filterState.searchQuery = event.target.value.toLowerCase().trim();
+        console.log('Search query:', filterState.searchQuery);
         
         // If search query is empty, show destination section and hide search results
         if (filterState.searchQuery === '') {
+            console.log('Empty search query, showing destination section');
             if (destinationSection) destinationSection.classList.remove('hidden');
             if (searchResultsSection) searchResultsSection.classList.add('hidden');
             // Still apply other filters
@@ -136,19 +142,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // If there's a search query, hide destination section and show search results
+        console.log('Showing search results section');
         if (destinationSection) destinationSection.classList.add('hidden');
         if (searchResultsSection) searchResultsSection.classList.remove('hidden');
         
         // Simple search implementation with extremely simplified cards
         try {
             const searchResults = document.getElementById('searchResults');
+            console.log('Search results container:', searchResults);
+            
             if (searchResults) {
                 searchResults.innerHTML = ''; // Clear previous results
                 
                 let foundResults = false;
                 
                 // Filter through all content based on search query
+                console.log('Searching content');
                 const allContent = [...document.querySelectorAll('.blog-card, .destination-card, article')];
+                console.log('Content items found:', allContent.length);
                 
                 allContent.forEach(item => {
                     // Skip if already in search results
@@ -157,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const content = item.textContent || '';
                     
                     if (content.toLowerCase().includes(filterState.searchQuery)) {
+                        console.log('Found matching content');
                         foundResults = true;
                         
                         // Create a super simple card - ONLY title, author, date
@@ -168,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const titleElem = item.querySelector('h1, h2, h3, a');
                         if (titleElem) {
                             title = titleElem.textContent.trim();
+                            console.log('Title found:', title);
                         }
                         
                         // Find URL
@@ -198,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const authorElem = item.querySelector('a[href^="/authors/"]');
                         if (authorElem) {
                             author = authorElem.textContent.trim();
+                            console.log('Author found:', author);
                         }
                         
                         // Find date
@@ -205,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const dateElem = item.querySelector('time') || item.querySelector('.text-gray-500');
                         if (dateElem) {
                             date = dateElem.textContent.trim();
+                            console.log('Date found:', date);
                         }
                         
                         if (author) {
@@ -227,8 +242,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show/hide no results message
                 if (noResults) {
                     if (!foundResults) {
+                        console.log('No results found');
                         noResults.classList.remove('hidden');
                     } else {
+                        console.log('Results found, hiding no results message');
                         noResults.classList.add('hidden');
                     }
                 }
