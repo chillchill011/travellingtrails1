@@ -1,9 +1,62 @@
 @layer components {
-    .nav-link {
-      @apply text-travel-700 hover:text-travel-900 px-3 py-2 rounded-md text-sm font-medium;
-    }
-    
-    .nav-mobile {
-      @apply md:hidden;
+  .nav-link {
+    @apply text-travel-700 hover:text-travel-900 px-3 py-2 rounded-md text-sm font-medium;
+  }
+  
+  .nav-mobile {
+    @apply md:hidden;
+  }
+  
+  /* Desktop dropdown styles */
+  .group:hover .group-hover\:visible {
+    visibility: visible;
+  }
+
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+  }
+
+  /* Mobile dropdown animation */
+  .mobile-dropdown-icon {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .mobile-dropdown-icon.rotate-180 {
+    transform: rotate(180deg);
+  }
+
+  .mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+
+  .mobile-dropdown-content:not(.hidden) {
+    max-height: 200px;
+  }
+
+  /* Highlight active page in navbar */
+  .nav-link.active {
+    color: #0284c7; /* travel-600 */
+  }
+
+  .dark .nav-link.active {
+    color: #38bdf8; /* travel-400 */
+  }
+
+  /* Mobile menu display state */
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu.open {
+    display: block !important;
+  }
+
+  /* Always hide on desktop */
+  @media (min-width: 768px) {
+    .mobile-menu {
+      display: none !important;
     }
   }
+}

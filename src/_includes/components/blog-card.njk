@@ -61,13 +61,13 @@
                 {% if post.data.categories is string %}
                     <a href="{{ '/categories/' + post.data.categories | lower | replace(' ', '-') + '/' | url }}"
                     class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-                        {{ post.data.categories }}
+                    Category: {{ post.data.categories }}
                     </a>
                 {% else %}
                     {% for category in post.data.categories %}
                     <a href="{{ '/categories/' + category | lower | replace(' ', '-') + '/' | url }}"
                     class="category-tag inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 dark:bg-travel-900 dark:text-travel-100 rounded-full hover:bg-travel-200 dark:hover:bg-travel-800 transition-colors duration-200">
-                        {{ category }}
+                        Category: {{ category }}
                     </a>
                     {% endfor %}
                 {% endif %}

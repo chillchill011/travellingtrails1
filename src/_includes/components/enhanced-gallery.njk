@@ -1,0 +1,80 @@
+{% macro enhancedGallery(items, title, type="photo") %}
+{% if items and items.length > 0 %}
+<div class="gallery-container my-8">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{{ title }}</h2>
+  <div class="gallery-grid">
+    {% for item in items %}
+    <figure class="gallery-item {% if type == 'route' %}route-item{% endif %}">
+      <div class="gallery-image-wrapper">
+        <img 
+          src="{{ item.src | url }}" 
+          alt="{{ item.alt }}" 
+          class="gallery-image"
+          loading="lazy"
+        >
+      </div>
+      <figcaption>
+        {% if type == "route" and item.title %}
+          <span class="block font-medium text-center">{{ item.title }}</span>
+        {% else %}
+          {% if item.caption %}
+            {{ item.caption }}
+          {% else %}
+            {{ item.alt }}
+          {% endif %}
+        {% endif %}
+        
+        {% if type == "route" and item.locations %}
+        <span class="block text-sm mt-1 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          {{ item.locations }}
+        </span>
+        {% endif %}
+        
+        {% if type == "route" %}
+        <div class="flex flex-wrap text-xs mt-2 text-gray-500 dark:text-gray-400 justify-center">
+          {% if item.distance %}
+          <span class="mr-3 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+            {{ item.distance }}
+          </span>
+          {% endif %}
+          
+          {% if item.duration %}
+          <span class="mr-3 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {{ item.duration }}
+          </span>
+          {% endif %}
+          
+          {% if item.mapSource %}
+          <span class="flex items-center italic">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+            {% if item.mapUrl %}
+              <a href="{{ item.mapUrl }}" target="_blank" rel="noopener noreferrer" class="hover:text-travel-600 dark:hover:text-travel-400 transition-colors">{{ item.mapSource }}</a>
+            {% else %}
+              {{ item.mapSource }}
+            {% endif %}
+          </span>
+          {% endif %}
+        </div>
+        {% endif %}
+        
+        {% if item.credit %}
+        <span class="block text-xs mt-2 italic text-center">Photo: {{ item.credit }}</span>
+        {% endif %}
+      </figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endmacro %}

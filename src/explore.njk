@@ -5,6 +5,7 @@ permalink: /explore/index.html
 ---
 
 {% include "components/map-dependencies.njk" %}
+{% from "components/destination-card.njk" import destinationCard %}
 
 <div class="max-w-7xl mx-auto px-4 py-8">
   <header class="text-center mb-12">
@@ -57,11 +58,25 @@ permalink: /explore/index.html
                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
                        rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
           <option value="">All Activities</option>
-          {% if activities %}
-            {% for activity in activities %}
-            <option value="{{ activity }}">{{ activity }}</option>
-            {% endfor %}
-          {% endif %}
+          {% set allActivities = [] %}
+          {% for post in collections.post %}
+            {% if post.data.activities %}
+              {% if post.data.activities is string %}
+                {% if post.data.activities and not allActivities.includes(post.data.activities) %}
+                  {% set allActivities = (allActivities.push(post.data.activities), allActivities) %}
+                {% endif %}
+              {% else %}
+                {% for activity in post.data.activities %}
+                  {% if activity and not allActivities.includes(activity) %}
+                    {% set allActivities = (allActivities.push(activity), allActivities) %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% for activity in allActivities | sort %}
+          <option value="{{ activity }}">{{ activity }}</option>
+          {% endfor %}
         </select>
       </div>
       
@@ -76,6 +91,8 @@ permalink: /explore/index.html
           <option value="365">Last Year</option>
         </select>
       </div>
+      
+      <!-- Reset Filters button will be added by JS -->
     </div>
   </div>
 
@@ -91,9 +108,9 @@ permalink: /explore/index.html
   <!-- Search Results Section (Initially Hidden) -->
   <div id="searchResultsSection" class="mb-8 hidden">
     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Search Results</h2>
-    <div id="searchResults" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
-    <div id="noResults" class="text-center text-gray-600 dark:text-gray-400 hidden">
-      No destinations found matching your criteria.
+    <div id="searchResults" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    <div id="noResults" class="text-center text-gray-600 dark:text-gray-400 hidden py-8">
+      No destinations found matching your criteria. <button id="clearSearch" class="text-travel-600 hover:text-travel-700 underline focus:outline-none">Clear filters</button>
     </div>
   </div>
 
@@ -102,66 +119,14 @@ permalink: /explore/index.html
     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Explore All Destinations</h2>
     <div id="explorePosts" class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {% for destination in collections.destinations %}
-        <div class="destination-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
-          {% if destination.posts[0].data.featuredImage %}
-          <div class="relative h-48 overflow-hidden">
-            <img 
-              src="{{ destination.posts[0].data.featuredImage | url }}" 
-              alt="{{ destination.title }}" 
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <h3 class="text-xl font-bold">{{ destination.title }}</h3>
-              <p class="text-sm">{{ destination.count }} adventure{% if destination.count != 1 %}s{% endif %}</p>
-            </div>
-          </div>
-          {% else %}
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ destination.title }}</h3>
-            <p class="text-gray-600 dark:text-gray-400">{{ destination.count }} adventure{% if destination.count != 1 %}s{% endif %}</p>
-          </div>
-          {% endif %}
-        </div>
+        {{ destinationCard(destination) }}
       {% endfor %}
     </div>
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Add a link to destination cards
-    const destinationCards = document.querySelectorAll('.destination-card');
-    destinationCards.forEach(card => {
-      const destinationTitle = card.querySelector('h3').textContent;
-      const destinationSlug = destinationTitle.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
-      card.addEventListener('click', function() {
-        window.location.href = '/destinations/' + destinationSlug + '/';
-      });
-      card.style.cursor = 'pointer';
-    });
-    
-    // Show search results section when search is performed
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-      searchInput.addEventListener('input', function() {
-        const query = this.value.trim();
-        const searchResultsSection = document.getElementById('searchResultsSection');
-        const destinationsSection = document.getElementById('destinationsSection');
-        
-        if (query.length >= 2) {
-          searchResultsSection.classList.remove('hidden');
-          destinationsSection.classList.add('hidden');
-        } else {
-          searchResultsSection.classList.add('hidden');
-          destinationsSection.classList.remove('hidden');
-        }
-      });
-    }
-  });
-</script>
-
 <script src="{{ '/assets/js/map-handler.js' | url }}"></script>
+<script src="{{ '/assets/js/filter-handler.js' | url }}"></script>
 
 <script>
   // Force map resize after a short delay
@@ -176,5 +141,41 @@ permalink: /explore/index.html
         }
       }
     }, 1000);
+    
+    // Add click handler for clear search button
+    const clearSearchBtn = document.getElementById('clearSearch');
+    if (clearSearchBtn) {
+      clearSearchBtn.addEventListener('click', function() {
+        // Reset search input
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+          searchInput.value = '';
+          
+          // Clear search results
+          const searchResults = document.getElementById('searchResults');
+          if (searchResults) {
+            searchResults.innerHTML = '';
+          }
+          
+          // Hide search results section
+          const searchResultsSection = document.getElementById('searchResultsSection');
+          if (searchResultsSection) {
+            searchResultsSection.classList.add('hidden');
+          }
+          
+          // Show destinations section
+          const destinationsSection = document.getElementById('destinationsSection');
+          if (destinationsSection) {
+            destinationsSection.classList.remove('hidden');
+          }
+        }
+        
+        // Reset filters
+        const resetBtn = document.getElementById('resetFilters');
+        if (resetBtn) {
+          resetBtn.click();
+        }
+      });
+    }
   });
 </script>

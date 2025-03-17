@@ -64,6 +64,11 @@ module.exports = function(eleventyConfig) {
       });
     });
 
+    // In .eleventy.js
+    eleventyConfig.addFilter("dumpData", function(obj) {
+      console.log("DUMPING DATA:", JSON.stringify(obj, null, 2));
+      return "";
+    });
 
     // Add this to your list of filters
     eleventyConfig.addFilter("getAuthorName", function(authorSlug, authors) {
@@ -71,6 +76,22 @@ module.exports = function(eleventyConfig) {
       
       const author = authors.find(author => author.slug === authorSlug);
       return author ? author.name : authorSlug;
+    });
+
+    // Add this to your .eleventy.js file along with your other filters
+    eleventyConfig.addFilter("wordCount", function(content) {
+      if (!content) return 0;
+      // Simple word count by splitting on whitespace
+      return content.trim().split(/\s+/).length;
+    });
+
+    // Add this to your .eleventy.js file in the module.exports function
+    eleventyConfig.addFilter("readingTime", function(content) {
+      const wordsPerMinute = 225; // Average adult reading speed
+      const words = content.trim().split(/\s+/).length;
+      const minutes = Math.ceil(words / wordsPerMinute);
+      
+      return minutes > 1 ? `${minutes} min read` : `1 min read`;
     });
 
     // Create authors data from individual files
@@ -578,6 +599,31 @@ module.exports = function(eleventyConfig) {
         return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MED);
     });
 
+    // Add activities collection to gather all unique activities from posts
+    eleventyConfig.addCollection("activities", function(collection) {
+      const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+          // Filter out draft posts in production
+          .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+      
+      const activitiesSet = new Set();
+      
+      posts.forEach(post => {
+        if (post.data.activities) {
+          if (typeof post.data.activities === 'string') {
+            // Handle single activity (string)
+            activitiesSet.add(post.data.activities);
+          } else if (Array.isArray(post.data.activities)) {
+            // Handle multiple activities (array)
+            post.data.activities.forEach(activity => {
+              activitiesSet.add(activity);
+            });
+          }
+        }
+      });
+      
+      return Array.from(activitiesSet).sort();
+    });
+
     // Add destinations collection
     eleventyConfig.addCollection("destinations", function(collection) {
       const posts = collection.getFilteredByGlob("src/blog/**/*.md")
@@ -606,6 +652,29 @@ module.exports = function(eleventyConfig) {
               count: filteredPosts.length
           };
       });
+    });
+
+
+    // Similarly, add a collection for travel types
+    eleventyConfig.addCollection("travelTypes", function(collection) {
+      const posts = collection.getFilteredByGlob("src/blog/**/*.md")
+          .filter(post => process.env.ELEVENTY_ENV !== "production" || !post.data.draft);
+      
+      const travelTypesSet = new Set();
+      
+      posts.forEach(post => {
+        if (post.data.travelType) {
+          if (typeof post.data.travelType === 'string') {
+            travelTypesSet.add(post.data.travelType);
+          } else if (Array.isArray(post.data.travelType)) {
+            post.data.travelType.forEach(type => {
+              travelTypesSet.add(type);
+            });
+          }
+        }
+      });
+      
+      return Array.from(travelTypesSet).sort();
     });
 
     // Add map data filter

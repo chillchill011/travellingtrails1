@@ -126,7 +126,7 @@
 
   /* Category Components */
   .category-tag {
-    @apply inline-block px-3 py-1 text-sm 
+    @apply inline-block px-3 py-0.5 text-sm 
            bg-travel-100 text-travel-600
            dark:bg-travel-900 dark:text-travel-100 
            rounded-full hover:bg-travel-200 
@@ -319,6 +319,32 @@
       overflow-y: auto;
     }
   }
+
+  /* Route Gallery specific styles */
+  .route-item figcaption {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  .route-item .gallery-image-wrapper {
+    position: relative;
+  }
+
+  .route-item .gallery-image-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+
+  /* If you need to adjust the grid layout specifically for routes */
+  @media (min-width: 640px) {
+    .route-gallery-container .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @layer utilities {

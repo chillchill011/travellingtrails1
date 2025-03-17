@@ -1,7 +1,17 @@
-{% macro tableOfContents(headings) %}
+{% macro tableOfContents(headings, content) %}
 <div class="toc-container bg-gray-50 dark:bg-gray-800 p-4 rounded-lg mb-8 border border-gray-200 dark:border-gray-700">
   <div class="toc-header flex justify-between items-center mb-2">
-    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Table of Contents</h2>
+    <div class="flex items-center gap-3">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Table of Contents</h2>
+      {% if content %}
+      <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        {{ content | striptags | readingTime }}
+      </div>
+      {% endif %}
+    </div>
     <button id="toc-toggle" class="md:hidden text-travel-600 dark:text-travel-400 focus:outline-none">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />

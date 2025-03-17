@@ -3,6 +3,7 @@ layout: 'base.njk'
 ---
 {% from "components/table-of-contents.njk" import tableOfContents %}
 {% from "components/author-bio.njk" import authorBio %}
+{% from "components/enhanced-gallery.njk" import enhancedGallery %}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -26,6 +27,14 @@ layout: 'base.njk'
             </div>
             {% endif %}
             
+
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{ content | striptags | readingTime }}</span>
+            </div>    
+
             {% if categories %}
             <div class="flex items-center gap-2">
                 <span>Categories:</span>
@@ -41,7 +50,7 @@ layout: 'base.njk'
 
         {% if destination %}
         <div class="mb-4">
-        <span class="inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-1.5 rounded-full">
+        <span class="inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-0.5 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
             </svg>
@@ -49,7 +58,7 @@ layout: 'base.njk'
         </span>
         
         {% if duration %}
-        <span class="ml-2 inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-1.5 rounded-full">
+        <span class="ml-2 inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-0.5 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
             </svg>
@@ -75,42 +84,22 @@ layout: 'base.njk'
 
     {% set contentData = content | extractHeadings %}
     {% if showTableOfContents !== false and contentData.headings.length >= (tocMinHeadings or 3) %}
-        {{ tableOfContents(contentData.headings) }}
+        {{ tableOfContents(contentData.headings, content) }}
     {% endif %}
 
     <div class="prose prose-lg dark:prose-invert max-w-none">
         {{ contentData.content | safe }}
     </div>
 
+    <!-- Photo Gallery -->
     {% if gallery and gallery.length > 0 %}
-    <div class="gallery-container my-8">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Photo Gallery</h2>
-    <div class="gallery-grid">
-        {% for image in gallery %}
-        <figure class="gallery-item">
-        <div class="gallery-image-wrapper">
-            <img 
-            src="{{ image.src | url }}" 
-            alt="{{ image.alt }}" 
-            class="gallery-image"
-            loading="lazy"
-            >
-        </div>
-        <figcaption>
-            {% if image.caption %}
-            {{ image.caption }}
-            {% else %}
-            {{ image.alt }}
-            {% endif %}
-            
-            {% if image.credit %}
-            <span style="display: block; margin-top: 0.25rem; font-size: 0.75rem; color: #6b7280; font-style: italic;">Photo: {{ image.credit }}</span>
-            {% endif %}
-        </figcaption>
-        </figure>
-        {% endfor %}
-    </div>
-    </div>
+      {{ enhancedGallery(gallery, "Photo Gallery", "photo") }}
+    {% endif %}
+
+    <!-- Route Gallery -->
+  <!-- Route Gallery -->
+    {% if routeGallery and routeGallery.length > 0 %}
+    {{ enhancedGallery(routeGallery, "Journey Routes", "route") }}
     {% endif %}
 
     <!-- Author Bio Section -->
@@ -160,7 +149,7 @@ layout: 'base.njk'
                     {% if authors[author].social.twitter %}
                         <a href="{{ authors[author].social.twitter }}" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-travel-600 dark:text-gray-400 dark:hover:text-travel-400" title="Twitter">
                             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07a4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
                             </svg>
                         </a>
                     {% endif %}
@@ -246,6 +235,24 @@ layout: 'base.njk'
                 </div>
             </div>
             {% endif %}
+
+            {% if rideMode %}
+            <div class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-0.5 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-gray-900 dark:text-white">Ride Mode</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                {% if rideMode.length %}
+                    {{ rideMode | join(', ') }}
+                {% else %}
+                    {{ rideMode }}
+                {% endif %}
+                </p>
+            </div>
+            </div>
+            {% endif %}
         </div>
     </div>
     {% endif %}
@@ -297,6 +304,37 @@ layout: 'base.njk'
         {% endif %}
     {% endif %}
 
+    <!-- Schema.org Article Markup for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ title }}",
+        "description": "{% if description %}{{ description }}{% endif %}",
+        "image": "{% if featuredImage %}{{ site.url }}{{ featuredImage | url }}{% endif %}",
+        "author": {
+            "@type": "Person",
+            "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.title }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ site.url }}/assets/images/logo.png"
+            }
+        },
+        "datePublished": "{{ page.date | isoDate }}",
+        "dateModified": "{{ page.date | isoDate }}",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ site.url }}{{ page.url }}"
+        },
+        "wordCount": "{{ content | striptags | wordCount }}",
+        "timeRequired": "PT{{ content | striptags | readingTime | replace(' min read', '') }}M"
+    }
+    </script>
+
     <!-- Article footer with author credit and date -->
     {% if author %}
     <div class="article-footer mt-8 text-gray-600 dark:text-gray-400 text-sm">
@@ -311,3 +349,4 @@ layout: 'base.njk'
         {% endif %}
     </div>
     {% endif %}
+</article>

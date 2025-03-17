@@ -1,7 +1,7 @@
 # Decap CMS Configuration - Final version
 backend:
   name: git-gateway
-  branch: main  # Your confirmed branch name
+  branch: main # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
@@ -120,6 +120,37 @@ collections:
           - { label: "Monsoon Destination", value: "monsoon-destination" }
           - { label: "Spring Bloom Location", value: "spring-bloom-location" }
         hint: "Type of travel experience"
+
+
+      - label: "Ride Mode"
+        name: "rideMode"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - { label: "Motorcycle", value: "Motorcycle" }
+          - { label: "Car", value: "Car" }
+          - { label: "Bicycle", value: "Bicycle" }
+          - { label: "Public Bus", value: "Public Bus" }
+          - { label: "Private Bus", value: "Private Bus" }
+          - { label: "Train", value: "Train" }
+          - { label: "Plane", value: "Plane" }
+          - { label: "Taxi", value: "Taxi" }
+          - { label: "Ride-sharing", value: "Ride-sharing" }
+          - { label: "Ferry", value: "Ferry" }
+          - { label: "Cable Car", value: "Cable Car" }
+          - { label: "Walking", value: "Walking" }
+          - { label: "Hiking", value: "Hiking" }
+          - { label: "Boat", value: "Boat" }
+          - { label: "Cruise Ship", value: "Cruise Ship" }
+          - { label: "Kayak", value: "Kayak" }
+          - { label: "Off-road Vehicle", value: "Off-road Vehicle" }
+          - { label: "Scooter", value: "Scooter" }
+          - { label: "Electric Bike", value: "Electric Bike" }
+          - { label: "Helicopter", value: "Helicopter" }
+          - { label: "Rope way", value: "Rope way" }
+        hint: "Mode of transportation used during the journey"
+      
 
       - label: "Activities"
         name: "activities"
@@ -281,7 +312,22 @@ collections:
           - { label: "Caption", name: "caption", widget: "string", required: false }
           - { label: "Credit", name: "credit", widget: "string", required: false }
           - { label: "Location", name: "location", widget: "string", required: false }
-      
+
+      - label: "Route Gallery"
+        name: "routeGallery"
+        widget: "list"
+        required: false
+        hint: "Upload screenshots of your travel routes"
+        fields:
+          - { label: "Route Image", name: "src", widget: "image", hint: "Screenshot of your route map" }
+          - { label: "Route Title", name: "title", widget: "string", hint: "Name of this route (e.g. 'Pune to Raigad')" }
+          - { label: "Alt Text", name: "alt", widget: "string", hint: "Descriptive text for accessibility" }
+          - { label: "Key Locations", name: "locations", widget: "string", required: false, hint: "Comma-separated list of key locations along the route" }
+          - { label: "Route Distance", name: "distance", widget: "string", required: false, hint: "Total distance of this route (e.g. '120 km')" }
+          - { label: "Route Duration", name: "duration", widget: "string", required: false, hint: "Approximate travel time (e.g. '2.5 hours')" }
+          - { label: "Map Source", name: "mapSource", widget: "string", required: false, hint: "Source of the map (e.g. 'Google Maps', 'OpenStreetMap')" }
+          - { label: "Map URL", name: "mapUrl", widget: "string", required: false, hint: "Direct link to this route on the map service" }
+
       # Table of Contents settings
       - label: "Table of Contents"
         name: "showTableOfContents"
