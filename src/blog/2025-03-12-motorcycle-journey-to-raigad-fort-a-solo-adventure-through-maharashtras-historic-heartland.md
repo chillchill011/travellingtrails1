@@ -46,14 +46,16 @@ routeGallery:
     distance: 120 km
     duration: 2.5 hours
     mapSource: Google Maps
+    mapUrl: https://maps.app.goo.gl/VjVcLfwmEdRet2ky5
   - src: /assets/images/raigad-rope-way-to-pune-150-km-via-mahad-mangaon-tamhini-ghat.jpg
     title: Raigad ropeway to Pune
     alt: Raigad rope way to pune via Mahad, Mangaon, Tamhini Ghat. It is a Mumbai
       Goa Highway route.
     locations: Mahad, Mangaon
     distance: 155 km
-    duration: 3 hours
+    duration: 3.5 hours
     mapSource: Google Maps
+    mapUrl: https://maps.app.goo.gl/vuCP5cJHW2nK6cP68
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
