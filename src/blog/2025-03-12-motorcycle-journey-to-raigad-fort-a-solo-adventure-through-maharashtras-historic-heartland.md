@@ -58,6 +58,21 @@ routeGallery:
     duration: 3.5 hours
     mapSource: Google Maps
     mapUrl: https://maps.app.goo.gl/vuCP5cJHW2nK6cP68
+costs:
+  transportation: Rs. 1100 for Motorbike
+  accommodation: None
+  food: Rs. 200 for snacks and juices
+  activities: Rs. 50 for two wheeler parking
+  notes: This is the optional notes area for the cost breakdown
+seasonal:
+  bestSeason:
+    - post-monsoon
+  notes: This the text for how season affects the trip. I went there in summer.
+difficulty:
+  overall: easy
+  physical: 1
+  technical: 1
+  notes: Optional difficulty notes
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
