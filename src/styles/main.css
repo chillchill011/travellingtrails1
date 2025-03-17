@@ -339,6 +339,12 @@
     background: linear-gradient(90deg, #0284c7, #38bdf8);
     border-radius: 0 0 0.5rem 0.5rem;
   }
+
+  /* If you need to adjust the grid layout specifically for routes */
+  @media (min-width: 640px) {
+    .route-gallery-container .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @layer utilities {

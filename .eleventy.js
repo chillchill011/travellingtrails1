@@ -64,6 +64,11 @@ module.exports = function(eleventyConfig) {
       });
     });
 
+    // In .eleventy.js
+    eleventyConfig.addFilter("dumpData", function(obj) {
+      console.log("DUMPING DATA:", JSON.stringify(obj, null, 2));
+      return "";
+    });
 
     // Add this to your list of filters
     eleventyConfig.addFilter("getAuthorName", function(authorSlug, authors) {
