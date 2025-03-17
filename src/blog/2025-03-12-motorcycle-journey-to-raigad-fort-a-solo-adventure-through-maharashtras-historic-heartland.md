@@ -32,6 +32,23 @@ imageAlt: Majestic Raigad Fort perched atop a hill in Maharashtra, commanding a
   Maratha Empire established by Chhatrapati Shivaji Maharaj
 imageCredit: Aniket
 thumbnailImage: /assets/images/raigad-fort-distance-thumb.jpg
+routeGallery:
+  - src: /assets/images/pune-to-raigad-120-km-via-tamhini-ghat-nizampur.jpg
+    title: Pune to Raigad rope way
+    alt: Bhugaon, Pune to Raigad rope way route via tamhini ghat, Nizampur and
+      isolated route
+    locations: Tamhini Ghat, Nizampur, Pachad
+    distance: 120 km
+    duration: 2.5 hours
+    mapSource: Google Maps
+  - src: /assets/images/raigad-rope-way-to-pune-150-km-via-mahad-mangaon-tamhini-ghat.jpg
+    title: Raigad ropeway to Pune
+    alt: Raigad rope way to pune via Mahad, Mangaon, Tamhini Ghat. It is a Mumbai
+      Goa Highway route.
+    locations: Mahad, Mangaon
+    distance: 155 km
+    duration: 3 hours
+    mapSource: Google Maps
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
