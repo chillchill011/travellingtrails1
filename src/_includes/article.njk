@@ -235,6 +235,24 @@ layout: 'base.njk'
                 </div>
             </div>
             {% endif %}
+
+            {% if rideMode %}
+            <div class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-0.5 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-gray-900 dark:text-white">Ride Mode</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                {% if rideMode.length %}
+                    {{ rideMode | join(', ') }}
+                {% else %}
+                    {{ rideMode }}
+                {% endif %}
+                </p>
+            </div>
+            </div>
+            {% endif %}
         </div>
     </div>
     {% endif %}

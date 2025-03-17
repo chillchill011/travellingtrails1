@@ -121,6 +121,37 @@ collections:
           - { label: "Spring Bloom Location", value: "spring-bloom-location" }
         hint: "Type of travel experience"
 
+      # In src/admin/config.yml, add this new field after the travelType field
+
+      - label: "Ride Mode"
+        name: "rideMode"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - { label: "Motorcycle", value: "motorcycle" }
+          - { label: "Car", value: "car" }
+          - { label: "Bicycle", value: "bicycle" }
+          - { label: "Public Bus", value: "public-bus" }
+          - { label: "Private Bus", value: "private-bus" }
+          - { label: "Train", value: "train" }
+          - { label: "Plane", value: "plane" }
+          - { label: "Taxi", value: "taxi" }
+          - { label: "Ride-sharing", value: "ride-sharing" }
+          - { label: "Ferry", value: "ferry" }
+          - { label: "Cable Car", value: "cable-car" }
+          - { label: "Walking", value: "walking" }
+          - { label: "Hiking", value: "hiking" }
+          - { label: "Boat", value: "boat" }
+          - { label: "Cruise Ship", value: "cruise-ship" }
+          - { label: "Kayak", value: "kayak" }
+          - { label: "Off-road Vehicle", value: "off-road-vehicle" }
+          - { label: "Scooter", value: "scooter" }
+          - { label: "Electric Bike", value: "electric-bike" }
+          - { label: "Helicopter", value: "helicopter" }
+        hint: "Mode of transportation used during the journey"
+      
+
       - label: "Activities"
         name: "activities"
         widget: "select"
