@@ -78,24 +78,6 @@ permalink: /explore/index.html
   </div>
 
 
-
-  <!-- Add this debugging section temporarily -->
-  <div style="display: none;">
-    <h3>Debug: Activities Collection</h3>
-    <pre>
-    {% for activity in collections.activities %}
-      - {{ activity }}
-    {% endfor %}
-    </pre>
-  </div>
-
-  <!-- Add this somewhere in your page for debugging -->
-  <div class="bg-red-100 p-4 my-4">
-    <p>Activities count: {{ collections.activities.length }}</p>
-    <p>First activity: {% if collections.activities[0] %}{{ collections.activities[0] }}{% else %}None{% endif %}</p>
-  </div>
-
-
   <!-- Destinations Map -->
   <div 
   id="destinations-map" 
