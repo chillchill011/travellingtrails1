@@ -5,7 +5,7 @@ layout: 'base.njk'
 {% from "components/author-bio.njk" import authorBio %}
 {% from "components/enhanced-gallery.njk" import enhancedGallery %}
 {% from "components/trip-details.njk" import tripDetails as tripDetailsComponent %}
-{% from "components/affiliate-gallery.njk" import affiliateGallery %}
+{% from "components/affiliate-gallery.njk" import affiliateGallery as affiliateGalleryComponent %}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -95,8 +95,15 @@ layout: 'base.njk'
 
 
     <!-- Trip Details -->
-    {% if tripDetails %}
-    {{ tripDetailsComponent(tripDetails) }}
+    {% if tripDetails and (
+        tripDetails.itinerary or 
+        tripDetails.costs or 
+        tripDetails.seasonal or 
+        tripDetails.difficulty or 
+        tripDetails.localResources or 
+        tripDetails.altTransportation
+    ) %}
+        {{ tripDetailsComponent(tripDetails) }}
     {% endif %}
 
     <!-- Photo Gallery -->
@@ -111,7 +118,7 @@ layout: 'base.njk'
 
     <!-- Affiliate Product Gallery -->
     {% if affiliateGallery and affiliateGallery.length > 0 %}
-    {{ affiliateGallery(affiliateGallery) }}
+    {{ affiliateGalleryComponent(affiliateGallery) }}
     {% endif %}
 
     <!-- Author Bio Section -->
