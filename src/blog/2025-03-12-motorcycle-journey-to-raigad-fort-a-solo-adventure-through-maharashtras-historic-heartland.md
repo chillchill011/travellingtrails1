@@ -94,6 +94,24 @@ tripDetails:
     private: Test details
     tours: Test details
     notes: Test details
+affiliateGallery:
+  - src: /assets/images/gallery-image-1.jpg
+    alt: Text gear alt text
+    title: Gear 1
+    description: Description of the gear
+    ownershipStatus: I recommend this
+    price: Rs. 2000 to Rs. 3000
+    rating: 1
+    buyUrl: https://www.amazon.in/
+  - src: /assets/images/gallery-image-2.jpg
+    alt: Alt text two for the
+    title: Gear 2 for the long ride
+    description: Test description of the gear two in great details. This will help
+      the people using this gear.
+    ownershipStatus: I own this
+    price: Rs. 1599
+    rating: 4
+    buyUrl: amazon.in
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
