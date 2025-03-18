@@ -1,7 +1,4 @@
 {% macro tripDetails(tripData) %}
-<div style="border: 1px solid red; padding: 10px; margin: 10px 0;">
-  <pre>{{ tripData | dump }}</pre>
-</div>
 {% if tripData %}
 <div class="trip-details-container bg-gray-100 dark:bg-gray-800 rounded-lg mb-8 overflow-hidden">
   <button class="trip-details-toggle w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white p-4 text-left font-medium flex justify-between items-center">

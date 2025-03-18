@@ -4,7 +4,7 @@ layout: 'base.njk'
 {% from "components/table-of-contents.njk" import tableOfContents %}
 {% from "components/author-bio.njk" import authorBio %}
 {% from "components/enhanced-gallery.njk" import enhancedGallery %}
-{% from "components/trip-details.njk" import tripDetails %}
+{% from "components/trip-details.njk" import tripDetails as tripDetailsComponent %}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -93,9 +93,9 @@ layout: 'base.njk'
     </div>
 
 
-    <!-- Trip Details Section -->
+    <!-- Then the actual component -->
     {% if tripDetails %}
-    {{ tripDetails(tripDetails) }}
+    {{ tripDetailsComponent(tripDetails) }}
     {% endif %}
 
     <!-- Photo Gallery -->
