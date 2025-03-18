@@ -58,6 +58,42 @@ routeGallery:
     duration: 3.5 hours
     mapSource: Google Maps
     mapUrl: https://maps.app.goo.gl/vuCP5cJHW2nK6cP68
+tripDetails:
+  itinerary:
+    - time: Day 1
+      location: Test Locations
+      activity: Test Activity
+      duration: 2 hours
+      notes: Test optional notes
+  costs:
+    transportation: Rs. 4000
+    accommodation: None
+    food: Rs. 200 for snacks and juices
+    activities: Rs. 50 for two wheeler parking
+    misc: "Miscellaneious details "
+    total: 5 thousand
+    notes: Additional optional notes
+  seasonal:
+    bestSeason:
+      - monsoon
+    notes: Test seasonal notes
+  difficulty:
+    overall: easy
+    physical: 1
+    technical: 1
+    notes: Optional difficulty level notes
+  localResources:
+    emergency: Test details
+    mechanics: Test details
+    accommodation: Test details
+    food: Test details
+    fuel: Test details
+    medical: Test details
+  altTransportation:
+    public: Test details
+    private: Test details
+    tours: Test details
+    notes: Test details
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
