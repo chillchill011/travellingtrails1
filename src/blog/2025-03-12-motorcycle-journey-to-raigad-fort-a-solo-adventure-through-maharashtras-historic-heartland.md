@@ -58,12 +58,26 @@ routeGallery:
     duration: 3.5 hours
     mapSource: Google Maps
     mapUrl: https://maps.app.goo.gl/vuCP5cJHW2nK6cP68
+tripDetails:
+  itinerary:
+    - time: 11 AM
+      location: Home, Bhugaon
+      activity: Started Bike and left
+      duration: 10 min
+      notes: Testing notes.
+    - time: 3.00 PM
+      location: Raigad Ropeway
+      activity: Parking
+      duration: Half an hour
+      notes: "Test notes option 2 "
 costs:
   transportation: Rs. 1100 for Motorbike
   accommodation: None
   food: Rs. 200 for snacks and juices
   activities: Rs. 50 for two wheeler parking
   notes: This is the optional notes area for the cost breakdown
+  misc: "Miscellaneious details "
+  total: 5 thousand
 seasonal:
   bestSeason:
     - post-monsoon
@@ -73,6 +87,18 @@ difficulty:
   physical: 1
   technical: 1
   notes: Optional difficulty notes
+localResources:
+  emergency: "172846578"
+  mechanics: Shop 1 shop 2
+  accommodation: Hotel hotel
+  food: Restaurant restaurant
+  fuel: Petrol pump
+  medical: None
+altTransportation:
+  public: Sate transport bus
+  private: Available
+  tours: Rope way
+  notes: Test notes
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
