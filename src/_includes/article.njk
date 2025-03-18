@@ -94,17 +94,15 @@ layout: 'base.njk'
 
 
     <!-- Trip Details Section -->
-    {% if page.data.tripDetails %}
-    {{ tripDetails(page.data.tripDetails) }}
+    {% if tripDetails %}
+    {{ tripDetails(tripDetails) }}
     {% endif %}
-
 
     <!-- Photo Gallery -->
     {% if gallery and gallery.length > 0 %}
       {{ enhancedGallery(gallery, "Photo Gallery", "photo") }}
     {% endif %}
 
-    <!-- Route Gallery -->
   <!-- Route Gallery -->
     {% if routeGallery and routeGallery.length > 0 %}
     {{ enhancedGallery(routeGallery, "Journey Routes", "route") }}
