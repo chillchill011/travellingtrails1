@@ -5,6 +5,7 @@ layout: 'base.njk'
 {% from "components/author-bio.njk" import authorBio %}
 {% from "components/enhanced-gallery.njk" import enhancedGallery %}
 {% from "components/trip-details.njk" import tripDetails as tripDetailsComponent %}
+{% from "components/affiliate-gallery.njk" import affiliateGallery %}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -93,7 +94,7 @@ layout: 'base.njk'
     </div>
 
 
-    <!-- Then the actual component -->
+    <!-- Trip Details -->
     {% if tripDetails %}
     {{ tripDetailsComponent(tripDetails) }}
     {% endif %}
@@ -103,9 +104,14 @@ layout: 'base.njk'
       {{ enhancedGallery(gallery, "Photo Gallery", "photo") }}
     {% endif %}
 
-  <!-- Route Gallery -->
+    <!-- Route Gallery -->
     {% if routeGallery and routeGallery.length > 0 %}
     {{ enhancedGallery(routeGallery, "Journey Routes", "route") }}
+    {% endif %}
+
+    <!-- Affiliate Product Gallery -->
+    {% if affiliateGallery and affiliateGallery.length > 0 %}
+    {{ affiliateGallery(affiliateGallery) }}
     {% endif %}
 
     <!-- Author Bio Section -->

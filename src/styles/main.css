@@ -368,6 +368,52 @@
     .route-gallery-container .gallery-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+
+    /* Affiliate Items Styling */
+    .affiliate-item {
+      @apply relative overflow-hidden rounded-lg shadow-lg bg-white dark:bg-gray-800;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+
+    .affiliate-item .gallery-image-wrapper {
+      position: relative;
+      height: 250px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .affiliate-item .gallery-image-wrapper::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0284c7, #38bdf8);
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+
+    .affiliate-item .gallery-image {
+      @apply w-full h-full object-contain transition-transform duration-300;
+      padding: 1rem;
+      background-color: white;
+    }
+
+    .affiliate-item .gallery-image:hover {
+      @apply scale-105;
+    }
+
+    /* Style the figcaption better for affiliate items */
+    .affiliate-item figcaption {
+      @apply p-4 text-center;
+    }
+
+    .affiliate-item figcaption .font-medium {
+      @apply text-gray-900 dark:text-white mb-1;
+    }
 }
 
 @layer utilities {

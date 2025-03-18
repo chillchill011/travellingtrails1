@@ -422,6 +422,27 @@ collections:
               - { label: "Tour Operators", name: "tours", widget: "text", required: false }
               - { label: "Notes", name: "notes", widget: "text", required: false }
 
+      - label: "Affiliate Gallery"
+        name: "affiliateGallery"
+        widget: "list"
+        required: false
+        hint: "Products that helped make this trip possible (affiliate links)"
+        fields:
+          - { label: "Product Image", name: "src", widget: "image", hint: "Image of the product" }
+          - { label: "Alt Text", name: "alt", widget: "string", hint: "Descriptive text for accessibility" }
+          - { label: "Product Title", name: "title", widget: "string", hint: "Name of the product" }
+          - { label: "Description", name: "description", widget: "text", required: false, hint: "Brief description of why you recommend this" }
+          - label: "Ownership Status"
+            name: "ownershipStatus"
+            widget: "select"
+            options:
+              - { label: "I own this", value: "I own this" }
+              - { label: "I recommend this", value: "I recommend this" }
+            hint: "Indicate whether you own this product or are recommending it"
+          - { label: "Price Range", name: "price", widget: "string", required: false, hint: "Approximate price (e.g., ₹2,000-₹3,000)" }
+          - { label: "Your Rating", name: "rating", widget: "number", required: false, min: 1, max: 5, hint: "Your rating from 1-5 stars" }
+          - { label: "Where to Buy URL", name: "buyUrl", widget: "string", hint: "Affiliate link to purchase the product" }
+
       # Table of Contents settings
       - label: "Table of Contents"
         name: "showTableOfContents"
@@ -440,6 +461,7 @@ collections:
       # Original content fields
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Layout", name: "layout", widget: "hidden", default: "article.njk" }
+
 
   - name: "authors"
     label: "Authors"
