@@ -420,28 +420,34 @@ layout: 'base.njk'
     {% endif %}
 
     {% if tripDetails and tripDetails.itinerary and tripDetails.itinerary.length > 0 %}
-    <!-- Trip Itinerary Schema -->
+    <!-- Trip Itinerary Schema with Events -->
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
-    "@type": "ItemList",
+    "@type": "TravelItinerary",
     "name": "Itinerary for {{ title }}",
-    "itemListElement": [
+    "itinerary": {
+        "@type": "ItemList",
+        "itemListElement": [
         {% for day in tripDetails.itinerary %}
         {
-        "@type": "ListItem",
-        "position": {{ loop.index }},
-        "item": {
+            "@type": "ListItem",
+            "position": {{ loop.index }},
+            "item": {
             "@type": "Event",
             "name": "{{ day.time }}: {{ day.activity }}",
+            "startDate": "{{ page.date | isoDate }}", <!-- Added required field -->
+            "endDate": "{{ page.date | isoDate }}", <!-- Optional but recommended -->
             "location": {
-            "@type": "Place",
-            "name": "{{ day.location }}"
+                "@type": "Place",
+                "name": "{{ day.location }}"
+            },
+            "description": "{{ day.activity }} in {{ destination }}" <!-- Added description -->
             }
-        }
         }{% if not loop.last %},{% endif %}
         {% endfor %}
-    ]
+        ]
+    }
     }
     </script>
     {% endif %}
