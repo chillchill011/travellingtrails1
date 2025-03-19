@@ -373,11 +373,11 @@ layout: 'base.njk'
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "{{ site.url }}{{ page.url }}"
-      }
+      },
       "keywords": [
         {% if categories %}"{{ categories }}"{% if tags and tags.length > 0 %},{% endif %}{% endif %}
         {% if tags and tags.length > 0 %}{% for tag in tags %}{% if tag != "post" %}"{{ tag }}"{% if not loop.last %},{% endif %}{% endif %}{% endfor %}{% endif %}
-        ],
+      ]
     }
     </script>
     
@@ -420,28 +420,35 @@ layout: 'base.njk'
     {% endif %}
 
     {% if tripDetails and tripDetails.itinerary and tripDetails.itinerary.length > 0 %}
-    <!-- Trip Itinerary Schema -->
+    <!-- Trip Itinerary Schema with Events -->
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
-    "@type": "ItemList",
+    "@type": "Trip",
     "name": "Itinerary for {{ title }}",
-    "itemListElement": [
+    "description": "Travel itinerary for {{ destination if destination else title }}",
+    "itinerary": {
+        "@type": "ItemList",
+        "itemListElement": [
         {% for day in tripDetails.itinerary %}
         {
-        "@type": "ListItem",
-        "position": {{ loop.index }},
-        "item": {
+            "@type": "ListItem",
+            "position": {{ loop.index }},
+            "item": {
             "@type": "Event",
             "name": "{{ day.time }}: {{ day.activity }}",
+            "startDate": "{{ page.date | isoDate }}",
+            "endDate": "{{ page.date | isoDate }}",
             "location": {
-            "@type": "Place",
-            "name": "{{ day.location }}"
+                "@type": "Place",
+                "name": "{{ day.location }}"
+            },
+            "description": "{{ day.activity }} in {{ destination }}"
             }
-        }
         }{% if not loop.last %},{% endif %}
         {% endfor %}
-    ]
+        ]
+    }
     }
     </script>
     {% endif %}
@@ -535,7 +542,7 @@ layout: 'base.njk'
         "@type": "ListItem",
         "position": {{ loop.index }},
         "item": {
-            "@type": "Map",
+            "@type": "Place",
             "name": "{{ route.title }}",
             "description": "{{ route.alt }}",
             "url": "{{ site.url }}{{ page.url }}#routes",
@@ -646,48 +653,8 @@ layout: 'base.njk'
     }
     </script>
     {% endif %}
-        
-    {% if affiliateGallery and affiliateGallery.length > 0 %}
-    <!-- Product Recommendations Schema -->
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Recommended Gear for {{ title }}",
-    "description": "Equipment and gear recommended for this travel experience",
-    "itemListElement": [
-        {% for product in affiliateGallery %}
-        {
-        "@type": "ListItem",
-        "position": {{ loop.index }},
-        "item": {
-            "@type": "Product",
-            "name": "{{ product.title }}",
-            "description": "{{ product.description }}",
-            "image": "{{ site.url }}{{ product.src | url }}",
-            "url": "{{ product.buyUrl }}"{% if product.rating %},
-            "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "{{ product.rating }}",
-            "bestRating": "5",
-            "worstRating": "1",
-            "ratingCount": "1"
-            }{% endif %}{% if product.price %},
-            "offers": {
-            "@type": "Offer",
-            "price": "{{ product.price }}",
-            "priceCurrency": "INR",
-            "availability": "https://schema.org/InStock"
-            }{% endif %}
-        }
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-    ]
-    }
-    </script>
-    {% endif %}
 
 
-    
+
 
 </article>
