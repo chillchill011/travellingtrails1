@@ -42,7 +42,27 @@
       </svg>
     </a>
     
-    <!-- Email - Fixed to use mailto: protocol -->
+    <!-- Instagram - Uses a mobile-friendly approach -->
+    <button
+      onclick="shareToInstagram('{{ title | urlEncode }}', '{{ site.url }}{{ url | url }}')"
+      class="share-button instagram-share p-2 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white hover:opacity-90 transition-opacity"
+      aria-label="Share on Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+    </button>
+    
+    <!-- Snapchat - Uses a mobile-friendly approach -->
+    <button
+      onclick="shareToSnapchat('{{ title | urlEncode }}', '{{ site.url }}{{ url | url }}')"
+      class="share-button snapchat-share p-2 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-colors"
+      aria-label="Share on Snapchat">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12.206 21.973c-0.146 0-0.286 0.003-0.426 0-0.123-0.002-0.245-0.006-0.367-0.013-0.539-0.025-1.073-0.082-1.603-0.166-0.479-0.080-0.956-0.211-1.425-0.354-0.232-0.071-0.463-0.15-0.691-0.233-0.151-0.056-0.3-0.115-0.452-0.175-0.441-0.168-0.933-0.322-1.321-0.587-0.217-0.148-0.413-0.322-0.585-0.519-0.174-0.197-0.324-0.416-0.423-0.656-0.145-0.341-0.218-0.733-0.195-1.113 0.008-0.128 0.023-0.254 0.046-0.38 0.039-0.154 0.113-0.307 0.196-0.441 0.124-0.203 0.273-0.387 0.429-0.564 0.216-0.249 0.45-0.48 0.687-0.709 0.095-0.092 0.192-0.182 0.289-0.273 0.212-0.189 0.414-0.349 0.598-0.565 0.169-0.195 0.319-0.419 0.436-0.646 0.112-0.219 0.196-0.455 0.256-0.696 0.052-0.193 0.093-0.389 0.116-0.587 0.013-0.147 0.026-0.295 0.026-0.443 0-0.117-0.014-0.234-0.032-0.349-0.041-0.208-0.107-0.413-0.199-0.607-0.041-0.093-0.091-0.184-0.147-0.27-0.084-0.131-0.175-0.257-0.275-0.377-0.204-0.28-0.437-0.544-0.688-0.79-0.249-0.255-0.507-0.499-0.767-0.742-0.16-0.147-0.321-0.295-0.481-0.443-0.073-0.067-0.145-0.134-0.216-0.203 0.054-0.144 0.111-0.286 0.173-0.428 0.102-0.217 0.211-0.432 0.332-0.641 0.23-0.415 0.505-0.809 0.813-1.175 0.378-0.443 0.803-0.847 1.259-1.209 0.432-0.347 0.895-0.66 1.382-0.926 0.483-0.262 0.99-0.473 1.502-0.645 0.534-0.174 1.082-0.303 1.642-0.382 0.566-0.079 1.136-0.106 1.696-0.114 0.02 0 0.039-0.001 0.059-0.002 0.069-0.001 0.138-0.002 0.206-0.002 0.051 0 0.102 0.001 0.152 0.001 0.598 0.008 1.196 0.036 1.78 0.129 0.512 0.080 1.016 0.209 1.504 0.383 0.512 0.173 1.019 0.384 1.501 0.645 0.488 0.265 0.952 0.578 1.384 0.926 0.456 0.361 0.88 0.766 1.259 1.209 0.307 0.366 0.583 0.76 0.811 1.175 0.121 0.209 0.231 0.424 0.332 0.641 0.062 0.142 0.119 0.285 0.173 0.428-0.071 0.069-0.143 0.136-0.216 0.203-0.16 0.147-0.321 0.295-0.481 0.443-0.259 0.243-0.518 0.487-0.767 0.741-0.251 0.246-0.484 0.51-0.688 0.79-0.099 0.12-0.192 0.247-0.275 0.377-0.056 0.086-0.106 0.177-0.147 0.27-0.091 0.193-0.159 0.399-0.199 0.607-0.018 0.115-0.032 0.232-0.032 0.349 0 0.148 0.013 0.296 0.026 0.443 0.023 0.198 0.063 0.394 0.116 0.587 0.060 0.241 0.143 0.477 0.255 0.696 0.117 0.227 0.268 0.449 0.436 0.646 0.184 0.216 0.386 0.376 0.598 0.565 0.097 0.091 0.193 0.18 0.289 0.273 0.238 0.228 0.472 0.46 0.687 0.709 0.155 0.177 0.303 0.361 0.429 0.564 0.082 0.135 0.158 0.287 0.196 0.441 0.023 0.125 0.037 0.252 0.046 0.38 0.022 0.38-0.050 0.772-0.195 1.113-0.1 0.24-0.25 0.458-0.423 0.656-0.173 0.197-0.368 0.371-0.585 0.519-0.389 0.265-0.881 0.419-1.321 0.587-0.152 0.060-0.301 0.119-0.452 0.175-0.229 0.083-0.459 0.162-0.691 0.233-0.469 0.143-0.945 0.274-1.425 0.354-0.53 0.084-1.064 0.14-1.603 0.166-0.122 0.007-0.244 0.010-0.367 0.013-0.14 0.002-0.28 0-0.426 0z"/>
+      </svg>
+    </button>
+
+    <!-- Email -->
     <a href="mailto:?subject={{ title | urlEncode }}&body={{ description | urlEncode }}%0A%0A{{ site.url }}{{ url | url }}" 
        class="share-button email-share p-2 rounded-full bg-gray-500 text-white hover:bg-gray-600 transition-colors"
        aria-label="Share via Email">
@@ -63,7 +83,7 @@
   </div>
 </div>
 
-<!-- Script for copy link functionality -->
+<!-- Scripts for sharing -->
 <script>
   function copyToClipboard(text) {
     // Create temp input element
@@ -82,6 +102,48 @@
     setTimeout(() => {
       copyButton.style.backgroundColor = originalBg;
     }, 1500);
+  }
+
+  // Mobile-friendly Instagram sharing
+  function shareToInstagram(title, url) {
+    // On mobile, try to open the Instagram app
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      // First try to copy to clipboard
+      copyToClipboard(url);
+      
+      // Show a notification
+      alert('Link copied! Open Instagram and paste in your story or message.');
+      
+      // Try to open Instagram app
+      setTimeout(() => {
+        window.location.href = 'instagram://';
+      }, 300);
+    } else {
+      // On desktop, copy to clipboard and show instructions
+      copyToClipboard(url);
+      alert('Link copied to clipboard! You can paste it in Instagram.');
+    }
+  }
+
+  // Mobile-friendly Snapchat sharing
+  function shareToSnapchat(title, url) {
+    // On mobile, try to open the Snapchat app
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      // First try to copy to clipboard
+      copyToClipboard(url);
+      
+      // Show a notification
+      alert('Link copied! Open Snapchat and paste in your snap or message.');
+      
+      // Try to open Snapchat app
+      setTimeout(() => {
+        window.location.href = 'snapchat://';
+      }, 300);
+    } else {
+      // On desktop, copy to clipboard and show instructions
+      copyToClipboard(url);
+      alert('Link copied to clipboard! You can paste it in Snapchat.');
+    }
   }
 </script>
 {% endmacro %}

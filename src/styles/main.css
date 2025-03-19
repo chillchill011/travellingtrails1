@@ -448,6 +448,20 @@
   .email-share:hover {
     @apply bg-gray-600;
   }
+
+  /* Instagram gradient button */
+.instagram-share {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+/* Snapchat yellow button */
+.snapchat-share {
+  @apply bg-yellow-400 text-black;
+}
+
+.snapchat-share:hover {
+  @apply bg-yellow-300;
+}
 }
 
 @layer utilities {
