@@ -424,8 +424,9 @@ layout: 'base.njk'
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
-    "@type": "TravelItinerary",
+    "@type": "Trip",
     "name": "Itinerary for {{ title }}",
+    "description": "Travel itinerary for {{ destination if destination else title }}",
     "itinerary": {
         "@type": "ItemList",
         "itemListElement": [
@@ -437,7 +438,7 @@ layout: 'base.njk'
             "@type": "Event",
             "name": "{{ day.time }}: {{ day.activity }}",
             "startDate": "{{ page.date | isoDate }}",
-            "endDate": "{{ page.date | isoDate }}", 
+            "endDate": "{{ page.date | isoDate }}",
             "location": {
                 "@type": "Place",
                 "name": "{{ day.location }}"
