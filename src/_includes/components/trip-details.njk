@@ -1,0 +1,348 @@
+{% macro tripDetails(tripData) %}
+{% if tripData %}
+<div class="trip-details-container bg-gray-100 dark:bg-gray-800 rounded-lg mb-8 overflow-hidden">
+  <button class="trip-details-toggle w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white p-4 text-left font-medium flex justify-between items-center">
+    <span class="flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+      Trip Details
+    </span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform toggle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+
+  <div class="trip-details-content p-4 hidden">
+    <!-- Itinerary Section -->
+    {% if tripData.itinerary and tripData.itinerary.length > 0 %}
+    <div class="mb-6">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Itinerary
+      </h3>
+      <div class="space-y-3">
+        {% for day in tripData.itinerary %}
+        <div class="bg-white dark:bg-gray-700 p-3 rounded-md">
+          <div class="font-medium text-travel-700 dark:text-travel-300">{{ day.time }}</div>
+          <div class="flex items-start mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div>
+              <div class="text-gray-800 dark:text-gray-200">{{ day.location }}</div>
+              <div class="text-gray-600 dark:text-gray-400">{{ day.activity }}</div>
+              {% if day.duration %}
+              <div class="text-sm text-gray-500 dark:text-gray-500 mt-1">Duration: {{ day.duration }}</div>
+              {% endif %}
+              {% if day.notes %}
+              <div class="text-sm text-gray-500 dark:text-gray-500 mt-1 italic">{{ day.notes }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Cost Breakdown Section -->
+    {% if tripData.costs %}
+    <div class="mb-6">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z" />
+        </svg>
+        Cost Breakdown
+      </h3>
+      <div class="bg-white dark:bg-gray-700 p-4 rounded-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {% if tripData.costs.transportation %}
+          <div class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+            <div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Transportation</div>
+              <div class="text-gray-800 dark:text-gray-200">{{ tripData.costs.transportation }}</div>
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.costs.accommodation %}
+          <div class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Accommodation</div>
+              <div class="text-gray-800 dark:text-gray-200">{{ tripData.costs.accommodation }}</div>
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.costs.food %}
+          <div class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Food & Drinks</div>
+              <div class="text-gray-800 dark:text-gray-200">{{ tripData.costs.food }}</div>
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.costs.activities %}
+          <div class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+            </svg>
+            <div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Activities & Entrance Fees</div>
+              <div class="text-gray-800 dark:text-gray-200">{{ tripData.costs.activities }}</div>
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.costs.misc %}
+          <div class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 dark:text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+            <div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">Miscellaneous</div>
+              <div class="text-gray-800 dark:text-gray-200">{{ tripData.costs.misc }}</div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        
+        {% if tripData.costs.total %}
+        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+          <div class="flex justify-between">
+            <span class="font-medium text-gray-800 dark:text-gray-200">Total Budget:</span>
+            <span class="font-medium text-travel-700 dark:text-travel-300">{{ tripData.costs.total }}</span>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if tripData.costs.notes %}
+        <div class="mt-3 text-sm text-gray-600 dark:text-gray-400 italic">
+          {{ tripData.costs.notes }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Seasonal Information Section -->
+    {% if tripData.seasonal %}
+    <div class="mb-6">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        Seasonal Information
+      </h3>
+      <div class="bg-white dark:bg-gray-700 p-4 rounded-md">
+        {% if tripData.seasonal.bestSeason and tripData.seasonal.bestSeason.length > 0 %}
+        <div class="mb-3">
+          <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">Best Time to Visit:</div>
+          <div class="flex flex-wrap gap-2">
+            {% for season in tripData.seasonal.bestSeason %}
+            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-travel-100 text-travel-800 dark:bg-travel-900 dark:text-travel-300">
+              {{ season | capitalize }}
+            </span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if tripData.seasonal.notes %}
+        <div class="text-gray-700 dark:text-gray-300">
+          {{ tripData.seasonal.notes }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Difficulty Rating Section -->
+    {% if tripData.difficulty %}
+    <div class="mb-6">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        Difficulty Rating
+      </h3>
+      <div class="bg-white dark:bg-gray-700 p-4 rounded-md">
+        {% if tripData.difficulty.overall %}
+        <div class="mb-3">
+          <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Overall Difficulty:</div>
+          {% set difficultyClasses = {
+            'easy': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+            'moderate': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+            'challenging': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
+            'difficult': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+          } %}
+          <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium {{ difficultyClasses[tripData.difficulty.overall] }}">
+            {{ tripData.difficulty.overall | capitalize }}
+          </span>
+        </div>
+        {% endif %}
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+          {% if tripData.difficulty.physical %}
+          <div>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Physical Demand:</div>
+            <div class="flex items-center">
+              {% for i in range(1, 6) %}
+              <svg class="w-5 h-5 {{ 'text-travel-600 dark:text-travel-400' if i <= tripData.difficulty.physical else 'text-gray-300 dark:text-gray-600' }}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.difficulty.technical %}
+          <div>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Technical Difficulty:</div>
+            <div class="flex items-center">
+              {% for i in range(1, 6) %}
+              <svg class="w-5 h-5 {{ 'text-travel-600 dark:text-travel-400' if i <= tripData.difficulty.technical else 'text-gray-300 dark:text-gray-600' }}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        
+        {% if tripData.difficulty.notes %}
+        <div class="text-gray-700 dark:text-gray-300">
+          {{ tripData.difficulty.notes }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Local Resources Section -->
+    {% if tripData.localResources %}
+    <div class="mb-6">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        Local Resources
+      </h3>
+      <div class="bg-white dark:bg-gray-700 p-4 rounded-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {% if tripData.localResources.emergency %}
+          <div>
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Emergency Contacts:</h4>
+            <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.localResources.emergency }}</div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.localResources.mechanics %}
+          <div>
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mechanic Shops:</h4>
+            <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.localResources.mechanics }}</div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.localResources.accommodation %}
+          <div>
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Accommodation Options:</h4>
+            <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.localResources.accommodation }}</div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.localResources.food %}
+          <div>
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Food Recommendations:</h4>
+            <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.localResources.food }}</div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.localResources.fuel %}
+          <div>
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Fuel Stations:</h4>
+            <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.localResources.fuel }}</div>
+          </div>
+          {% endif %}
+          
+          {% if tripData.localResources.medical %}
+          <div>
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Medical Facilities:</h4>
+            <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.localResources.medical }}</div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Alternative Transportation Section -->
+    {% if tripData.altTransportation %}
+    <div class="mb-6">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-travel-600 dark:text-travel-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Alternative Transportation
+      </h3>
+      <div class="bg-white dark:bg-gray-700 p-4 rounded-md">
+        {% if tripData.altTransportation.public %}
+        <div class="mb-3">
+          <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Public Transport:</h4>
+          <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.altTransportation.public }}</div>
+        </div>
+        {% endif %}
+        
+        {% if tripData.altTransportation.private %}
+        <div class="mb-3">
+          <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Private Vehicle Options:</h4>
+          <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.altTransportation.private }}</div>
+        </div>
+        {% endif %}
+        
+        {% if tripData.altTransportation.tours %}
+        <div class="mb-3">
+          <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tour Operators:</h4>
+          <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.altTransportation.tours }}</div>
+        </div>
+        {% endif %}
+        
+        {% if tripData.altTransportation.notes %}
+        <div class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ tripData.altTransportation.notes }}</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tripDetailsToggle = document.querySelector('.trip-details-toggle');
+    const tripDetailsContent = document.querySelector('.trip-details-content');
+    const toggleIcon = document.querySelector('.toggle-icon');
+    
+    if (tripDetailsToggle && tripDetailsContent) {
+      tripDetailsToggle.addEventListener('click', function() {
+        tripDetailsContent.classList.toggle('hidden');
+        toggleIcon.classList.toggle('rotate-180');
+      });
+    }
+  });
+</script>
+{% endif %}
+{% endmacro %}

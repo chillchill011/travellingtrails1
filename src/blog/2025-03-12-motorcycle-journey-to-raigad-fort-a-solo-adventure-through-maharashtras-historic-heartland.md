@@ -58,6 +58,60 @@ routeGallery:
     duration: 3.5 hours
     mapSource: Google Maps
     mapUrl: https://maps.app.goo.gl/vuCP5cJHW2nK6cP68
+tripDetails:
+  itinerary:
+    - time: Day 1
+      location: Test Locations
+      activity: Test Activity
+      duration: 2 hours
+      notes: Test optional notes
+  costs:
+    transportation: Rs. 4000
+    accommodation: None
+    food: Rs. 200 for snacks and juices
+    activities: Rs. 50 for two wheeler parking
+    misc: "Miscellaneious details "
+    total: 5 thousand
+    notes: Additional optional notes
+  seasonal:
+    bestSeason:
+      - monsoon
+    notes: Test seasonal notes
+  difficulty:
+    overall: easy
+    physical: 1
+    technical: 1
+    notes: Optional difficulty level notes
+  localResources:
+    emergency: Test details
+    mechanics: Test details
+    accommodation: Test details
+    food: Test details
+    fuel: Test details
+    medical: Test details
+  altTransportation:
+    public: Test details
+    private: Test details
+    tours: Test details
+    notes: Test details
+affiliateGallery:
+  - src: /assets/images/gallery-image-1.jpg
+    alt: Text gear alt text
+    title: Gear 1
+    description: Description of the gear
+    ownershipStatus: I recommend this
+    price: Rs. 2000 to Rs. 3000
+    rating: 1
+    buyUrl: https://www.amazon.in/
+  - src: /assets/images/gallery-image-2.jpg
+    alt: Alt text two for the
+    title: Gear 2 for the long ride
+    description: Test description of the gear two in great details. This will help
+      the people using this gear.
+    ownershipStatus: I own this
+    price: Rs. 1599
+    rating: 4
+    buyUrl: amazon.in
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk

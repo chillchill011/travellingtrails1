@@ -4,6 +4,9 @@ layout: 'base.njk'
 {% from "components/table-of-contents.njk" import tableOfContents %}
 {% from "components/author-bio.njk" import authorBio %}
 {% from "components/enhanced-gallery.njk" import enhancedGallery %}
+{% from "components/trip-details.njk" import tripDetails as tripDetailsComponent %}
+{% from "components/affiliate-gallery.njk" import affiliateGallery as affiliateGalleryComponent %}
+{% from "components/share-buttons.njk" import shareButtons as shareButtonsComponent%}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -91,16 +94,40 @@ layout: 'base.njk'
         {{ contentData.content | safe }}
     </div>
 
+
+    <!-- Trip Details -->
+    {% if tripDetails and (
+        tripDetails.itinerary or 
+        tripDetails.costs or 
+        tripDetails.seasonal or 
+        tripDetails.difficulty or 
+        tripDetails.localResources or 
+        tripDetails.altTransportation
+    ) %}
+        {{ tripDetailsComponent(tripDetails) }}
+    {% endif %}
+
     <!-- Photo Gallery -->
     {% if gallery and gallery.length > 0 %}
       {{ enhancedGallery(gallery, "Photo Gallery", "photo") }}
     {% endif %}
 
     <!-- Route Gallery -->
-  <!-- Route Gallery -->
     {% if routeGallery and routeGallery.length > 0 %}
     {{ enhancedGallery(routeGallery, "Journey Routes", "route") }}
     {% endif %}
+
+    <!-- Affiliate Product Gallery -->
+    {% if affiliateGallery and affiliateGallery.length > 0 %}
+    {{ affiliateGalleryComponent(affiliateGallery) }}
+    {% endif %}
+
+    <!-- Share Buttons Section -->
+    <div class="share-buttons-container mt-6 mb-8">
+        <div class="flex flex-wrap gap-2 md:gap-3">
+            {{ shareButtonsComponent(title, page.url, description, "travellingtrails,travel") }}
+        </div>
+    </div>
 
     <!-- Author Bio Section -->
     {% if author %}
@@ -304,36 +331,6 @@ layout: 'base.njk'
         {% endif %}
     {% endif %}
 
-    <!-- Schema.org Article Markup for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "{{ title }}",
-        "description": "{% if description %}{{ description }}{% endif %}",
-        "image": "{% if featuredImage %}{{ site.url }}{{ featuredImage | url }}{% endif %}",
-        "author": {
-            "@type": "Person",
-            "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "{{ site.title }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ site.url }}/assets/images/logo.png"
-            }
-        },
-        "datePublished": "{{ page.date | isoDate }}",
-        "dateModified": "{{ page.date | isoDate }}",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ site.url }}{{ page.url }}"
-        },
-        "wordCount": "{{ content | striptags | wordCount }}",
-        "timeRequired": "PT{{ content | striptags | readingTime | replace(' min read', '') }}M"
-    }
-    </script>
 
     <!-- Article footer with author credit and date -->
     {% if author %}
@@ -349,4 +346,34 @@ layout: 'base.njk'
         {% endif %}
     </div>
     {% endif %}
+
+<!-- Schema.org Article Markup for SEO -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ title }}",
+      "description": "{{ description }}",
+      "image": "{{ site.url }}{{ featuredImage | url }}",
+      "author": {
+        "@type": "Person",
+        "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}/assets/images/logo.png"
+        }
+      },
+      "datePublished": "{{ page.date | isoDate }}",
+      "dateModified": "{{ page.date | isoDate }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ site.url }}{{ page.url }}"
+      }
+    }
+    </script>
+    
 </article>

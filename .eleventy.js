@@ -4,6 +4,7 @@ const markdownIt = require("markdown-it");
 const cheerio = require('cheerio');
 
 module.exports = function(eleventyConfig) {
+  
     // Passthrough copies
     eleventyConfig.addPassthroughCopy({"src/assets/js": "assets/js"});
     eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
