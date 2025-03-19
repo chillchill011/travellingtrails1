@@ -348,22 +348,30 @@ layout: 'base.njk'
     {% endif %}
 
 <!-- Schema.org Article Markup for SEO -->
-<!-- Completely hardcoded static schema -->
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Test Article",
-      "description": "This is a test article description.",
+      "headline": "{{ title }}",
+      "description": "{{ description }}",
+      "image": "{{ site.url }}{{ featuredImage | url }}",
       "author": {
         "@type": "Person",
-        "name": "Test Author"
+        "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
       },
-      "datePublished": "2023-01-01",
-      "dateModified": "2023-01-01",
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}/assets/images/logo.png"
+        }
+      },
+      "datePublished": "{{ page.date | isoDate }}",
+      "dateModified": "{{ page.date | isoDate }}",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://example.com/test-article/"
+        "@id": "{{ site.url }}{{ page.url }}"
       }
     }
     </script>
