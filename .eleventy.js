@@ -71,6 +71,12 @@ module.exports = function(eleventyConfig) {
       return "";
     });
 
+
+    // Add URL encoding filter - add this near your other filter definitions
+    eleventyConfig.addFilter("urlEncode", function(str) {
+      return encodeURIComponent(str || "");
+    });
+
     // Add this to your list of filters
     eleventyConfig.addFilter("getAuthorName", function(authorSlug, authors) {
       if (!authorSlug) return "";

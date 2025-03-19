@@ -13,7 +13,7 @@
     </a>
     
     <!-- Twitter/X -->
-    <a href="https://twitter.com/intent/tweet?text={{ title | escape }}&url={{ site.url }}{{ url | url }}{% if hashtags %}&hashtags={{ hashtags }}{% endif %}" 
+    <a href="https://twitter.com/intent/tweet?text={{ title | urlEncode }}&url={{ site.url }}{{ url | url }}" 
        target="_blank" rel="noopener noreferrer"
        class="share-button twitter-share p-2 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
        aria-label="Share on Twitter/X">
@@ -33,7 +33,7 @@
     </a>
     
     <!-- WhatsApp -->
-    <a href="https://api.whatsapp.com/send?text={{ title | escape }}%20{{ site.url }}{{ url | url }}" 
+    <a href="https://api.whatsapp.com/send?text={{ (title + ' - ' + site.url + url) | urlEncode }}" 
        target="_blank" rel="noopener noreferrer"
        class="share-button whatsapp-share p-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
        aria-label="Share on WhatsApp">
@@ -42,8 +42,8 @@
       </svg>
     </a>
     
-    <!-- Email -->
-    <a href="mailto:?subject={{ title | escape }}&body={{ description | escape }}%0A%0A{{ site.url }}{{ url | url }}" 
+    <!-- Email - Fixed to use mailto: protocol -->
+    <a href="mailto:?subject={{ title | urlEncode }}&body={{ description | urlEncode }}%0A%0A{{ site.url }}{{ url | url }}" 
        class="share-button email-share p-2 rounded-full bg-gray-500 text-white hover:bg-gray-600 transition-colors"
        aria-label="Share via Email">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,7 +68,7 @@
   function copyToClipboard(text) {
     // Create temp input element
     const input = document.createElement('input');
-    input.setAttribute('value', text);s
+    input.setAttribute('value', text);
     document.body.appendChild(input);
     input.select();
     document.execCommand('copy');
