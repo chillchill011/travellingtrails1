@@ -414,6 +414,40 @@
     .affiliate-item figcaption .font-medium {
       @apply text-gray-900 dark:text-white mb-1;
     }
+
+    /* Share buttons */
+  .share-buttons-container {
+    @apply inline-block;
+  }
+  
+  .share-button {
+    @apply inline-flex items-center justify-center transition-transform duration-200;
+  }
+  
+  .share-button:hover {
+    @apply transform scale-110;
+  }
+  
+  /* Specific button hover effects */
+  .facebook-share:hover {
+    @apply bg-blue-700;
+  }
+  
+  .twitter-share:hover {
+    @apply bg-gray-800;
+  }
+  
+  .linkedin-share:hover {
+    @apply bg-blue-800;
+  }
+  
+  .whatsapp-share:hover {
+    @apply bg-green-600;
+  }
+  
+  .email-share:hover {
+    @apply bg-gray-600;
+  }
 }
 
 @layer utilities {

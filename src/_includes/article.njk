@@ -6,6 +6,7 @@ layout: 'base.njk'
 {% from "components/enhanced-gallery.njk" import enhancedGallery %}
 {% from "components/trip-details.njk" import tripDetails as tripDetailsComponent %}
 {% from "components/affiliate-gallery.njk" import affiliateGallery as affiliateGalleryComponent %}
+{% from "components/share-buttons.njk" import shareButtons as shareButtonsComponent%}
 
 <article class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
@@ -120,6 +121,13 @@ layout: 'base.njk'
     {% if affiliateGallery and affiliateGallery.length > 0 %}
     {{ affiliateGalleryComponent(affiliateGallery) }}
     {% endif %}
+
+    <!-- Share Buttons Section -->
+    <div class="share-buttons-container mt-6 mb-8">
+        <div class="flex flex-wrap gap-2 md:gap-3">
+            {{ shareButtonsComponent(title, page.url, description, "travellingtrails,travel") }}
+        </div>
+    </div>
 
     <!-- Author Bio Section -->
     {% if author %}
