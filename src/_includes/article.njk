@@ -373,11 +373,11 @@ layout: 'base.njk'
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "{{ site.url }}{{ page.url }}"
-      }
+      },
       "keywords": [
         {% if categories %}"{{ categories }}"{% if tags and tags.length > 0 %},{% endif %}{% endif %}
         {% if tags and tags.length > 0 %}{% for tag in tags %}{% if tag != "post" %}"{{ tag }}"{% if not loop.last %},{% endif %}{% endif %}{% endfor %}{% endif %}
-        ],
+      ]
     }
     </script>
     
@@ -688,6 +688,6 @@ layout: 'base.njk'
     {% endif %}
 
 
-    
+
 
 </article>
