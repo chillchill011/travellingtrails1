@@ -331,36 +331,6 @@ layout: 'base.njk'
         {% endif %}
     {% endif %}
 
-    <!-- Schema.org Article Markup for SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "{{ title }}",
-        "description": "{% if description %}{{ description }}{% endif %}",
-        "image": "{% if featuredImage %}{{ site.url }}{{ featuredImage | url }}{% endif %}",
-        "author": {
-            "@type": "Person",
-            "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "{{ site.title }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ site.url }}/assets/images/logo.png"
-            }
-        },
-        "datePublished": "{{ page.date | isoDate }}",
-        "dateModified": "{{ page.date | isoDate }}",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ site.url }}{{ page.url }}"
-        },
-        "wordCount": "{{ content | striptags | wordCount }}",
-        "timeRequired": "PT{{ content | striptags | readingTime | replace(' min read', '') }}M"
-    }
-    </script>
 
     <!-- Article footer with author credit and date -->
     {% if author %}
@@ -376,4 +346,96 @@ layout: 'base.njk'
         {% endif %}
     </div>
     {% endif %}
+
+<!-- Schema.org Article Markup for SEO -->
+<!-- Schema.org Article Markup with corrected property usage -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ title }}",
+      "description": "{{ description }}",
+      "image": "{{ site.url }}{{ featuredImage | url }}",
+      "author": {
+        "@type": "Person",
+        "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ site.title }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}/assets/images/logo.png"
+        }
+      },
+      "datePublished": "{{ page.date | isoDate }}",
+      "dateModified": "{{ page.date | isoDate }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ site.url }}{{ page.url }}"
+      }
+      {% if destination %}
+      ,"about": {
+        "@type": "TouristAttraction",
+        "name": "{{ destination }}",
+        "description": "{{ description }}"
+        {% if coordinates and coordinates.latitude and coordinates.longitude %}
+        ,"geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "{{ coordinates.latitude }}",
+          "longitude": "{{ coordinates.longitude }}"
+        }
+        {% endif %}
+      }
+      {% endif %}
+      
+      {% if destination or travelType or activities %}
+      ,"mainEntity": {
+        "@type": "Trip",
+        "name": "{{ title }}",
+        "description": "{{ description }}"
+        {% if travelType %},"additionalType": "{{ travelType | join(', ') if travelType.length else travelType }}"{% endif %}
+        {% if tripDetails and tripDetails.costs and tripDetails.costs.total %}
+        ,"offers": {
+          "@type": "Offer",
+          "description": "Estimated trip cost",
+          "price": "{{ tripDetails.costs.total | replace('Rs. ', '') | replace('₹', '') | replace(' ', '') | replace('thousand', '000') }}",
+          "priceCurrency": "INR"
+        }
+        {% endif %}
+        {% if tripDetails and tripDetails.itinerary and tripDetails.itinerary.length > 0 %}
+        ,"itinerary": {
+          "@type": "ItemList",
+          "numberOfItems": {{ tripDetails.itinerary.length }},
+          "itemListElement": [
+            {% for item in tripDetails.itinerary %}
+            {
+              "@type": "ListItem",
+              "position": {{ loop.index }},
+              "item": {
+                "@type": "TouristAttraction",
+                "name": "{{ item.location }}",
+                "description": "{{ item.activity }}{% if item.notes %} - {{ item.notes }}{% endif %}"
+              }
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }
+        {% endif %}
+        {% if activities and activities.length > 0 %}
+        ,"additionalProperty": [
+          {% for activity in activities %}
+          {
+            "@type": "PropertyValue",
+            "name": "activity",
+            "value": "{{ activity }}"
+          }{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ]
+        {% endif %}
+      }
+      {% endif %}
+    }
+    </script>
+    
 </article>
