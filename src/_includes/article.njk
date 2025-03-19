@@ -436,13 +436,13 @@ layout: 'base.njk'
             "item": {
             "@type": "Event",
             "name": "{{ day.time }}: {{ day.activity }}",
-            "startDate": "{{ page.date | isoDate }}", <!-- Added required field -->
-            "endDate": "{{ page.date | isoDate }}", <!-- Optional but recommended -->
+            "startDate": "{{ page.date | isoDate }}",
+            "endDate": "{{ page.date | isoDate }}", 
             "location": {
                 "@type": "Place",
                 "name": "{{ day.location }}"
             },
-            "description": "{{ day.activity }} in {{ destination }}" <!-- Added description -->
+            "description": "{{ day.activity }} in {{ destination }}"
             }
         }{% if not loop.last %},{% endif %}
         {% endfor %}
