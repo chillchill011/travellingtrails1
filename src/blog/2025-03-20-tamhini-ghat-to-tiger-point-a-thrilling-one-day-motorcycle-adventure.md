@@ -53,6 +53,60 @@ gallery:
       the expansive Kundalika Valley and surrounding mountain ranges
     credit: Aniket
     location: Tailbaila Fort Parking
+routeGallery:
+  - src: /assets/images/full-route-from-home-tamhini-ghat-tiger-point-lonavla-and-back-to-home.jpg
+    title: Pune to Pune from Lonavla
+    alt: Pune to Pune route from lonavla
+    distance: 165 km
+    duration: 4.5 hour
+    mapSource: Google Maps
+    locations: Parate wadi, Tiger point, Lonavla
+    mapUrl: https://maps.app.goo.gl/GdTJhr5KnKVydmny8
+  - src: /assets/images/home-to-savlya-ghat-parate-wadi.jpg
+    title: Pune to Parate wadi
+    alt: Road through tamhini ghat leads to a turn near Nive village.
+    distance: 54 km
+    duration: 1 hour
+    mapSource: Google Maps
+    mapUrl: https://maps.app.goo.gl/kQY6x1SnFXqGzxD27
+tripDetails:
+  itinerary:
+    - time: 11.30 AM
+      location: MakaBawa Cafe Bar
+      activity: Lunch
+      duration: 1 hour
+  seasonal:
+    bestSeason:
+      - post-monsoon
+    notes: Tamhini Ghat transforms dramatically with the seasons. During monsoon,
+      this area becomes a paradise for rain-lovers and waterfall enthusiasts,
+      with countless cascades emerging along the route. However, this beauty
+      comes with significant risks - landslides are common, and even small
+      falling rocks can cause serious accidents to riders and vehicles. Exercise
+      extreme caution if visiting during heavy rainfall periods. Be wary of
+      irresponsible tourists who consume alcohol and create hazardous situations
+      by playing loud music and dancing in the middle of the road. The
+      post-monsoon period (September-November) offers a safer alternative with
+      lush green landscapes and flowing streams, delivering much of the scenic
+      beauty without the severe weather risks.
+  difficulty:
+    overall: moderate
+    physical: 3
+    technical: 3
+    notes: Some off-road experience is definitely recommended for this route,
+      particularly for the sections leading to Aamby Valley and the approach to
+      Tailbaila Fort. While experienced riders on adventure bikes will find
+      these sections enjoyable, those with limited off-road skills might find
+      them challenging and potentially risky. I strongly recommend traveling in
+      a group for routes like this rather than attempting it solo. The route
+      also has limited cell phone coverage in some sections, further emphasizing
+      the safety benefits of group riding on these adventurous trails.
+  localResources:
+    accommodation: |-
+      Devkund View Hotel & Home Stay
+      9823252719 / 7875847374 / 7066148355
+      Location- At Savala Ghat, Parate Wadi, Nive
+    medical: Only at Lonavla
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
