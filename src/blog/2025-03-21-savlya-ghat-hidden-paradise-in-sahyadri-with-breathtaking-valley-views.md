@@ -10,8 +10,8 @@ description: Discover Savlya Ghat, a hidden gem in Maharashtra's Sahyadri range
 author: aniket
 destination: Savlya Ghat
 coordinates:
-  latitude: 15
-  longitude: 73.40457903567244
+  latitude: 18.48584593711763
+  longitude: 73.4038920411049
 duration: 1 day
 categories: Hidden Gems
 travelType:
