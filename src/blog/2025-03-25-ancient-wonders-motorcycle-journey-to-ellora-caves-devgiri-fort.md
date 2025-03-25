@@ -145,12 +145,35 @@ After checking in, we enjoyed a satisfying lunch at the hotel restaurant before 
 
 By 3:30 PM, we were at the Ellora Caves complex, approximately 30 kilometers from our hotel. On the way, we passed Devgiri Fort (another historical gem we'd save for day 2) but remained focused on our primary destination. The afternoon timing proved strategic—the tourist crowds had thinned considerably, allowing us a more intimate experience with these ancient wonders.
 
-{% imageGallery [
-  { "src": "/assets/images/ellora-cave-statue-of-buddha.jpg", "alt": "Buddha statue in cave" },
-  { "src": "/assets/images/ellora-cave-1.jpg", "alt": "Detailed wall carving" },
-  { "src": "/assets/images/ellora-cave-kailas-temple-from-entrance.jpg", "alt": "Detailed wall carving" },
-  { "src": "/assets/images/ellora-cave-buddha-vihas.jpg", "alt": "Cave interior view" }
-] %}
+<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem; border: 1px solid #e5e7eb;" class="dark:border-gray-700">
+      <img src="/assets/images/ellora-cave-statue-of-buddha.jpg" alt="Buddha statue in cave" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Buddha statue in cave</figcaption>
+  </figure>
+  
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem; border: 1px solid #e5e7eb;" class="dark:border-gray-700">
+      <img src="/assets/images/ellora-cave-1.jpg" alt="Detailed wall carving" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Detailed wall carving</figcaption>
+  </figure>
+  
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem; border: 1px solid #e5e7eb;" class="dark:border-gray-700">
+      <img src="/assets/images/ellora-cave-kailas-temple-from-entrance.jpg" alt="Kailasa Temple view from entrance" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Kailasa Temple view from entrance</figcaption>
+  </figure>
+  
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem; border: 1px solid #e5e7eb;" class="dark:border-gray-700">
+      <img src="/assets/images/ellora-cave-buddha-vihas.jpg" alt="Buddha Viharas at Ellora" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Buddha Viharas at Ellora</figcaption>
+  </figure>
+</div>
 
 #### Practical Information for Visitors:
 
