@@ -205,6 +205,93 @@ We made a beeline for Cave 16—the iconic Kailasa Temple—the largest monolith
 
 The sheer scale of achievement is mind-boggling: ancient artisans carved this entire temple complex from top to bottom out of a single rock, removing an estimated 400,000 tons of stone to create a structure that stands 32 meters high, 78 meters long, and 62 meters wide. The thought processes, engineering calculations, and artistic vision required for such an undertaking are almost beyond comprehension.
 
+<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/kailas-temple-from-inside.jpg" alt="Photo taken from the side mandap of the temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Kailasa Temple another view</figcaption>
+  </figure>
+  
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-view-from-the-temple.jpg" alt="Kailasa temple view from the first floor of the temple itself" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Kailasa temple view from the first floor of the temple itself</figcaption>
+  </figure>
+  
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-1.jpg
+      " alt="Wall carvings of Kailasa temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Wall carvings of Kailasa temple</figcaption>
+  </figure>
+  
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-sculpture-1.jpg" alt="Sculpture in Kailasa Temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Sculpture in Kailasa Temple</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-sculpture-2.jpg" alt="Sculpture in Kailasa Temple 2" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Sculpture in Kailasa Temple</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/kailas-temple-side-pillers.jpg" alt="Pillars of Kailasa temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Sculpted pillars of Kailasa Temple</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora caves kailasa-temple-design-with-upper-layer-of-sand.jpg" alt="Designs on walls of kailasa temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Designs on walls of Kailasa Temple</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-pillar.jpg" alt="Giant pillar of the Kailasa Temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Giant pillar of the Kailasa Temple</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-Ganapati.jpg" alt="Ganapati sculpture in one of the caves" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Ganapati sculpture in one of the caves</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-bird-eye-view-1.jpg" alt="Kailasa temple view from the side mountain" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Kailasa temple view from the side mountain</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-caves-kailasa-temple-bird-eye-view-2.jpg" alt="Kailasa temple view from the side mountain other half" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Kailasa temple view from the side mountain</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/Grishneshwar-temple.jpg" alt="Grishneshwar Temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Shree Grishneshwar Temple</figcaption>
+  </figure>
+</div>
+
 We spent nearly an hour exploring every corner of this magnificent temple, marveling at the intricately carved deities, mythological scenes, and architectural elements. Each pillar tells a story; each wall section captures a piece of ancient wisdom. The precision of the carvings, considering the tools available in the 8th century, left us speechless.
 
 Eventually, we climbed the small hill formed by the original rock from which the temple was carved, gaining a bird's-eye perspective of the complex. From this vantage point, the brilliance of the ancient architects became even more apparent—the perfect symmetry, the thoughtful layout, and the harmonious integration with the surrounding landscape. We sat in contemplative silence for 15 minutes, trying to absorb the magnitude of what we were witnessing.
