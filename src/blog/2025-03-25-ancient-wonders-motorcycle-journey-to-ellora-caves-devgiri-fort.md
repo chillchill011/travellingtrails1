@@ -173,6 +173,20 @@ By 3:30 PM, we were at the Ellora Caves complex, approximately 30 kilometers fro
     </div>
     <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Buddha Viharas at Ellora</figcaption>
   </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-cave-2.jpg" alt="Ellora caves two" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Ellora cave</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/ellora-cave-3.jpg" alt="Ellora caves three" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Ellora caves</figcaption>
+  </figure>
 </div>
 
 #### Practical Information for Visitors:
