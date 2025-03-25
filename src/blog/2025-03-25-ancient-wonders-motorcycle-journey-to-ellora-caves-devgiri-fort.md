@@ -60,7 +60,37 @@ gallery:
     alt: Way to the top of the fort
     credit: Aniket
     location: Devgiri fort
-routeGallery: []
+routeGallery:
+  - src: /assets/images/pune-to-aurangabad-route.png
+    title: Pune to Chhatrapati Sambhaji Nagar
+    alt: Pune to Chhatrapati Sambhaji Nagar via Ahilyanagar route
+    distance: 235 km
+    duration: 5 hours
+    mapSource: Google maps
+    mapUrl: https://maps.app.goo.gl/Vw1pQceZhBaAoX4S7
+    locations: Shikrapur, Shirur, Ahilya nagar, Waluj Bk
+  - title: Chhatrapati Sambhaji Nagar to Pune via Sangamner
+    src: /assets/images/aurangabad-to-pune-route-via-sangamner.png
+    alt: Chhatrapati Sambhaji Nagar to Pune via Sangamner
+    locations: Waluj Bk, Newasa, Shrirampur, Loni, Sangamner, Chakan
+    distance: 290 km
+    duration: 7 hours
+    mapSource: Google Maps
+    mapUrl: https://maps.app.goo.gl/RZ8TfBmi8k3dbPeH9
+  - src: /assets/images/hotel-panchvati-to-ellora-caves.png
+    title: Hotel Panchvati to Ellora Caves
+    alt: Hotel Panchvati to Ellora Caves
+    distance: 27 km
+    duration: 40 mins
+    mapUrl: https://maps.app.goo.gl/udcCnVEHe5Npf4Af8
+    mapSource: Google maps
+  - src: /assets/images/hotel-panchvati-to-devgiri-fort.png
+    title: Hotel Panchvati to Devgiri Fort
+    alt: Hotel Panchvati to Devgiri Fort
+    distance: 14 km
+    duration: 20 min
+    mapSource: Google maps
+    mapUrl: https://maps.app.goo.gl/kwBAAUhLfxn5uSQv5
 tripDetails:
   itinerary:
     - time: Day 1 - 6.45 AM
@@ -163,7 +193,7 @@ We took several short breaks for hydration, tea, and stretching, making the jour
 
 ### Hotel Panchavati: Our Base Camp
 
-Hotel Panchavati served as our home for this adventure—a budget-friendly option that exceeded expectations. For ₹2,200, we got a room with an extra bed and breakfast included. While somewhat compact, the room was clean and well-maintained. The hotel's proximity to Baba Petrol Pump (just a 2-minute walk) made it conveniently located, and the on-site restaurant served delicious food at reasonable prices.
+[Hotel Panchavati](https://maps.app.goo.gl/TFTxVwCBWe6M58yF6) served as our home for this adventure—a budget-friendly option that exceeded expectations. For ₹2,200, we got a room with an extra bed and breakfast included. While somewhat compact, the room was clean and well-maintained. The hotel's proximity to Baba Petrol Pump (just a 2-minute walk) made it conveniently located, and the on-site restaurant served delicious food at reasonable prices.
 
 After checking in, we enjoyed a satisfying lunch at the hotel restaurant before taking a short but essential power nap to rejuvenate ourselves for the afternoon exploration.
 
@@ -410,7 +440,7 @@ From the top, the view of the surrounding countryside was spectacular. The Char 
 
 After descending from the fort, we returned to our hotel for a quick rest before beginning our journey back to Pune around noon. For variety, we chose a different return route: Gangapur - Nevasa - Shrirampur - Sangamner - Narayangaon - Rajgurunagar - Chakan - Pune.
 
-This 290-kilometer path took approximately 7 hours, including a lunch stop at Hotel Silver Spoon in Shrirampur (highly recommended), and several refreshment breaks for sugarcane juice, lemon juice, and roadside guavas. The route included about 15 kilometers of off-road sections due to ongoing construction, which the Scrambler 400X handled effortlessly.
+This 290-kilometer path took approximately 7 hours, including a lunch stop at [Hotel Silver Spoon](https://maps.app.goo.gl/7xu3R5PUWHMBL49n8) in Shrirampur (highly recommended), and several refreshment breaks for sugarcane juice, lemon juice, and roadside guavas. The route included about 15 kilometers of off-road sections due to ongoing construction, which the Scrambler 400X handled effortlessly.
 
 Traffic grew increasingly dense as we approached Pune, with the final stretch from Chakan to home taking nearly two hours due to congestion. We parted ways at Chakan, each heading to our respective homes, bringing our historical expedition to a satisfying conclusion.
 
