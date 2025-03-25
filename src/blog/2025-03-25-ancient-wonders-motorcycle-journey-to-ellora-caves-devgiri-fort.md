@@ -35,6 +35,32 @@ imageAlt: The magnificent Kailasa Temple at Ellora Caves, an ancient monolithic
   rock-cut temple carved from a single massive rock
 imageCredit: Aniket
 thumbnailImage: /assets/images/ellora-kailasa-temple-thumbnail.jpg
+gallery:
+  - src: /assets/images/castle-of-the-devgiri.jpg
+    alt: Castle of the Devgiri fort on top
+    credit: Aniket
+    location: Devgiri fort
+  - src: /assets/images/elephant-sculpture-on-the-door-of-the-devgiri-fort.jpg
+    alt: Elephant sculpture on the one of the door of the fort
+    credit: Aniket
+    location: Devgiri fort
+  - src: /assets/images/entry-of-the-fort-devgiri.jpg
+    alt: Entry point of the Devgiri fort
+    credit: Aniket
+    location: Devgiri fort
+  - src: /assets/images/steps-carved-in-a-stone.jpg
+    alt: Stairs of the fort sculpted through a single rock
+    caption: ""
+    credit: Aniket
+  - src: /assets/images/sunrise-from-the-fort.jpg
+    alt: Sunrise from the hill of the fort. We can see the Char minar from the top
+    credit: Aniket
+    location: Devgiri Fort
+  - src: /assets/images/way-to-the-top-of-the-fort.jpg
+    alt: Way to the top of the fort
+    credit: Aniket
+    location: Devgiri fort
+routeGallery: []
 tripDetails:
   itinerary:
     - time: Day 1 - 6.45 AM
@@ -322,9 +348,55 @@ After purchasing tickets and camera permissions (note: tripods are surprisingly 
 
 ### Architectural Brilliance of Devgiri
 
+<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/devgiri-fort-biggest-cannon-mendha-tope-barrel-size.jpg" alt="Mendha tope barrel size" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Mendha tope barrel size</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/devgiri-fort-cannon-barrel-size.jpg" alt="Barrel size of one of the tope in Devgiri fort" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Barrel size of one of the tope in Devgiri fort</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/devgiri-fort-canon-1.jpg" alt="One of the cannon in Devgiri fort" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">One of the cannon in Devgiri fort</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/devgiri-fort-canon-2.jpg" alt="One of the cannon in Devgiri fort two" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">One of the cannon in Devgiri fort</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/mendha-tope.jpg" alt="Mendha tope Devgiri fort" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Mendha tope, Devgiri fort</figcaption>
+  </figure>
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/top-devgiri-fort.jpg" alt="Structure on top of the fort where we can see the Mendha tope" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Structure on top of the fort where we can see the Mendha tope</figcaption>
+  </figure>
+</div>
+
 Devgiri Fort, also known as Daulatabad Fort, stands as a testament to medieval military engineering. Built on a conical hill, it was considered one of the most powerful fortresses of medieval India. The Yadava dynasty established it in the 12th century, and it later served as a capital when Muhammad bin Tughluq briefly attempted to shift his capital from Delhi.
 
 We began our exploration at the main gate, progressively passing through a series of ingenious defensive structures. Each gate, bastion, and wall segment reveals thoughtful strategic design. The Char Minar (Four Pillars), a distinctive structure within the fort, captured our attention with its elegant proportions and historical significance.
+
+![Char minar in Devgiri Fort](/assets/images/char-minar.jpg "Char minar in Devgiri fort")
 
 As three engineers, we found ourselves constantly questioning: How did they construct such precise structures without modern tools and technology? How did they transport massive stone blocks up this steep hill? How did they calculate the perfect angles and proportions? Some questions remained unanswered, deepening our respect for the brilliant minds behind these ancient marvels.
 
