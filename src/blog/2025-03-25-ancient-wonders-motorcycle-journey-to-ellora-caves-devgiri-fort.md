@@ -215,6 +215,8 @@ Though Kailasa Temple was undoubtedly the highlight, Ellora comprises 34 caves r
 
 The Buddhist caves showcase elaborate prayer halls and meditation chambers with serene Buddha statues. The Hindu caves beyond Kailasa contain powerful depictions of Shiva, Vishnu, and other deities. The Jain caves, with their polished surfaces and meticulous attention to ornamental detail, reflect the spiritual aesthetics of Jainism.
 
+![Ellora caves panorama from Cave no 1 to 10](/assets/images/ellora-caves-panaroma.jpg "Ellora caves panorama from Cave number 1 to 10")
+
 By the time we finished our exploration, the sun was beginning its descent, casting a golden glow on the ancient stone structures. The dropping temperature made the experience even more pleasant after the afternoon heat.
 
 ### Grishneshwar Temple: An Ancient Jyotirlinga
