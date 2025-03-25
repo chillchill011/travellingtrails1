@@ -34,11 +34,7 @@ imageAlt: Majestic Raigad Fort perched atop a hill in Maharashtra, commanding a
   Maratha Empire established by Chhatrapati Shivaji Maharaj
 imageCredit: Aniket
 thumbnailImage: /assets/images/raigad-fort-distance-thumb.jpg
-gallery:
-  - src: /assets/images/raigad-fort-distance-thumb.jpg
-    alt: Test alt text
-  - src: /assets/images/raigad-fort-distance.jpg
-    alt: Test at text 2
+gallery: []
 routeGallery:
   - src: /assets/images/pune-to-raigad-120-km-via-tamhini-ghat-nizampur.jpg
     title: Pune to Raigad rope way
@@ -59,59 +55,57 @@ routeGallery:
     mapSource: Google Maps
     mapUrl: https://maps.app.goo.gl/vuCP5cJHW2nK6cP68
 tripDetails:
-  itinerary:
-    - time: Day 1
-      location: Test Locations
-      activity: Test Activity
-      duration: 2 hours
-      notes: Test optional notes
+  itinerary: []
   costs:
-    transportation: Rs. 4000
+    transportation: Rs. 1200
     accommodation: None
     food: Rs. 200 for snacks and juices
     activities: Rs. 50 for two wheeler parking
-    misc: "Miscellaneious details "
-    total: 5 thousand
-    notes: Additional optional notes
+    misc: ""
+    total: ""
+    notes: ""
   seasonal:
     bestSeason:
-      - monsoon
-    notes: Test seasonal notes
+      - post-monsoon
+    notes: Post-monsoon, Raigad and its surrounding areas transform into a
+      breathtaking landscape draped in lush greenery, with countless waterfalls
+      cascading down the mountain slopes. The verdant envelope that wraps the
+      Sahyadri mountains during this period creates an unforgettable vista that
+      showcases nature at its most vibrant. This is perhaps the most picturesque
+      time to visit, when the earth still retains the monsoon's freshness while
+      offering clear skies for panoramic views.
   difficulty:
     overall: easy
-    physical: 1
-    technical: 1
-    notes: Optional difficulty level notes
+    physical: 2
+    technical: 2
+    notes: The motorcycle routes to Raigad present an enjoyable riding experience
+      suitable for most skill levels. Seasoned riders will find the journey
+      comfortable and flowing, while novice riders may encounter some
+      challenging sections, particularly in the ghat areas, that require
+      additional attention and care. However, the well-maintained roads and
+      manageable curves make this an accessible adventure that balances
+      excitement with safety, offering a perfect opportunity for newer riders to
+      build confidence while experienced motorcyclists can simply savor the
+      journey.
   localResources:
-    emergency: Test details
-    mechanics: Test details
-    accommodation: Test details
-    food: Test details
-    fuel: Test details
-    medical: Test details
+    emergency: ""
+    mechanics: ""
+    accommodation: ""
+    food: ""
+    fuel: ""
+    medical: ""
   altTransportation:
-    public: Test details
-    private: Test details
-    tours: Test details
-    notes: Test details
-affiliateGallery:
-  - src: /assets/images/gallery-image-1.jpg
-    alt: Text gear alt text
-    title: Gear 1
-    description: Description of the gear
-    ownershipStatus: I recommend this
-    price: Rs. 2000 to Rs. 3000
-    rating: 1
-    buyUrl: https://www.amazon.in/
-  - src: /assets/images/gallery-image-2.jpg
-    alt: Alt text two for the
-    title: Gear 2 for the long ride
-    description: Test description of the gear two in great details. This will help
-      the people using this gear.
-    ownershipStatus: I own this
-    price: Rs. 1599
-    rating: 4
-    buyUrl: amazon.in
+    public: For those without personal vehicles, Maharashtra State Transport (MSRTC)
+      operates regular bus services that connect major cities to the Raigad
+      ropeway base station, making this historic site accessible to all
+      travelers regardless of their mode of transportation.
+    private: Private taxis are available from Mahad to the Raigad ropeway base
+      station, offering a convenient alternative for travelers seeking more
+      flexible transportation. These services provide direct access to the fort
+      area without the need to navigate public transport schedules or routes.
+    tours: ""
+    notes: ""
+affiliateGallery: []
 showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk

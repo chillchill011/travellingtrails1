@@ -1,7 +1,13 @@
 {
-    "name": "Aniket",
-    "slug": "aniket",
-    "bio": "Trekking, traveling, and riding represent three complementary dimensions of exploration...",
-    "shortBio": "Motorcycle enthusiast and explorer who finds meaning in Maharashtra's winding roads...",
-    "role": "Founder"
+  "name": "Aniket",
+  "slug": "aniket",
+  "bio": "Aniket is a passionate traveler, motorcycle enthusiast, and explorer of Maharashtra's diverse landscapes. As a computer engineer turned marketing professional, his true calling lies in the freedom of the open road. His Triumph Scrambler 400X has been his trusted companion for over 10,000 kilometers of adventure. When not riding, he enjoys cycling and finding tranquility by the water. Through his blog, Travelling Trails, he shares his experiences and inspires others to embark on their own journeys.",
+  "shortBio": "Aniket is a traveler, rider, and explorer sharing his journeys through Travelling Trails.",
+  "role": "Founder",
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/aniketthanage",
+    "instagram": "https://www.instagram.com/aniketthanage",
+    "website": "https://travellingtrails.in"
+  },
+  "avatar": "/assets/images/aniket-founder-travelling-trails.jpg"
 }
