@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 featured: true
 date: 2025-02-21T06:45:00.000Z
 title: "Ancient Wonders: Motorcycle Journey to Ellora Caves & Devgiri Fort"
@@ -145,13 +145,22 @@ After checking in, we enjoyed a satisfying lunch at the hotel restaurant before 
 
 By 3:30 PM, we were at the Ellora Caves complex, approximately 30 kilometers from our hotel. On the way, we passed Devgiri Fort (another historical gem we'd save for day 2) but remained focused on our primary destination. The afternoon timing proved strategic—the tourist crowds had thinned considerably, allowing us a more intimate experience with these ancient wonders.
 
+{% imageGallery [
+  { "src": "/assets/images/ellora-cave-statue-of-buddha.jpg", "alt": "Buddha statue in cave" },
+  { "src": "/assets/images/ellora-cave-1.jpg", "alt": "Detailed wall carving" },
+  { "src": "/assets/images/ellora-cave-kailas-temple-from-entrance.jpg", "alt": "Detailed wall carving" },
+  { "src": "/assets/images/ellora-cave-buddha-vihas.jpg", "alt": "Cave interior view" }
+] %}
+
 #### Practical Information for Visitors:
-- **Operating Hours:** 7:00 AM to 6:00 PM (daily)
-- **Entry Fees:**
-  - ₹40 per person for Indians (children under 15 enter free)
-  - ₹40 per person for visitors from SAARC countries
-  - ₹600 per person for other foreign tourists
-  - ₹25 for video camera usage
+
+* **Operating Hours:** 7:00 AM to 6:00 PM (daily)
+* **Entry Fees:**
+
+  * ₹40 per person for Indians (children under 15 enter free)
+  * ₹40 per person for visitors from SAARC countries
+  * ₹600 per person for other foreign tourists
+  * ₹25 for video camera usage
 
 #### The Magnificent Kailasa Temple (Cave 16)
 
@@ -171,7 +180,8 @@ The Buddhist caves showcase elaborate prayer halls and meditation chambers with 
 
 By the time we finished our exploration, the sun was beginning its descent, casting a golden glow on the ancient stone structures. The dropping temperature made the experience even more pleasant after the afternoon heat.
 
-### Grishneshwar Temple: An Ancient Jyotirlinga 
+### Grishneshwar Temple: An Ancient Jyotirlinga
+
 Just five minutes from the Ellora complex stands the revered Grishneshwar Temple, housing one of the twelve Jyotirlingas (sacred abodes of Lord Shiva). As darkness fell, we visited this ancient shrine, completing our day's spiritual journey with a darshan of the Jyotirlinga. It's important to note that male devotees are required to remove their shirts, vests, and undershirts (baniyans) before entering the temple's inner sanctum, in accordance with traditional customs. 
 
 This dress code is strictly enforced, so visitors should be prepared for this requirement. The temple, rebuilt in its current form in the 18th century by Ahilyabai Holkar, features beautiful carvings in the Maratha architectural style. After a brief but meaningful visit, we began our return journey to the hotel, riding carefully through the darkness.
@@ -213,15 +223,10 @@ Traffic grew increasingly dense as we approached Pune, with the final stretch fr
 For this journey, my riding gear selection focused on balancing protection with comfort for Maharashtra's February weather:
 
 1. **Helmet**: MT Thunder3 Pro Blaze - Provided excellent protection with good ventilation for the warm afternoons.
-
 2. **Jacket**: Rynox Air GT 4 - The mesh construction offered adequate airflow during midday heat while maintaining protection.
-
 3. **Pants**: Rynox Air GT Pant - Complemented the jacket with similar ventilation and protection characteristics.
-
 4. **Footwear**: RE E39 Riding Shoes - Offered ankle protection while remaining comfortable for walking around the caves and fort.
-
 5. **Gloves**: Viaterra Holeshot Pro Riding Gloves - Provided good grip and protection without causing excessive sweating.
-
 6. **Watch**: Casio G-Shock G-5600UE-1DR - Reliable timekeeper with good readability in various lighting conditions.
 
 ### Triumph Scrambler 400X Performance
@@ -237,23 +242,14 @@ The bike's handling on the twisty sections near Ellora was precise and confidenc
 If you're planning a similar expedition to Ellora Caves and Devgiri Fort, here are some recommendations based on our experience:
 
 1. **Timing**: Weekdays or Saturdays are preferable to Sundays to avoid crowds, especially at Ellora.
-
 2. **Duration**: Allocate a minimum of two days for this trip; three would be ideal to explore without rushing.
-
 3. **Photography**: Bring a good camera with wide-angle capabilities to capture the massive structures adequately. Early morning light at Devgiri and late afternoon light at Ellora offer the best photography conditions.
-
 4. **Footwear**: Wear comfortable walking shoes as both sites involve considerable walking on uneven surfaces.
-
 5. **Hydration**: Carry sufficient water, especially during warmer months, as exploration involves physical exertion.
-
 6. **Accommodation**: Hotel Panchavati offers good value; book in advance during peak tourist season.
-
 7. **Cultural Respect**: Both Ellora and Grishneshwar Temple are religious sites; dress modestly and follow local customs.
-
 8. **Local Guide**: Consider hiring a knowledgeable guide at Ellora to truly appreciate the historical and cultural significance of the caves.
-
 9. **Route Planning**: The highways are generally good, but factor in occasional traffic near urban centers, particularly Chakan.
-
 10. **Fuel Stops**: Petrol pumps are readily available along the route; no need for additional fuel containers.
 
 ## Conclusion: When Stone Tells Stories
