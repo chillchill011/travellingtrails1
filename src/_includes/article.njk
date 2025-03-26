@@ -342,45 +342,48 @@ layout: 'base.njk'
             {{ author }}
         {% endif %}
         {% if page.date %}
-        | Modified date: {{ page.date | postDate }}
+        | Published: {{ page.date | postDate }}
+        {% endif %}
+        {% if lastModified %}
+        | Last updated: {{ lastModified | postDate }}
         {% endif %}
     </div>
     {% endif %}
 
 
-<!-- Schema.org Article Markup for SEO -->
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": ["Article", "BlogPosting"],
-      "headline": "{{ title }}",
-      "description": "{{ description }}",
-      "image": "{{ site.url }}{{ featuredImage | url }}",
-      "author": {
-        "@type": "Person",
-        "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{ site.title }}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "{{ site.url }}/assets/images/logo.png"
+    <!-- Schema.org Article Markup for SEO -->
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": ["Article", "BlogPosting"],
+        "headline": "{{ title }}",
+        "description": "{{ description }}",
+        "image": "{{ site.url }}{{ featuredImage | url }}",
+        "author": {
+            "@type": "Person",
+            "name": "{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.title }}",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "{{ site.url }}/assets/images/logo.png"
+            }
+        },
+        "datePublished": "{{ page.date | isoDate }}",
+        "dateModified": "{{ lastModified | isoDate | default(page.date | isoDate) }}",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ site.url }}{{ page.url }}"
+        },
+        "keywords": [
+            {% if categories %}"{{ categories }}"{% if tags and tags.length > 0 %},{% endif %}{% endif %}
+            {% if tags and tags.length > 0 %}{% for tag in tags %}{% if tag != "post" %}"{{ tag }}"{% if not loop.last %},{% endif %}{% endif %}{% endfor %}{% endif %}
+        ]
         }
-      },
-      "datePublished": "{{ page.date | isoDate }}",
-      "dateModified": "{{ page.date | isoDate }}",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ site.url }}{{ page.url }}"
-      },
-      "keywords": [
-        {% if categories %}"{{ categories }}"{% if tags and tags.length > 0 %},{% endif %}{% endif %}
-        {% if tags and tags.length > 0 %}{% for tag in tags %}{% if tag != "post" %}"{{ tag }}"{% if not loop.last %},{% endif %}{% endif %}{% endfor %}{% endif %}
-      ]
-    }
-    </script>
-    
+        </script>
+        
     {% if destination and coordinates and coordinates.latitude and coordinates.longitude %}
     <!-- TouristDestination Schema -->
     <script type="application/ld+json">
