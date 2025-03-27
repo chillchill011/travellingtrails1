@@ -342,7 +342,13 @@ layout: 'base.njk'
             {{ author }}
         {% endif %}
         {% if page.date %}
-        | Published: {{ page.date | postDate }}
+        | Published: {{ page.date | postDate }} | 
+        <a href="https://www.instagram.com/travellingtrails.in?igsh=cm5tMnAyNzBtbDZq&utm_source=qr" 
+           class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500"
+           target="_blank" 
+           rel="noopener noreferrer">
+            Follow Travelling Trails on Instagram
+        </a>
         {% endif %}
         {% if lastModified %}
         | Last updated: {{ lastModified | postDate }}
