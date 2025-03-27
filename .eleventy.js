@@ -288,10 +288,38 @@ module.exports = function(eleventyConfig) {
         const src = token.attrs[srcIndex][1];
         const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
         
-        // Return a figure with caption - using compact format to avoid markdown processing issues
-        return `<figure class="single-image" style="margin: 2rem 0;"><div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><img src="${src}" alt="${altText || ''}" class="w-full object-cover" loading="lazy" style="width: 100%; height: auto; display: block; margin: 0;"></div><figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; padding: 0;">${title}</figcaption></figure>`;
+        // Parse title for caption and credit
+        const parts = title.split('|').map(part => part.trim());
+        const caption = parts[0];
+        let credit = '';
+        let creditLink = '';
+        
+        // Parse credit if it exists
+        if (parts.length > 1) {
+          const creditMatch = parts[1].match(/Credit:\s*(.+?)\s*(?:\((.+?)\))?$/);
+          if (creditMatch) {
+            credit = creditMatch[1];
+            creditLink = creditMatch[2] || ''; // The URL is optional
+          }
+        }
+
+        return `<figure class="single-image" style="margin: 2rem 0;">
+          <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            <img src="${src}" alt="${altText || ''}" class="w-full object-cover" loading="lazy" style="width: 100%; height: auto; display: block; margin: 0;">
+          </div>
+          <figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; padding: 0;">
+            ${caption}
+            ${credit ? `
+              <span class="block text-xs mt-1">Photo: ${
+                creditLink 
+                  ? `<a href="${creditLink}" target="_blank" rel="noopener noreferrer" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">${credit}</a>`
+                  : credit
+              }</span>
+            ` : ''}
+          </figcaption>
+        </figure>`;
       }
-  
+
       // If no title, use the default renderer
       return defaultImageRenderer(tokens, idx, options, env, self);
     };
