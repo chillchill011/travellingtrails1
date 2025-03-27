@@ -350,6 +350,11 @@ layout: 'base.njk'
             Follow Travelling Trails on Instagram
         </a>
         {% endif %}
+        {% if lastModified %}
+        | Last updated: {{ lastModified | postDate }}
+        {% endif %}
+    </div>
+    {% endif %}
 
 
     <!-- Schema.org Article Markup for SEO -->
