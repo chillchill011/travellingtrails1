@@ -38,6 +38,7 @@ imageAlt: Panoramic view from Tiger Point, Lonavla, showing lush green valleys
   and forested hills shrouded in morning mist, with the Western Ghats stretching
   into the distance
 imageCredit: Aniket
+imageCreditLink: https://travellingtrails.in/
 thumbnailImage: /assets/images/tiger-point-viewpoint-misty-valley-vista-from-lonavla-s-famous-lookout-thumbnail.jpg
 gallery:
   - src: /assets/images/golden-dawn-at-tamhini-ghat-sunrise-over-the-emerald-western-ghats.jpg
@@ -47,6 +48,7 @@ gallery:
       dramatic silhouette of the undulating Western Ghats landscape
     credit: Aniket
     location: Tamhini Ghat
+    creditLink: https://travellingtrails.in/
   - src: /assets/images/tailbaila-fort-overlook-ancient-sentinel-of-the-kundalika-valley.jpg
     caption: "Tailbaila Fort Overlook: Ancient Sentinel of the Kundalika Valley"
     alt: Panoramic view of Tailbaila Fort perched on a hill as seen from the parking
