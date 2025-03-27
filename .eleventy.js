@@ -20,6 +20,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/js/analytics-enhancement.js": "assets/js/analytics-enhancement.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/toc.js": "assets/js/toc.js"});
+    eleventyConfig.addPassthroughCopy("netlify.toml");
 
     // Add authorPages collection to generate author pages
     eleventyConfig.addCollection("authorPages", function(collectionApi) {
