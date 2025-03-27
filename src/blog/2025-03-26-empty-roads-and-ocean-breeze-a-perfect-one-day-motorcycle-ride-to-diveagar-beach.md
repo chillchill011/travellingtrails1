@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 featured: false
 date: 2024-09-24T05:45:00.000Z
 title: "Empty Roads and Ocean Breeze: A Perfect One-Day Motorcycle Ride to
@@ -33,6 +33,23 @@ imageAlt: View of Diveagar Beach with its pristine shoreline, and clear blue
   waters with our rides
 imageCredit: Aniket
 thumbnailImage: /assets/images/diveagar-beach-and-rides-thumbnail.jpg
+routeGallery:
+  - src: /assets/images/pune-to-dive-agar-to-pune.jpg
+    title: Pune to Dive agar to Pune
+    alt: Route to Dive agar from pune and we followed same route back.
+    locations: Tamhini Ghat, Mangaon, Mhalsa
+    distance: 160 km
+    duration: 4 hours
+    mapSource: Google maps
+    mapUrl: https://maps.app.goo.gl/2chskGv7BVTX3eHX7
+  - src: /assets/images/dive-agar-food-location.jpg
+    title: "Local Dining Spot: Authentic Konkan Cuisine in Diveagar"
+    mapUrl: https://maps.app.goo.gl/3uvcCfZ6fe6t4g4z6
+    mapSource: Google maps
+    alt: Simple, homestyle dining area in Diveagar where riders enjoyed traditional
+      Konkan seafood thali and other local delicacies during their motorcycle
+      journey
+    locations: Saumya Guest House
 tripDetails:
   costs:
     transportation: Rs.1200 for fuel
@@ -90,9 +107,13 @@ We set off from Pune at the crack of dawn, around 5:45 AM. The early morning air
 
 The weather accompanied our journey perfectly—pleasantly cool during our morning ride, warming up as expected when we reached the coastal area, and then cooling again during our evening return. This natural temperature regulation made the long hours in the saddle much more comfortable.
 
+![Breathtaking view of a sea of clouds below Tamhini Ghat mountain pass in the early morning, with lush green vegetation framing the misty valley landscape](/assets/images/morning-mist-in-tamhini-ghat-sea-of-clouds-below-the-western-ghats.jpg "Morning Mist in Tamhini Ghat: Sea of Clouds Below the Western Ghats")
+
 ## Beach Time: A Brief Encounter with the Arabian Sea
 
 After reaching our accommodation (a regular spot we frequent on our coastal trips) and freshening up, we rode directly to the beach. Diveagar Beach, with its pristine shoreline and swaying coconut trees, welcomed us with open arms—and intense sunshine. The midday sun proved too strong for extended beach time, so we limited our seaside visit to about 15 minutes before retreating to our accommodation.
+
+![Panoramic view of Diveagar Beach showing two motorcycles (Triumph Scrambler 400X and RE Scram 411) parked at the shoreline with waves breaking and coconut trees lining the coast](/assets/images/motorcycles-at-the-shore-triumph-and-re-scram-at-diveagar-beach.jpg "Motorcycles at the Shore: Triumph and RE Scram at Diveagar Beach")
 
 ## Coastal Cuisine: A Seafood Feast
 
@@ -106,6 +127,8 @@ No trip to the Konkan region is complete without indulging in the local cuisine,
 
 This authentic meal provided the energy we needed for our return journey while giving us a taste of local culinary traditions.
 
+![Traditional Konkan fish thali served on a steel plate, featuring fried fish, curry, solkadhi (pink coconut-based drink), rice, bhakri, fresh salad with cucumber, tomato, onion, and lime](/assets/images/konkan-seafood-thali-traditional-coastal-delicacies.jpg "Konkan Seafood Thali: Traditional Coastal Delicacies")
+
 ## The Return: Scenic Stops and Reflections
 
 We began our return journey at around 3:30 PM, when the afternoon heat was still considerable. Unlike our non-stop morning ride, we made several strategic stops on the way back:
@@ -116,6 +139,8 @@ We began our return journey at around 3:30 PM, when the afternoon heat was still
 * A final tea break about 30 kilometers from home
 
 These pauses were essential not just for hydration but also to mitigate the fatigue that comes from wind blast during continuous riding.
+
+![Serene river with flowing water over smooth rocks near MIDC area where riders stopped to refresh during the return journey from Diveagar to Pune](/assets/images/refreshing-river-stop-rocky-stream-on-the-return-journey.jpg "Refreshing River Stop: Rocky Stream on the Return Journey")
 
 ## Riding Gear: Equipped for Comfort and Safety
 
