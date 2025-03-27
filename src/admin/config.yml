@@ -264,7 +264,10 @@ collections:
           - { label: "Valley", value: "valley" }
           - { label: "Riverside", value: "riverside" }
           - { label: "Lakeside", value: "lakeside" }
+          - { label: "Heritage Tourism", value: "heritage-tourism" }
           - { label: "Desert", value: "desert" }
+          - { label: "Sea Food", value: "sea-food" }
+          - { label: "Off Season", value: "off-season" }
       
       - label: "Featured Image"
         name: "featuredImage"
@@ -281,6 +284,12 @@ collections:
         widget: "string"
         required: false
         hint: "Credit for the featured image photographer/source"
+
+      - label: "Featured Image Credit Link"
+        name: "imageCreditLink"
+        widget: "string"
+        required: false
+        hint: "Optional link to the photographer/source's profile or website"
       
       - label: "Thumbnail Image"
         name: "thumbnailImage"
@@ -310,6 +319,7 @@ collections:
           - { label: "Alt Text", name: "alt", widget: "string" }
           - { label: "Caption", name: "caption", widget: "string", required: false }
           - { label: "Credit", name: "credit", widget: "string", required: false }
+          - { label: "Credit Link", name: "creditLink", widget: "string", required: false, hint: "Optional link to the photographer's profile" }
           - { label: "Location", name: "location", widget: "string", required: false }
 
       - label: "Route Gallery"

@@ -7,10 +7,10 @@
     <figure class="gallery-item {% if type == 'route' %}route-item{% endif %}">
       <div class="gallery-image-wrapper">
         <img 
-          src="{{ item.src | url }}" 
-          alt="{{ item.alt }}" 
-          class="gallery-image"
-          loading="lazy"
+           src="{{ item.src | url }}"
+           alt="{{ item.alt }}"
+           class="gallery-image"
+           loading="lazy"
         >
       </div>
       <figcaption>
@@ -69,7 +69,15 @@
         {% endif %}
         
         {% if item.credit %}
-        <span class="block text-xs mt-2 italic text-center">Photo: {{ item.credit }}</span>
+        <span class="block text-xs mt-2 italic text-center">Photo: 
+          {% if item.creditLink %}
+          <a href="{{ item.creditLink }}" target="_blank" rel="noopener noreferrer" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
+            {{ item.credit }}
+          </a>
+          {% else %}
+            {{ item.credit }}
+          {% endif %}
+        </span>
         {% endif %}
       </figcaption>
     </figure>
