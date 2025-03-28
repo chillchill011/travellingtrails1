@@ -2,6 +2,8 @@ const { DateTime } = require("luxon");
 const execSync = require('child_process').execSync;
 const markdownIt = require("markdown-it");
 const cheerio = require('cheerio');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = function(eleventyConfig) {
   
@@ -389,6 +391,15 @@ module.exports = function(eleventyConfig) {
         }
     }
 
+
+    eleventyConfig.addFilter("replace", function(str, pattern, replacement) {
+      return str.replace(pattern, replacement);
+    });
+
+    eleventyConfig.addFilter("title", function(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    });
+
     // Search-specific filters
     eleventyConfig.addFilter("escape", function(str) {
         if (!str) return "";
@@ -461,6 +472,62 @@ module.exports = function(eleventyConfig) {
         .slice(0, 3)
         .map(item => item.post);
     });
+
+
+
+// Then replace your gear collection with this:
+eleventyConfig.addCollection("gear", function(collectionApi) {
+  const gearDir = 'src/_data/gear';
+  let gear = [];
+  
+  // Read all files from the gear directory
+  if (fs.existsSync(gearDir)) {
+    const files = fs.readdirSync(gearDir);
+    files.forEach(file => {
+      if (file.endsWith('.json')) {
+        const filePath = path.join(gearDir, file);
+        try {
+          const fileContent = fs.readFileSync(filePath, 'utf8');
+          const data = JSON.parse(fileContent);
+          gear.push(data);
+        } catch (error) {
+          console.error(`Error reading gear file ${file}:`, error);
+        }
+      }
+    });
+  }
+  
+  return gear;
+});
+
+// Update your filter function
+eleventyConfig.addFilter("filter", function(array, property, value) {
+  if (!array) return [];
+  return array.filter(item => item[property] === value);
+});
+
+// Update your sort function
+eleventyConfig.addFilter("sort", function(array, key) {
+  if (!array) return [];
+  return array.sort((a, b) => {
+    if (a[key] < b[key]) return -1;
+    if (a[key] > b[key]) return 1;
+    return 0;
+  });
+});
+
+// Add these additional filters
+eleventyConfig.addFilter("replace", function(str, pattern, replacement) {
+  return str.replace(pattern, replacement);
+});
+
+eleventyConfig.addFilter("title", function(str) {
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+});
+
+
+
 
     // Collections
     eleventyConfig.addCollection("searchData", function(collection) {

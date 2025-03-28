@@ -49,12 +49,12 @@ collections:
         fields:
           - { label: "Latitude", name: "latitude", widget: "number", required: false, valueType: "float" }
           - { label: "Longitude", name: "longitude", widget: "number", required: false, valueType: "float" }
-
       - label: "Duration"
         name: "duration"
         widget: "string"
         required: false
         hint: "Duration of the trip (e.g. '7 days', '2 weeks')"
+
 
       - label: "Categories"
         name: "categories"
@@ -497,3 +497,43 @@ collections:
           - { label: "Twitter", name: "twitter", widget: "string", required: false }
           - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
           - { label: "Website", name: "website", widget: "string", required: false }
+
+  
+
+  # Add this under collections in your admin/config.yml
+  - name: "gear"
+    label: "Gear Guide"
+    folder: "src/_data/gear"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{fields.slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string", pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Must be lowercase letters, numbers, and hyphens"]}
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Motorcycle Protection", value: "moto-protection" }
+          - { label: "Motorcycle Comfort", value: "moto-comfort" }
+          - { label: "Motorcycle Luggage", value: "moto-luggage" }
+          - { label: "Photography", value: "photography" }
+          - { label: "Hiking Equipment", value: "hiking-equipment" }
+          - { label: "Camping", value: "camping" }
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price Range", name: "priceRange", widget: "string"}
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "Owned & Tested", value: "owned" }
+          - { label: "Recommended", value: "recommended" }
+          - { label: "Affiliate", value: "affiliate" }
+          - { label: "Owned & Affiliate", value: "owned-affiliate" }
+      - {label: "Product Image", name: "image", widget: "image"}
+      - {label: "Purchase Link", name: "purchaseLink", widget: "string"}
+      - {label: "Personal Experience", name: "experience", widget: "text", required: false}
+      - {label: "Pros", name: "pros", widget: "list", required: false}
+      - {label: "Cons", name: "cons", widget: "list", required: false}
+      - {label: "Display Order", name: "order", widget: "number", default: 999}

@@ -1,0 +1,25 @@
+{
+    "title": "MT Thunder3 Pro Helmet",
+    "slug": "mt-thunder3-helmet",
+    "category": "moto-protection",
+    "description": "The MT Thunder3 Pro offers excellent protection and comfort at a reasonable price point. Its advanced ventilation system and snug fit make it perfect for both city commutes and long rides.",
+    "priceRange": "₹8,000 - ₹9,000",
+    "status": "owned",
+    "image": "/assets/images/gear/mt-thunder3-helmet.jpg",
+    "purchaseLink": "https://example.com/buy-mt-helmet",
+    "experience": "I've been using this helmet for over 10,000km in various weather conditions. The ventilation is excellent during hot summer rides, and the anti-fog visor works well in winter. The padding remains comfortable even on 8+ hour rides.",
+    "pros": [
+      "Excellent ventilation system",
+      "Good noise reduction",
+      "Comfortable for long rides",
+      "DOT certified",
+      "Great value for money",
+      "Quick release visor mechanism"
+    ],
+    "cons": [
+      "Slightly heavier than premium helmets",
+      "Wind noise at high speeds",
+      "Limited color options"
+    ],
+    "order": 1
+  }
