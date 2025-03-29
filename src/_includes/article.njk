@@ -75,11 +75,25 @@ layout: 'base.njk'
     {% if featuredImage %}
     <figure class="mb-8">
         <img src="{{ featuredImage | url }}" 
-             alt="{{ imageAlt if imageAlt else title }}"
-             class="w-full h-auto rounded-lg shadow-lg object-cover">
-        {% if imageAlt %}
+            alt="{{ imageAlt if imageAlt else title }}"
+            class="w-full h-auto rounded-lg shadow-lg object-cover">
+        {% if imageAlt or imageCredit %}
         <figcaption class="text-center text-gray-600 dark:text-gray-400 mt-2">
+            {% if imageAlt %}
             {{ imageAlt }}
+            {% endif %}
+            {% if imageCredit %}
+            <span class="block text-sm mt-1">
+                Photo by: 
+                {% if imageCreditLink %}
+                <a href="{{ imageCreditLink }}" target="_blank" rel="noopener noreferrer" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
+                    {{ imageCredit }}
+                </a>
+                {% else %}
+                {{ imageCredit }}
+                {% endif %}
+            </span>
+            {% endif %}
         </figcaption>
         {% endif %}
     </figure>
@@ -348,7 +362,11 @@ layout: 'base.njk'
            target="_blank" 
            rel="noopener noreferrer">
             Follow Travelling Trails on Instagram
-        </a>
+        </a> | 
+        <a href="/gear-guide/" 
+            class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
+            Check Out Our Gear Guide
+            </a>
         {% endif %}
         {% if lastModified %}
         | Last updated: {{ lastModified | postDate }}

@@ -2,6 +2,8 @@ const { DateTime } = require("luxon");
 const execSync = require('child_process').execSync;
 const markdownIt = require("markdown-it");
 const cheerio = require('cheerio');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = function(eleventyConfig) {
   
@@ -20,6 +22,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({"src/assets/js/analytics-enhancement.js": "assets/js/analytics-enhancement.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/map-handler.js": "assets/js/map-handler.js"});
     eleventyConfig.addPassthroughCopy({"src/assets/js/toc.js": "assets/js/toc.js"});
+    eleventyConfig.addPassthroughCopy("netlify.toml");
 
     // Add authorPages collection to generate author pages
     eleventyConfig.addCollection("authorPages", function(collectionApi) {
@@ -69,6 +72,12 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addFilter("dumpData", function(obj) {
       console.log("DUMPING DATA:", JSON.stringify(obj, null, 2));
       return "";
+    });
+
+
+    // Add URL encoding filter - add this near your other filter definitions
+    eleventyConfig.addFilter("urlEncode", function(str) {
+      return encodeURIComponent(str || "");
     });
 
     // Add this to your list of filters
@@ -281,10 +290,38 @@ module.exports = function(eleventyConfig) {
         const src = token.attrs[srcIndex][1];
         const pathPrefix = process.env.ELEVENTY_ENV === "production" ? "" : "/travellingtrails1";
         
-        // Return a figure with caption - using compact format to avoid markdown processing issues
-        return `<figure class="single-image" style="margin: 2rem 0;"><div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"><img src="${src}" alt="${altText || ''}" class="w-full object-cover" loading="lazy" style="width: 100%; height: auto; display: block; margin: 0;"></div><figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; padding: 0;">${title}</figcaption></figure>`;
+        // Parse title for caption and credit
+        const parts = title.split('|').map(part => part.trim());
+        const caption = parts[0];
+        let credit = '';
+        let creditLink = '';
+        
+        // Parse credit if it exists
+        if (parts.length > 1) {
+          const creditMatch = parts[1].match(/Credit:\s*(.+?)\s*(?:\((.+?)\))?$/);
+          if (creditMatch) {
+            credit = creditMatch[1];
+            creditLink = creditMatch[2] || ''; // The URL is optional
+          }
+        }
+
+        return `<figure class="single-image" style="margin: 2rem 0;">
+          <div class="image-container" style="position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            <img src="${src}" alt="${altText || ''}" class="w-full object-cover" loading="lazy" style="width: 100%; height: auto; display: block; margin: 0;">
+          </div>
+          <figcaption style="margin-top: 0.25rem; font-size: 0.875rem; color: #4B5563; text-align: center; padding: 0;">
+            ${caption}
+            ${credit ? `
+              <span class="block text-xs mt-1">Photo: ${
+                creditLink 
+                  ? `<a href="${creditLink}" target="_blank" rel="noopener noreferrer" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">${credit}</a>`
+                  : credit
+              }</span>
+            ` : ''}
+          </figcaption>
+        </figure>`;
       }
-  
+
       // If no title, use the default renderer
       return defaultImageRenderer(tokens, idx, options, env, self);
     };
@@ -353,6 +390,15 @@ module.exports = function(eleventyConfig) {
             console.error('Error building JavaScript:', error);
         }
     }
+
+
+    eleventyConfig.addFilter("replace", function(str, pattern, replacement) {
+      return str.replace(pattern, replacement);
+    });
+
+    eleventyConfig.addFilter("title", function(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    });
 
     // Search-specific filters
     eleventyConfig.addFilter("escape", function(str) {
@@ -426,6 +472,62 @@ module.exports = function(eleventyConfig) {
         .slice(0, 3)
         .map(item => item.post);
     });
+
+
+
+// Then replace your gear collection with this:
+eleventyConfig.addCollection("gear", function(collectionApi) {
+  const gearDir = 'src/_data/gear';
+  let gear = [];
+  
+  // Read all files from the gear directory
+  if (fs.existsSync(gearDir)) {
+    const files = fs.readdirSync(gearDir);
+    files.forEach(file => {
+      if (file.endsWith('.json')) {
+        const filePath = path.join(gearDir, file);
+        try {
+          const fileContent = fs.readFileSync(filePath, 'utf8');
+          const data = JSON.parse(fileContent);
+          gear.push(data);
+        } catch (error) {
+          console.error(`Error reading gear file ${file}:`, error);
+        }
+      }
+    });
+  }
+  
+  return gear;
+});
+
+// Update your filter function
+eleventyConfig.addFilter("filter", function(array, property, value) {
+  if (!array) return [];
+  return array.filter(item => item[property] === value);
+});
+
+// Update your sort function
+eleventyConfig.addFilter("sort", function(array, key) {
+  if (!array) return [];
+  return array.sort((a, b) => {
+    if (a[key] < b[key]) return -1;
+    if (a[key] > b[key]) return 1;
+    return 0;
+  });
+});
+
+// Add these additional filters
+eleventyConfig.addFilter("replace", function(str, pattern, replacement) {
+  return str.replace(pattern, replacement);
+});
+
+eleventyConfig.addFilter("title", function(str) {
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+});
+
+
+
 
     // Collections
     eleventyConfig.addCollection("searchData", function(collection) {

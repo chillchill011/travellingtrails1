@@ -5,3 +5,28 @@
 [build.environment]
   NODE_ENV = "production"
   ELEVENTY_ENV = "production"
+
+[[redirects]]
+  from = "/blog/2025-03-25-ancient-wonders-motorcycle-journey-to-ellora-caves-devgiri-fort/"
+  to = "/ancient-wonders-motorcycle-journey-to-ellora-caves-devgiri-fort/"
+  status = 301
+  
+[[redirects]]
+  from = "/blog/2025-03-21-savlya-ghat-hidden-paradise-in-sahyadri-with-breathtaking-valley-views/"
+  to = "/savlya-ghat-hidden-paradise-in-sahyadri-with-breathtaking-valley-views/"
+  status = 301
+  
+[[redirects]]
+  from = "/blog/2025-03-12-motorcycle-journey-to-raigad-fort-a-solo-adventure-through-maharashtras-historic-heartland/"
+  to = "/motorcycle-journey-to-raigad-fort-a-solo-adventure-through-maharashtras-historic-heartland/"
+  status = 301
+  
+[[redirects]]
+  from = "/blog/2025-03-26-empty-roads-and-ocean-breeze-a-perfect-one-day-motorcycle-ride-to-diveagar-beach/"
+  to = "/empty-roads-and-ocean-breeze-a-perfect-one-day-motorcycle-ride-to-diveagar-beach/"
+  status = 301
+  
+[[redirects]]
+  from = "/blog/2025-03-20-tamhini-ghat-to-tiger-point-a-thrilling-one-day-motorcycle-adventure/"
+  to = "/tamhini-ghat-to-tiger-point-a-thrilling-one-day-motorcycle-adventure/"
+  status = 301

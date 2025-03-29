@@ -123,7 +123,7 @@ The approach to Paratewadi had an air of exclusivity about it. We rode past fenc
 
 ## Beginning the Descent
 
-![Spectacular sunrise view from the Savlya Ghat parking area, with mountains silhouetted against an orange and blue gradient sky. The warm orange glow illuminates the horizon while the upper sky transitions to deep blue, creating a dramatic backdrop for the Sahyadri mountain range.](/assets/images/dawn-s-canvas-sunrise-from-savlya-ghat-parking-area.jpg "Dawn's Canvas: Sunrise from Savlya Ghat Parking Area")
+![Spectacular sunrise view from the Savlya Ghat parking area, with mountains silhouetted against an orange and blue gradient sky. The warm orange glow illuminates the horizon while the upper sky transitions to deep blue, creating a dramatic backdrop for the Sahyadri mountain range.](/assets/images/dawn-s-canvas-sunrise-from-savlya-ghat-parking-area.jpg "Dawn's Canvas: Sunrise from Savlya Ghat Parking Area | Credit: Aniket (https://instagram.com/aniketthanage)")
 
 At the parking area, the owner collected Rs. 50 per motorcycle—a reasonable fee considering the location. One of my friends, an office colleague who had visited before, could barely contain his excitement. "You have to see this view," he insisted, practically pulling me toward the trail. I was completely unaware of what lay ahead or how far we would need to trek.
 
