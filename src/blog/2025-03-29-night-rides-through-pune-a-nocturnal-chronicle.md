@@ -67,7 +67,7 @@ There's something profoundly therapeutic about gliding through familiar streets 
 
 Tonight's ride wasn't particularly long or adventurous by most standards—just an hour of city exploration before returning home by 12:15 AM, when the air had finally begun to cool slightly. But these rides aren't about distance or destination; they're about reconnection and rediscovery.
 
-![Route map screenshot showing a circular journey around Pune starting from Chandni Chowk, proceeding through Kothrud, FC Road, Wakdewadi, Old Mumbai-Pune Highway, then taking a left at Bopodi toward Aundh, continuing to Parihar Chowk and Baner Road, connecting to NH4 Highway before returning to Chandni Chowk, forming a complete night ride loop through the city.](/assets/images/pune-night-travel-day-march-27-2025.jpg)
+![Route map screenshot showing a circular journey around Pune starting from Chandni Chowk, proceeding through Kothrud, FC Road, Wakdewadi, Old Mumbai-Pune Highway, then taking a left at Bopodi toward Aundh, continuing to Parihar Chowk and Baner Road, connecting to NH4 Highway before returning to Chandni Chowk, forming a complete night ride loop through the city.](/assets/images/pune-night-travel-day-march-27-2025.jpg "Pune Night Ride Loop: Chandni Chowk-FC Road-Mumbai Highway-Baner Circuit")
 
 - - -
 
