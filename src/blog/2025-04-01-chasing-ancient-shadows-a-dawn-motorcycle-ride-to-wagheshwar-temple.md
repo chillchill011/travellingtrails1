@@ -39,6 +39,27 @@ imageAlt: Ancient Wagheshwar Temple partially preserved after centuries
 imageCredit: Aniket
 imageCreditLink: https://www.instagram.com/aniketthanage
 thumbnailImage: /assets/images/wagheshwar-temple-pawana-dam-thumbnail.jpg
+routeGallery:
+  - mapUrl: https://maps.app.goo.gl/Xm2PXgyNfZjg1iNm7
+    src: /assets/images/wagheshwar-temple-expedition-route-map-complete-motorcycle-journey-circuit-through-pune-s-western-ghats.jpg
+    title: "Wagheshwar Temple Expedition Route Map: Complete Motorcycle Journey
+      Circuit Through Pune's Western Ghats"
+    alt: Google Maps screenshot showing the complete motorcycle route to Wagheshwar
+      Temple and back - outbound journey from Chandni Chowk through Chandkhed
+      and Kadadhe (marked in blue), reaching the submerged temple near Pawana
+      Dam, and return journey via Hadashi and Paud (marked in red), forming a
+      scenic loop through the Western Ghats near Pune
+    distance: 101 km
+    duration: 3.2 hours
+    mapSource: Google Maps
+  - src: /assets/images/wagheshwar-temple-actual-road.jpg
+    title: Wagheshwar temple actual route to reach the temple. Follow the purple
+      line not green. By Default, Google maps shows green line default route.
+    alt: Screenshot of location to reach the temple. Follow the purple line not
+      green. By Default, Google maps shows green line default route.
+    locations: New Wagheshwar Temple
+    mapSource: Google maps
+    mapUrl: https://maps.app.goo.gl/tvHp5hKSxaqNSZWaA
 tripDetails:
   costs:
     transportation: Fuel costs for approximately 100 km round trip
@@ -75,15 +96,21 @@ When I learned that this historic temple was currently exposed due to falling wa
 
 Our small convoy consisted of three distinct motorcycles: my Triumph Scrambler 400X, a Honda CB 350, and a Royal Enfield Scram 411—a fitting trio for an adventure that would include both highway riding and some unexpected off-road challenges.
 
+![Three motorcycles - Triumph Scrambler 400X, Royal Enfield Scram 411, and Honda CB 350 - parked along bridge railing with scenic view of dam waters and Sahyadri mountains in the background](/assets/images/three-motorcycles-one-adventure-our-riding-companions-at-kadadhe-bridge.jpg "Three Motorcycles, One Adventure: Our Riding Companions at Kadadhe Bridge")
+
 Setting out from Chandni Chowk while the city still slept, I met my first companion, and together we rode toward Chandkhed where our third friend awaited. Though it would have been quicker to meet elsewhere, we motorcycle enthusiasts rarely choose the shortest route when a more scenic alternative presents itself. The morning air carried a surprising coolness that belied the season, though we all knew the reprieve would be temporary as summer tightened its grip on the region.
 
 ## The Journey: Mountain Vistas and Winding Roads
 
 After meeting our third rider in Chandkhed, we continued along roads that gradually deteriorated in condition. The segment until Kadadhe Bridge proved particularly challenging, requiring careful navigation around potholes and uneven surfaces. At the bridge, we paused for our first proper break, letting the landscape photographer in each of us emerge. Phones and cameras documented the serene morning light playing across the water while we stretched our legs.
 
+![Serene morning view of Pawana River from Kadadhe Bridge, showing perfect reflections of trees, palm groves and distant mountains in the still water, captured during the early morning motorcycle ride stop](/assets/images/pawana-river-from-kadadhe-bridge.jpg "Morning Reflections at Kadadhe Bridge")
+
 One rider took the opportunity to fuel up at Kadadhe village's HP petrol pump—a wise precaution given the remote nature of our destination. From Pavana Nagar, we veered toward the left side of Pawana Dam, and it was here that the scenery transformed dramatically. Though not lush with greenery during summer, the panorama impressed with mountains in every direction.
 
 The route revealed a series of quaint cafes, hotels, and campgrounds dotting the lakeside—evidence of the area's popularity as a weekend retreat from Pune's urban bustle. On our left, the distinctive triangular silhouette of Tikona Fort commanded attention, while the blue-hued outlines of Lohgad and Visapur Forts emerged on our right horizon. This triumvirate of historic fortifications framing the landscape created a powerful sense of traveling through time as much as space.
+
+![The distinctive triangular silhouette of Tikona Fort rising dramatically against the morning sky, visible along the motorcycle route to Wagheshwar Temple](/assets/images/tikona-fort-the-distinctive-triangle-mountain.jpg "Tikona Fort: The Distinctive Triangle Mountain")
 
 ## The Navigation Challenge: Finding a Temple That Isn't There
 
@@ -96,6 +123,8 @@ This impromptu off-road section featured thick, soft soil that tested our riding
 ## The Destination: Wagheshwar Temple Revealed
 
 We finally reached the temple at 8:10 AM, and my first impression was one of modest surprise. The structure itself is smaller than I had imagined—certainly not the grand complex one might expect given its historical significance. Its surface, appearing white from a distance, revealed itself on closer inspection to be covered in bird droppings—an inevitable consequence of being the only elevated perch in a vast expanse of dried lakebed.
+
+![Centuries-old Wagheshwar Temple standing on dried lakebed, showing weathered stone structure with pillars and distinctive architecture from the Chalukya period, normally submerged under Pawana Dam waters](/assets/images/ancient-wagheshwar-temple-chalukya-era-relic-revealed.jpg "Ancient Wagheshwar Temple: Chalukya Era Relic Revealed")
 
 Despite its somewhat diminished state, the temple's setting compensated magnificently. Standing beside this ancient structure, we were treated to a 360-degree panorama that included Pawana Lake's remaining waters, Tikona Fort rising proudly to our right, and the distant blue silhouettes of Lohgad and Visapur Forts. The entire Sahyadri range encircled us, its reflection shimmering in the remaining water—a view that commanded silence and appreciation.
 
@@ -120,19 +149,12 @@ At Javan village, our paths diverged—our Chandkhed-based companion headed home
 If you're inspired to undertake your own pilgrimage to the submerged temple, here are some practical recommendations based on our experience:
 
 1. **Timing is everything**: Visit only during summer months (March to early June) when dam water levels are at their lowest. By monsoon season, the temple will be completely underwater again.
-
 2. **Start early**: An early morning departure not only provides beautiful lighting for photography but also allows you to explore before the day's heat becomes oppressive.
-
 3. **Navigation**: Don't rely solely on Google Maps. Look for the *new* Wagheshwar Temple and Jalsa Resort as your landmarks, then ask locally for the final approach.
-
 4. **Off-road preparation**: Be prepared for the final 500-600 meters of off-road riding across soft, dried lakebed soil. This section can be challenging for motorcycles and virtually impossible for regular cars.
-
 5. **Vehicle choice**: If possible, choose a motorcycle with some off-road capability. While any bike can make the journey, those with appropriate tires and ground clearance will have an easier time with the final approach.
-
 6. **Provisions**: Carry water and snacks. While there are establishments like Jalsa Resort nearby, the immediate temple area has no facilities.
-
 7. **Photography timing**: The morning light creates beautiful reflections on the remaining water. If photography is your priority, plan to be at the temple between 7:30-9:00 AM.
-
 8. **Footwear**: Bring appropriate footwear for walking on the uneven, sometimes muddy lakebed surrounding the temple.
 
 ## Reflection: The Journey and the Destination
