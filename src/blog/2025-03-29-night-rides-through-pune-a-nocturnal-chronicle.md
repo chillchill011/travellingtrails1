@@ -67,7 +67,30 @@ There's something profoundly therapeutic about gliding through familiar streets 
 
 Tonight's ride wasn't particularly long or adventurous by most standards—just an hour of city exploration before returning home by 12:15 AM, when the air had finally begun to cool slightly. But these rides aren't about distance or destination; they're about reconnection and rediscovery.
 
-![Route map screenshot showing a circular journey around Pune starting from Chandni Chowk, proceeding through Kothrud, FC Road, Wakdewadi, Old Mumbai-Pune Highway, then taking a left at Bopodi toward Aundh, continuing to Parihar Chowk and Baner Road, connecting to NH4 Highway before returning to Chandni Chowk, forming a complete night ride loop through the city.](/assets/images/pune-night-travel-day-march-27-2025.jpg)
+![Route map screenshot showing a circular journey around Pune starting from Chandni Chowk, proceeding through Kothrud, FC Road, Wakdewadi, Old Mumbai-Pune Highway, then taking a left at Bopodi toward Aundh, continuing to Parihar Chowk and Baner Road, connecting to NH4 Highway before returning to Chandni Chowk, forming a complete night ride loop through the city.](/assets/images/pune-night-travel-day-march-27-2025.jpg "Pune Night Ride Loop: Chandni Chowk-FC Road-Mumbai Highway-Baner Circuit")
+
+- - -
+
+## Day 2: March 31, 2025
+
+It was a very spontaneous ride tonight. After returning from a dinner date and some shopping, I arrived home around 10:15 PM. As soon as I stepped out of the cab, my eyes landed on my motorcycle, and the urge for a night ride instantly took hold. Without overthinking it, I grabbed my gear and headed out.
+
+
+Starting from Chandni Chowk, I made my way via Paud Road until I reached Good Luck Cafe Chowk. From there, I decided to take the route past BMCC College and then onto SB Road. Near Chatushrungi Mandir, a sudden impulse led me toward Aundh Road. I had no clear destination in mind but found myself drawn to revisit the Ravet route via Aundh, so I opened the throttle and let the bike carry me forward.
+
+
+The Aundh-Ravet BRTS Road surprised me with its excellent condition—smooth asphalt that invited speed and freedom. After climbing three or four flyovers, I reached London Bridge, also known as Sant Tukaram Maharaj Bridge, which spans the Pawana River. Taking a left, I continued toward Kiwale Chowk, where the Pune-Mumbai Expressway begins. Another left turn put me on NH4, and I began my return journey toward Chandni Chowk.
+
+
+Tonight's ride had a different quality than most of my nocturnal excursions. There were no deep emotional reflections or nostalgic musings—just the pure joy of riding on open, smooth roads. The focus was entirely on the experience: carefully managing the throttle, maintaining awareness in both city traffic and highway conditions, and enjoying the sensation of movement through the night air.
+
+
+I reached Chandni Chowk around 12:30 AM, having started just past 11:15 PM. Before heading home, I paused at the Chandni Chowk bridge to take in the city skyline—a tapestry of lights against the dark canvas of night. This final moment of contemplation completed the circuit, providing the perfect ending to an impromptu adventure.
+
+
+With the peaceful image of Pune's illuminated skyline in my mind, I returned home ready for a restful sleep, already looking forward to the next time the night would call me to explore.
+
+![Screen shot of route Pune Night Ride Loop - Chandni Chowk- Good Luck Chowk - BMCC - Chatushrungi Mandir - Aundh - Ravet - Kiwale - ANd return via NH4](/assets/images/pune-night-travel-day-march-31-2025.png "Pune Night Ride Loop - Chandni Chowk- Good Luck Chowk - BMCC - Chatushrungi Mandir - Aundh - Ravet - Kiwale - ANd return via NH4")
 
 - - -
 
