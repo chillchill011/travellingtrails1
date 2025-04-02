@@ -128,7 +128,7 @@ We finally reached the temple at 8:10 AM, and my first impression was one of mod
 
 Despite its somewhat diminished state, the temple's setting compensated magnificently. Standing beside this ancient structure, we were treated to a 360-degree panorama that included Pawana Lake's remaining waters, Tikona Fort rising proudly to our right, and the distant blue silhouettes of Lohgad and Visapur Forts. The entire Sahyadri range encircled us, its reflection shimmering in the remaining water—a view that commanded silence and appreciation.
 
-![Wide panoramic view of tranquil Pawana Lake at dawn with perfect reflections, featuring Tikona Fort visible on the left and the distant silhouettes of Lohgad and Visapur forts rising against the hazy morning sky along the Sahyadri mountain range](/assets/images/panaromic-view-of-pawana-lake-and-reflection-of-tikona.jpg "Panoramic Vista of Pawana Lake with Sahyadri Sentinels | Credit: Aniket (https://www.instagram.com/aniketthanage/)\"")
+![Wide panoramic view of tranquil Pawana Lake at dawn with perfect reflections, featuring Tikona Fort visible on the left and the distant silhouettes of Lohgad and Visapur forts rising against the hazy morning sky along the Sahyadri mountain range](/assets/images/panaromic-view-of-pawana-lake-and-reflection-of-tikona.jpg "Panoramic Vista of Pawana Lake with Sahyadri Sentinels | Credit: Aniket (https://www.instagram.com/aniketthanage/)")
 
 ## Historical Reflections: The Temple's Story
 
