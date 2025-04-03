@@ -149,7 +149,6 @@ This inevitable deterioration stirred a certain melancholy—here stood a testam
   </figure>
 
 
-<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
   <figure style="margin: 0; display: flex; flex-direction: column;">
     <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
       <img src="/assets/images/External-wall.jpg" alt="External wall of the temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
@@ -157,7 +156,6 @@ This inevitable deterioration stirred a certain melancholy—here stood a testam
     <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">External wall of the temple</figcaption>
   </figure>
 
-<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
   <figure style="margin: 0; display: flex; flex-direction: column;">
     <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
       <img src="/assets/images/Original-pillers-and-internal-original-temple-part-Garbhagruha.jpg" alt="Garbhagruha of Wagheshwar temple with original pillars" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
@@ -165,7 +163,6 @@ This inevitable deterioration stirred a certain melancholy—here stood a testam
     <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Garbhagruha of Wagheshwar temple with original pillars</figcaption>
   </figure>
 
-<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
   <figure style="margin: 0; display: flex; flex-direction: column;">
     <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
       <img src="/assets/images/stones-later-reinforced-with-steel-rods.jpg" alt="Stones later reinforced with steel rods" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
