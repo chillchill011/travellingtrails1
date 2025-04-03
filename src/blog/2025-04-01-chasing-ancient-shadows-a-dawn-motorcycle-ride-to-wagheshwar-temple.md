@@ -39,6 +39,25 @@ imageAlt: Ancient Wagheshwar Temple partially preserved after centuries
 imageCredit: Aniket
 imageCreditLink: https://www.instagram.com/aniketthanage
 thumbnailImage: /assets/images/wagheshwar-temple-pawana-dam-thumbnail.jpg
+gallery:
+  - src: /assets/images/nandi-outside-the-temple.jpg
+    alt: Nandi outside the temple
+    caption: Nandi outside the temple
+  - src: /assets/images/rode-from-the-new-wagheshwar-temple.jpg
+    alt: Rode from the New Wagheshwar Temple
+    caption: Rode from the New Wagheshwar Temple
+  - src: /assets/images/stone-structures-made-by-visitors.jpg
+    alt: Stone structures made by visitors
+    caption: Stone structures made by visitors
+  - src: /assets/images/temole-from-side.jpg
+    alt: Temole from side
+    caption: Temole from side
+  - src: /assets/images/temple-from-front.-entry-to-the-temple.jpg
+    alt: Temple from front. Entry to the temple
+    caption: Temple from front. Entry to the temple
+  - src: /assets/images/temple-from-side-you-can-see-the-crowd-as-well-as-size-of-the-temple.jpg
+    alt: Temple from side You can see the crowd as well as size of the temple
+    caption: Temple from side You can see the crowd as well as size of the temple
 routeGallery:
   - mapUrl: https://maps.app.goo.gl/Xm2PXgyNfZjg1iNm7
     src: /assets/images/wagheshwar-temple-expedition-route-map-complete-motorcycle-journey-circuit-through-pune-s-western-ghats.jpg
