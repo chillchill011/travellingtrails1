@@ -35,6 +35,20 @@ imageAlt: Breathtaking panoramic view from Kadve Ghat viewpoint showing both
 imageCredit: Aniket
 imageCreditLink: https://www.instagram.com/aniketthanage
 thumbnailImage: /assets/images/kadve-ghat-panoramic-view-thumb.jpg
+routeGallery:
+  - title: Pune to Kadve Ghat and return via NH4
+    src: /assets/images/pune-kadve-ghat-gunjavne-dam-pune-via-nh4-.png
+    locations: Kadve Khind, Gunjavane Dam
+    distance: 117 km
+    duration: 3.5 hours
+    mapSource: Google Maps
+    mapUrl: https://maps.app.goo.gl/YKrmL4aEH8LkXQgL7
+    alt: Google Maps screenshot showing the complete motorcycle journey route from
+      Pune to Kadve Ghat and Gunjavne Dam - starting from Chandni Chowk, passing
+      through Khadakwasla Dam, Panshet Dam, Kuran Khurd, and Shikroli villages
+      to reach Kadve Ghat viewpoint, then continuing to Gunjavne Dam before
+      returning via Velha Road, RajToran Misal House, Nasrapur and NH4 back to
+      Pune, forming a 110 km scenic circuit through the Western Ghats
 tripDetails:
   seasonal:
     bestSeason:
@@ -142,7 +156,7 @@ The dam offered spectacular photo opportunities, with Torna Fort particularly cl
 
 After thoroughly enjoying the dam visit, we headed toward the main road via Velha, though we didn't actually enter the town itself. Our route took us to RajToran Misal House, where I had enjoyed a meal about a year prior. The Velha road impressed us with its good condition, minimal traffic, and few village interruptions, allowing for some spirited riding as we made our way to breakfast.
 
-At RajToran, all five of us indulged in misal and tea, with the entire bill coming to a remarkably reasonable Rs. 500. The misal was flavorful and satisfying, and the tea provided a perfect complement as we shared photographs and stories from the morning's adventure.
+At [RajToran](https://maps.app.goo.gl/HGJkgpNhJMdmXC3V8), all five of us indulged in misal and tea, with the entire bill coming to a remarkably reasonable Rs. 500. The misal was flavorful and satisfying, and the tea provided a perfect complement as we shared photographs and stories from the morning's adventure.
 
 With breakfast complete, we began our journey home, reaching Nasrapur in just two minutes and then joining NH4. The highway allowed us to maintain speeds of 100-120 km/h, bringing us home in a brisk 40-45 minutes. By 10:30 AM, we had completed our 110 km breakfast trip, having experienced new vistas, shared riding experiences, and discovered places some of us had long wanted to visit.
 
