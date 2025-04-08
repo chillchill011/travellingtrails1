@@ -11,8 +11,8 @@ description: Experience an exhilarating motorcycle journey to Kadve Ghat
 author: aniket
 destination: Kadve Ghat
 coordinates:
-  latitude: 18.2954
-  longitude: 73.5933
+  latitude: 18.335731586288457
+  longitude: 73.61775779206985
 duration: Kadve Ghat
 categories: Hidden Gems
 travelType:
