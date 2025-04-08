@@ -138,6 +138,8 @@ Upon reaching the Kadve Ghat viewpoint, I was genuinely surprised to discover th
 
 We spent about 20 minutes at this vantage point, capturing photographs and soaking in the panorama. I attempted to climb a nearby hill for an even better 360-degree view, but the soil proved too unstable for safe exploration. We also investigated what appeared to be a basic soil road extending beyond our viewpoint, but after discovering it descended steeply after a few hundred meters, we decided to return to the main ghat road after taking a few more photographs.
 
+![Narrow dirt trail leading through dry summer brush and foliage on the approach to Kadve Ghat, showing the challenging terrain motorcyclists must navigate to reach the viewpoint](/assets/images/off-road-trail-to-kadve-ghat.jpg "Off-Road Trail to Kadve Ghat: The Soil Path Through Summer Foliage")
+
 ## Change of Plans: The Gunjavne Dam Detour
 
 My initial plan had been to return via the same route to Panshet, then continue to Varasgaon Dam, through the villages of Chikhli and Davaje to Mutha Village, and finally take the Temghar-Lavasa road that would lead home from another direction. However, when someone suggested visiting Gunjavne Dam directly, my eyes lit up with excitement.
