@@ -143,21 +143,21 @@ I was particularly excited to test the Scrambler's capabilities, even though I h
 
 ### Early Morning Departure
 
-We kicked off our journey at the crack of dawn, around 6 AM, having packed our bags the night before. My Triumph was equipped with a newly installed top rack, while my wife carried a shoulder bag. Our first stop came at the Shell Petrol Pump after Khed-Shivapur toll (one advantage of traveling by two-wheeler: no toll charges for the entire journey!). A quick cup of tea later, we continued our 80km stretch on NH4.
+We kicked off our journey at the crack of dawn, around 6 AM, having packed our bags the night before. My Triumph was equipped with a newly installed top rack, while my wife carried a shoulder bag. Our first stop came at the [Shell Petrol Pump after Khed-Shivapur toll](https://maps.app.goo.gl/a9dqc73KU2wKFwyFA) (one advantage of traveling by two-wheeler: no toll charges for the entire journey!). A quick cup of tea later, we continued our 80km stretch on NH4.
 
-We took another break to stretch our legs at JB Pump (Bharat Petrol) near Anavadi. Here, I attempted to install a mobile phone holder that I hadn't properly set up beforehand—the only aspect of our trip I hadn't planned in advance. This minor oversight would come back to haunt us during navigation later.
+We took another break to stretch our legs at [JB Pump (Bharat Petrol) near Anavadi](https://maps.app.goo.gl/PEV121rdx9QQWC7FA). Here, I attempted to install a mobile phone holder that I hadn't properly set up beforehand—the only aspect of our trip I hadn't planned in advance. This minor oversight would come back to haunt us during navigation later.
 
 ### The Speed Challenge and Navigation Mishaps
 
-Near Satara, I couldn't resist testing the Scrambler's capabilities, briefly hitting 125 kmph as the RPM limiter light began blinking—a gentle reminder that the first service was overdue. The thrill of the speed was exhilarating for both of us, but it also led to our first navigational mishap. In my enthusiasm, I completely missed the Satara exit where we had planned to stop for breakfast at Chandravilas Resto.
+Near Satara, I couldn't resist testing the Scrambler's capabilities, briefly hitting 125 kmph as the RPM limiter light began blinking—a gentle reminder that the first service was overdue. The thrill of the speed was exhilarating for both of us, but it also led to our first navigational mishap. In my enthusiasm, I completely missed the Satara exit where we had planned to stop for breakfast at [Chandravilas Resto](https://maps.app.goo.gl/STecmxe1NooVB3zRA).
 
 "You know, as the rider, it's your responsibility to pay attention to the exits," came the inevitable lecture from the pillion seat. And so began our first lesson in motorcycle trip dynamics: the driver gets blamed for all navigational errors, regardless of who's supposed to be watching the map. It's apparently in the fine print of the relationship contract.
 
-We eventually settled for a late breakfast at McDonald's past Karad, where we stretched our legs and refreshed ourselves. While the Scrambler was performing admirably, I was beginning to realize its limitations as a long-distance two-up touring bike—my wife was struggling a bit with comfort on the pillion seat.
+We eventually settled for a late breakfast at [McDonald's past Karad](https://maps.app.goo.gl/A9Yvr7gEqr9G5TjL9), where we stretched our legs and refreshed ourselves. While the Scrambler was performing admirably, I was beginning to realize its limitations as a long-distance two-up touring bike—my wife was struggling a bit with comfort on the pillion seat.
 
 ### Reaching Kolhapur: Palace and Fort Exploration
 
-By early afternoon, we reached our destination—The Pavillion Hotel in Kolhapur. After checking in, a quick power nap, and lunch (which was reasonably priced), we set off to explore The New Shahu Palace, located conveniently close to our accommodation. We spent about two hours admiring the historical darbar, sword collections, cannons, and paintings—a wonderful first taste of Kolhapur's rich heritage.
+By early afternoon, we reached our destination—[The Pavillion Hotel in Kolhapur](https://maps.app.goo.gl/cWmzHsFTKqeKKn9ZA). After checking in, a quick power nap, and lunch (which was reasonably priced), we set off to explore The New Shahu Palace, located conveniently close to our accommodation. We spent about two hours admiring the historical darbar, sword collections, cannons, and paintings—a wonderful first taste of Kolhapur's rich heritage.
 
 Our next stop was Panhala Fort, about 40 minutes away accounting for traffic. As a fort enthusiast, I had long wanted to visit this historically significant 300-year-old structure. While most visitors seemed to be weekend picnickers rather than history buffs (I estimate less than 1% were there for the historical significance), we found a peaceful corner of the fort where we could sit and reflect for an hour.
 
@@ -167,7 +167,7 @@ The ancient trees, massive in size and age, created a tranquil atmosphere, and m
 
 ### Evening Culinary Delights
 
-Returning to Kolhapur by evening, we met up with my friend for dinner at DEHAATI, where we indulged in an authentic Kolhapuri mutton thali. The crowded restaurant was testament to its quality, and my wife particularly enjoyed the local flavors—she seemed to appreciate the authentic Kolhapuri cuisine even more than I did. With full stomachs and tired bodies, we returned to our hotel to recharge for the next day's adventures, setting our alarms for another early start.
+Returning to Kolhapur by evening, we met up with my friend for dinner at [DEHAATI](https://maps.app.goo.gl/m7nS2JxQH1MDyfd58), where we indulged in an authentic Kolhapuri mutton thali. The crowded restaurant was testament to its quality, and my wife particularly enjoyed the local flavors—she seemed to appreciate the authentic Kolhapuri cuisine even more than I did. With full stomachs and tired bodies, we returned to our hotel to recharge for the next day's adventures, setting our alarms for another early start.
 
 ## Day 2: Temples and Unexpected Detours
 
