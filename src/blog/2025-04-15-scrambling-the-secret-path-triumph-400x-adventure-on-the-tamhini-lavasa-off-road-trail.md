@@ -152,9 +152,11 @@ First stop: fuelling up the Scrambler at the Shell petrol pump in Bhukum, where 
 
 ### Breakfast, Briefings, and Butterflies
 
-The road to Tamhini village was familiar asphalt, dispatched in just over 30 minutes. We reached the crucial diversion point – the gateway to our off-road escapade. But first, breakfast! We pulled into Aahar Vatika for a much-needed chai/coffee break, spending about half an hour relaxing and strategizing.
+The road to Tamhini village was familiar asphalt, dispatched in just over 30 minutes. We reached the crucial diversion point – the gateway to our off-road escapade. But first, breakfast! We pulled into [Aahar Vatika](vdPCdv9BZnA8MKAA9) for a much-needed chai/coffee break, spending about half an hour relaxing and strategizing.
 
 Out came the phones, Google Maps open. Unsurprisingly, the intended path showed no comforting blue line signifying a road. This only added to the excitement and slight nervousness. We discussed the potential challenges, and being my first time on this specific trail, I asked a fellow rider to keep an extra eye out for me. Expectations were high; we envisioned a properly demanding off-road test.
+
+![Tamhini Lavasa route start point](/assets/images/tamhini-lavasa-road-starting-point.jpg "Tamhini Lavasa route start point")
 
 ### The Adventure Unfolds: Tarmac, Dust, and a Surprise Challenge
 
@@ -164,7 +166,11 @@ And then, the road turned red. The characteristic red soil of the Konkan region 
 
 Finally, we saw it. Ahead, 5-6 riders had already cleared a particularly rough-looking section. But two riders were visibly struggling. One was properly stuck in deep, loose soil. Thankfully, another rider quickly came to the rescue. We, the remaining 3-4 riders at the back, watched and chose a different line, hugging the corner where the soil seemed firmer. For a moment, I felt my rear wheel spinning, losing traction – stuck! But a quick push from a fellow rider got me through.
 
-We pulled over just past the patch, looked back, and shared smiles of relief and slight amusement. "That's it?" The much-anticipated gnarly off-road section was this 20-30 meter stretch, clearly the result of an old landslide. It dawned on us why it's called the Tamhini-Lavasa _road_ – villagers genuinely use this route! We'd seen a commuter bike and even a scooter navigating it earlier. Our hardcore off-road dreams recalibrated into appreciating this rustic, functional village connector.
+![Off road patch of tamhini lavasa route](/assets/images/tamhini-lavasa-road-red-sand-route.jpg "Off road patch of tamhini lavasa route")
+
+We pulled over just past the patch, looked back, and shared smiles of relief and slight amusement. "That's it?" The much-anticipated gnarly off-road section was this 20-30 meter stretch, clearly the result of an old landslide. It dawned on us why it's called the Tamhini-Lavasa *road* – villagers genuinely use this route! We'd seen a commuter bike and even a scooter navigating it earlier. Our hardcore off-road dreams recalibrated into appreciating this rustic, functional village connector.
+
+![Cement route of Tamhini Lavasa route](/assets/images/tamhini-lavasa-cement-road.jpg "Cement route of Tamhini Lavasa route")
 
 ### Descending into Beauty: Riverbeds and Photo Frenzy
 
@@ -172,13 +178,15 @@ The challenge conquered (or rather, understood), we began descending the hill. T
 
 The descent led us alongside the Mutha river, or rather, its vast, dry backwater basin. The water levels were low, clearly revealing the wall of the Ghadle dam in the distance. The exposed riverbed, a canvas of dust, patches of wet soil, tarmac remnants, boulders, and a sliver of remaining water in the centre, was too tempting to ignore.
 
-Unanimously, we agreed: this was _the_ spot. The planned 'off-road adventure' might have been shorter than expected, but this playground more than made up for it. Riders instantly started showcasing their skills – popping wheelies, executing spin turns, jumping small mounds, and kicking up dust on the riverbed soil. Cameras clicked furiously. We captured everything: the dramatic landscape, the gleaming bikes against the rugged terrain, riders posing with their machines, action shots, and of course, the essential group photos. We soaked it all in for a good half hour, quality time spent enjoying the bikes and the unique location.
+![Mutha river bed and Varasgaon Dam backwater](/assets/images/mutha-river-bed-and-varasgaon-dam-backwater.jpg "Varasgaon Dam backwater and dried Mutha river bed")
+
+Unanimously, we agreed: this was *the* spot. The planned 'off-road adventure' might have been shorter than expected, but this playground more than made up for it. Riders instantly started showcasing their skills – popping wheelies, executing spin turns, jumping small mounds, and kicking up dust on the riverbed soil. Cameras clicked furiously. We captured everything: the dramatic landscape, the gleaming bikes against the rugged terrain, riders posing with their machines, action shots, and of course, the essential group photos. We soaked it all in for a good half hour, quality time spent enjoying the bikes and the unique location.
 
 ### The Return: Lavasa Ghats and an Unexpected Vista
 
 Energized and photos secured, we remounted and continued our journey towards home, routing via Lavasa – Pune's infamous "ghost city." We skirted the main Lavasa city itself, but the ghat road leading away from it was pure joy. Twisty, scenic, though demanding caution due to patches of sand and dust on the corners, limiting aggressive leaning.
 
-Riding this road brought back memories flooding from my junior college days back in 2007-08, when Lavasa was a frequent haunt. As the designated sweep, I was trailing the group, soaking in the views, when I noticed everyone had pulled over ahead. The spot was Hotel Shree Ganesha, just past the Lavasa gate.
+Riding this road brought back memories flooding from my junior college days back in 2007-08, when Lavasa was a frequent haunt. As the designated sweep, I was trailing the group, soaking in the views, when I noticed everyone had pulled over ahead. The spot was [Hotel Shree Ganesha](https://maps.app.goo.gl/U3h3rURP1mEnkNLG9), just past the Lavasa gate.
 
 As I rolled up, I looked out at the vista they were admiring. And then I saw it. An absolutely breathtaking, unexpected panorama. In a single frame, three majestic forts stood sentinel: Sinhagad, Rajgad, and Torna. I’m not sure if everyone else registered the significance, but for me, seeing these three historical giants aligned perfectly was a massive highlight. I quickly snapped a few photos, etching the view into memory.
 
@@ -188,7 +196,7 @@ From there, the route home was again familiar territory, winding past the Temgha
 
 This ride turned out differently than the hardcore off-roading fantasy I initially had. The challenging section was brief, the majority being manageable paths. But the experience was richer for it. We discovered a hidden connector route, found an incredible natural playground in the dry riverbed, shared laughs and helped each other through tricky spots, and stumbled upon a truly awe-inspiring, unexpected view of historic forts.
 
-The Triumph Scrambler 400x handled it all beautifully, proving its versatility. Now, the itch has evolved. I _need_ to ride this route again after the monsoon descends. I want to see that dense green forest canopy, feel the splash of wet red soil, and see my Scrambler properly caked in mud. That’s what Scramblers are for, right?
+The Triumph Scrambler 400x handled it all beautifully, proving its versatility. Now, the itch has evolved. I *need* to ride this route again after the monsoon descends. I want to see that dense green forest canopy, feel the splash of wet red soil, and see my Scrambler properly caked in mud. That’s what Scramblers are for, right?
 
 This journey was a perfect reminder that adventure isn't always about conquering the toughest terrain; sometimes, it's about the shared experience, the unexpected discoveries, and the pure joy of riding somewhere new.
 
