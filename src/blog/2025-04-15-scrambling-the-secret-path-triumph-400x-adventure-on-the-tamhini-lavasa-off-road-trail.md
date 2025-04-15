@@ -39,6 +39,35 @@ imageAlt: Tamhini Lavasa Road and off road trail. We can see the vast canvas of
 imageCredit: Aniket
 imageCreditLink: https://www.instagram.com/aniketthanage
 thumbnailImage: /assets/images/tamhini-lavasa-off-road-trail-thumbnail.jpg
+gallery:
+  - src: /assets/images/varasgaon-backwater-and-wall-of-the-ghadle-dam.jpg
+    alt: Varasgaon dam backwater and the Ghadle dam wall
+    caption: Varasgaon dam backwater and the Ghadle Dam wall
+  - src: /assets/images/triumph-scrambler-400x-in-mutha-river-bed.jpg
+    alt: "Triumph Scrambler 400x "
+    caption: "Triumph Scrambler 400x "
+  - src: /assets/images/lavasa-city.jpg
+    alt: Lavasa city
+    caption: Lavasa city
+  - src: /assets/images/me-with-my-scrambler-400x-mutha-river-bed-.jpg
+    alt: Triumph Scrambler 400x with background of the mutha river
+    caption: Me with my ride partner
+routeGallery:
+  - src: /assets/images/pune-to-pune-map-screenshot-of-the-tamhini-lavasa-route.jpg
+    title: Pune to Pune map screenshot of the tamhini lavasa route
+    alt: Tamhini Lavasa route from Pune base
+    distance: 105 km
+    duration: 3.5 hours
+    mapSource: Google Maps
+    mapUrl: https://maps.app.goo.gl/btaSFBx4WVo7Q72m9
+  - src: /assets/images/tamhini-village-to-the-mugaon-road.jpg
+    title: Tamhini village to the Mugaon off road
+    alt: Off road trail path from tamhini village to mugaon
+    locations: Tamhini Khind
+    distance: 8.8 km
+    duration: 30 mins
+    mapSource: Google Maps
+    mapUrl: https://maps.app.goo.gl/6im4tLuXPffmXntS9
 tripDetails:
   itinerary:
     - time: 7 AM
