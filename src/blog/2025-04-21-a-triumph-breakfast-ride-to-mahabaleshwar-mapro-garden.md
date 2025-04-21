@@ -9,8 +9,8 @@ description: Join my first exhilarating group ride with Triumph Riders Pune
 author: aniket
 destination: Mahabaleshwar, India
 coordinates:
-  latitude: 17.923
-  longitude: 69
+  latitude: 17.923523013927486
+  longitude: 73.73531007721843
 duration: 6 hours
 categories: Weekend Escapes
 travelType:
