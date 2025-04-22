@@ -26,6 +26,24 @@ title: Home | Travelling Trails
     </section>
     {% endif %}
 
+    {# Quick Stats Section #}
+    <section class="mb-16 bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div>
+                <span class="block text-3xl font-bold text-travel-600 dark:text-travel-400">{{ collections.post.length }}</span>
+                <span class="text-gray-700 dark:text-gray-300">Adventures Shared</span>
+            </div>
+            <div>
+                <span class="block text-3xl font-bold text-travel-600 dark:text-travel-400">{{ collections.categories.length }}</span>
+                <span class="text-gray-700 dark:text-gray-300">Categories</span>
+            </div>
+            <div>
+                <span class="block text-3xl font-bold text-travel-600 dark:text-travel-400">{{ collections.destinations.length }}</span>
+                <span class="text-gray-700 dark:text-gray-300">Destinations</span>
+            </div>
+        </div>
+    </section>
+
     {# Recent Posts Section #}
     <section class="mb-16">
         <div class="flex justify-between items-center mb-8">

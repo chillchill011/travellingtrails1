@@ -1,6 +1,6 @@
 ---
 draft: false
-featured: true
+featured: false
 date: 2025-03-29T05:45:00.000Z
 title: "Chasing Ancient Shadows: A Dawn Motorcycle Ride to Wagheshwar Temple"
 description: Experience a thrilling early morning motorcycle adventure to the
@@ -39,6 +39,25 @@ imageAlt: Ancient Wagheshwar Temple partially preserved after centuries
 imageCredit: Aniket
 imageCreditLink: https://www.instagram.com/aniketthanage
 thumbnailImage: /assets/images/wagheshwar-temple-pawana-dam-thumbnail.jpg
+gallery:
+  - src: /assets/images/nandi-outside-the-temple.jpg
+    alt: Nandi outside the temple
+    caption: Nandi outside the temple
+  - src: /assets/images/rode-from-the-new-wagheshwar-temple.jpg
+    alt: Rode from the New Wagheshwar Temple
+    caption: Rode from the New Wagheshwar Temple
+  - src: /assets/images/stone-structures-made-by-visitors.jpg
+    alt: Stone structures made by visitors
+    caption: Stone structures made by visitors
+  - src: /assets/images/temole-from-side.jpg
+    alt: Temole from side
+    caption: Temole from side
+  - src: /assets/images/temple-from-front.-entry-to-the-temple.jpg
+    alt: Temple from front. Entry to the temple
+    caption: Temple from front. Entry to the temple
+  - src: /assets/images/temple-from-side-you-can-see-the-crowd-as-well-as-size-of-the-temple.jpg
+    alt: Temple from side You can see the crowd as well as size of the temple
+    caption: Temple from side You can see the crowd as well as size of the temple
 routeGallery:
   - mapUrl: https://maps.app.goo.gl/Xm2PXgyNfZjg1iNm7
     src: /assets/images/wagheshwar-temple-expedition-route-map-complete-motorcycle-journey-circuit-through-pune-s-western-ghats.jpg
@@ -139,6 +158,37 @@ One of our group, a civil engineer by profession, pointed out evidence of later 
 Surrounding the main structure, we discovered scattered architectural elements—isolated stones with unidentifiable art, small satellite shrines, and a Tulsi Vrindavan (holy basil planter). Each fragment told of a once more extensive complex, now reduced to archaeological whispers by nature's relentless cycle.
 
 This inevitable deterioration stirred a certain melancholy—here stood a testament to human creativity and devotion, gradually being reclaimed by the very environment it was built to venerate. Yet there was beauty in this cycle too, a reminder that even our most enduring creations eventually return to the landscapes from which they arose.
+
+<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/coat-of-coral-like-deposits-on-stones-of-the-temple.jpg" alt="Coat of coral like deposits on stones of the temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Coat of coral like deposits on stones of the temple</figcaption>
+  </figure>
+
+
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/External-wall.jpg" alt="External wall of the temple" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">External wall of the temple</figcaption>
+  </figure>
+
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/Original-pillers-and-internal-original-temple-part-Garbhagruha.jpg" alt="Garbhagruha of Wagheshwar temple with original pillars" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Garbhagruha of Wagheshwar temple with original pillars</figcaption>
+  </figure>
+
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="/assets/images/stones-later-reinforced-with-steel-rods.jpg" alt="Stones later reinforced with steel rods" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Stones later reinforced with steel rods.</figcaption>
+  </figure>
+ </div>
 
 ## The Return Journey: Different Routes, Shared Memories
 
