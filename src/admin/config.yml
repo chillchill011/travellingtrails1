@@ -43,12 +43,13 @@ collections:
 
       - label: "Coordinates"
         name: "coordinates"
-        widget: "object"
+        widget: "list"
         required: false
         collapsed: true
         fields:
           - { label: "Latitude", name: "latitude", widget: "number", required: false, valueType: "float" }
           - { label: "Longitude", name: "longitude", widget: "number", required: false, valueType: "float" }
+
       - label: "Duration"
         name: "duration"
         widget: "string"
