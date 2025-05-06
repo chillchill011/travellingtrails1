@@ -134,3 +134,5 @@ The trip was undeniably exhausting, but the beauty of the night out, the camarad
 Would I recommend Savlya Ghat? Absolutely, for the views. It’s a fantastic spot for a day trip or a simple overnight camp to soak in the scenery. Visit anytime outside the two heaviest monsoon months. However, if your primary goal is serious stargazing, be aware of the limitations: the altitude isn't exceptionally high, light pollution from the MIDC is a factor, and the local weather patterns, especially cloud cover, can be unpredictable.
 
 But even with the stargazing challenges, the view from that rocky outcrop? It truly captures your heart.
+
+For more details on reaching Savlya Ghat, particularly if you're planning a bike trip, and for insights from a previous visit, check out this article: https://travellingtrails.in/savlya-ghat-hidden-paradise-in-sahyadri-with-breathtaking-valley-views/
