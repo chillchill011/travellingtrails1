@@ -8,7 +8,7 @@ description: Discover Savlya Ghat, a hidden gem in Maharashtra's Sahyadri range
   waterfalls. Perfect for motorcyclists and trekkers seeking serene landscapes
   just a short trek from Tamhini Ghat via Paratewadi village.
 author: aniket
-destination: Savlya Ghat
+destination: "Savlya Ghat, Tamhini, Maharashtra, India "
 coordinates:
   latitude: 18.48584593711763
   longitude: 73.4038920411049
