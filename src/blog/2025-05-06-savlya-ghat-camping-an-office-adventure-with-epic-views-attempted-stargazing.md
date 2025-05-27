@@ -150,7 +150,7 @@ Earlier in the night, just before the sky briefly cleared, a distinct rumbling s
 
 \    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
 
-\    <img src="src/assets/images/Night Games Uno Fun at Savlya Ghat Camp.jpg" alt="A group of friends and colleagues are gathered in a circle on a mat, playing a game of Uno under the dim light of a portable lamp or flashlight during their overnight camping trip at Savlya Ghat." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+\    <img src="src/assets/images/Night-Games-Uno-Fun-at-Savlya-Ghat-Camp.jpg" alt="A group of friends and colleagues are gathered in a circle on a mat, playing a game of Uno under the dim light of a portable lamp or flashlight during their overnight camping trip at Savlya Ghat." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
 
 \    </div>
 
