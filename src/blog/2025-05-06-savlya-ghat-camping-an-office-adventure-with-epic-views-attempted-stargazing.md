@@ -103,6 +103,8 @@ The trek itself is generally considered beginner-friendly, usually taking about 
 
 Reaching the [viewpoint](https://maps.app.goo.gl/556Fx5AWFFwb4ofMA) just as the light began to fade was worth every drop of sweat. Savlya Ghat isn't a vast plateau; it's a relatively small rock outcrop, protruding boldly from the hillside, yet easily capable of accommodating around 50 people. It commands a truly spectacular position, acting as a natural balcony overlooking an amphitheater of three valleys.
 
+![A wide panoramic shot at dusk shows the vast landscape of Savlya Ghat, with rocky, flat-topped hills characteristic of the Deccan Trap, lush green valleys, and the shimmering backwaters of the Bhira Dam nestled below.](/assets/images/panoramic-view-of-savlya-ghat.jpg "Panoramic View of Savlya Ghat and Bhira Dam Backwaters")
+
 The panoramic vista is stunning: the shimmering backwaters of the Bhira Dam stretch out below, while in the distance (especially visible at night), the lights of an MIDC area and surrounding villages twinkle. We could trace the locations of Kondhera Falls and Ring Waterfall, spot the Devkund waterfall trail and the fall itself, and identify the paths leading into Plus Valley and Kundalika Valley. To the right stood the imposing Jambhya Dongar, while a unique mushroom-shaped hill captured attention on the left. Even in the dry summer heat, the surrounding valleys retained a surprising density of forest cover.
 
 ### Racing the Dark & Setting Up Camp
@@ -110,6 +112,8 @@ The panoramic vista is stunning: the shimmering backwaters of the Bhira Dam stre
 With daylight dwindling fast, we sprang into action. The mission: get all five tents pitched before complete darkness enveloped us. Sixteen pairs of hands made light work of it, and soon our temporary shelters stood tall against the fading skyline. Exhausted from the trek and the setup, we took a well-deserved break. Sipping on Glucon D, we rested, catching our breath and sharing initial impressions – the trek, the views, the slightly questionable decision to carry *that* much water, and the first-time tent-building experiences (another source of great amusement).
 
 As dusk deepened, the conversations flowed, punctuated by laughter and the crunching of Lehsuni Shev. We spread out mats, eagerly awaiting dinner, which was being delivered to our remote location by the team from Devkund View Hotel. Surprisingly, despite the isolation, we had a solid 5G connection! Around 8 PM, two distinct headlamp beams bobbed towards us through the darkness – our dinner had arrived. By 8:30 PM, we were tucking into a delicious spread: flavourful chicken gravy and masala, chapatis, rice and jowar bhakris, and steamed rice. The vegetarian thali offered two hearty vegetable dishes alongside the staples. It was a fantastic meal, fueling more conversation and camaraderie under the vast night sky.
+
+![A long exposure shot captures the night view from Savlya Ghat, showing the distant twinkling lights of an MIDC area and surrounding villages reflecting on the Bhira Dam backwaters, with a hazy glow in the sky from light pollution.](/assets/images/night-lights-from-savlya-ghat.jpg "Night Lights from Savlya Ghat: MIDC and Village Glow")
 
 ### Chasing Stars, Capturing Light
 
