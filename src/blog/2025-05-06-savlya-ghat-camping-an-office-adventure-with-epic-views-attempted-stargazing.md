@@ -102,14 +102,14 @@ The trek itself is generally considered beginner-friendly, usually taking about 
 <div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
   <figure style="margin: 0; display: flex; flex-direction: column;">
     <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
-      <img src="src/assets/images/Descending Through the Savlya Ghat Trail.jpg" alt="A view looking down a narrow, winding dirt trail at Savlya Ghat, surrounded by a mix of dry brush and some green-leafed trees providing partial shade, illustrating the rugged terrain of the trek during the current season." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+      <img src="/assets/images/Descending Through the Savlya Ghat Trail.jpg" alt="A view looking down a narrow, winding dirt trail at Savlya Ghat, surrounded by a mix of dry brush and some green-leafed trees providing partial shade, illustrating the rugged terrain of the trek during the current season." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
     </div>
     <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Descending Through the Savlya Ghat Trail</figcaption>
   </figure>
 
 <figure style="margin: 0; display: flex; flex-direction: column;">
     <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
-      <img src="src/assets/images/The Savlya Ghat Trail.jpg" alt="A winding dirt path through a dry, deciduous forest at Savlya Ghat, with several large trees silhouetted by their bare, gnarled branches against a pale sky, and the ground covered in dry leaves and sparse brush, indicating the current dry season.
+      <img src="/assets/images/The Savlya Ghat Trail.jpg" alt="A winding dirt path through a dry, deciduous forest at Savlya Ghat, with several large trees silhouetted by their bare, gnarled branches against a pale sky, and the ground covered in dry leaves and sparse brush, indicating the current dry season.
 " loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
     </div>
     <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">The Savlya Ghat Trail: Dry Season Charm</figcaption>
@@ -148,29 +148,25 @@ Earlier in the night, just before the sky briefly cleared, a distinct rumbling s
 
   <figure style="margin: 0; display: flex; flex-direction: column;">
 
-\    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+   <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
 
-\    <img src="src/assets/images/Night-Games-Uno-Fun-at-Savlya-Ghat-Camp.jpg" alt="A group of friends and colleagues are gathered in a circle on a mat, playing a game of Uno under the dim light of a portable lamp or flashlight during their overnight camping trip at Savlya Ghat." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+   <img src="/assets/images/Night-Games-Uno-Fun-at-Savlya-Ghat-Camp.jpg" alt="A group of friends and colleagues are gathered in a circle on a mat, playing a game of Uno under the dim light of a portable lamp or flashlight during their overnight camping trip at Savlya Ghat." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
 
-\    </div>
+  </div>
 
-\    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Night Games: Uno Fun at Savlya Ghat Camp</figcaption>
+   <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Night Games: Uno Fun at Savlya Ghat Camp</figcaption>
 
   </figure>
 
-
-
-
-
 <figure style="margin: 0; display: flex; flex-direction: column;">
 
-\    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+  <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
 
-\    <img src="src/assets/images/Late-Night Snack Maggi on the Trail.jpg" alt="A person stirs a steaming pot of Maggi noodles cooking over a small, glowing fire on the ground, illuminated by a headlamp, during a pre-dawn snack session at the Savlya Ghat campsite." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+   <img src="/assets/images/Late-Night Snack Maggi on the Trail.jpg" alt="A person stirs a steaming pot of Maggi noodles cooking over a small, glowing fire on the ground, illuminated by a headlamp, during a pre-dawn snack session at the Savlya Ghat campsite." loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
 
-\    </div>
+   </div>
 
-\    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Late-Night Snack: Maggi on the Trail</figcaption>
+  <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Late-Night Snack: Maggi on the Trail</figcaption>
 
   </figure>
 
