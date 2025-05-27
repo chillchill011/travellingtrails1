@@ -99,6 +99,22 @@ We set off around 3:30 PM, heading towards Tamhini Ghat. The traffic was managea
 
 The trek itself is generally considered beginner-friendly, usually taking about 40 minutes. However, our journey clocked in closer to 90 minutes. Why the delay? Supplies. We were hauling three massive 18-litre water cans – a decision that prompted much laughter later – along with snacks, five tents, our personal backpacks, torches, a hefty solar-powered light for backup, Odomos to fend off mosquitoes, and a necessary medical kit. Descending one hill and ascending another, laden with gear, tested our endurance but fueled our anticipation.
 
+<div class="vertical-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+  <figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="src/assets/images/Descending Through the Savlya Ghat Trail.jpg" alt="Mendha tope barrel size" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">Descending Through the Savlya Ghat Trail</figcaption>
+  </figure>
+
+
+<figure style="margin: 0; display: flex; flex-direction: column;">
+    <div style="height: 0; padding-bottom: 133%; position: relative; overflow: hidden; border-radius: 0.5rem;">
+      <img src="src/assets/images/The Savlya Ghat Trail.jpg" alt="Barrel size of one of the tope in Devgiri fort" loading="lazy" decoding="async" style="position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0.5rem;">
+    </div>
+    <figcaption style="margin-top: 0.5rem; text-align: center; font-size: 0.9rem; color: #6b7280;" class="dark:text-gray-300">The Savlya Ghat Trail: Dry Season Charm</figcaption>
+  </figure>
+
 ### An Amphitheater of Valleys
 
 Reaching the [viewpoint](https://maps.app.goo.gl/556Fx5AWFFwb4ofMA) just as the light began to fade was worth every drop of sweat. Savlya Ghat isn't a vast plateau; it's a relatively small rock outcrop, protruding boldly from the hillside, yet easily capable of accommodating around 50 people. It commands a truly spectacular position, acting as a natural balcony overlooking an amphitheater of three valleys.
@@ -122,6 +138,8 @@ Post-dinner, my focus shifted to the night sky. I set up my tripod, hoping to ca
 However, modern phone camera sensors work wonders. I managed to capture impressively dense star fields and detailed shots of the hill skylines against the night. A few colleagues and I decided to forgo sleep entirely, determined to witness the Milky Way, constantly battling the interfering clouds. We clicked numerous photos and videos, documenting our nocturnal vigil.
 
 Around 4 AM, our persistence paid off. The clouds parted slightly, revealing a tantalizingly thin, hazy layer of the Milky Way. I quickly captured a few shots that, despite the challenging conditions, turned out mind-blowing. Still, the photographer's lament remained – I wished I could have seen more of that galactic grandeur with my own eyes, rather than solely through the lens.
+
+![A vertical shot of the night sky revealing a hazy but distinct band of the Milky Way stretching across the frame, with countless stars visible against a deep blue to lighter blue gradient, taken during a challenging but successful attempt at astrophotography from Savlya Ghat.](/assets/images/milky-way-glimpse-captured-from-savlya-ghat.jpg "Milky Way Glimpse Captured from Savlya Ghat")
 
 Earlier in the night, just before the sky briefly cleared, a distinct rumbling sound echoed from the direction of Plus Valley. We couldn't see anything in the dark, but the unmistakable noise of a small landslide was enough to startle us and wake a few sleeping colleagues. The excitement didn't end there. The six or seven of us still awake decided a pre-dawn snack was in order. We gathered some firewood, cooked Maggi, and enjoyed the simple pleasure of hot noodles in the cool night air, though most of our campmates slept soundly through our culinary adventure. The weather remained relatively mild until about 5 AM, when a noticeable predawn chill set in, lasting until sunrise.
 
