@@ -42,6 +42,27 @@ imageAlt: A camera tripod stands on the edge of Savlya Ghat viewpoint,
 imageCredit: Aniket
 imageCreditLink: https://www.instagram.com/aniketthanage
 thumbnailImage: /assets/images/savlya-ghat-viewpoint-with-tripod-overlooking-the-valley-thumb.jpg
+gallery:
+  - src: /assets/images/distinctive-jambhya-dongar.jpg
+    caption: The Distinctive Jambhya Dongar at Savlya Ghat
+    alt: A prominent brown, rugged hill, likely Jambhya Dongar as seen from Savlya
+      Ghat, with a distinctive flat top and tiered rock formations below,
+      standing out against a clear blue sky.
+  - src: /assets/images/our-home-for-the-night-tent-with-a-view-.jpg
+    caption: "Our Home for the Night: Tent with a View at Savlya Ghat"
+    alt: A vibrant orange and grey camping tent pitched on a reddish-brown plateau
+      at Savlya Ghat, overlooking a deep valley with lush green patches and the
+      distant backwaters of the Bhira Dam under a cloudy sky. A gnarled, bare
+      tree stands beside the tent.
+  - src: /assets/images/savlya-ghat-view.jpg
+    caption: Savlya Ghat view
+    alt: Savlya Ghat view
+  - src: /assets/images/the-majestic-cliffs-of-savlya-ghat.jpg
+    caption: The Majestic Cliffs of Savlya Ghat
+    alt: A close-up view of the imposing, sheer rock face of one of the plateaus at
+      Savlya Ghat, showing the distinctive layers of the Deccan Trap formation,
+      surrounded by green foliage and distant hazy hills under a clear
+      sky.  Sources
 tripDetails:
   costs:
     accommodation: ₹2500 tent (rented)
