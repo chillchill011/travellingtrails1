@@ -1,22 +1,23 @@
 ---
 draft: true
 featured: false
-date: "2026-10-08T00:00:00.000Z"
-lastModified: "2026-10-08T00:00:00.000Z"
-title: "Phase 3 Temporary Decap Round Trip Test"
-description: "Temporary Phase 3 integration draft for validating a Decap CMS round trip on the Staging branch."
-author: "aniket"
-destination: "Phase 3 Integration Test"
+date: 2026-10-08T00:00:00.000Z
+lastModified: 2026-10-08T00:00:00.000Z
+title: Phase 3 Temporary Decap Round Trip Test
+description: Temporary Phase 3 integration draft after a genuine Decap CMS human
+  edit on Staging.
+author: aniket
+destination: Phase 3 Integration Test
 coordinates:
-  latitude: null
-  longitude: null
+  ? latitude
+  ? longitude
 duration: ""
-categories: "Adventure"
+categories: Adventure
 travelType: []
 rideMode: []
 activities: []
 tags:
-  - "post"
+  - post
 featuredImage: ""
 imageAlt: ""
 imageCredit: ""
@@ -36,7 +37,7 @@ tripDetails:
 affiliateGallery: []
 showTableOfContents: true
 tocMinHeadings: 3
-layout: "article.njk"
+layout: article.njk
 ---
 
 ## Temporary Phase 3 Test
