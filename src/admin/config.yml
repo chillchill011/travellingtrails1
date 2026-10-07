@@ -1,7 +1,7 @@
 # Decap CMS Configuration - Updated for consistent data structure
 backend:
   name: git-gateway
-  branch: Staging # STAGING ONLY: do not merge this branch override to main
+  branch: main # Your confirmed branch name
 
 # Publish mode
 publish_mode: simple
@@ -272,13 +272,11 @@ collections:
       - label: "Featured Image"
         name: "featuredImage"
         widget: "image"
-        required: false # PHASE 3 TEMPORARY: text-only Decap round-trip; restore after test
         hint: "Main image shown at the top of the post (1200-1600px wide recommended)"
       
       - label: "Featured Image Alt Text"
         name: "imageAlt"
         widget: "string"
-        required: false # PHASE 3 TEMPORARY: text-only Decap round-trip; restore after test
         hint: "Descriptive text for featured image accessibility"
       
       - label: "Featured Image Credit"
@@ -452,7 +450,7 @@ collections:
               - { label: "I own this", value: "I own this" }
               - { label: "I recommend this", value: "I recommend this" }
             hint: "Indicate whether you own this product or are recommending it"
-          - { label: "Price Range", name: "price", widget: "string", required: false, hint: "Approximate price (e.g. ₹2,000-₹3,000)" }
+          - { label: "Price Range", name: "price", widget: "string", required: false, hint: "Approximate price (e.g., ₹2,000-₹3,000)" }
           - { label: "Your Rating", name: "rating", widget: "number", required: false, min: 1, max: 5, hint: "Your rating from 1-5 stars" }
           - { label: "Where to Buy URL", name: "buyUrl", widget: "string", hint: "Affiliate link to purchase the product" }
 
