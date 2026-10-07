@@ -1,0 +1,174 @@
+[
+  {
+    "id": "TTPhase1TextOnly01",
+    "name": "Travelling Trails - Phase 1 Text Draft Test",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "manual1",
+        "name": "Manual - Phase 1 Test",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -700,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "manual",
+          "assignments": {
+            "assignments": [
+              {
+                "id": "a1",
+                "name": "tripInput",
+                "value": "{\"runId\": \"tt-phase1-live-test\", \"source\": \"manual\", \"trip\": {\"date\": \"2026-10-04\", \"author\": \"aniket\", \"destination\": \"Tamhini Ghat\", \"duration\": \"1 day\", \"rawNotes\": \"Left early for a solo motorcycle ride to Tamhini Ghat. Stopped for photographs and returned the same day.\", \"routeNotes\": \"\", \"costNotes\": \"\", \"gearNotes\": \"\", \"mustInclude\": []}, \"photos\": [], \"routeImages\": []}",
+                "type": "object"
+              },
+              {
+                "id": "a2",
+                "name": "allowed",
+                "value": "{\"authors\":[\"aniket\",\"gauri\",\"yogesh\"],\"categories\":[\"Adventure\",\"Photography\",\"Food\",\"Culture\",\"Heritage\",\"Wildlife\",\"Wellness\",\"Off-Road\",\"Luxury Travel\",\"Solo Travel\",\"Family Travel\",\"Sustainable Travel\",\"Backpacking\",\"Seasonal Travel\",\"Hidden Gems\",\"Urban Exploration\",\"Rural Getaways\",\"Coastal Journeys\",\"Mountain Expeditions\",\"Weekend Escapes\",\"Long-Term Travel\",\"Budget Travel\"],\"travelType\":[\"adventure\",\"Solo Bike Ride\",\"Group Bike Ride\",\"cultural\",\"food\",\"beach\",\"mountains\",\"city\",\"road-trip\",\"budget\",\"luxury\",\"backpacking\",\"ecotourism\",\"volunteer-travel\",\"business-travel\",\"medical-tourism\",\"religious-pilgrimage\",\"dark-tourism\",\"educational-travel\",\"extreme-tourism\",\"family-vacation\",\"glamping\",\"heritage-tourism\",\"solo-travel\",\"slow-travel\",\"wellness-retreat\",\"winter-destination\",\"summer-getaway\",\"monsoon-destination\",\"spring-bloom-location\"],\"rideMode\":[\"Motorcycle\",\"Car\",\"Bicycle\",\"Public Bus\",\"Private Bus\",\"Train\",\"Plane\",\"Taxi\",\"Ride-sharing\",\"Ferry\",\"Cable Car\",\"Walking\",\"Hiking\",\"Boat\",\"Cruise Ship\",\"Kayak\",\"Off-road Vehicle\",\"Scooter\",\"Electric Bike\",\"Helicopter\",\"Rope way\"],\"activities\":[\"Hiking\",\"Camping\",\"Waterfall Exploration\",\"Photography\",\"Food Tour\",\"Bird Watching\",\"Cycling\",\"Kayaking\",\"Paragliding\",\"Rock Climbing\",\"River Rafting\",\"Stargazing\",\"Meditation Retreat\",\"Cooking Class\",\"Local Crafts Workshop\",\"Temple Visit\",\"Historical Site Tour\",\"Museum Exploration\",\"Wildlife Safari\",\"Snorkeling\",\"Scuba Diving\",\"Motorcycle Touring\",\"Zip-lining\",\"Bungee Jumping\",\"Wine Tasting\",\"Hot Spring Bathing\",\"Boat Tour\",\"Architectural Tour\",\"Street Food Sampling\",\"Fishing\",\"Horseback Riding\",\"Festival Participation\",\"Village Home Stay\",\"Beach Relaxation\",\"Shopping\",\"Night Market Exploration\",\"Trekking\",\"Mountain Biking\",\"Yoga Session\",\"Sunset Viewing\",\"Farm Visit\",\"Train Journey\",\"Hot Air Ballooning\"],\"tags\":[\"post\",\"monsoon\",\"western-ghats\",\"tent-camping\",\"wildlife\",\"sunrise\",\"foggy\",\"off-road\",\"historical\",\"sunset\",\"rainy-season\",\"first-time-experience\",\"family-friendly\",\"pet-friendly\",\"instagram-worthy\",\"secluded\",\"crowd-free\",\"breathtaking-views\",\"budget-friendly\",\"luxury-experience\",\"weekend-getaway\",\"day-trip\",\"multi-day-journey\",\"hidden-trail\",\"local-cuisine\",\"traditional-architecture\",\"colonial-heritage\",\"public-transport\",\"accessible\",\"challenging-terrain\",\"roadside-stop\",\"backpacker-hostel\",\"boutique-stay\",\"farm-stay\",\"homestay\",\"unexplored\",\"under-rated\",\"must-visit\",\"seasonal-attraction\",\"clear-weather\",\"rough-terrain\",\"beginner-friendly\",\"advanced-level\",\"guided-tour\",\"self-guided\",\"remote-location\",\"urban-center\",\"coastal-road\",\"mountain-pass\",\"hairpin-bends\",\"forest-trail\",\"grassland\",\"plateau\",\"valley\",\"riverside\",\"lakeside\",\"heritage-tourism\",\"desert\",\"sea-food\",\"off-season\"],\"seasons\":[\"spring\",\"summer\",\"monsoon\",\"post-monsoon\",\"winter\"],\"difficulty\":[\"easy\",\"moderate\",\"challenging\",\"difficult\"]}",
+                "type": "object"
+              },
+              {
+                "id": "a3",
+                "name": "systemPrompt",
+                "value": "You are the structured draft writer for Travelling Trails. Return exactly one valid JSON object and nothing else: no YAML, no Markdown fences, no commentary. TRIP_INPUT is authoritative for the lived trip. Do not add facts, implications, sensory details, route characteristics, times, places, people, costs, weather, road conditions, gear, destinations, or outcomes unless explicitly present in TRIP_INPUT. Do not turn \"early\" into \"morning\", \"returned\" into \"returned home\", or a destination name into claims about scenery/roads. Missing optional facts stay empty and important missing facts go in missingInformation. Preserve sequence and exact named entities. Use first-person prose grounded only in TRIP_INPUT. Metadata enums must exactly match BLOG_SCHEMA. draft=true always; featured=false for this workflow; tags must include post; exactly one categories value; author defaults to aniket; layout=article.njk; showTableOfContents=true; tocMinHeadings=3. travelType, rideMode, activities, tags are arrays. categories is the plural field name and is a string. Never use singular category. No image paths because this text-only Phase 1 input has no images. The required output shape is: {\"frontmatter\":{\"draft\":true,\"featured\":false,\"date\":\"\",\"lastModified\":\"\",\"title\":\"\",\"description\":\"\",\"author\":\"aniket\",\"destination\":\"\",\"coordinates\":{\"latitude\":null,\"longitude\":null},\"duration\":\"\",\"categories\":\"\",\"travelType\":[],\"rideMode\":[],\"activities\":[],\"tags\":[\"post\"],\"featuredImage\":\"\",\"imageAlt\":\"\",\"imageCredit\":\"\",\"imageCreditLink\":\"\",\"thumbnailImage\":\"\",\"thumbnailAlt\":\"\",\"thumbnailCredit\":\"\",\"gallery\":[],\"routeGallery\":[],\"tripDetails\":{\"itinerary\":[],\"costs\":{},\"seasonal\":{},\"difficulty\":{},\"localResources\":{},\"altTransportation\":{}},\"affiliateGallery\":[],\"showTableOfContents\":true,\"tocMinHeadings\":3,\"layout\":\"article.njk\"},\"bodyMarkdown\":\"\",\"imagePlan\":[],\"reviewWarnings\":[],\"missingInformation\":[]}",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "id": "set1",
+        "name": "Set - Canonical Test Input",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.5,
+        "position": [
+          -480,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForAllItems",
+          "jsCode": "const trip = $json.tripInput; const allowed = $json.allowed; return [{json:{tripInput:trip,deepseek_request:{model:'deepseek-chat',temperature:0.2,response_format:{type:'json_object'},messages:[{role:'system',content:$json.systemPrompt},{role:'user',content:'BLOG_SCHEMA='+JSON.stringify(allowed)+'\\nTRIP_INPUT='+JSON.stringify(trip)}]}}}];"
+        },
+        "id": "code1",
+        "name": "Code - Prepare DeepSeek Request",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -240,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.deepseek.com/chat/completions",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "deepSeekApi",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ JSON.stringify($json.deepseek_request) }}",
+          "options": {
+            "response": {
+              "response": {
+                "neverError": true,
+                "responseFormat": "json"
+              }
+            },
+            "timeout": 120000
+          }
+        },
+        "id": "http1",
+        "name": "HTTP - DeepSeek Travelling Trails",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "position": [
+          20,
+          0
+        ],
+        "credentials": {
+          "deepSeekApi": {
+            "id": "ixbcFf6VsRLGc7Dk",
+            "name": "DeepSeek - Travelling Trails"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForAllItems",
+          "jsCode": "const r=$json; const content=r?.choices?.[0]?.message?.content; if(!content) throw new Error('DeepSeek response missing choices[0].message.content'); let x; try{x=JSON.parse(content)}catch(e){throw new Error('DeepSeek content is not strict JSON: '+e.message)} const f=x.frontmatter||{}; const errors=[]; const allowed={authors:['aniket','gauri','yogesh'],categories:[\"Adventure\", \"Photography\", \"Food\", \"Culture\", \"Heritage\", \"Wildlife\", \"Wellness\", \"Off-Road\", \"Luxury Travel\", \"Solo Travel\", \"Family Travel\", \"Sustainable Travel\", \"Backpacking\", \"Seasonal Travel\", \"Hidden Gems\", \"Urban Exploration\", \"Rural Getaways\", \"Coastal Journeys\", \"Mountain Expeditions\", \"Weekend Escapes\", \"Long-Term Travel\", \"Budget Travel\"],travelType:[\"adventure\", \"Solo Bike Ride\", \"Group Bike Ride\", \"cultural\", \"food\", \"beach\", \"mountains\", \"city\", \"road-trip\", \"budget\", \"luxury\", \"backpacking\", \"ecotourism\", \"volunteer-travel\", \"business-travel\", \"medical-tourism\", \"religious-pilgrimage\", \"dark-tourism\", \"educational-travel\", \"extreme-tourism\", \"family-vacation\", \"glamping\", \"heritage-tourism\", \"solo-travel\", \"slow-travel\", \"wellness-retreat\", \"winter-destination\", \"summer-getaway\", \"monsoon-destination\", \"spring-bloom-location\"],rideMode:[\"Motorcycle\", \"Car\", \"Bicycle\", \"Public Bus\", \"Private Bus\", \"Train\", \"Plane\", \"Taxi\", \"Ride-sharing\", \"Ferry\", \"Cable Car\", \"Walking\", \"Hiking\", \"Boat\", \"Cruise Ship\", \"Kayak\", \"Off-road Vehicle\", \"Scooter\", \"Electric Bike\", \"Helicopter\", \"Rope way\"],activities:[\"Hiking\", \"Camping\", \"Waterfall Exploration\", \"Photography\", \"Food Tour\", \"Bird Watching\", \"Cycling\", \"Kayaking\", \"Paragliding\", \"Rock Climbing\", \"River Rafting\", \"Stargazing\", \"Meditation Retreat\", \"Cooking Class\", \"Local Crafts Workshop\", \"Temple Visit\", \"Historical Site Tour\", \"Museum Exploration\", \"Wildlife Safari\", \"Snorkeling\", \"Scuba Diving\", \"Motorcycle Touring\", \"Zip-lining\", \"Bungee Jumping\", \"Wine Tasting\", \"Hot Spring Bathing\", \"Boat Tour\", \"Architectural Tour\", \"Street Food Sampling\", \"Fishing\", \"Horseback Riding\", \"Festival Participation\", \"Village Home Stay\", \"Beach Relaxation\", \"Shopping\", \"Night Market Exploration\", \"Trekking\", \"Mountain Biking\", \"Yoga Session\", \"Sunset Viewing\", \"Farm Visit\", \"Train Journey\", \"Hot Air Ballooning\"],tags:[\"post\", \"monsoon\", \"western-ghats\", \"tent-camping\", \"wildlife\", \"sunrise\", \"foggy\", \"off-road\", \"historical\", \"sunset\", \"rainy-season\", \"first-time-experience\", \"family-friendly\", \"pet-friendly\", \"instagram-worthy\", \"secluded\", \"crowd-free\", \"breathtaking-views\", \"budget-friendly\", \"luxury-experience\", \"weekend-getaway\", \"day-trip\", \"multi-day-journey\", \"hidden-trail\", \"local-cuisine\", \"traditional-architecture\", \"colonial-heritage\", \"public-transport\", \"accessible\", \"challenging-terrain\", \"roadside-stop\", \"backpacker-hostel\", \"boutique-stay\", \"farm-stay\", \"homestay\", \"unexplored\", \"under-rated\", \"must-visit\", \"seasonal-attraction\", \"clear-weather\", \"rough-terrain\", \"beginner-friendly\", \"advanced-level\", \"guided-tour\", \"self-guided\", \"remote-location\", \"urban-center\", \"coastal-road\", \"mountain-pass\", \"hairpin-bends\", \"forest-trail\", \"grassland\", \"plateau\", \"valley\", \"riverside\", \"lakeside\", \"heritage-tourism\", \"desert\", \"sea-food\", \"off-season\"],seasons:['spring','summer','monsoon','post-monsoon','winter'],difficulty:['easy','moderate','challenging','difficult']}; const checkList=(k,a)=>{if(!Array.isArray(f[k])) errors.push(k+' must be array'); else for(const v of f[k]) if(!a.includes(v)) errors.push(k+' invalid: '+v)}; if(f.draft!==true)errors.push('draft must be true'); if(f.featured!==false)errors.push('featured must be false for Phase 1'); if(!allowed.authors.includes(f.author))errors.push('author invalid'); if(!allowed.categories.includes(f.categories))errors.push('categories invalid'); checkList('travelType',allowed.travelType); checkList('rideMode',allowed.rideMode); checkList('activities',allowed.activities); checkList('tags',allowed.tags); if(!Array.isArray(f.tags)||!f.tags.includes('post'))errors.push('tags must include post'); if(f.layout!=='article.njk')errors.push('layout invalid'); if(f.showTableOfContents!==true)errors.push('showTableOfContents must be true'); if(f.tocMinHeadings!==3)errors.push('tocMinHeadings must be 3'); if(!String(f.title||'').trim())errors.push('title required'); if(!String(f.description||'').trim())errors.push('description required'); if(!String(x.bodyMarkdown||'').trim())errors.push('bodyMarkdown required'); if(/^---\\s*$/m.test(String(x.bodyMarkdown||'')))errors.push('body contains front matter delimiter'); const td=f.tripDetails||{}, d=td.difficulty||{}; if(d.overall && !allowed.difficulty.includes(d.overall))errors.push('difficulty.overall invalid'); for(const k of ['physical','technical']) if(d[k]!==undefined && (!Number.isInteger(d[k])||d[k]<1||d[k]>5)) errors.push('difficulty.'+k+' invalid'); const season=(td.seasonal||{}).bestSeason||[]; if(!Array.isArray(season))errors.push('bestSeason must be array'); else for(const v of season)if(!allowed.seasons.includes(v))errors.push('bestSeason invalid: '+v); if(errors.length)throw new Error(errors.join('; ')); const slug=String(f.title).normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').replace(/-+/g,'-'); const date=String(f.date||'').slice(0,10); if(!/^\\d{4}-\\d{2}-\\d{2}$/.test(date))throw new Error('date invalid'); const scalar=v=>v===null?'null':typeof v==='boolean'||typeof v==='number'?String(v):JSON.stringify(String(v)); const yl=(o,n=0)=>{const z=[],p=' '.repeat(n); for(const k of Object.keys(o)){const v=o[k]; if(Array.isArray(v)){if(!v.length)z.push(p+k+': []'); else {z.push(p+k+':'); for(const q of v){if(q&&typeof q==='object'&&!Array.isArray(q)){z.push(p+'  -'); z.push(...yl(q,n+4))} else z.push(p+'  - '+scalar(q));}}} else if(v&&typeof v==='object'){if(!Object.keys(v).length)z.push(p+k+': {}'); else {z.push(p+k+':');z.push(...yl(v,n+2))}} else z.push(p+k+': '+scalar(v));} return z}; const markdown='---\\n'+yl(f).join('\\n')+'\\n---\\n\\n'+String(x.bodyMarkdown).trim()+'\\n'; return [{json:{ok:true,postPath:'src/blog/'+date+'-'+slug+'.md',markdown,generated:x}}];"
+        },
+        "id": "code2",
+        "name": "Code - Validate and Assemble Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          280,
+          0
+        ]
+      }
+    ],
+    "connections": {
+      "Manual - Phase 1 Test": {
+        "main": [
+          [
+            {
+              "node": "Set - Canonical Test Input",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set - Canonical Test Input": {
+        "main": [
+          [
+            {
+              "node": "Code - Prepare DeepSeek Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code - Prepare DeepSeek Request": {
+        "main": [
+          [
+            {
+              "node": "HTTP - DeepSeek Travelling Trails",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP - DeepSeek Travelling Trails": {
+        "main": [
+          [
+            {
+              "node": "Code - Validate and Assemble Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "staticData": null,
+    "meta": {
+      "phase": "1",
+      "stagingOnly": true
+    },
+    "pinData": {},
+    "versionId": "11111111-2222-4333-8444-555555555555",
+    "tags": []
+  }
+]

@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+const fs=require('fs'),path=require('path'),assert=require('assert'); const P=require('../lib/pipeline');
+const trip=JSON.parse(fs.readFileSync(path.join(__dirname,'../fixtures/sample-trip.json'))); const gen=JSON.parse(fs.readFileSync(path.join(__dirname,'../fixtures/sample-generated.json')));
+assert.equal(P.normalizeTrip(trip).trip.author,'aniket'); assert.equal(P.slugify('A Solo Motorcycle Ride to Tamhini Ghat'),'a-solo-motorcycle-ride-to-tamhini-ghat'); assert.deepEqual(P.validateGenerated(gen),[]); assert.equal(P.postPath(gen.frontmatter.date,gen.frontmatter.title),'src/blog/2026-10-04-a-solo-motorcycle-ride-to-tamhini-ghat.md');
+const md=P.assembleMarkdown(gen); assert(md.startsWith('---\ndraft: true')); assert(md.includes('\nlayout: "article.njk"\n---\n')); const bad=JSON.parse(JSON.stringify(gen)); bad.frontmatter.draft=false; assert(P.validateGenerated(bad).some(x=>x.includes('draft'))); console.log('PASS text pipeline'); console.log(P.postPath(gen.frontmatter.date,gen.frontmatter.title));
