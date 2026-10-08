@@ -27,8 +27,19 @@ from phase5_processor import (
     process_run,
 )
 from phase5_state import ImmutableInputError, RunStore, StateError
+from phase6_draft import Phase6Error, validate_and_assemble
+from phase6_state import (
+    complete as phase6_complete,
+    fail as phase6_fail,
+    mark_writing as phase6_mark_writing,
+    migrate as migrate_phase6,
+    persist_generated as phase6_persist_generated,
+    persist_validation as phase6_persist_validation,
+    prepare as phase6_prepare,
+    view as phase6_view,
+)
 
-VERSION = "phase5-v1"
+VERSION = "phase6-v1"
 MAX_REQUEST_BYTES = 220 * 1024 * 1024
 RUN_ROUTE_RE = re.compile(r"^/v1/runs/(tt-[0-9]{8}-[a-f0-9]{16})(/.*)?$")
 
@@ -142,10 +153,49 @@ class Handler(BaseHTTPRequestHandler):
             if suffix == "/cleanup-test-files" and self.command == "POST":
                 self._json(200, cleanup_test_files(self.server.store, run_id))
                 return
+            if suffix == "/phase6/prepare" and self.command in {"GET", "POST"}:
+                self._json(200, phase6_prepare(self.server.store, run_id))
+                return
+            if suffix == "/phase6" and self.command == "GET":
+                self._json(200, phase6_view(self.server.store, run_id))
+                return
+            if suffix == "/phase6/generated" and self.command == "POST":
+                body = self._read_json()
+                generated = body.get("generated")
+                if not isinstance(generated, dict):
+                    raise Phase6Error("generated must be an object")
+                self._json(200, phase6_persist_generated(self.server.store, run_id, generated))
+                return
+            if suffix == "/phase6/validate" and self.command == "POST":
+                run = self.server.store.get_run(run_id)
+                if run is None:
+                    raise StateError("run not found")
+                try:
+                    generated = json.loads(run.get("generated_json") or "null")
+                    normalized = json.loads(run.get("normalized_input_json") or "{}")
+                    processed = json.loads(run.get("processed_image_manifest_json") or "{}")
+                except Exception as exc:
+                    raise Phase6Error("durable Phase 6 JSON is corrupt") from exc
+                if not isinstance(generated, dict):
+                    raise Phase6Error("durable generated_json is missing")
+                result = validate_and_assemble(normalized, processed, generated)
+                self._json(200, phase6_persist_validation(self.server.store, run_id, result))
+                return
+            if suffix == "/phase6/draft/prepare" and self.command == "POST":
+                self._json(200, phase6_mark_writing(self.server.store, run_id))
+                return
+            if suffix == "/phase6/draft/fail" and self.command == "POST":
+                body = self._read_json()
+                message = str(body.get("error") or "Phase 2 handoff failed")
+                self._json(200, phase6_fail(self.server.store, run_id, message))
+                return
+            if suffix == "/phase6/draft/complete" and self.command == "POST":
+                self._json(200, phase6_complete(self.server.store, run_id, self._read_json()))
+                return
             self._json(404, {"ok": False, "error": "not found"})
         except ImmutableInputError as exc:
             self._json(409, {"ok": False, "error": "immutable_input_mismatch", "message": str(exc)})
-        except (IntakeError, ProcessorError, StateError) as exc:
+        except (IntakeError, ProcessorError, StateError, Phase6Error) as exc:
             status = 404 if str(exc) == "run not found" else 409
             self._json(status, {"ok": False, "error": exc.__class__.__name__, "message": str(exc)})
         except Exception as exc:
@@ -167,8 +217,9 @@ def main():
     parser.add_argument("--allowed-client", default=os.environ.get("TT_PHASE5_ALLOWED_CLIENT", "n8n"))
     args = parser.parse_args()
     store = RunStore(args.state_root)
+    migrate_phase6(store)
     server = WorkerServer((args.host, args.port), Handler, store=store, allowed_client=args.allowed_client)
-    print(f"Travelling Trails Phase 5 worker {VERSION} listening on {args.host}:{args.port}; protected client={args.allowed_client}", flush=True)
+    print(f"Travelling Trails Phase 5/6 worker {VERSION} listening on {args.host}:{args.port}; protected client={args.allowed_client}", flush=True)
     server.serve_forever()
 
 
