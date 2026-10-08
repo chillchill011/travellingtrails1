@@ -21,10 +21,7 @@
         "name": "Input - Processed Image Manifest",
         "type": "n8n-nodes-base.executeWorkflowTrigger",
         "typeVersion": 1.1,
-        "position": [
-          -1100,
-          0
-        ]
+        "position": [-1100, 0]
       },
       {
         "parameters": {
@@ -35,10 +32,7 @@
         "name": "Code - Guard Staging Run",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          -880,
-          0
-        ]
+        "position": [-880, 0]
       },
       {
         "parameters": {
@@ -46,29 +40,14 @@
           "url": "https://api.github.com/repos/chillchill011/travellingtrails1/git/ref/heads/Staging",
           "authentication": "predefinedCredentialType",
           "nodeCredentialType": "githubApi",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": false,
-                "responseFormat": "json"
-              }
-            }
-          }
+          "options": {"response":{"response":{"neverError":false,"responseFormat":"json"}}}
         },
         "id": "ref1",
         "name": "GitHub - Read Staging Ref",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          -660,
-          0
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "position": [-660, 0],
+        "credentials": {"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
         "parameters": {
@@ -76,29 +55,14 @@
           "url": "={{ 'https://api.github.com/repos/chillchill011/travellingtrails1/git/commits/' + $json.object.sha }}",
           "authentication": "predefinedCredentialType",
           "nodeCredentialType": "githubApi",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": false,
-                "responseFormat": "json"
-              }
-            }
-          }
+          "options": {"response":{"response":{"neverError":false,"responseFormat":"json"}}}
         },
         "id": "commit1",
         "name": "GitHub - Read Base Commit",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          -440,
-          0
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "position": [-440, 0],
+        "credentials": {"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
         "parameters": {
@@ -109,10 +73,7 @@
         "name": "Code - Validate and Split Outputs",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          -220,
-          0
-        ]
+        "position": [-220, 0]
       },
       {
         "parameters": {
@@ -120,74 +81,35 @@
           "url": "={{ 'https://api.github.com/repos/chillchill011/travellingtrails1/contents/' + $json.repoPath + '?ref=Staging' }}",
           "authentication": "predefinedCredentialType",
           "nodeCredentialType": "githubApi",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": true,
-                "responseFormat": "json"
-              }
-            }
-          }
+          "options": {"response":{"response":{"neverError":true,"responseFormat":"json"}}}
         },
         "id": "check1",
         "name": "GitHub - Check Existing Image",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          0,
-          0
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "position": [0, 0],
+        "credentials": {"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
         "parameters": {
           "mode": "runOnceForEachItem",
-          "jsCode": "const up=$('Code - Validate and Split Outputs').item.json; const r=$json; const status=Number(r.statusCode||r.status||0); if(status===404||(!r.sha&&!r.path)) return [{json:{...up,action:'CREATE'}}]; if(String(r.sha||'')===up.gitBlobSha) return [{json:{...up,action:'ALREADY_EXISTS_SAME_CONTENT',blobSha:up.gitBlobSha}}]; throw new Error('GitHub image collision: '+up.repoPath);"
+          "jsCode": "const up=$('Code - Validate and Split Outputs').item.json; const r=$json; const status=Number(r.statusCode||r.status||0); if(status===404||(!r.sha&&!r.path)) return {json:{...up,action:'CREATE'}}; if(String(r.sha||'')===up.gitBlobSha) return {json:{...up,action:'ALREADY_EXISTS_SAME_CONTENT',blobSha:up.gitBlobSha}}; throw new Error('GitHub image collision: '+up.repoPath);"
         },
         "id": "decide1",
         "name": "Code - Decide Image Action",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          220,
-          0
-        ]
+        "position": [220, 0]
       },
       {
         "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict"
-            },
-            "conditions": [
-              {
-                "id": "c1",
-                "leftValue": "={{ $json.action }}",
-                "rightValue": "CREATE",
-                "operator": {
-                  "type": "string",
-                  "operation": "equals"
-                }
-              }
-            ],
-            "combinator": "and"
-          }
+          "conditions": {"options":{"caseSensitive":true,"leftValue":"","typeValidation":"strict"},"conditions":[{"id":"c1","leftValue":"={{ $json.action }}","rightValue":"CREATE","operator":{"type":"string","operation":"equals"}}],"combinator":"and"}
         },
         "id": "if1",
         "name": "IF - Blob Create Needed",
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
-        "position": [
-          440,
-          0
-        ]
+        "position": [440, 0]
       },
       {
         "parameters": {
@@ -198,500 +120,103 @@
           "sendBody": true,
           "specifyBody": "json",
           "jsonBody": "={{ JSON.stringify({content:$json.contentBase64,encoding:'base64'}) }}",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": false,
-                "responseFormat": "json"
-              }
-            }
-          }
+          "options": {"response":{"response":{"neverError":false,"responseFormat":"json"}}}
         },
         "id": "blob1",
         "name": "GitHub - Create Image Blob",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
-        "position": [
-          660,
-          -120
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "position": [660, -120],
+        "credentials": {"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
         "parameters": {
           "mode": "runOnceForEachItem",
-          "jsCode": "const up=$('Code - Decide Image Action').item.json; if(String($json.sha||'')!==up.gitBlobSha) throw new Error('GitHub blob SHA mismatch for '+up.repoPath); return [{json:{...up,blobSha:$json.sha,status:'UPLOADED'}}];"
+          "jsCode": "const up=$('Code - Decide Image Action').item.json; if(String($json.sha||'')!==up.gitBlobSha) throw new Error('GitHub blob SHA mismatch for '+up.repoPath); return {json:{...up,blobSha:$json.sha,status:'UPLOADED'}};"
         },
         "id": "created1",
         "name": "Code - Verify Created Blob",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          880,
-          -120
-        ]
+        "position": [880, -120]
       },
       {
-        "parameters": {
-          "mode": "runOnceForEachItem",
-          "jsCode": "return [{json:{...$json,status:'ALREADY_EXISTS'}}];"
-        },
+        "parameters": {"mode":"runOnceForEachItem","jsCode":"return {json:{...$json,status:'ALREADY_EXISTS'}};"},
         "id": "same1",
         "name": "Code - Mark Existing Blob",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
-        "position": [
-          660,
-          120
-        ]
+        "position": [660, 120]
       },
       {
-        "parameters": {
-          "mode": "append"
-        },
+        "parameters": {"mode":"append"},
         "id": "merge1",
         "name": "Merge - Blob Results",
         "type": "n8n-nodes-base.merge",
         "typeVersion": 3.2,
-        "position": [
-          1100,
-          0
-        ]
+        "position": [1100, 0]
       },
       {
         "parameters": {
-          "mode": "runOnceForAllItems",
-          "jsCode": "const items=$input.all().map(x=>x.json); if(!items.length) throw new Error('no image results'); const first=items[0]; const creates=items.filter(x=>x.action==='CREATE'); if(!creates.length) return [{json:{runId:first.runId,branch:'Staging',noCommitNeeded:true,baseRefSha:first.baseRefSha,baseTreeSha:first.baseTreeSha,outputs:items.map(x=>({repoPath:x.repoPath,publicPath:x.publicPath,sha256:x.sha256,gitBlobSha:x.gitBlobSha,status:'ALREADY_EXISTS'}))}}]; return [{json:{runId:first.runId,branch:'Staging',noCommitNeeded:false,baseRefSha:first.baseRefSha,baseTreeSha:first.baseTreeSha,tree:creates.map(x=>({path:x.repoPath,mode:'100644',type:'blob',sha:x.blobSha})),outputs:items.map(x=>({repoPath:x.repoPath,publicPath:x.publicPath,sha256:x.sha256,gitBlobSha:x.gitBlobSha,status:x.status}))}}];"
+          "mode":"runOnceForAllItems",
+          "jsCode":"const items=$input.all().map(x=>x.json); if(!items.length) throw new Error('no image results'); const first=items[0]; const creates=items.filter(x=>x.action==='CREATE'); if(!creates.length) return [{json:{runId:first.runId,branch:'Staging',noCommitNeeded:true,baseRefSha:first.baseRefSha,baseTreeSha:first.baseTreeSha,outputs:items.map(x=>({repoPath:x.repoPath,publicPath:x.publicPath,sha256:x.sha256,gitBlobSha:x.gitBlobSha,status:'ALREADY_EXISTS'}))}}]; return [{json:{runId:first.runId,branch:'Staging',noCommitNeeded:false,baseRefSha:first.baseRefSha,baseTreeSha:first.baseTreeSha,tree:creates.map(x=>({path:x.repoPath,mode:'100644',type:'blob',sha:x.blobSha})),outputs:items.map(x=>({repoPath:x.repoPath,publicPath:x.publicPath,sha256:x.sha256,gitBlobSha:x.gitBlobSha,status:x.status}))}}];"
         },
-        "id": "agg1",
-        "name": "Code - Aggregate Atomic Tree",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          1320,
-          0
-        ]
+        "id":"agg1","name":"Code - Aggregate Atomic Tree","type":"n8n-nodes-base.code","typeVersion":2,"position":[1320,0]
       },
       {
-        "parameters": {
-          "conditions": {
-            "options": {
-              "caseSensitive": true,
-              "leftValue": "",
-              "typeValidation": "strict"
-            },
-            "conditions": [
-              {
-                "id": "c2",
-                "leftValue": "={{ $json.noCommitNeeded }}",
-                "rightValue": false,
-                "operator": {
-                  "type": "boolean",
-                  "operation": "equals"
-                }
-              }
-            ],
-            "combinator": "and"
-          }
-        },
-        "id": "ifcommit",
-        "name": "IF - Commit Needed",
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2.2,
-        "position": [
-          1540,
-          0
-        ]
+        "parameters":{"conditions":{"options":{"caseSensitive":true,"leftValue":"","typeValidation":"strict"},"conditions":[{"id":"c2","leftValue":"={{ $json.noCommitNeeded }}","rightValue":false,"operator":{"type":"boolean","operation":"equals"}}],"combinator":"and"}},
+        "id":"ifcommit","name":"IF - Commit Needed","type":"n8n-nodes-base.if","typeVersion":2.2,"position":[1540,0]
       },
       {
-        "parameters": {
-          "method": "POST",
-          "url": "https://api.github.com/repos/chillchill011/travellingtrails1/git/trees",
-          "authentication": "predefinedCredentialType",
-          "nodeCredentialType": "githubApi",
-          "sendBody": true,
-          "specifyBody": "json",
-          "jsonBody": "={{ JSON.stringify({base_tree:$json.baseTreeSha,tree:$json.tree}) }}",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": false,
-                "responseFormat": "json"
-              }
-            }
-          }
-        },
-        "id": "tree1",
-        "name": "GitHub - Create Image Tree",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          1760,
-          -120
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "parameters":{"method":"POST","url":"https://api.github.com/repos/chillchill011/travellingtrails1/git/trees","authentication":"predefinedCredentialType","nodeCredentialType":"githubApi","sendBody":true,"specifyBody":"json","jsonBody":"={{ JSON.stringify({base_tree:$json.baseTreeSha,tree:$json.tree}) }}","options":{"response":{"response":{"neverError":false,"responseFormat":"json"}}}},
+        "id":"tree1","name":"GitHub - Create Image Tree","type":"n8n-nodes-base.httpRequest","typeVersion":4.5,"position":[1760,-120],"credentials":{"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
-        "parameters": {
-          "method": "POST",
-          "url": "https://api.github.com/repos/chillchill011/travellingtrails1/git/commits",
-          "authentication": "predefinedCredentialType",
-          "nodeCredentialType": "githubApi",
-          "sendBody": true,
-          "specifyBody": "json",
-          "jsonBody": "={{ JSON.stringify({message:'Phase 4 image upload: '+$('Code - Aggregate Atomic Tree').first().json.runId,tree:$json.sha,parents:[$('Code - Aggregate Atomic Tree').first().json.baseRefSha]}) }}",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": false,
-                "responseFormat": "json"
-              }
-            }
-          }
-        },
-        "id": "newcommit",
-        "name": "GitHub - Create Image Commit",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          1980,
-          -120
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "parameters":{"method":"POST","url":"https://api.github.com/repos/chillchill011/travellingtrails1/git/commits","authentication":"predefinedCredentialType","nodeCredentialType":"githubApi","sendBody":true,"specifyBody":"json","jsonBody":"={{ JSON.stringify({message:'Phase 4 image upload: '+$('Code - Aggregate Atomic Tree').first().json.runId,tree:$json.sha,parents:[$('Code - Aggregate Atomic Tree').first().json.baseRefSha]}) }}","options":{"response":{"response":{"neverError":false,"responseFormat":"json"}}}},
+        "id":"newcommit","name":"GitHub - Create Image Commit","type":"n8n-nodes-base.httpRequest","typeVersion":4.5,"position":[1980,-120],"credentials":{"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
-        "parameters": {
-          "method": "PATCH",
-          "url": "https://api.github.com/repos/chillchill011/travellingtrails1/git/refs/heads/Staging",
-          "authentication": "predefinedCredentialType",
-          "nodeCredentialType": "githubApi",
-          "sendBody": true,
-          "specifyBody": "json",
-          "jsonBody": "={{ JSON.stringify({sha:$json.sha,force:false}) }}",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": false,
-                "responseFormat": "json"
-              }
-            }
-          }
-        },
-        "id": "updateref",
-        "name": "GitHub - Fast Forward Staging",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          2200,
-          -120
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "parameters":{"method":"PATCH","url":"https://api.github.com/repos/chillchill011/travellingtrails1/git/refs/heads/Staging","authentication":"predefinedCredentialType","nodeCredentialType":"githubApi","sendBody":true,"specifyBody":"json","jsonBody":"={{ JSON.stringify({sha:$json.sha,force:false}) }}","options":{"response":{"response":{"neverError":false,"responseFormat":"json"}}}},
+        "id":"updateref","name":"GitHub - Fast Forward Staging","type":"n8n-nodes-base.httpRequest","typeVersion":4.5,"position":[2200,-120],"credentials":{"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
-        "parameters": {
-          "method": "GET",
-          "url": "https://api.github.com/repos/chillchill011/travellingtrails1/git/ref/heads/Staging",
-          "authentication": "predefinedCredentialType",
-          "nodeCredentialType": "githubApi",
-          "options": {
-            "response": {
-              "response": {
-                "neverError": false,
-                "responseFormat": "json"
-              }
-            }
-          }
-        },
-        "id": "verifyref",
-        "name": "GitHub - Verify Staging Ref",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.5,
-        "position": [
-          2420,
-          -120
-        ],
-        "credentials": {
-          "githubApi": {
-            "id": "87bhwFfIlfY4k8ko",
-            "name": "GitHub - Travelling Trails"
-          }
-        }
+        "parameters":{"method":"GET","url":"https://api.github.com/repos/chillchill011/travellingtrails1/git/ref/heads/Staging","authentication":"predefinedCredentialType","nodeCredentialType":"githubApi","options":{"response":{"response":{"neverError":false,"responseFormat":"json"}}}},
+        "id":"verifyref","name":"GitHub - Verify Staging Ref","type":"n8n-nodes-base.httpRequest","typeVersion":4.5,"position":[2420,-120],"credentials":{"githubApi":{"id":"87bhwFfIlfY4k8ko","name":"GitHub - Travelling Trails"}}
       },
       {
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "jsCode": "const planned=$('Code - Aggregate Atomic Tree').first().json; const created=$('GitHub - Create Image Commit').first().json; if($json.object.sha!==created.sha) throw new Error('Staging ref verification failed'); return [{json:{ok:true,runId:planned.runId,branch:'Staging',action:'COMMITTED',commitSha:created.sha,outputs:planned.outputs}}];"
-        },
-        "id": "done1",
-        "name": "Code - Verify Commit Result",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          2640,
-          -120
-        ]
+        "parameters":{"mode":"runOnceForAllItems","jsCode":"const planned=$('Code - Aggregate Atomic Tree').first().json; const created=$('GitHub - Create Image Commit').first().json; if($json.object.sha!==created.sha) throw new Error('Staging ref verification failed'); return [{json:{ok:true,runId:planned.runId,branch:'Staging',action:'COMMITTED',commitSha:created.sha,outputs:planned.outputs}}];"},
+        "id":"done1","name":"Code - Verify Commit Result","type":"n8n-nodes-base.code","typeVersion":2,"position":[2640,-120]
       },
       {
-        "parameters": {
-          "mode": "runOnceForAllItems",
-          "jsCode": "const p=$('Code - Aggregate Atomic Tree').first().json; return [{json:{ok:true,runId:p.runId,branch:'Staging',action:'ALREADY_EXISTS_SAME_CONTENT',commitSha:p.baseRefSha,outputs:p.outputs}}];"
-        },
-        "id": "done2",
-        "name": "Code - Idempotent Result",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          1760,
-          120
-        ]
+        "parameters":{"mode":"runOnceForAllItems","jsCode":"const p=$('Code - Aggregate Atomic Tree').first().json; return [{json:{ok:true,runId:p.runId,branch:'Staging',action:'ALREADY_EXISTS_SAME_CONTENT',commitSha:p.baseRefSha,outputs:p.outputs}}];"},
+        "id":"done2","name":"Code - Idempotent Result","type":"n8n-nodes-base.code","typeVersion":2,"position":[1760,120]
       }
     ],
     "connections": {
-      "Input - Processed Image Manifest": {
-        "main": [
-          [
-            {
-              "node": "Code - Guard Staging Run",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code - Guard Staging Run": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Read Staging Ref",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Read Staging Ref": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Read Base Commit",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Read Base Commit": {
-        "main": [
-          [
-            {
-              "node": "Code - Validate and Split Outputs",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code - Validate and Split Outputs": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Check Existing Image",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Check Existing Image": {
-        "main": [
-          [
-            {
-              "node": "Code - Decide Image Action",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code - Decide Image Action": {
-        "main": [
-          [
-            {
-              "node": "IF - Blob Create Needed",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "IF - Blob Create Needed": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Create Image Blob",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          [
-            {
-              "node": "Code - Mark Existing Blob",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Create Image Blob": {
-        "main": [
-          [
-            {
-              "node": "Code - Verify Created Blob",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code - Verify Created Blob": {
-        "main": [
-          [
-            {
-              "node": "Merge - Blob Results",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code - Mark Existing Blob": {
-        "main": [
-          [
-            {
-              "node": "Merge - Blob Results",
-              "type": "main",
-              "index": 1
-            }
-          ]
-        ]
-      },
-      "Merge - Blob Results": {
-        "main": [
-          [
-            {
-              "node": "Code - Aggregate Atomic Tree",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code - Aggregate Atomic Tree": {
-        "main": [
-          [
-            {
-              "node": "IF - Commit Needed",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "IF - Commit Needed": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Create Image Tree",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          [
-            {
-              "node": "Code - Idempotent Result",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Create Image Tree": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Create Image Commit",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Create Image Commit": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Fast Forward Staging",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Fast Forward Staging": {
-        "main": [
-          [
-            {
-              "node": "GitHub - Verify Staging Ref",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "GitHub - Verify Staging Ref": {
-        "main": [
-          [
-            {
-              "node": "Code - Verify Commit Result",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
+      "Input - Processed Image Manifest":{"main":[[{"node":"Code - Guard Staging Run","type":"main","index":0}]]},
+      "Code - Guard Staging Run":{"main":[[{"node":"GitHub - Read Staging Ref","type":"main","index":0}]]},
+      "GitHub - Read Staging Ref":{"main":[[{"node":"GitHub - Read Base Commit","type":"main","index":0}]]},
+      "GitHub - Read Base Commit":{"main":[[{"node":"Code - Validate and Split Outputs","type":"main","index":0}]]},
+      "Code - Validate and Split Outputs":{"main":[[{"node":"GitHub - Check Existing Image","type":"main","index":0}]]},
+      "GitHub - Check Existing Image":{"main":[[{"node":"Code - Decide Image Action","type":"main","index":0}]]},
+      "Code - Decide Image Action":{"main":[[{"node":"IF - Blob Create Needed","type":"main","index":0}]]},
+      "IF - Blob Create Needed":{"main":[[{"node":"GitHub - Create Image Blob","type":"main","index":0}],[{"node":"Code - Mark Existing Blob","type":"main","index":0}]]},
+      "GitHub - Create Image Blob":{"main":[[{"node":"Code - Verify Created Blob","type":"main","index":0}]]},
+      "Code - Verify Created Blob":{"main":[[{"node":"Merge - Blob Results","type":"main","index":0}]]},
+      "Code - Mark Existing Blob":{"main":[[{"node":"Merge - Blob Results","type":"main","index":1}]]},
+      "Merge - Blob Results":{"main":[[{"node":"Code - Aggregate Atomic Tree","type":"main","index":0}]]},
+      "Code - Aggregate Atomic Tree":{"main":[[{"node":"IF - Commit Needed","type":"main","index":0}]]},
+      "IF - Commit Needed":{"main":[[{"node":"GitHub - Create Image Tree","type":"main","index":0}],[{"node":"Code - Idempotent Result","type":"main","index":0}]]},
+      "GitHub - Create Image Tree":{"main":[[{"node":"GitHub - Create Image Commit","type":"main","index":0}]]},
+      "GitHub - Create Image Commit":{"main":[[{"node":"GitHub - Fast Forward Staging","type":"main","index":0}]]},
+      "GitHub - Fast Forward Staging":{"main":[[{"node":"GitHub - Verify Staging Ref","type":"main","index":0}]]},
+      "GitHub - Verify Staging Ref":{"main":[[{"node":"Code - Verify Commit Result","type":"main","index":0}]]}
     },
-    "settings": {
-      "executionOrder": "v1"
-    },
-    "staticData": null,
-    "meta": {
-      "phase": "4",
-      "stagingOnly": true,
-      "credentialRequired": "GitHub - Travelling Trails",
-      "imageProcessing": "repo-local deterministic Pillow helper; workflow accepts processed outputs"
-    },
-    "pinData": {},
-    "versionId": "44444444-5555-4666-8777-888888888888",
-    "tags": []
+    "settings":{"executionOrder":"v1"},
+    "staticData":null,
+    "meta":{"phase":"4","stagingOnly":true,"credentialRequired":"GitHub - Travelling Trails","imageProcessing":"repo-local deterministic Pillow helper; workflow accepts processed outputs"},
+    "pinData":{},
+    "versionId":"44444444-5555-4666-8777-888888888888",
+    "tags":[]
   }
 ]
