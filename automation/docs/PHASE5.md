@@ -15,9 +15,9 @@ n8n Form Trigger (or manual synthetic test)
   -> STOP
 ```
 
-The Phase 5 worker is a small Python service managed as its own Portainer stack. Its compose file is `automation/phase5/docker-compose.yml` and its image is built from `automation/phase5/Dockerfile`.
+The Phase 5 worker is a small Python service managed as its own Portainer stack. The current Portainer Web Editor deployment is defined in `automation/phase5/docker-compose.yml`: it uses the pinned `python:3.12.3-slim-bookworm` base image, bind-mounts this checkout's `automation/lib` read-only, and bootstraps pinned Pillow 10.2.0 into the private persistent `/data/runtime/python` directory. This avoids Portainer Web Editor build-context ambiguity. `automation/phase5/Dockerfile` remains available for a future Git-repository build deployment.
 
-It does not publish a host port. It joins the already-existing external Docker network `n8n_default`; the network definition and existing n8n container are not changed or recreated. Protected worker endpoints accept requests only when the source IP resolves to the existing Docker service name `n8n`. `/health` is the only unauthenticated endpoint and exposes no run data. The container is non-root, read-only apart from `/data`, drops all Linux capabilities, uses `no-new-privileges`, and has no Docker socket.
+It does not publish a host port. It joins the already-existing external Docker network `n8n_default`; the network definition and existing n8n container are not changed or recreated. Protected worker endpoints accept requests only when the source IP resolves to the existing Docker service name `n8n`. `/health` is the only unauthenticated endpoint and exposes no run data. The container is non-root, read-only apart from `/data`, drops all Linux capabilities, uses `no-new-privileges`, keeps `/tmp` on a `noexec` tmpfs, and has no Docker socket. Native Pillow libraries live under `/data/runtime/python` rather than `/tmp` so Linux can map the extension modules while `/tmp` remains `noexec`.
 
 ## Canonical input contract
 
