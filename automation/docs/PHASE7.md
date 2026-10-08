@@ -93,3 +93,41 @@ Acceptance evidence is appended after the controlled staging run. Synthetic file
 ## Phase boundary
 
 Phase 7 stops at safe staging review handoff. It does **not** implement `Staging → main`, `draft:false`, automatic publishing, automatic merging, or production CMS publishing. Those require explicit approval in a later phase.
+
+## Genuine acceptance evidence
+
+Phase 7 reused the retained, genuine Phase 5/6 synthetic acceptance run `tt-20261008-8cd97b0472a037c1`. Its original Phase 6 draft commit is `b919f86268e8a4d7dba5f1deb562cb0767f309ba`, its durable `deepseek_call_count` remained `2`, and no Phase 7 step called DeepSeek or rewrote the draft.
+
+For the controlled review test, the exact previously generated synthetic Markdown and four image blobs were temporarily restored to `Staging` in commit `dfe3ee13b739fd55e196a82b1c2098515f923bb8`. Netlify project `devtravtes` deployed that commit as deploy `6ac7dcc6a7a213000786015b`, branch `Staging`, state `ready`.
+
+Verified staging preview:
+
+`https://devtravtes.netlify.app/synthetic-automation-acceptance-test-synthetic-phase-6-ridge/` → HTTP 200.
+
+The same path on `https://travellingtrails.in/` returned HTTP 404, and `origin/main` stayed at `e4a2f9eb75ea3e7e9de3268d9cbf59c7602cb5dc`.
+
+The durable review payload contained `published:false`, branch `Staging`, four images, the Phase 6 commit/path, generation warnings/missing information, the staging preview, and the staging CMS URL. The synthetic source is a retained manual acceptance run, so no external Telegram message was actually sent. The durable acceptance state was therefore restored to `REVIEW_READY` with `notification_status=PENDING`; notification duplicate suppression is proven by the deterministic state test rather than a fake external send.
+
+Live Decap verification after the Phase 7 deployment:
+
+- `https://devtravtes.netlify.app/admin/config.yml` serves `backend.branch: Staging`.
+- `https://travellingtrails.in/admin/config.yml` serves `backend.branch: main`.
+- staging `/admin/` returns HTTP 200.
+
+The Phase 7 workflow was imported into n8n with stable ID `TTPhase7Review01` and remains inactive (`active=0`). The first import attempt correctly failed without changing workflow state because the draft export lacked an ID; the export was fixed to match the established project format and the next import succeeded.
+
+## Final verification and backups
+
+The complete Phase 1/2/4/5/6 regression suite, the expanded Phase 7 deploy/state/idempotency suite, Decap branch-isolation tests, `git diff --check`, and the normal production-mode Eleventy build all passed after the final fixes. Phase 7 deploy tests explicitly cover matching/ready, wrong site, wrong branch, failed deploy, descendant containment, and timeout/retry.
+
+Final backups:
+
+- n8n database: `/mnt/storage/travellingtrails-backups/20261008T181306Z-phase1`
+  - SHA-256: `4f2f13f2924ab519b8242bab250b90e271fde9d9a204dfea394568fe82e8c66c`
+- Phase 5/6/7 durable state: `/mnt/storage/travellingtrails-backups/20261008T181316Z-phase5-state`
+  - `phase5.sqlite3` SHA-256: `fe39f86d5b4ab3fb0d68a5a4125d058a73509267a9818e77a55737206cbded8a`
+  - `runs.tar.gz` SHA-256: `f16f8f8b29e156fd06f5cd5be17a767aacadd3e4f340e78c24313c38fd3cc896`
+
+Both live SQLite databases passed `PRAGMA integrity_check` after these backups.
+
+The temporary synthetic Markdown/image fixture is removed from the final `Staging` tree after acceptance; durable audit history remains retained.

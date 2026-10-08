@@ -2,18 +2,80 @@
   {
     "name": "Travelling Trails - Phase 7 Staging Review Handoff",
     "nodes": [
-      {"parameters": {}, "id": "p7-manual", "name": "Manual - Controlled Phase 7", "type": "n8n-nodes-base.manualTrigger", "typeVersion": 1, "position": [0,0]},
-      {"parameters": {"jsCode": "const runId=$json.runId || $env.TT_PHASE7_RUN_ID; if(!/^tt-[0-9]{8}-[a-f0-9]{16}$/.test(runId||'')) throw new Error('TT_PHASE7_RUN_ID required'); return [{json:{runId}}];"}, "id":"p7-run","name":"Code - Read Phase 7 Run","type":"n8n-nodes-base.code","typeVersion":2,"position":[220,0]},
-      {"parameters":{"method":"POST","url":"=http://phase5-worker:8787/v1/runs/{{$json.runId}}/phase7/prepare","options":{}},"id":"p7-prepare","name":"Worker - Prepare Phase 7","type":"n8n-nodes-base.httpRequest","typeVersion":4.2,"position":[440,0]},
-      {"parameters":{"method":"POST","url":"=http://phase5-worker:8787/v1/runs/{{$json.runId}}/phase7/deploy/verify","options":{}},"id":"p7-verify","name":"Worker - Verify devtravtes Deploy and Preview","type":"n8n-nodes-base.httpRequest","typeVersion":4.2,"position":[660,0]},
-      {"parameters":{"jsCode":"const r=$json;if(r.action==='DEPLOY_WAITING') throw new Error('Staging deploy not ready yet');if(!r.reviewPayload||r.reviewPayload.published!==false||r.reviewPayload.branch!=='Staging') throw new Error('Unsafe Phase 7 review payload');return [{json:r.reviewPayload}];"},"id":"p7-result","name":"Result - Review Ready","type":"n8n-nodes-base.code","typeVersion":2,"position":[880,0]}
+      {
+        "parameters": {},
+        "id": "p7-manual",
+        "name": "Manual - Controlled Phase 7",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [0, 0]
+      },
+      {
+        "parameters": {
+          "jsCode": "const runId=$json.runId || $env.TT_PHASE7_RUN_ID; if(!/^tt-[0-9]{8}-[a-f0-9]{16}$/.test(runId||'')) throw new Error('TT_PHASE7_RUN_ID required'); return [{json:{runId}}];"
+        },
+        "id": "p7-run",
+        "name": "Code - Read Phase 7 Run",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [220, 0]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=http://phase5-worker:8787/v1/runs/{{$json.runId}}/phase7/prepare",
+          "options": {}
+        },
+        "id": "p7-prepare",
+        "name": "Worker - Prepare Phase 7",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [440, 0]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=http://phase5-worker:8787/v1/runs/{{$json.runId}}/phase7/deploy/verify",
+          "options": {}
+        },
+        "id": "p7-verify",
+        "name": "Worker - Verify devtravtes Deploy and Preview",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [660, 0]
+      },
+      {
+        "parameters": {
+          "jsCode": "const r=$json;if(r.action==='DEPLOY_WAITING') throw new Error('Staging deploy not ready yet');if(!r.reviewPayload||r.reviewPayload.published!==false||r.reviewPayload.branch!=='Staging') throw new Error('Unsafe Phase 7 review payload');return [{json:r.reviewPayload}];"
+        },
+        "id": "p7-result",
+        "name": "Result - Review Ready",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [880, 0]
+      }
     ],
     "connections": {
-      "Manual - Controlled Phase 7":{"main":[[{"node":"Code - Read Phase 7 Run","type":"main","index":0}]]},
-      "Code - Read Phase 7 Run":{"main":[[{"node":"Worker - Prepare Phase 7","type":"main","index":0}]]},
-      "Worker - Prepare Phase 7":{"main":[[{"node":"Worker - Verify devtravtes Deploy and Preview","type":"main","index":0}]]},
-      "Worker - Verify devtravtes Deploy and Preview":{"main":[[{"node":"Result - Review Ready","type":"main","index":0}]]}
+      "Manual - Controlled Phase 7": {
+        "main": [[{"node": "Code - Read Phase 7 Run", "type": "main", "index": 0}]]
+      },
+      "Code - Read Phase 7 Run": {
+        "main": [[{"node": "Worker - Prepare Phase 7", "type": "main", "index": 0}]]
+      },
+      "Worker - Prepare Phase 7": {
+        "main": [[{"node": "Worker - Verify devtravtes Deploy and Preview", "type": "main", "index": 0}]]
+      },
+      "Worker - Verify devtravtes Deploy and Preview": {
+        "main": [[{"node": "Result - Review Ready", "type": "main", "index": 0}]]
+      }
     },
-    "settings":{"executionOrder":"v1"},"active":false
+    "settings": {"executionOrder": "v1"},
+    "active": false,
+    "id": "TTPhase7Review01",
+    "staticData": null,
+    "meta": {},
+    "pinData": {},
+    "versionId": "8e7fb65d-7d99-47b0-9cf1-8cf76f971702",
+    "tags": []
   }
 ]
