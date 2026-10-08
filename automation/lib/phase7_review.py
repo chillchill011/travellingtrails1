@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 7 staging-only deployment verification and review handoff."""
 from __future__ import annotations
-import json,re,unicodedata,urllib.request,urllib.error
+import json,re,unicodedata,urllib.request,urllib.error,time
 from typing import Any
 from phase5_state import RunStore,StateError,canonical_json,utc_now
 
@@ -101,6 +101,14 @@ def verify_live_deploy(store:RunStore,run_id:str)->dict[str,Any]:
     _update(store,run_id,phase7_status='DEPLOY_VERIFIED',phase7_last_safe_status='DEPLOY_VERIFIED',phase7_error_message=None,
       staging_deploy_id=match.get('id'),staging_deploy_commit=match.get('commit_ref'),staging_preview_url=preview)
     return make_review_ready(store,run_id)
+
+def wait_for_live_deploy(store:RunStore,run_id:str,timeout_seconds:int=150)->dict[str,Any]:
+    deadline=time.monotonic()+max(0,min(int(timeout_seconds),240))
+    while True:
+      r=verify_live_deploy(store,run_id)
+      if r.get('action')!='DEPLOY_WAITING': return r
+      if time.monotonic()>=deadline: return r
+      time.sleep(5)
 
 def _is_descendant(base:str,head:str)->bool:
     try: d=_json_url(f'https://api.github.com/repos/chillchill011/travellingtrails1/compare/{base}...{head}')

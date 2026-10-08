@@ -45,10 +45,25 @@ from phase7_review import (
     migrate as migrate_phase7,
     prepare as phase7_prepare,
     verify_live_deploy as phase7_verify_live_deploy,
+    wait_for_live_deploy as phase7_wait_for_live_deploy,
     view as phase7_view,
 )
+from phase8_promotion import (
+    approve_and_capture as phase8_approve_and_capture,
+    complete_promotion as phase8_complete_promotion,
+    fail as phase8_fail,
+    mark_promoting as phase8_mark_promoting,
+    mark_review_ready as phase8_mark_review_ready,
+    migrate as migrate_phase8,
+    verify_production_draft as phase8_verify_production_draft,
+    wait_production_draft as phase8_wait_production_draft,
+    verify_publication as phase8_verify_publication,
+    view as phase8_view,
+    waiting_run_ids as phase8_waiting_run_ids,
+)
 
-VERSION = "phase7-v1"
+
+VERSION = "phase8-v1"
 MAX_REQUEST_BYTES = 220 * 1024 * 1024
 RUN_ROUTE_RE = re.compile(r"^/v1/runs/(tt-[0-9]{8}-[a-f0-9]{16})(/.*)?$")
 
@@ -127,6 +142,9 @@ class Handler(BaseHTTPRequestHandler):
         if not self._require_internal_client():
             return
         try:
+            if path == "/v1/phase8/publish-waiting" and self.command == "GET":
+                self._json(200, {"ok": True, "runIds": phase8_waiting_run_ids(self.server.store)})
+                return
             if path == "/v1/ingest" and self.command == "POST":
                 result = ingest_submission(self.server.store, self._read_json())
                 self._json(200, {"ok": True, **result})
@@ -207,6 +225,9 @@ class Handler(BaseHTTPRequestHandler):
             if suffix == "/phase7/deploy/verify" and self.command == "POST":
                 self._json(200, phase7_verify_live_deploy(self.server.store, run_id))
                 return
+            if suffix == "/phase7/deploy/wait" and self.command == "POST":
+                self._json(200, phase7_wait_for_live_deploy(self.server.store, run_id))
+                return
             if suffix == "/phase7" and self.command == "GET":
                 self._json(200, phase7_view(self.server.store, run_id))
                 return
@@ -219,6 +240,36 @@ class Handler(BaseHTTPRequestHandler):
             if suffix == "/phase7/fail" and self.command == "POST":
                 body = self._read_json()
                 self._json(200, phase7_fail(self.server.store, run_id, str(body.get("error") or "Phase 7 failed")))
+                return
+            if suffix == "/phase8/review-ready" and self.command == "POST":
+                self._json(200, phase8_mark_review_ready(self.server.store, run_id))
+                return
+            if suffix == "/phase8/approve" and self.command == "POST":
+                body = self._read_json()
+                self._json(200, phase8_approve_and_capture(self.server.store, run_id, body.get("approved") is True, str(body.get("expectedTitle") or "")))
+                return
+            if suffix == "/phase8/promote/prepare" and self.command == "POST":
+                self._json(200, phase8_mark_promoting(self.server.store, run_id))
+                return
+            if suffix == "/phase8/promote/complete" and self.command == "POST":
+                body = self._read_json()
+                self._json(200, phase8_complete_promotion(self.server.store, run_id, str(body.get("commitSha") or "")))
+                return
+            if suffix == "/phase8/production-draft/verify" and self.command == "POST":
+                self._json(200, phase8_verify_production_draft(self.server.store, run_id))
+                return
+            if suffix == "/phase8/production-draft/wait" and self.command == "POST":
+                self._json(200, phase8_wait_production_draft(self.server.store, run_id))
+                return
+            if suffix == "/phase8/publication/verify" and self.command == "POST":
+                self._json(200, phase8_verify_publication(self.server.store, run_id))
+                return
+            if suffix == "/phase8" and self.command == "GET":
+                self._json(200, phase8_view(self.server.store, run_id))
+                return
+            if suffix == "/phase8/fail" and self.command == "POST":
+                body = self._read_json()
+                self._json(200, phase8_fail(self.server.store, run_id, str(body.get("error") or "Phase 8 failed")))
                 return
             self._json(404, {"ok": False, "error": "not found"})
         except ImmutableInputError as exc:
@@ -247,6 +298,7 @@ def main():
     store = RunStore(args.state_root)
     migrate_phase6(store)
     migrate_phase7(store)
+    migrate_phase8(store)
     server = WorkerServer((args.host, args.port), Handler, store=store, allowed_client=args.allowed_client)
     print(f"Travelling Trails Phase 5/6 worker {VERSION} listening on {args.host}:{args.port}; protected client={args.allowed_client}", flush=True)
     server.serve_forever()
