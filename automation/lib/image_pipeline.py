@@ -125,19 +125,47 @@ def build_manifest(run_id, post_slug, sources, output_dir):
     inspected = []
     outputs = []
     gallery_i = route_i = 0
+    allowed_roles = {'featured', 'thumbnail', 'gallery', 'route', 'unused'}
     for s in sources:
-        role = s['role']
-        meta = inspect_source(s['sourcePath'], s['sourceId'], s.get('sourceFilename', Path(s['sourcePath']).name), role)
+        primary_role = s.get('role') or ''
+        derivative_roles = s.get('derivativeRoles')
+        if derivative_roles is None:
+            if primary_role == 'featured':
+                derivative_roles = ['featured', 'thumbnail']
+            elif primary_role in allowed_roles:
+                derivative_roles = [primary_role]
+            else:
+                raise ValueError(f'invalid source role: {primary_role}')
+        if not isinstance(derivative_roles, list) or not derivative_roles:
+            raise ValueError('derivativeRoles must be a non-empty list')
+        normalized_roles = []
+        for role in derivative_roles:
+            if role not in allowed_roles:
+                raise ValueError(f'invalid source role: {role}')
+            if role not in normalized_roles:
+                normalized_roles.append(role)
+        if 'unused' in normalized_roles and len(normalized_roles) != 1:
+            raise ValueError('unused cannot be combined with derivative roles')
+        meta = inspect_source(
+            s['sourcePath'], s['sourceId'],
+            s.get('sourceFilename', Path(s['sourcePath']).name),
+            primary_role or normalized_roles[0]
+        )
+        meta['derivativeRoles'] = normalized_roles
         inspected.append(meta)
-        if role == 'featured':
-            planned = [('featured', f'{slug}-featured.jpg'), ('thumbnail', f'{slug}-thumbnail.jpg')]
-        elif role == 'gallery':
-            gallery_i += 1; planned = [('gallery', f'{slug}-{gallery_i:02d}.jpg')]
-        elif role == 'route':
-            route_i += 1; planned = [('route', f'{slug}-route-{route_i:02d}.jpg')]
-        elif role == 'unused': planned = []
-        else: raise ValueError(f'invalid source role: {role}')
-        for out_role, filename in planned:
+        for out_role in normalized_roles:
+            if out_role == 'unused':
+                continue
+            if out_role == 'featured':
+                filename = f'{slug}-featured.jpg'
+            elif out_role == 'thumbnail':
+                filename = f'{slug}-thumbnail.jpg'
+            elif out_role == 'gallery':
+                gallery_i += 1
+                filename = f'{slug}-{gallery_i:02d}.jpg'
+            elif out_role == 'route':
+                route_i += 1
+                filename = f'{slug}-route-{route_i:02d}.jpg'
             repo = validate_repo_path(f'src/assets/images/{filename}')
             outputs.append({'sourceId': str(s['sourceId']), 'role': out_role, 'filename': filename,
                             'repoPath': repo, 'publicPath': f'/assets/images/{filename}',
@@ -146,7 +174,6 @@ def build_manifest(run_id, post_slug, sources, output_dir):
     paths = [o['repoPath'] for o in outputs]
     if len(paths) != len(set(paths)): raise ValueError('duplicate output path')
     return {'runId': str(run_id), 'postSlug': slug, 'sourceImages': inspected, 'outputs': outputs}
-
 
 def process_manifest(manifest):
     for o in manifest['outputs']:
