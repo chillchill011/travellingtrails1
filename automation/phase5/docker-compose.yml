@@ -1,0 +1,36 @@
+services:
+  travellingtrails-phase5-worker:
+    build:
+      context: ../..
+      dockerfile: automation/phase5/Dockerfile
+    image: travellingtrails-phase5-worker:phase5-v1
+    container_name: travellingtrails-phase5-worker
+    restart: unless-stopped
+    user: "1000:1000"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,noexec,size=64m
+    environment:
+      TT_PHASE5_STATE_ROOT: /data
+      TT_PHASE5_ALLOWED_CLIENT: n8n
+    volumes:
+      - /home/aniket/nas-stack/travellingtrails-phase5:/data:rw
+    expose:
+      - "8787"
+    networks:
+      - n8n-existing
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,urllib.request; assert json.load(urllib.request.urlopen('http://127.0.0.1:8787/health', timeout=3))['ok'] is True"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+networks:
+  n8n-existing:
+    external: true
+    name: n8n_default
