@@ -1,9 +1,6 @@
 services:
   travellingtrails-phase5-worker:
-    build:
-      context: ../..
-      dockerfile: automation/phase5/Dockerfile
-    image: travellingtrails-phase5-worker:phase5-v1
+    image: python:3.12.3-slim-bookworm
     container_name: travellingtrails-phase5-worker
     restart: unless-stopped
     user: "1000:1000"
@@ -13,22 +10,50 @@ services:
     security_opt:
       - no-new-privileges:true
     tmpfs:
-      - /tmp:rw,nosuid,nodev,noexec,size=64m
+      - /tmp:rw,nosuid,nodev,noexec,size=128m
     environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      PYTHONPATH: /data/runtime/python:/app/automation/lib
       TT_PHASE5_STATE_ROOT: /data
       TT_PHASE5_ALLOWED_CLIENT: n8n
     volumes:
+      - /home/aniket/travellingtrails-automation/automation/lib:/app/automation/lib:ro
       - /home/aniket/nas-stack/travellingtrails-phase5:/data:rw
+    command:
+      - sh
+      - -c
+      - |
+        set -eu
+
+        if ! python -c "from PIL import Image; print(Image.__version__)" >/dev/null 2>&1; then
+          echo "Installing Phase 5 Python runtime dependencies..."
+          rm -rf /data/runtime/python
+          mkdir -p /data/runtime/python
+          pip install --no-cache-dir --target /data/runtime/python Pillow==10.2.0
+        fi
+
+        echo "Starting Travelling Trails Phase 5 worker..."
+        exec python /app/automation/lib/phase5_worker.py \
+          --host 0.0.0.0 \
+          --port 8787 \
+          --state-root /data \
+          --allowed-client n8n
     expose:
       - "8787"
     networks:
       - n8n-existing
     healthcheck:
-      test: ["CMD", "python", "-c", "import json,urllib.request; assert json.load(urllib.request.urlopen('http://127.0.0.1:8787/health', timeout=3))['ok'] is True"]
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json,urllib.request; assert json.load(urllib.request.urlopen('http://127.0.0.1:8787/health', timeout=3))['ok'] is True"
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 15s
+      start_period: 45s
 
 networks:
   n8n-existing:
