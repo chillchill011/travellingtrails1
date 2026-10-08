@@ -149,11 +149,14 @@ An env-gated test hook (`TT_PHASE6_INJECT_FAIL_AFTER_VALIDATION=1`) forced failu
 
 A production-mode Eleventy build from the live Staging acceptance commit succeeded. The two `draft:true` direct pages were generated while neither appeared on the home page. This confirms the existing documented behavior: drafts are unlisted, not guaranteed private.
 
-## Netlify acceptance exception
+## Netlify staging topology correction
 
-Live Netlify state did not match the Phase 5 handoff assumption. The public Netlify site API for site `travellingtrails1` showed production deploys and one historical `render-blog` branch deploy, but zero `Staging` deploys. The expected branch URL `https://staging--travellingtrails1.netlify.app` returned 404. Phase 6 did not change Netlify site configuration, per the explicit safety rule.
+The earlier Phase 6 investigation queried the production Netlify project and therefore produced a false negative. The current operational mapping, verified in Phase 7, is:
 
-Therefore a Netlify **Staging branch rebuild could not be proven** in Phase 6 without changing Netlify configuration. The repository build and draft behavior are proven, but the strict Phase 6 definition of done remains blocked on enabling/confirming the `Staging` branch deploy outside this phase's allowed mutations.
+- `Staging` → Netlify project `devtravtes` → site ID `bb8c325b-9562-4952-8613-439ca95dc9e0` → `https://devtravtes.netlify.app/`
+- `main` → Netlify project `travellingtrails1` → site ID `edd2477f-24f5-4005-a05c-f0310f1efe11` → `https://travellingtrails.in/`
+
+Netlify may label the primary `devtravtes` deployment context as `production`; that label is internal to the staging Netlify project and does not make it Travelling Trails production. Future checks must identify the environment by project/site ID plus Git branch, never by Netlify context wording alone.
 
 ## Cleanup
 

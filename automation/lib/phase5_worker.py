@@ -38,8 +38,17 @@ from phase6_state import (
     prepare as phase6_prepare,
     view as phase6_view,
 )
+from phase7_review import (
+    complete_notification as phase7_complete_notification,
+    fail as phase7_fail,
+    mark_notification_sending as phase7_mark_notification_sending,
+    migrate as migrate_phase7,
+    prepare as phase7_prepare,
+    verify_live_deploy as phase7_verify_live_deploy,
+    view as phase7_view,
+)
 
-VERSION = "phase6-v1"
+VERSION = "phase7-v1"
 MAX_REQUEST_BYTES = 220 * 1024 * 1024
 RUN_ROUTE_RE = re.compile(r"^/v1/runs/(tt-[0-9]{8}-[a-f0-9]{16})(/.*)?$")
 
@@ -192,6 +201,25 @@ class Handler(BaseHTTPRequestHandler):
             if suffix == "/phase6/draft/complete" and self.command == "POST":
                 self._json(200, phase6_complete(self.server.store, run_id, self._read_json()))
                 return
+            if suffix == "/phase7/prepare" and self.command in {"GET", "POST"}:
+                self._json(200, phase7_prepare(self.server.store, run_id))
+                return
+            if suffix == "/phase7/deploy/verify" and self.command == "POST":
+                self._json(200, phase7_verify_live_deploy(self.server.store, run_id))
+                return
+            if suffix == "/phase7" and self.command == "GET":
+                self._json(200, phase7_view(self.server.store, run_id))
+                return
+            if suffix == "/phase7/notification/prepare" and self.command == "POST":
+                self._json(200, phase7_mark_notification_sending(self.server.store, run_id))
+                return
+            if suffix == "/phase7/notification/complete" and self.command == "POST":
+                self._json(200, phase7_complete_notification(self.server.store, run_id))
+                return
+            if suffix == "/phase7/fail" and self.command == "POST":
+                body = self._read_json()
+                self._json(200, phase7_fail(self.server.store, run_id, str(body.get("error") or "Phase 7 failed")))
+                return
             self._json(404, {"ok": False, "error": "not found"})
         except ImmutableInputError as exc:
             self._json(409, {"ok": False, "error": "immutable_input_mismatch", "message": str(exc)})
@@ -218,6 +246,7 @@ def main():
     args = parser.parse_args()
     store = RunStore(args.state_root)
     migrate_phase6(store)
+    migrate_phase7(store)
     server = WorkerServer((args.host, args.port), Handler, store=store, allowed_client=args.allowed_client)
     print(f"Travelling Trails Phase 5/6 worker {VERSION} listening on {args.host}:{args.port}; protected client={args.allowed_client}", flush=True)
     server.serve_forever()
