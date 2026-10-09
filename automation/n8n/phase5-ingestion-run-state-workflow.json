@@ -131,7 +131,8 @@
           "responseMode": "lastNode",
           "options": {
             "buttonLabel": "Create Staging Draft",
-            "path": "travelling-trails-phase5"
+            "path": "travelling-trails-phase5",
+            "customCss": "/* Travelling Trails native n8n form: larger writing areas */\n#field-5 { min-height: 280px !important; resize: vertical; }\n#field-6 { min-height: 220px !important; resize: vertical; }\n#field-7, #field-8 { min-height: 180px !important; resize: vertical; }\n#field-9 { min-height: 160px !important; resize: vertical; }\n"
           }
         },
         "id": "form1",
@@ -158,15 +159,15 @@
       {
         "parameters": {
           "mode": "runOnceForAllItems",
-          "jsCode": "const item=$input.first();\nconst j=item.json||{}; const binary=item.binary||{};\nconst keysFor=(name)=>Object.keys(binary).filter(k=>k===name||k.startsWith(name+'_')).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));\nasync function fileRecord(key,sourceId,roles){\n  const meta=binary[key]||{};\n  const buf=await helpers.getBinaryDataBuffer(0,key);\n  return {sourceId,originalFilename:String(meta.fileName||meta.fileName||key),mimeType:String(meta.mimeType||''),roles,contentBase64:buf.toString('base64')};\n}\nconst featuredKeys=keysFor('featuredPhoto'); if(featuredKeys.length!==1) throw new Error('exactly one featured photo is required');\nconst thumbKeys=keysFor('thumbnailPhoto'); if(thumbKeys.length>1) throw new Error('only one thumbnail photo is allowed');\nconst files=[];\nfiles.push(await fileRecord(featuredKeys[0],'featured-1',thumbKeys.length?['featured']:['featured','thumbnail']));\nif(thumbKeys.length) files.push(await fileRecord(thumbKeys[0],'thumbnail-1',['thumbnail']));\nlet n=0; for(const key of keysFor('galleryPhotos')) files.push(await fileRecord(key,`gallery-${String(++n).padStart(3,'0')}`,['gallery']));\nn=0; for(const key of keysFor('routeImages')) files.push(await fileRecord(key,`route-${String(++n).padStart(3,'0')}`,['route']));\nn=0; for(const key of keysFor('unusedPhotos')) files.push(await fileRecord(key,`unused-${String(++n).padStart(3,'0')}`,['unused']));\nconst must=String(j.mustInclude||'').split(/\\r?\\n/).map(x=>x.trim()).filter(Boolean);\nreturn [{json:{payload:{source:'form',submissionKey:String(j.submissionKey||''),trip:{date:String(j.tripDate||''),author:String(j.author||'aniket'),destination:String(j.destination||''),duration:String(j.duration||''),rawNotes:String(j.rawNotes||''),routeNotes:String(j.routeNotes||''),costNotes:String(j.costNotes||''),gearNotes:String(j.gearNotes||''),mustInclude:must},files}}}];"
+          "jsCode": "const item=$input.first();\nconst j=item.json||{};\nconst binary=item.binary||{};\nconst execId=String($execution.id||'').replace(/\\D/g,'');\nif(!execId) throw new Error('numeric execution id required for upload batch');\nconst batchId='up-'+execId;\nconst keysFor=(name)=>Object.keys(binary).filter(k=>k===name||k.startsWith(name+'_')).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));\nconst featuredKeys=keysFor('featuredPhoto');\nif(featuredKeys.length!==1) throw new Error('exactly one featured photo is required');\nconst thumbKeys=keysFor('thumbnailPhoto');\nif(thumbKeys.length>1) throw new Error('only one thumbnail photo is allowed');\nconst must=String(j.mustInclude||'').split(/\\r?\\n/).map(x=>x.trim()).filter(Boolean);\nconst trip={date:String(j.tripDate||''),author:String(j.author||'aniket'),destination:String(j.destination||''),duration:String(j.duration||''),rawNotes:String(j.rawNotes||''),routeNotes:String(j.routeNotes||''),costNotes:String(j.costNotes||''),gearNotes:String(j.gearNotes||''),mustInclude:must};\nconst specs=[];\nconst add=(key,sourceId,roles)=>{const meta=binary[key]; if(!meta) throw new Error('missing binary field '+key); specs.push({key,sourceId,roles,originalFilename:String(meta.fileName||key),mimeType:String(meta.mimeType||'')});};\nadd(featuredKeys[0],'featured-1',thumbKeys.length?['featured']:['featured','thumbnail']);\nif(thumbKeys.length) add(thumbKeys[0],'thumbnail-1',['thumbnail']);\nlet n=0; for(const key of keysFor('galleryPhotos')) add(key,`gallery-${String(++n).padStart(3,'0')}`,['gallery']);\nn=0; for(const key of keysFor('routeImages')) add(key,`route-${String(++n).padStart(3,'0')}`,['route']);\nn=0; for(const key of keysFor('unusedPhotos')) add(key,`unused-${String(++n).padStart(3,'0')}`,['unused']);\nreturn specs.map(s=>({json:{batchId,source:'form',submissionKey:String(j.submissionKey||''),trip,sourceId:s.sourceId,roles:s.roles,originalFilename:s.originalFilename,mimeType:s.mimeType},binary:{upload:binary[s.key]}}));"
         },
         "id": "normalize1",
-        "name": "Code - Normalize Form Intake",
+        "name": "Code - Prepare Binary Uploads",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
           -1080,
-          -160
+          -200
         ]
       },
       {
@@ -179,7 +180,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -1080,
+          -820,
           180
         ]
       },
@@ -204,8 +205,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
         "position": [
-          -820,
-          0
+          -560,
+          180
         ]
       },
       {
@@ -229,7 +230,7 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
         "position": [
-          -560,
+          -40,
           0
         ]
       },
@@ -254,7 +255,7 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.5,
         "position": [
-          -300,
+          220,
           0
         ]
       },
@@ -285,7 +286,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.2,
         "position": [
-          -40,
+          480,
           0
         ]
       },
@@ -566,7 +567,7 @@
       {
         "parameters": {
           "mode": "runOnceForAllItems",
-          "jsCode": "const r=$('Phase 7 - Staging Review Handoff').first().json; if(!r.previewUrl || !r.cmsReviewUrl) throw new Error('review payload incomplete'); const approve='https://deshmukh.taild717f3.ts.net:8443/form/travelling-trails-phase8-promote?runId='+encodeURIComponent(r.runId)+'&expectedTitle='+encodeURIComponent(r.title); return [{json:{ok:true,message:'Travelling Trails draft ready',title:r.title,destination:r.destination,status:'DRAFT \u2014 NOT PUBLISHED',preview:r.previewUrl,editDraft:r.cmsReviewUrl,images:r.imageCount,runId:r.runId,warnings:r.warnings||[],missingInformation:r.missingInformation||[],approvePromotion:approve}}];"
+          "jsCode": "const r=$('Phase 7 - Staging Review Handoff').first().json; if(!r.previewUrl || !r.cmsReviewUrl) throw new Error('review payload incomplete'); const approve='https://deshmukh.taild717f3.ts.net:8443/form/travelling-trails-phase8-promote?runId='+encodeURIComponent(r.runId)+'&expectedTitle='+encodeURIComponent(r.title); return [{json:{ok:true,message:'Travelling Trails draft ready',title:r.title,destination:r.destination,status:'DRAFT — NOT PUBLISHED',preview:r.previewUrl,editDraft:r.cmsReviewUrl,images:r.imageCount,runId:r.runId,warnings:r.warnings||[],missingInformation:r.missingInformation||[],approvePromotion:approve}}];"
         },
         "id": "final-user-result",
         "name": "Result - Draft Ready for User",
@@ -601,6 +602,89 @@
           1940,
           -120
         ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "={{ 'http://travellingtrails-phase5-worker:8787/v1/uploads/' + $json.batchId + '/' + $json.sourceId }}",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "X-TT-Original-Filename",
+                "value": "={{ encodeURIComponent($json.originalFilename) }}"
+              },
+              {
+                "name": "X-TT-Roles",
+                "value": "={{ $json.roles.join(',') }}"
+              },
+              {
+                "name": "X-TT-Claimed-Mime",
+                "value": "={{ $json.mimeType }}"
+              }
+            ]
+          },
+          "sendBody": true,
+          "contentType": "binaryData",
+          "inputDataFieldName": "upload",
+          "options": {
+            "response": {
+              "response": {
+                "neverError": false,
+                "responseFormat": "json"
+              }
+            },
+            "timeout": 120000
+          }
+        },
+        "id": "upload-binary-1",
+        "name": "Worker - Stream Each Source Image",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "position": [
+          -820,
+          -200
+        ]
+      },
+      {
+        "parameters": {
+          "mode": "runOnceForAllItems",
+          "jsCode": "const uploaded=$input.all().map(i=>i.json||{});\nif(!uploaded.length) throw new Error('no uploaded source images returned');\nfor(const r of uploaded){if(r.ok!==true||!r.sourceId||!r.batchId) throw new Error('binary upload response incomplete');}\nconst prepared=$('Code - Prepare Binary Uploads').all();\nif(prepared.length!==uploaded.length) throw new Error('binary upload count mismatch');\nconst first=prepared[0].json;\nconst expectedOrder=prepared.map(i=>String(i.json.sourceId));\nconst returned=new Set(uploaded.map(r=>String(r.sourceId)));\nfor(const id of expectedOrder){if(!returned.has(id)) throw new Error('missing uploaded source '+id);}\nreturn [{json:{batchId:first.batchId,source:'form',submissionKey:first.submissionKey,trip:first.trip,fileOrder:expectedOrder}}];"
+        },
+        "id": "finalize-payload-1",
+        "name": "Code - Finalize Binary Upload Batch",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -560,
+          -200
+        ]
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "={{ 'http://travellingtrails-phase5-worker:8787/v1/uploads/' + $json.batchId + '/finalize' }}",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ JSON.stringify($json) }}",
+          "options": {
+            "response": {
+              "response": {
+                "neverError": false,
+                "responseFormat": "json"
+              }
+            },
+            "timeout": 120000
+          }
+        },
+        "id": "finalize-batch-1",
+        "name": "Worker - Finalize Durable Binary Intake",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "position": [
+          -300,
+          -200
+        ]
       }
     ],
     "connections": {
@@ -608,7 +692,7 @@
         "main": [
           [
             {
-              "node": "Code - Normalize Form Intake",
+              "node": "Code - Prepare Binary Uploads",
               "type": "main",
               "index": 0
             }
@@ -620,17 +704,6 @@
           [
             {
               "node": "Code - Read Synthetic Manual Payload",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code - Normalize Form Intake": {
-        "main": [
-          [
-            {
-              "node": "Worker - Durable Ingest",
               "type": "main",
               "index": 0
             }
@@ -815,6 +888,50 @@
             }
           ]
         ]
+      },
+      "Code - Prepare Binary Uploads": {
+        "main": [
+          [
+            {
+              "node": "Worker - Stream Each Source Image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Worker - Stream Each Source Image": {
+        "main": [
+          [
+            {
+              "node": "Code - Finalize Binary Upload Batch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code - Finalize Binary Upload Batch": {
+        "main": [
+          [
+            {
+              "node": "Worker - Finalize Durable Binary Intake",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Worker - Finalize Durable Binary Intake": {
+        "main": [
+          [
+            {
+              "node": "Worker - Process Images",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "settings": {
@@ -828,7 +945,9 @@
       "phase4WorkflowId": "TTPhase4ImageUpload01",
       "phase5WorkflowId": "TTPhase5Ingestion01",
       "phase6WorkflowId": "TTPhase6FullDraft01",
-      "phase7WorkflowId": "TTPhase7Review01"
+      "phase7WorkflowId": "TTPhase7Review01",
+      "formBinaryUpload": "streamed-per-file",
+      "formBinaryBase64": false
     },
     "pinData": {},
     "versionId": "c94f5634-384d-475b-b510-2494790b07bb",
