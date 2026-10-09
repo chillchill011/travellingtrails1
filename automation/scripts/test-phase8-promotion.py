@@ -62,13 +62,17 @@ def main():
     except StateError as e: assert 'HARD_COLLISION' in str(e)
 
   # Workflow contracts
+  p2=json.load(open(ROOT/'n8n/phase2-staging-draft-write-workflow.json'))[0]
+  p4=json.load(open(ROOT/'n8n/phase4-staging-image-upload-workflow.json'))[0]
   p5=json.load(open(ROOT/'n8n/phase5-ingestion-run-state-workflow.json'))[0]
   p6=json.load(open(ROOT/'n8n/phase6-full-staging-draft-workflow.json'))[0]
   p7=json.load(open(ROOT/'n8n/phase7-staging-review-handoff-workflow.json'))[0]
   p8wf=json.load(open(ROOT/'n8n/phase8-production-promotion-workflow.json'))[0]
   watch=json.load(open(ROOT/'n8n/phase8-publication-watch-workflow.json'))[0]
-  assert any(n['type']=='n8n-nodes-base.executeWorkflowTrigger' for n in p6['nodes'])
-  assert any(n['type']=='n8n-nodes-base.executeWorkflowTrigger' for n in p7['nodes'])
+  for wf in (p2,p4,p6,p7):
+    assert wf['active'] is True
+    assert any(n['type']=='n8n-nodes-base.executeWorkflowTrigger' for n in wf['nodes'])
+    assert not any('webhook' in n['type'].lower() or 'formtrigger' in n['type'].lower() for n in wf['nodes'])
   assert 'Phase 6 - Full Staging Draft' in p5['connections'] and 'Phase 7 - Staging Review Handoff' in p5['connections']
   form=next(n for n in p8wf['nodes'] if n['name']=='Form - Explicit Promotion Approval')
   assert form['parameters']['authentication']=='n8nUserAuth' and form['parameters']['requireExecuteAccess'] is True

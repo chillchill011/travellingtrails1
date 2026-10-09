@@ -138,22 +138,30 @@ def validate_and_assemble(normalized: dict[str,Any], processed: dict[str,Any], g
             p=candidates[0] if candidates else {}
         return str((p or {}).get(key) or fallback or "").strip()
     def one(role): return by_role.get(role,[{}])[0] if by_role.get(role) else {}
+    # DeepSeek is text-only and must not infer what an uploaded image depicts.
+    # If authoritative notes do not support a visual description, inject a
+    # deterministic, non-visual alt label from durable trip metadata + the
+    # user-selected media role. This keeps accessibility fields non-empty
+    # without fabricating image content.
+    destination=str(trip.get("destination") or "this trip").strip() or "this trip"
+    def neutral_alt(role: str, index: int|None=None) -> str:
+        if role=="featured": return f"Featured trip photo for {destination}"
+        if role=="thumbnail": return f"Trip thumbnail for {destination}"
+        if role=="route": return f"Route reference {index or 1} for {destination}"
+        return f"Trip photo {index or 1} for {destination}"
     feat=one("featured"); thumb=one("thumbnail")
-    image_alt=meta(feat,"featured","alt",f.get("imageAlt")); thumb_alt=meta(thumb,"thumbnail","alt",f.get("thumbnailAlt"))
-    if feat and not image_alt:errors.append("featured image alt text missing; image was not visually inspected")
-    if thumb and not thumb_alt:errors.append("thumbnail alt text missing; image was not visually inspected")
+    image_alt=meta(feat,"featured","alt",f.get("imageAlt")) or neutral_alt("featured")
+    thumb_alt=meta(thumb,"thumbnail","alt",f.get("thumbnailAlt")) or neutral_alt("thumbnail")
     gallery=[]
-    for o in by_role.get("gallery",[]):
-        alt=meta(o,"gallery","alt")
-        if not alt:errors.append(f"gallery alt missing for {o.get('publicPath')}")
+    for idx,o in enumerate(by_role.get("gallery",[]),1):
+        alt=meta(o,"gallery","alt") or neutral_alt("gallery",idx)
         item={"src":o.get("publicPath"),"alt":alt}; cap=meta(o,"gallery","caption"); loc=meta(o,"gallery","location")
         if cap:item["caption"]=cap
         if loc:item["location"]=loc
         gallery.append(item)
     route=[]
-    for o in by_role.get("route",[]):
-        alt=meta(o,"route","alt")
-        if not alt:errors.append(f"route alt missing for {o.get('publicPath')}")
+    for idx,o in enumerate(by_role.get("route",[]),1):
+        alt=meta(o,"route","alt") or neutral_alt("route",idx)
         route.append({"src":o.get("publicPath"),"alt":alt})
     fixed={k:f.get(k) for k in FRONT_KEYS}
     fixed["featuredImage"]=feat.get("publicPath",""); fixed["thumbnailImage"]=thumb.get("publicPath","")

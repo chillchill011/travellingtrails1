@@ -42,11 +42,15 @@ Normal chain:
 
 The same `runId` is passed directly through the subworkflows. The normal path does not use `TT_PHASE6_TEST_RUN_ID` or `TT_PHASE7_RUN_ID`.
 
+Phase 2 draft writer workflow ID: `TTPhase2GitHubDraft01`.
+
+Phase 4 image writer workflow ID: `TTPhase4ImageUpload01`.
+
 Phase 6 workflow ID: `TTPhase6FullDraft01`.
 
 Phase 7 workflow ID: `TTPhase7Review01`.
 
-Phase 6 and Phase 7 retain manual test triggers but now also expose Execute Workflow Trigger inputs for orchestration.
+All four internal callable workflows must be **published/active** in n8n 2.40.7. An inactive Execute Workflow Trigger target cannot be invoked by the parent workflow. Their source artifacts therefore use `active:true`. They do not expose a public form or webhook: Phase 2 and Phase 4 use only Execute Workflow Trigger; Phase 6 and Phase 7 additionally retain manual test triggers.
 
 Phase 7 waits for a matching ready `devtravtes` deploy for up to 150 seconds before returning `DEPLOY_WAITING`. This avoids requiring the user to manually run Phase 7 after the Netlify build.
 
@@ -57,6 +61,8 @@ DeepSeek is used only in Phase 6 for text generation. It remains text-only. Rout
 If screenshot information must appear in prose, enter it in the corresponding notes field.
 
 Retries reuse durable `generated_json` and do not call DeepSeek again after a valid generation has been stored.
+
+If an uploaded image has no grounded visual description in authoritative text input, the deterministic worker may inject a neutral accessibility label derived only from durable destination metadata plus the user-selected media role/order (for example, `Trip photo 1 for <destination>`). It must not infer what the image depicts. Human review should replace generic labels with accurate visual descriptions when appropriate before publication.
 
 ## Production promotion
 

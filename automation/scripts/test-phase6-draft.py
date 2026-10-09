@@ -17,6 +17,16 @@ def ok(x):
 r1=ok(copy.deepcopy(base)); r2=ok(copy.deepcopy(base)); assert r1['markdown']==r2['markdown']; assert r1['postPath']==r2['postPath']
 assert r1['frontmatter']['featuredImage']==processed['outputs'][0]['publicPath']; assert r1['frontmatter']['thumbnailImage']==processed['outputs'][1]['publicPath']
 assert r1['frontmatter']['gallery'][0]['src']==processed['outputs'][2]['publicPath']; assert r1['frontmatter']['routeGallery'][0]['src']==processed['outputs'][3]['publicPath']
+# Text-only generation may intentionally leave image alt/caption blank. The deterministic
+# worker must provide neutral labels from durable destination + user-selected role only.
+blank=copy.deepcopy(base)
+blank['frontmatter']['imageAlt']=''; blank['frontmatter']['thumbnailAlt']=''
+for plan in blank['imagePlan']: plan['alt']=''
+rb=ok(blank)
+assert rb['frontmatter']['imageAlt']=='Featured trip photo for Synthetic Ridge'
+assert rb['frontmatter']['thumbnailAlt']=='Trip thumbnail for Synthetic Ridge'
+assert rb['frontmatter']['gallery'][0]['alt']=='Trip photo 1 for Synthetic Ridge'
+assert rb['frontmatter']['routeGallery'][0]['alt']=='Route reference 1 for Synthetic Ridge'
 for mutate,needle in [
  (lambda x:x['frontmatter'].__setitem__('draft',False),'draft must be true'),
  (lambda x:x['frontmatter'].__setitem__('categories','Invented'),'categories:'),

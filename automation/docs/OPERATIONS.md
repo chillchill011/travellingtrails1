@@ -9,7 +9,7 @@
 5. Optionally upload gallery photos, route screenshots/images and unused photos.
 6. Click **Create Staging Draft** once.
 7. The automation processes images, generates and validates the article, writes a `draft:true` Staging post, waits for the Staging Netlify deployment and returns the review result.
-8. Open the returned Staging preview and edit link. The staging CMS is `https://devtravtes.netlify.app/admin/` and must point to branch `Staging`.
+8. Open the returned Staging preview and edit link. The staging CMS is `https://devtravtes.netlify.app/admin/` and must point to branch `Staging`. Review the uploaded images as well as the prose. Neutral fallback alt labels may be present when the automation had no authoritative visual description; replace them with accurate human-verified descriptions when appropriate before publication.
 
 Important screenshot rule: if information visible in a route map, receipt, booking screenshot or other image is important to the article text, type that information into the relevant notes field too. DeepSeek is not allowed to guess or OCR authoritative facts from pixels.
 
@@ -47,6 +47,8 @@ Every article has one durable `runId`. Repeating a safe step reuses stored state
 - an existing exact production promotion is treated idempotently
 
 If a run fails, preserve its run ID and inspect its last safe state. Do not create a new run merely to bypass a deterministic validation, collision or concurrency failure.
+
+The internal callable workflows `TTPhase2GitHubDraft01`, `TTPhase4ImageUpload01`, `TTPhase6FullDraft01` and `TTPhase7Review01` must remain published/active in n8n. They expose no public form/webhook; activation is required so the parent workflow can invoke their Execute Workflow Trigger nodes.
 
 A `HARD_COLLISION` means a destination path on `main` already contains different bytes. Resolve it deliberately; the automation will not overwrite it.
 

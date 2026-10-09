@@ -6,7 +6,9 @@ ROOT=Path(__file__).resolve().parents[1]
 w=json.loads((ROOT/'n8n/phase6-full-staging-draft-workflow.json').read_text())[0]
 assert w['id']=='TTPhase6FullDraft01'
 assert w['name']=='Travelling Trails - Phase 6 Full Staging Draft'
-assert w['active'] is False
+assert w['active'] is True
+assert any(n['type']=='n8n-nodes-base.executeWorkflowTrigger' for n in w['nodes'])
+assert not any('webhook' in n['type'].lower() or 'formtrigger' in n['type'].lower() for n in w['nodes'])
 nodes={n['name']:n for n in w['nodes']}
 assert nodes['Phase 2 - Staging Draft Write']['parameters']['workflowId']['value']=='TTPhase2GitHubDraft01'
 assert nodes['Phase 2 - Staging Draft Write'].get('onError')=='continueRegularOutput'
