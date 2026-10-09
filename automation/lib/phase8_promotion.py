@@ -135,7 +135,14 @@ def approve_and_capture(store:RunStore,run_id:str,approved:bool,expected_title:s
       return view(store,run_id,action='PROMOTION_READY',idempotent=True)
     post_path=str(r.get('post_path') or '')
     if not ALLOWED_POST_RE.fullmatch(post_path) or '..' in post_path: raise StateError('post path is not allowlisted')
-    source_commit=_ref(SOURCE_BRANCH)
+    source_commit=str(r.get('staging_deploy_commit') or '')
+    draft_commit=str(r.get('draft_commit_sha') or '')
+    if not SHA40.fullmatch(source_commit): raise StateError('verified reviewed Staging commit missing')
+    if not SHA40.fullmatch(draft_commit) or draft_commit!=source_commit: raise StateError('reviewed Staging commit does not match draft commit')
+    try: review_payload=json.loads(r.get('review_payload_json') or 'null')
+    except Exception as exc: raise StateError('review payload is invalid') from exc
+    if not isinstance(review_payload,dict) or str(review_payload.get('commitSha') or '')!=source_commit:
+      raise StateError('review payload commit does not match reviewed Staging commit')
     post=_content(post_path,source_commit)
     if post is None: raise StateError('reviewed Staging post is missing')
     post_bytes=_decode_content(post); markdown=post_bytes.decode('utf-8')

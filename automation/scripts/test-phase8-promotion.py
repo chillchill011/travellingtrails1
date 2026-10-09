@@ -8,12 +8,13 @@ import phase8_promotion as p8
 from phase6_state import migrate as migrate6
 from phase7_review import migrate as migrate7
 
-def make_store(root, post_path='src/blog/2026-10-09-reviewed-trip.md'):
+def make_store(root, post_path='src/blog/2026-10-09-reviewed-trip.md', reviewed_commit='a'*40):
     s=RunStore(root)
     r,_=s.create_or_verify_run(run_id='tt-20261009-0123456789abcdef',source='form',post_slug='reviewed-trip',raw_input={'x':1},normalized_input={'trip':{'date':'2026-10-09','author':'aniket'}},fingerprint='f'*64)
     migrate6(s); migrate7(s); p8.migrate(s)
+    review_payload=json.dumps({'commitSha':reviewed_commit})
     with s.connect() as db:
-        db.execute("UPDATE runs SET status='GITHUB_IMAGES_COMPLETE',post_path=?,phase6_status='DRAFT_CREATED',phase7_status='REVIEW_READY' WHERE run_id=?",(post_path,r['run_id']))
+        db.execute("UPDATE runs SET status='GITHUB_IMAGES_COMPLETE',post_path=?,phase6_status='DRAFT_CREATED',draft_commit_sha=?,phase7_status='REVIEW_READY',staging_deploy_commit=?,review_payload_json=? WHERE run_id=?",(post_path,reviewed_commit,reviewed_commit,review_payload,r['run_id']))
     return s,r['run_id']
 
 def main():
@@ -22,7 +23,8 @@ def main():
     post=b'''---\ndraft: true\ntitle: "Reviewed Trip"\nfeaturedImage: "/assets/images/reviewed-featured.jpg"\n---\n\n## One\nText\n'''
     media=b'jpeg-bytes'
     src='a'*40; mainsha='b'*40; postsha='c'*40; mediasha='d'*40
-    p8._ref=lambda branch: src if branch=='Staging' else mainsha
+    # Staging may advance after the reviewed deploy; promotion must still read the reviewed commit.
+    p8._ref=lambda branch: '9'*40 if branch=='Staging' else mainsha
     def content(path,ref):
       if ref==src and path.endswith('.md'): return {'sha':postsha,'content':__import__('base64').b64encode(post).decode()}
       if ref==src and path.endswith('reviewed-featured.jpg'): return {'sha':mediasha,'content':__import__('base64').b64encode(media).decode()}
@@ -33,7 +35,7 @@ def main():
     except StateError as e: assert 'approved=true' in str(e)
     out=p8.approve_and_capture(s,rid,True,'Reviewed Trip')
     m=out['promotionManifest']
-    assert m['sourceBranch']=='Staging' and m['targetBranch']=='main' and m['draft'] is True
+    assert m['sourceBranch']=='Staging' and m['sourceCommit']==src and m['targetBranch']=='main' and m['draft'] is True
     assert m['postBlobSha']==postsha and m['media'][0]['blobSha']==mediasha
     assert m['creates']==['src/blog/2026-10-09-reviewed-trip.md','src/assets/images/reviewed-featured.jpg']
     out2=p8.approve_and_capture(s,rid,True,'Reviewed Trip'); assert out2['idempotent'] is True
@@ -44,14 +46,14 @@ def main():
   with tempfile.TemporaryDirectory() as td:
     s,rid=make_store(td)
     bad=post.replace(b'draft: true',b'draft: false')
-    p8._ref=lambda branch: src if branch=='Staging' else mainsha
+    p8._ref=lambda branch: '9'*40 if branch=='Staging' else mainsha
     p8._content=lambda path,ref: {'sha':postsha,'content':__import__('base64').b64encode(bad).decode()} if ref==src and path.endswith('.md') else None
     try: p8.approve_and_capture(s,rid,True,'Reviewed Trip'); raise AssertionError('draft:false accepted')
     except StateError as e: assert 'draft:true' in str(e)
 
   with tempfile.TemporaryDirectory() as td:
     s,rid=make_store(td)
-    p8._ref=lambda branch: src if branch=='Staging' else mainsha
+    p8._ref=lambda branch: '9'*40 if branch=='Staging' else mainsha
     def collision(path,ref):
       if ref==src and path.endswith('.md'): return {'sha':postsha,'content':__import__('base64').b64encode(post).decode()}
       if ref==src: return {'sha':mediasha,'content':__import__('base64').b64encode(media).decode()}
