@@ -123,7 +123,7 @@ def inspect_image_bytes(data: bytes) -> dict[str, Any]:
         with Image.open(io.BytesIO(data)) as raw:
             transposed = ImageOps.exif_transpose(raw)
             width, height = transposed.size
-            media_type = Image.MIME.get(actual_format or "", "")
+            media_type = image_pipeline.pillow_media_type(actual_format)
     except Exception as exc:
         raise IntakeError("uploaded source is not a valid supported image") from exc
     if media_type not in image_pipeline.MEDIA_EXTENSIONS:
