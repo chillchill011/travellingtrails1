@@ -15,9 +15,10 @@ import re
 import socket
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 from phase5_ingestion import IntakeError, ingest_submission, run_public_view
+from phase5_binary_upload import finalize_uploaded_batch, store_streamed_upload
 from phase5_processor import (
     ProcessorError,
     cleanup_test_files,
@@ -63,8 +64,10 @@ from phase8_promotion import (
 )
 
 
-VERSION = "phase8-v1"
+VERSION = "phase8-v2-binary-ingest"
 MAX_REQUEST_BYTES = 220 * 1024 * 1024
+UPLOAD_FINALIZE_ROUTE_RE = re.compile(r"^/v1/uploads/(up-[0-9]{1,20})/finalize$")
+UPLOAD_FILE_ROUTE_RE = re.compile(r"^/v1/uploads/(up-[0-9]{1,20})/([a-z0-9]+(?:-[a-z0-9]+)*)$")
 RUN_ROUTE_RE = re.compile(r"^/v1/runs/(tt-[0-9]{8}-[a-f0-9]{16})(/.*)?$")
 
 
@@ -144,6 +147,27 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if path == "/v1/phase8/publish-waiting" and self.command == "GET":
                 self._json(200, {"ok": True, "runIds": phase8_waiting_run_ids(self.server.store)})
+                return
+            finalize_match = UPLOAD_FINALIZE_ROUTE_RE.fullmatch(path)
+            if finalize_match and self.command == "POST":
+                result = finalize_uploaded_batch(self.server.store, finalize_match.group(1), self._read_json())
+                self._json(200, {"ok": True, **result})
+                return
+            upload_match = UPLOAD_FILE_ROUTE_RE.fullmatch(path)
+            if upload_match and self.command == "POST":
+                roles = [x for x in str(self.headers.get("X-TT-Roles") or "").split(",") if x]
+                result = store_streamed_upload(
+                    self.server.store,
+                    batch_id=upload_match.group(1),
+                    source_id=upload_match.group(2),
+                    original_filename=unquote(str(self.headers.get("X-TT-Original-Filename") or "")),
+                    roles_value=roles,
+                    claimed_mime=str(self.headers.get("X-TT-Claimed-Mime") or ""),
+                    content_type=str(self.headers.get("Content-Type") or ""),
+                    content_length=self.headers.get("Content-Length") or 0,
+                    stream=self.rfile,
+                )
+                self._json(200, result)
                 return
             if path == "/v1/ingest" and self.command == "POST":
                 result = ingest_submission(self.server.store, self._read_json())
