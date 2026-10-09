@@ -7,6 +7,23 @@ SAFE_NAME_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*\.jpg$')
 MEDIA_EXTENSIONS = {'image/jpeg': '.jpg', 'image/png': '.png', 'image/webp': '.webp'}
 
 
+def pillow_media_type(format_name: str) -> str:
+    """Normalize Pillow formats to the web media types accepted by the pipeline.
+
+    Apple/iPhone JPEGs can be stored as MPO (Multi-Picture Object) containers.
+    Pillow reports those as format=MPO / image/mpo even though the primary image
+    is JPEG-compatible. We intentionally process the primary frame as JPEG.
+    """
+    fmt = str(format_name or '').upper()
+    if fmt in {'JPEG', 'MPO'}:
+        return 'image/jpeg'
+    if fmt == 'PNG':
+        return 'image/png'
+    if fmt == 'WEBP':
+        return 'image/webp'
+    return Image.MIME.get(fmt, '')
+
+
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -62,7 +79,7 @@ def inspect_source(path, source_id, source_filename, role):
     with Image.open(path) as raw:
         im = ImageOps.exif_transpose(raw)
         width, height = im.size
-        media_type = Image.MIME.get(im.format or raw.format, '') or Image.MIME.get(raw.format, '')
+        media_type = pillow_media_type(im.format or raw.format) or pillow_media_type(raw.format)
     if media_type not in MEDIA_EXTENSIONS:
         raise ValueError(f'unsupported source image type: {media_type}')
     return {
