@@ -29,14 +29,14 @@
       <li>retain verified reply and opt-out evidence, operational error information, and contact-suppression records needed to honor requests and avoid unwanted or duplicate mail.</li>
     </ul>
     <p>Incoming messages not verifiably related to an outreach send may be examined during the matching process. Current processing is designed to avoid saving new unrelated inbox messages as reply records. Some earlier limited unmatched-message metadata or previews may remain pending controlled retention review; they are not treated as campaign replies.</p>
-    <p>LeadGen does not require permission to modify mailbox labels, delete messages, or access the entire mailbox with the unrestricted `mail.google.com` scope for its documented send and reply-reading features.</p>
+    <p>LeadGen does not require permission to modify mailbox labels, delete messages, or access the entire mailbox with the unrestricted <code>mail.google.com</code> scope for its documented send and reply-reading features.</p>
 
     <h2>4. Purposes of Google data use</h2>
     <p>Google user data is used only for the Gmail functionality described above: authorized delivery, provider-status reconciliation, reply matching, response and unsubscribe processing, duplicate prevention, security, operational diagnostics, and authorized operator notifications. A previous draft review or Telegram approval alone is not treated as permission to send email.</p>
     <p>LeadGen does not sell Google user data, target advertisements with it, or use it to train or improve generalized AI or machine-learning models.</p>
 
     <h2>5. AI and service providers</h2>
-    <p>LeadGen uses an external language-model service for outreach copy based on selected company and website facts. For otherwise ambiguous replies that have been matched to a verified outgoing message, a limited reply excerpt may be sent to the configured AI service for classification. Deterministic checks are used before this fallback where appropriate. The system does not intentionally send unrelated inbox messages to the AI classifier.</p>
+    <p>LeadGen uses DeepSeek for outreach copy based on selected company and website facts. For otherwise ambiguous replies that have been matched to a verified outgoing message, a limited reply excerpt may be sent to DeepSeek for classification. Deterministic checks are used before this fallback where appropriate. The system does not intentionally send unrelated inbox messages to the AI classifier.</p>
     <p>Relevant classifications and limited reply information may also be delivered to the authorized operator using Telegram notifications. Google handles the underlying Gmail API and delivery. These providers process the information necessary for their respective functions under their applicable terms and controls. Google user data is not disclosed to advertisers or data brokers.</p>
     <p>LeadGen's use and transfer of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements.</p>
 
