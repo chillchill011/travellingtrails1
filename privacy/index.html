@@ -3,56 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Privacy Policy for Job Campaign Explorer.">
-  <title>Privacy Policy | Job Campaign Explorer</title>
+  <meta name="description" content="Privacy Policy for LeadGen Outreach Automation.">
+  <title>Privacy Policy | LeadGen Outreach Automation</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <main class="shell legal">
-    <p class="eyebrow"><a href="/">JOB CAMPAIGN EXPLORER</a></p>
+    <p class="eyebrow"><a href="/">LEADGEN OUTREACH AUTOMATION</a></p>
     <h1>Privacy Policy</h1>
     <p class="meta">Effective: 11 October 2026</p>
 
-    <h2>1. Scope</h2>
-    <p>This Privacy Policy describes how Job Campaign Explorer (JCE), operated for private authorized use by Aniket Deshmukh, accesses, uses, stores, and shares information, including Google user data obtained through Google APIs.</p>
+    <h2>1. Scope and operator</h2>
+    <p>This policy explains how LeadGen Outreach Automation ("LeadGen"), a privately operated business research and supervised email outreach system, processes company contact information, website findings and data from a Gmail account connected by an authorized operator. Questions and requests may be sent to <a href="mailto:aniket.thanage@gmail.com">aniket.thanage@gmail.com</a>.</p>
 
-    <h2>2. Information JCE processes</h2>
-    <p>JCE may process candidate profile information, campaign preferences, CV files supplied by the user, job and application records, integration identifiers, operational logs, and data necessary to provide Gmail draft and Telegram notification features.</p>
+    <h2>2. Business research and contact information</h2>
+    <p>LeadGen may collect publicly available company names, websites, industry and location details, published business email addresses, contact names or roles where evidenced, technical website measurements, discovery source URLs and evidence. It also records campaign details, draft versions, review decisions, send authorization and delivery events, and records necessary for duplicate detection and suppression.</p>
+    <p>Company website findings and lead information may be used to prepare relevant outreach drafts for human review. Technical SEO measurements and published business contact details are not the same as Gmail account data.</p>
 
-    <h2>3. Google user data JCE accesses</h2>
-    <p>When a user connects Gmail through Google OAuth, JCE uses the authorized Gmail connection only for its user-facing draft workflow. Depending on the authorized scopes, JCE may:</p>
+    <h2>3. Gmail access and data processed</h2>
+    <p>When the operator authorizes Google OAuth, LeadGen uses Gmail permissions needed for two functions: sending specific operator-authorized messages and reading incoming email replies. Depending on the scopes granted and the implemented operations, LeadGen may:</p>
     <ul>
-      <li>identify the connected Gmail account;</li>
-      <li>list Gmail drafts for reconciliation and duplicate prevention;</li>
-      <li>read a specific draft needed for integrity/reconciliation checks; and</li>
-      <li>create or update Gmail drafts requested by the JCE workflow.</li>
+      <li>submit a specifically authorized outreach email to Gmail and record provider message identifiers and send status;</li>
+      <li>list recent mailbox messages and read relevant message or thread content and email headers to match replies with previously sent outreach;</li>
+      <li>process the sender address, subject, message identifiers, timestamps and bounded content excerpts to identify interest, rejection, automated responses, or unsubscribe requests; and</li>
+      <li>retain verified reply and opt-out evidence, operational error information, and contact-suppression records needed to honor requests and avoid unwanted or duplicate mail.</li>
     </ul>
-    <p>JCE does not automatically send Gmail messages. JCE does not automatically submit job applications. Users review and manually send any application email.</p>
+    <p>Incoming messages not verifiably related to an outreach send may be examined during the matching process. Current processing is designed to avoid saving new unrelated inbox messages as reply records. Some earlier limited unmatched-message metadata or previews may remain pending controlled retention review; they are not treated as campaign replies.</p>
+    <p>LeadGen does not require permission to modify mailbox labels, delete messages, or access the entire mailbox with the unrestricted `mail.google.com` scope for its documented send and reply-reading features.</p>
 
-    <h2>4. How Google user data is used</h2>
-    <p>Google user data is used only to provide or maintain the Gmail draft features described on the JCE homepage, including account verification, draft creation, draft update, reconciliation, duplicate prevention, security, and troubleshooting.</p>
-    <p>Google user data is not used for advertising, credit decisions, data brokerage, or sale. Google user data is not used to train or improve generalized artificial-intelligence or machine-learning models.</p>
-    <p>JCE's use of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements.</p>
+    <h2>4. Purposes of Google data use</h2>
+    <p>Google user data is used only for the Gmail functionality described above: authorized delivery, provider-status reconciliation, reply matching, response and unsubscribe processing, duplicate prevention, security, operational diagnostics, and authorized operator notifications. A previous draft review or Telegram approval alone is not treated as permission to send email.</p>
+    <p>LeadGen does not sell Google user data, target advertisements with it, or use it to train or improve generalized AI or machine-learning models.</p>
 
-    <h2>5. Storage and security</h2>
-    <p>Google OAuth credentials and tokens are kept in the private n8n credential store and are not committed to the JCE Git repositories. JCE stores only the operational records needed for its features, such as provider route keys, draft identifiers, integrity hashes, candidate-scoped records, and audit information. Sensitive runtime configuration and backups are encrypted or access-restricted according to the JCE production hardening procedures.</p>
-    <p>JCE's production application, database, and n8n service are not made public through this website. This site contains only public product and policy information.</p>
+    <h2>5. AI and service providers</h2>
+    <p>LeadGen uses an external language-model service for outreach copy based on selected company and website facts. For otherwise ambiguous replies that have been matched to a verified outgoing message, a limited reply excerpt may be sent to the configured AI service for classification. Deterministic checks are used before this fallback where appropriate. The system does not intentionally send unrelated inbox messages to the AI classifier.</p>
+    <p>Relevant classifications and limited reply information may also be delivered to the authorized operator using Telegram notifications. Google handles the underlying Gmail API and delivery. These providers process the information necessary for their respective functions under their applicable terms and controls. Google user data is not disclosed to advertisers or data brokers.</p>
+    <p>LeadGen's use and transfer of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements.</p>
 
-    <h2>6. Sharing and human access</h2>
-    <p>JCE does not sell Google user data and does not share it with advertising platforms, data brokers, or information resellers. Data is processed only by the services required to operate the user-facing JCE features, subject to the user's authorization and applicable provider terms.</p>
-    <p>Human access to private Google-derived content is limited to the authorized user or to situations necessary for security, troubleshooting with the user's permission, or compliance with applicable law.</p>
+    <h2>6. Storage and protection</h2>
+    <p>OAuth credentials are maintained in the private n8n credential store rather than in this public website or the public GitHub files. LeadGen's operational business state, including authorized send evidence, matched replies and suppression records, is held in a private PostgreSQL database. Operational logs and access-restricted backups may retain necessary information to support auditability and recovery.</p>
+    <p>The database, n8n editor and private Campaign Explorer are not hosted on this information website. Access is restricted to the authorized operator and the services needed for operation, maintenance, security or legally required handling.</p>
 
     <h2>7. Retention</h2>
-    <p>Operational records are retained only as needed to provide JCE functionality, maintain integrity and auditability, and support encrypted backup and recovery procedures. OAuth credentials remain in n8n until disconnected or removed. A user may revoke the application's Google access at any time from their Google Account permissions.</p>
+    <p>LeadGen retains necessary operational records for as long as needed to provide its functions, maintain a reliable contact and suppression history, investigate delivery uncertainty and support security or recovery. A fixed universal deletion period has not been established for all categories. Records unrelated to verified outreach are subject to privacy minimization and controlled review. Backups may persist temporarily after active records are removed.</p>
+    <p>Opt-out and suppression information may need to be retained to prevent future contact after an unsubscribe request. These records are not reused to send outreach.</p>
 
-    <h2>8. User controls and deletion</h2>
-    <p>Authorized users may disconnect the Gmail credential, revoke Google OAuth access, or request removal of JCE candidate/integration data. Revoking Google access prevents future API access but does not by itself delete records or encrypted backups that must be retained temporarily for security, integrity, or recovery purposes.</p>
+    <h2>8. User rights, revocation and deletion requests</h2>
+    <p>The Gmail account holder may revoke OAuth access from Google Account permissions and may request disconnection of the n8n credential. Revocation prevents future authorized access, but it does not automatically erase previously recorded operational evidence or backups.</p>
+    <p>For inquiries, correction requests or deletion requests involving information processed by LeadGen, contact <a href="mailto:aniket.thanage@gmail.com">aniket.thanage@gmail.com</a>. Requests will be assessed against applicable legal obligations and the need to preserve suppression and send-integrity records.</p>
 
-    <h2>9. Changes</h2>
-    <p>This policy will be updated if JCE's Google data practices materially change. The effective date above identifies the current version.</p>
+    <h2>9. Website and changes</h2>
+    <p>This public site provides disclosure information. It does not itself authenticate Gmail users, collect Gmail messages or operate the private outreach application. The policy may be updated when actual data practices, scopes or processors change; the effective date identifies this version.</p>
 
     <h2>10. Contact</h2>
-    <p>Questions about JCE privacy or Google data use can be sent to <a href="mailto:aniket.thanage@gmail.com">aniket.thanage@gmail.com</a>.</p>
+    <p>Privacy and Google data use questions: <a href="mailto:aniket.thanage@gmail.com">aniket.thanage@gmail.com</a>.</p>
 
     <footer><nav><a href="/">Home</a><a href="/terms/">Terms of Service</a></nav></footer>
   </main>
