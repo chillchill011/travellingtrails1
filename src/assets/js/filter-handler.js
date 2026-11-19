@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
           var foundResults = false;
           
           // Find all content
-          var allContent = document.querySelectorAll('.blog-card, .destination-card, article, [class*="card"], .post');
+          var allContent = document.querySelectorAll('#explorePosts .destination-card');
           console.log('Content items:', allContent.length);
           
           for (var i = 0; i < allContent.length; i++) {
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
               
               // Get title
               var title = '';
-              var titleElem = item.querySelector('h1, h2, h3, a');
+              var titleElem = item.querySelector('.tt-destination-collection-caption strong, h1, h2, h3, a');
               if (titleElem) {
                 title = titleElem.textContent.trim();
                 console.log('Title found:', title);
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
               
               // Get URL
               var url = '#';
-              var linkElem = item.querySelector('a');
+              var linkElem = item.matches('a') ? item : item.querySelector('a');
               if (linkElem && linkElem.href) {
                 url = linkElem.href;
                 console.log('URL found:', url);
