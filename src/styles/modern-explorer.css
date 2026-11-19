@@ -399,3 +399,91 @@ html.dark{--tt-page-surface:#161718;--tt-blue:#c4a18b;--tt-cloud:#252627;--tt-st
 .tt-newsletter-form .tt-pill{padding-inline:1.35rem}
 @media (max-width:800px){.tt-brand-name{font-size:1rem}.tt-original-logo{width:48px;height:48px}}
 @media (max-width:580px){.tt-brand-name{font-size:.87rem}.tt-original-logo{width:44px;height:44px}}
+
+
+/* ---- Refinement 4: Full-bleed cinematic chapters + one consistent radius scale ---- */
+/* Full-width images/section surfaces; keep actual text and cards within the tt-shell. */
+body{overflow-x:clip}
+.tt-home .tt-hero{width:100%;max-width:none;margin:0;border-radius:0}
+.tt-home .tt-hero::after{bottom:-1px;left:0;right:0;height:clamp(180px,21vw,305px);background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,var(--tt-page-surface) 100%)}
+.tt-home .tt-hero-inner{width:min(calc(100% - 104px),1160px)}
+.tt-home .tt-hero-feature{margin-bottom:95px}
+.tt-home .tt-featured-section{padding-top:clamp(4rem,6vw,5.75rem);margin-top:0}
+.tt-home .tt-statement{width:100%;max-width:none;margin:0;border-radius:0}
+.tt-home .tt-statement-inner{width:min(calc(100% - 104px),1160px);max-width:none}
+.tt-home .tt-statement::after{display:none}
+
+/* Large surfaces are rectangular; content cards have gentle rather than exaggerated curves. */
+.tt-nav{border-radius:14px}
+.tt-mobile-menu{border-radius:14px}
+.tt-card,.blog-card.tt-card{border-radius:12px!important}
+.tt-destination-tile,.tt-destinations-grid .tt-destination-tile{border-radius:12px}
+.tt-article-hero img,.tt-destination-page-hero,.tt-about-image .image-container,.tt-about-image .image-container img{border-radius:12px!important}
+.tt-newsletter,.tt-page-panel,.tt-team-card,.tt-contact-card,.tt-author-header{border-radius:14px!important}
+.tt-article .toc-container,.tt-article .author-bio,.tt-article .trip-details-container{border-radius:14px!important}
+.tt-newsletter-form input[type=email],.tt-page-panel input,.tt-page-panel select{border-radius:11px!important}
+
+/* Article front cover. No duplicate hero/title on image-bearing posts. */
+body.tt-article-page>main.container{padding:0!important}
+body.tt-article-page .tt-article{max-width:990px!important;padding:0 18px 5rem!important}
+.tt-article-cover{width:100vw;max-width:none;min-height:550px;height:clamp(580px,80svh,860px);position:relative;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;justify-content:center;background:#202326;overflow:hidden;isolation:isolate}
+.tt-article-cover-photo{display:block;position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center 43%;z-index:0}
+.tt-article-cover-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,12,13,.38) 0%,rgba(10,12,13,.12) 28%,rgba(10,12,13,.46) 57%,rgba(10,12,13,.80) 100%);pointer-events:none}
+.tt-article .tt-article-cover-content{width:min(calc(100% - 70px),940px);max-width:none;position:relative;z-index:2;margin:0 auto!important;padding:0 0 clamp(5rem,9vh,8rem)!important;text-align:center}
+.tt-article .tt-article-cover-content h1{max-width:940px;margin:0 auto 1rem!important;color:white!important;font-size:clamp(2.65rem,5.2vw,5.3rem)!important;line-height:1.09!important;letter-spacing:-.058em;overflow-wrap:break-word;text-wrap:balance}
+.tt-article .tt-article-cover-content .tt-eyebrow{color:#e5c4ae;margin:0 0 1.2rem}
+.tt-article .tt-article-cover-content .tt-article-lead{color:rgba(255,255,255,.88)!important;max-width:710px;font-size:1.05rem;line-height:1.66;margin:0 auto 1.3rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tt-article .tt-article-cover-content .tt-article-meta{color:rgba(255,255,255,.85)!important;margin-bottom:0}
+.tt-article .tt-article-cover-content .tt-article-meta a{color:#fff!important;text-decoration:underline;text-underline-offset:3px}
+.tt-article-identity{display:flex;justify-content:center;max-width:900px;margin:2rem auto .6rem}
+.tt-article-identity .tt-article-chips{margin-top:0}
+.tt-article-photo-credit{max-width:800px;margin:0 auto 3.25rem;text-align:center;color:var(--tt-muted);font-size:.75rem;line-height:1.6}
+.tt-article-photo-credit span{display:inline;margin-left:.45rem}
+.tt-article-photo-credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.tt-article-identity:has(+ .tt-article-photo-credit){margin-bottom:.7rem}
+.tt-article-cover + .tt-article-identity{margin-top:2.2rem}
+
+/* Article pages get the same transparent-over-photo navigation as the home page. */
+body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-nav{color:white;background:rgba(16,17,18,.18);border-color:rgba(255,255,255,.28);box-shadow:none}
+body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-nav-links a:hover{color:white;opacity:.7}
+body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-logo-standard{display:none}
+body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-logo-inverse{display:block}
+
+/* Fix mismatch between embedded post HTML (8px) and redesign CSS (20px). */
+.tt-article .prose .vertical-gallery{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:1.25rem!important;margin:2.25rem 0 3rem!important}
+.tt-article .prose .vertical-gallery figure{margin:0!important;min-width:0}
+.tt-article .prose .vertical-gallery figure>div{border-radius:12px!important;overflow:hidden!important;isolation:isolate;border:0!important}
+.tt-article .prose .vertical-gallery figure>div img{display:block!important;border-radius:12px!important;border:0!important;box-shadow:none!important}
+.tt-article .prose .vertical-gallery figure figcaption{margin-top:.7rem!important;padding:0 .15rem!important;font-size:.8rem!important;line-height:1.55!important;color:var(--tt-muted)!important}
+.tt-article .gallery-image-wrapper,.tt-article .gallery-image-wrapper img,.tt-article .gallery-item img{border-radius:12px!important}
+.tt-article .gallery-image-wrapper{overflow:hidden!important}
+.dark .tt-article .prose .vertical-gallery figure figcaption{color:#c8c5c0!important}
+
+@media(max-width:1080px){
+ .tt-home .tt-hero-inner,.tt-home .tt-statement-inner{width:min(calc(100% - 64px),1160px)}
+ .tt-article .tt-article-cover-content h1{font-size:clamp(2.55rem,5.6vw,4.7rem)!important}
+}
+@media(max-width:800px){
+ .tt-article .prose .vertical-gallery{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .tt-article-cover{height:clamp(570px,77svh,740px)}
+ .tt-article .tt-article-cover-content{width:calc(100% - 52px)}
+ .tt-home .tt-hero-inner,.tt-home .tt-statement-inner{width:calc(100% - 48px)}
+}
+@media(max-width:580px){
+ .tt-home .tt-hero{width:100%;margin:0;border-radius:0;height:86svh;min-height:650px}
+ .tt-home .tt-hero-inner,.tt-home .tt-statement-inner{width:calc(100% - 40px)}
+ .tt-home .tt-hero::after{height:170px}
+ .tt-home .tt-statement{width:100%;margin:0;border-radius:0}
+ .tt-home .tt-featured-section{margin-top:0;padding-top:3.3rem}
+ .tt-article-cover{width:100vw;min-height:590px;height:78svh}
+ .tt-article .tt-article-cover-content{width:calc(100% - 38px);padding-bottom:clamp(5.2rem,10vh,7.1rem)!important}
+ .tt-article .tt-article-cover-content h1{font-size:clamp(2.25rem,9.1vw,3.35rem)!important;line-height:1.1!important}
+ .tt-article .tt-article-cover-content .tt-article-lead{font-size:.85rem;line-height:1.6}
+ .tt-article .tt-article-cover-content .tt-article-meta{font-size:.7rem;gap:.45rem .95rem}
+ .tt-article .tt-article-cover-content .tt-eyebrow{font-size:.61rem}
+ .tt-article .prose .vertical-gallery{grid-template-columns:1fr!important;gap:1rem!important}
+ .tt-article .prose .vertical-gallery figure>div,.tt-article .prose .vertical-gallery figure>div img{border-radius:10px!important}
+ .tt-article-photo-credit{margin:0 auto 2rem}
+ .tt-article-identity{margin-top:1.5rem}
+ .tt-nav{border-radius:12px}
+}
