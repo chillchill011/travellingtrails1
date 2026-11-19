@@ -3,98 +3,78 @@ layout: base
 title: Home | Travelling Trails
 ---
 
-<div class="max-w-7xl mx-auto">
-    <header class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Welcome to Travelling Trails</h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Discover amazing travel stories and adventures</p>
-    </header>
+<div class="tt-home">
+{% set heroPost = collections.homeFeatured[0] if collections.homeFeatured.length > 0 else collections.paginatedPosts[0] %}
+<section class="tt-hero" aria-label="Discover Travelling Trails">
+  {% if heroPost and (heroPost.data.featuredImage or heroPost.data.thumbnailImage) %}
+  <img src="{{ (heroPost.data.featuredImage or heroPost.data.thumbnailImage) | url }}" alt="{{ heroPost.data.imageAlt or heroPost.data.title }}" fetchpriority="high">
+  {% endif %}
+  <div class="tt-hero-content">
+    <span class="tt-kicker">The journey is the story</span>
+    <h1>Find your next<br><em>beautiful detour.</em></h1>
+    <p>Unhurried roads, hidden corners and stories gathered along the way. Explore real journeys from the mountains to the coast.</p>
+    <div class="flex flex-wrap gap-3 mt-8">
+      <a href="{{ '/blog/' | url }}" class="tt-button">Explore the stories <span aria-hidden="true">↗</span></a>
+      <a href="{{ '/about/' | url }}" class="tt-button tt-button-outline">Our story</a>
+    </div>
+  </div>
+</section>
 
-    {# Featured Posts Section #}
-    {% if collections.homeFeatured.length > 0 %}
-    <section class="mb-16">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Featured Stories</h2>
-            <a href="{{ '/blog/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-500 dark:hover:text-travel-400 font-medium">
-                View All Stories →
-            </a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {%- for post in collections.homeFeatured -%}
-                {% include "components/blog-card.njk" %}
-            {%- endfor -%}
-        </div>
-    </section>
-    {% endif %}
+<section class="tt-section" aria-labelledby="featured-title">
+  <div class="tt-section-heading">
+    <div><span class="tt-kicker">Handpicked journeys</span><h2 id="featured-title">Stories worth the detour</h2><p class="tt-section-intro">A collection of memorable trails, quieter roads, and destinations that stayed with us.</p></div>
+    <a class="tt-text-link" href="{{ '/blog/' | url }}">All stories <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="tt-story-grid">
+  {% if collections.homeFeatured.length > 0 %}
+    {% for post in collections.homeFeatured | limit(3) %}{% include "components/blog-card.njk" %}{% endfor %}
+  {% else %}
+    {% for post in collections.paginatedPosts | limit(3) %}{% include "components/blog-card.njk" %}{% endfor %}
+  {% endif %}
+  </div>
+</section>
 
-    {# Quick Stats Section #}
-    <section class="mb-16 bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div>
-                <span class="block text-3xl font-bold text-travel-600 dark:text-travel-400">{{ collections.post.length }}</span>
-                <span class="text-gray-700 dark:text-gray-300">Adventures Shared</span>
-            </div>
-            <div>
-                <span class="block text-3xl font-bold text-travel-600 dark:text-travel-400">{{ collections.categories.length }}</span>
-                <span class="text-gray-700 dark:text-gray-300">Categories</span>
-            </div>
-            <div>
-                <span class="block text-3xl font-bold text-travel-600 dark:text-travel-400">{{ collections.destinations.length }}</span>
-                <span class="text-gray-700 dark:text-gray-300">Destinations</span>
-            </div>
-        </div>
-    </section>
+<section class="tt-stats" aria-label="Travelling Trails at a glance">
+  <div class="tt-stat"><strong>{{ collections.post.length }}</strong><span>Stories shared</span></div>
+  <div class="tt-stat"><strong>{{ collections.destinations.length }}</strong><span>Destinations explored</span></div>
+  <div class="tt-stat"><strong>{{ collections.categories.length }}</strong><span>Ways to wander</span></div>
+</section>
 
-    {# Recent Posts Section #}
-    <section class="mb-16">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Recent Adventures</h2>
-            <a href="{{ '/blog/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-500 dark:hover:text-travel-400 font-medium">
-                View All Posts →
-            </a>
-        </div>
-        <div class="posts-container">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {%- for post in collections.paginatedPosts | limit(9) -%}
-                    {% include "components/blog-card.njk" %}
-                {%- endfor -%}
-            </div>
-        </div>
-        {% if collections.paginatedPosts.length > 9 %}
-        <div class="flex justify-center mt-8">
-            <button 
-                class="load-more-btn bg-travel-600 text-white px-6 py-2 rounded-md hover:bg-travel-700 transition-colors duration-200"
-                data-current-page="1"
-            >
-                Load More
-            </button>
-        </div>
-        {% endif %}
-    </section>
+{% if collections.paginatedPosts.length > 0 %}
+{% set spotlight = collections.paginatedPosts[0] %}
+<section class="tt-section tt-featured-strip" aria-label="Latest journey">
+  {% if spotlight.data.featuredImage or spotlight.data.thumbnailImage %}
+  <a href="{{ spotlight.url | url }}"><img src="{{ (spotlight.data.featuredImage or spotlight.data.thumbnailImage) | url }}" alt="{{ spotlight.data.imageAlt or spotlight.data.title }}" loading="lazy"></a>
+  {% endif %}
+  <div class="tt-featured-copy">
+    <span class="tt-kicker">From the journal</span>
+    <h2>{{ spotlight.data.title }}</h2>
+    <p>{{ spotlight.data.description }}</p>
+    <div class="mt-7"><a class="tt-button" href="{{ spotlight.url | url }}">Read the journey <span aria-hidden="true">↗</span></a></div>
+  </div>
+</section>
+{% endif %}
 
-    {# Newsletter Section #}
-    <section class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 mb-16">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Stay Updated</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">Subscribe to our newsletter for the latest travel stories and updates.</p>
-            <form name="newsletter" method="POST" action="/success/" data-netlify="true" netlify-honeypot="bot-field" class="flex flex-col sm:flex-row gap-4 justify-center">
-                <input type="hidden" name="form-name" value="newsletter" />
-                <p class="hidden">
-                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                </p>
-                <input 
-                    type="email" 
-                    name="email"
-                    placeholder="Enter your email" 
-                    class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-travel-500 focus:border-travel-500"
-                    required
-                >
-                <button 
-                    type="submit" 
-                    class="px-6 py-2 bg-travel-600 text-white rounded-md hover:bg-travel-700 transition-colors duration-200"
-                >
-                    Subscribe
-                </button>
-            </form>
-        </div>
-    </section>
+<section class="tt-section" aria-labelledby="latest-title">
+  <div class="tt-section-heading">
+    <div><span class="tt-kicker">Fresh from the road</span><h2 id="latest-title">Recent adventures</h2><p class="tt-section-intro">Real experiences, useful details, and a little inspiration for the road ahead.</p></div>
+    <a class="tt-text-link" href="{{ '/blog/' | url }}">Browse the journal <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="tt-story-grid">
+    {% for post in collections.paginatedPosts | limit(6) %}{% include "components/blog-card.njk" %}{% endfor %}
+  </div>
+</section>
+
+<section class="tt-newsletter" aria-labelledby="newsletter-title">
+  <span class="tt-kicker">Notes from the road</span>
+  <h2 id="newsletter-title">More stories. Fewer ordinary days.</h2>
+  <p>Get the latest travel stories and new adventures delivered to your inbox.</p>
+  <form name="newsletter" method="POST" action="/success/" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="newsletter">
+    <p class="hidden"><label>Do not fill this out: <input name="bot-field"></label></p>
+    <label for="tt-newsletter-email" class="sr-only">Email address</label>
+    <input id="tt-newsletter-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required>
+    <button type="submit">Join the journey →</button>
+  </form>
+</section>
 </div>
