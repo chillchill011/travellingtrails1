@@ -3,72 +3,52 @@ layout: base
 title: Blog | Travelling Trails
 permalink: "/blog/index.html"
 ---
-
-<div class="max-w-7xl mx-auto">
-    <header class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Travel Stories & Adventures</h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Discover our latest adventures and travel tips</p>
-    </header>
-
-    {# Featured Posts Section #}
-    {% if collections.featuredPosts.length > 0 %}
-    <section class="mb-16">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Featured Stories</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {%- for post in collections.featuredPosts -%}
-                {% include "components/blog-card.njk" %}
-            {%- endfor -%}
-        </div>
-    </section>
+<div class="tt-blog-page">
+  <header class="tt-page-header">
+    <p class="tt-eyebrow">The travel journal</p>
+    <h1>Stories from the road.</h1>
+    <p>Real journeys, fresh perspectives, and ideas for the next time you take the long way around.</p>
+  </header>
+  {% if collections.featuredPosts.length > 0 %}
+  <section class="tt-section" aria-labelledby="tt-blog-featured">
+    <div class="tt-section-top"><div><p class="tt-eyebrow">Start here</p><h2 id="tt-blog-featured">Editor's picks.</h2></div></div>
+    <div class="tt-story-grid">
+      {% for post in collections.featuredPosts | limit(3) %}{% include "components/blog-card.njk" %}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  <section class="tt-section tt-blog-all" aria-labelledby="tt-blog-all-title">
+    <div class="tt-section-top">
+      <div><p class="tt-eyebrow">The archive</p><h2 id="tt-blog-all-title">All journeys.</h2></div>
+    </div>
+    <div class="posts-container">
+      <div class="tt-story-grid">
+        {% for post in collections.paginatedPosts %}
+          {% set pageNum = (loop.index0 / 9) | round(0, "floor") + 1 %}
+          <div class="tt-pagination-item{% if pageNum > 1 %} hidden{% endif %}" data-page="{{ pageNum }}">
+            {% include "components/blog-card.njk" %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if collections.paginatedPosts.length > 9 %}
+      <div class="text-center mt-12">
+        <button class="load-more-btn tt-pill tt-pill-dark" type="button" data-current-page="1">Load more stories <span aria-hidden="true">↓</span></button>
+      </div>
     {% endif %}
-
-    {# All Posts Section #}
-    <section>
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">All Stories</h2>
-        <div class="posts-container">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {%- for post in collections.paginatedPosts -%}
-                    {% set pageNum = (loop.index0 / 9) | round(0, "floor") + 1 %}
-                    {% set hidden = pageNum > 1 %}
-                    <div class="blog-card {% if hidden %}hidden{% endif %}" data-page="{{ pageNum }}">
-                        {% include "components/blog-card.njk" %}
-                    </div>
-                {%- endfor -%}
-            </div>
-        </div>
-        {% if collections.paginatedPosts.length > 9 %}
-        <div class="flex justify-center mt-8">
-            <button 
-                class="load-more-btn bg-travel-600 text-white px-6 py-2 rounded-md hover:bg-travel-700 transition-colors duration-200"
-                data-current-page="1"
-            >
-                Load More
-            </button>
-        </div>
-        {% endif %}
-    </section>
-
-    {# Newsletter Section #}
-    <section class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8 mt-16">
-        <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Stay Updated</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">Subscribe to our newsletter for the latest travel stories and updates.</p>
-            <form class="flex flex-col sm:flex-row gap-4 justify-center">
-                <input 
-                    type="email" 
-                    placeholder="Enter your email" 
-                    class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-travel-500 focus:border-travel-500"
-                    required
-                >
-                <button 
-                    type="submit" 
-                    class="px-6 py-2 bg-travel-600 text-white rounded-md hover:bg-travel-700 transition-colors duration-200"
-                >
-                    Subscribe
-                </button>
-            </form>
-        </div>
-    </section>
+  </section>
+  <section class="tt-newsletter" aria-labelledby="tt-blog-newsletter">
+    <div class="tt-newsletter-copy">
+      <p class="tt-eyebrow">Notes from the road</p>
+      <h2 id="tt-blog-newsletter">Your next escape starts here.</h2>
+      <p>New stories and favourite routes, shared when there's something worth telling.</p>
+    </div>
+    <form name="newsletter" method="POST" action="{{ '/success/' | url }}" data-netlify="true" netlify-honeypot="bot-field" class="tt-newsletter-form">
+      <input type="hidden" name="form-name" value="newsletter">
+      <p class="hidden"><label>Leave empty: <input name="bot-field"></label></p>
+      <label class="sr-only" for="tt-blog-email">Email address</label>
+      <input id="tt-blog-email" type="email" name="email" placeholder="Enter your email" autocomplete="email" required>
+      <button class="tt-pill tt-pill-dark" type="submit">Join the journey <span aria-hidden="true">↗</span></button>
+    </form>
+  </section>
 </div>
-
-
