@@ -402,16 +402,16 @@
       </style>
 
     <!-- Travelling Trails Design System 2.0: shared visual language -->
-    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=3">
+    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=4">
 </head>
-<body class="min-h-screen tt-page{% if page.url == '/' %} tt-home-page{% endif %}">
+<body class="min-h-screen tt-page{% if page.url == '/' %} tt-home-page{% endif %}{% if isArticle %} tt-article-page{% endif %}">
     {# Add navigation enhancements at the start of body #}
     {{ navigationEnhancements() }}
     
     {% include "header.njk" %}
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {% if page.url !== "/" and page.url !== "/about/" and page.url !== "/contact/" %}
+        {% if not isArticle and page.url !== "/" and page.url !== "/about/" and page.url !== "/contact/" %}
         <div class="tt-breadcrumb-shell">
             {{ breadcrumb(page, title, category.title) }}
         </div>
