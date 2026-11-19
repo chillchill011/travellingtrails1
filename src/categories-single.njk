@@ -8,18 +8,15 @@ permalink: "{% if category.slug %}categories/{{ category.slug }}/{% endif %}"
 eleventyComputed:
   title: "{{ category.title }} Adventures | Travelling Trails"
 ---
-
-<div class="max-w-7xl mx-auto">
-  <header class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ category.title }} Adventures</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-300">
-      Exploring {{ category.count }} {{ category.title | lower }} adventures
-    </p>
+<div class="tt-category-page">
+  <header class="tt-page-header">
+    <p class="tt-eyebrow">Explore by experience</p>
+    <h1>{{ category.title }}.</h1>
+    <p>{{ category.count }} {% if category.count == 1 %}journey{% else %}journeys{% endif %} through the places, routes and experiences we love.</p>
   </header>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {%- for post in category.posts -%}
+  <div class="tt-list-grid">
+    {% for post in category.posts %}
       {% include "components/blog-card.njk" %}
-    {%- endfor -%}
+    {% endfor %}
   </div>
 </div>
