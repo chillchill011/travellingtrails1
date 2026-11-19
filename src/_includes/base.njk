@@ -401,10 +401,10 @@
         }
       </style>
 
-    <!-- Modern Explorer: shared editorial styling -->
-    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}">
+    <!-- Travelling Trails Design System 2.0: shared visual language -->
+    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=2">
 </head>
-<body class="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-100">
+<body class="min-h-screen tt-page{% if page.url == '/' %} tt-home-page{% endif %}">
     {# Add navigation enhancements at the start of body #}
     {{ navigationEnhancements() }}
     
@@ -456,27 +456,7 @@
         });
     </script>
 
-    <!-- Dark mode image handling -->
-    <script>
-        function adjustImageBrightness() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.querySelectorAll('img:not(.no-dark-adjust)').forEach(img => {
-                    img.style.filter = 'brightness(0.8)';
-                });
-            } else {
-                document.querySelectorAll('img').forEach(img => {
-                    img.style.filter = '';
-                });
-            }
-        }
 
-        document.addEventListener('DOMContentLoaded', adjustImageBrightness);
-        const darkModeObserver = new MutationObserver(adjustImageBrightness);
-        darkModeObserver.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['class']
-        });
-    </script>
 
   <!-- Add this just before the closing body tag -->
   {% if page.url.includes("/blog/") and not page.url.endsWith("/blog/") %}
