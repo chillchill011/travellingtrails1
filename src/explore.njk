@@ -7,14 +7,11 @@ permalink: /explore/index.html
 {% include "components/map-dependencies.njk" %}
 {% from "components/destination-card.njk" import destinationCard %}
 
-<div class="max-w-7xl mx-auto px-4 py-8">
-  <header class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Explore Travel Destinations</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-300">Discover adventures by location, activity, and more</p>
-  </header>
+<div class="tt-explore-page">
+  <header class="tt-page-header"><p class="tt-eyebrow">The destination guide</p><h1>Find your next escape.</h1><p>Explore the roads, landscapes and adventures we've experienced — then make a journey of your own.</p></header>
 
   <!-- Search and Filter Section -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+  <div class="tt-page-panel mb-10">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Search Input -->
       <div class="md:col-span-3">
@@ -107,7 +104,7 @@ permalink: /explore/index.html
 
   <!-- Search Results Section (Initially Hidden) -->
   <div id="searchResultsSection" class="mb-8 hidden">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Search Results</h2>
+    <h2 class="text-2xl font-semibold mb-6">Search results</h2>
     <div id="searchResults" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     <div id="noResults" class="text-center text-gray-600 dark:text-gray-400 hidden py-8">
       No destinations found matching your criteria. <button id="clearSearch" class="text-travel-600 hover:text-travel-700 underline focus:outline-none">Clear filters</button>
@@ -116,8 +113,8 @@ permalink: /explore/index.html
 
   <!-- Results Section -->
   <div class="mb-8" id="destinationsSection">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Explore All Destinations</h2>
-    <div id="explorePosts" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="tt-section-top"><div><p class="tt-eyebrow">Browse by location</p><h2>Explore all destinations.</h2></div></div>
+    <div id="explorePosts" class="tt-list-grid">
       {% for destination in collections.destinations %}
         {{ destinationCard(destination) }}
       {% endfor %}
