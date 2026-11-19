@@ -335,3 +335,13 @@ body>main.container>div:not(.tt-home){max-width:min(100% - 72px,1340px);margin-i
 .dark .tt-team-card-profile,.dark .tt-team-card-links a{color:#f4f7f9}
 .dark .tt-team-card-links a{background:#2d4352}
 @media(max-width:580px){.tt-breadcrumb-shell{width:calc(100% - 36px)}.tt-team-card-inner{padding:1.3rem}}
+
+/* Specificity resets for legacy Tailwind blog-card utilities */
+.blog-card.tt-card{padding:0!important}
+.blog-card.tt-card h2 a{font-size:inherit!important;font-weight:inherit!important;line-height:inherit!important;display:inline;color:var(--tt-night)!important}
+.blog-card.tt-card h2 a:hover{color:var(--tt-blue)!important}
+.blog-card.tt-card .tt-card-featured{color:var(--tt-night)!important}
+.tt-page-panel #resetFilters{border-radius:999px!important;padding:.75rem 1.35rem;font-size:.78rem;font-weight:800;color:var(--tt-night)}
+.tt-page-panel #resetFilters:hover{background:#e0eef7}
+.dark .blog-card.tt-card h2 a{color:#f2f6f8!important}
+.dark .tt-page-panel #resetFilters{background:#334956;color:#f2f6f8}
