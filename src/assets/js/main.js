@@ -130,46 +130,25 @@ function toggleLogoDarkMode() {
 
 // Function to setup load more functionality
 function setupLoadMore() {
-  const loadMoreBtns = document.querySelectorAll('.load-more-btn');
-  
-  loadMoreBtns.forEach(btn => {
-    let currentPage = 1;
-    btn.addEventListener('click', function() {
-      currentPage++;
-      const container = this.closest('section').querySelector('.posts-container .grid');
-      const postsGrid = container.querySelector('.grid');
-      
-      // Get all posts that are currently hidden
-      const allPosts = Array.from(document.querySelectorAll('.blog-card[data-page="' + currentPage + '"]'));
-      
-      if (allPosts.length === 0) {
-        // No more posts to show
-        this.style.display = 'none';
-        return;
-      }
-      
-      // Show next set of posts
-      allPosts.slice(0, 9).forEach(post => {
-        post.classList.remove('hidden');
-        container.appendChild(post);
-      });
-      
-      // Hide button if no more posts
-      if (allPosts.length <= 9) {
-        this.style.display = 'none';
-      }
-
-      // Track load more click in analytics
+  document.querySelectorAll('.load-more-btn').forEach(btn => {
+    const section = btn.closest('section');
+    const container = section && section.querySelector('.posts-container');
+    if (!container) return;
+    const cards = Array.from(container.querySelectorAll('.tt-pagination-item[data-page]'));
+    if (!cards.length) return;
+    let page = 1;
+    btn.addEventListener('click', () => {
+      page++;
+      const nextCards = cards.filter(card => Number(card.dataset.page) === page);
+      nextCards.forEach(card => card.classList.remove('hidden'));
+      btn.dataset.currentPage = String(page);
+      if (!cards.some(card => Number(card.dataset.page) > page)) btn.hidden = true;
       if (typeof gtag === 'function') {
-        gtag('event', 'load_more_posts', {
-          'event_category': 'engagement',
-          'event_label': 'Page ' + currentPage
-        });
+        gtag('event', 'load_more_posts', {event_category: 'engagement', event_label: 'Page ' + page});
       }
     });
   });
 }
-
 
 // Function to setup analytics tracking
 function setupAnalyticsTracking() {
