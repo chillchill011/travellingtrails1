@@ -2,8 +2,9 @@
 layout: base
 title: Home | Travelling Trails
 ---
-{% set featuredList = collections.homeFeatured if collections.homeFeatured.length >= 3 else collections.paginatedPosts %}
-{% set heroPost = featuredList[0] %}
+{# Featured story cards remain curated; the cover always chooses the newest published featured article. #}
+{% set featuredList = collections.homeFeatured if collections.homeFeatured.length >= 3 else collections.homeRecent %}
+{% set heroPost = collections.homeFeatured[0] if collections.homeFeatured.length > 0 else collections.homeRecent[0] %}
 <div class="tt-home">
   <section class="tt-hero" aria-label="Welcome to Travelling Trails">
     {% if heroPost and (heroPost.data.featuredImage or heroPost.data.thumbnailImage) %}
