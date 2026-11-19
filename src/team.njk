@@ -6,13 +6,8 @@ permalink: "/team/index.html"
 
 {% from "components/author-card.njk" import authorCard %}
 
-<div class="max-w-7xl mx-auto px-4 py-8">
-  <header class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Meet Our Team</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-      The passionate travelers, storytellers, and photographers behind Travelling Trails
-    </p>
-  </header>
+<div class="tt-team-page">
+  <header class="tt-page-header"><p class="tt-eyebrow">Behind the camera</p><h1>Meet the trailblazers.</h1><p>The travellers, riders, and storytellers sharing the world through Travelling Trails.</p></header>
 
   <!-- Author Cards Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -20,7 +15,7 @@ permalink: "/team/index.html"
     {% if authorKeys.length > 0 %}
       {% for slug in authorKeys %}
         {% set author = authors[slug] %}
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-shadow duration-200 hover:shadow-lg">
+        <div class="tt-team-card bg-white dark:bg-gray-800 overflow-hidden transition-shadow duration-200">
           <a href="{{ '/authors/' + slug + '/' | url }}" class="block">
             <div class="p-6">
               <div class="flex items-center mb-4">
