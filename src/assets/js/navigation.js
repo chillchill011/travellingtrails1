@@ -1,10 +1,9 @@
-// Travelling Trails — accessible modern navigation and reading progress
+// Travelling Trails — accessible modern navigation
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.getElementById('tt-site-header');
   const menuButton = document.querySelector('.mobile-menu-button');
   const mobileMenu = document.querySelector('.mobile-menu');
   const toTop = document.getElementById('back-to-top');
-  const progress = document.getElementById('progress-bar');
 
   function syncScrollUI() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -15,10 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toTop.classList.toggle('translate-y-0', scrollTop > 200);
       toTop.classList.toggle('opacity-100', scrollTop > 200);
     }
-    if (progress) {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (total > 0 ? Math.min(100, scrollTop / total * 100) : 0) + '%';
-    }
+
   }
 
   function setMenu(open) {
