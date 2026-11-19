@@ -402,7 +402,7 @@
       </style>
 
     <!-- Travelling Trails Design System 2.0: shared visual language -->
-    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=2">
+    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=3">
 </head>
 <body class="min-h-screen tt-page{% if page.url == '/' %} tt-home-page{% endif %}">
     {# Add navigation enhancements at the start of body #}
@@ -461,7 +461,7 @@
   <script src="{{ '/assets/js/analytics-enhancement.js' | url }}"></script>
   {% endif %}  
 
-  <script src="{{ '/assets/js/logo-switcher.js' | url }}"></script>
+  {# Original brand images switch via CSS with the scroll-responsive header #}
 
 
     <!-- Add this right before the closing </body> tag in your base.njk template -->
