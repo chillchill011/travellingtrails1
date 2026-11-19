@@ -7,7 +7,7 @@ title: Home | Travelling Trails
 <div class="tt-home">
   <section class="tt-hero" aria-label="Welcome to Travelling Trails">
     {% if heroPost and (heroPost.data.featuredImage or heroPost.data.thumbnailImage) %}
-      <img class="tt-hero-photo" src="{{ (heroPost.data.featuredImage or heroPost.data.thumbnailImage) | url }}" alt="{{ heroPost.data.imageAlt or heroPost.data.title }}" fetchpriority="high" decoding="async">
+      <img class="tt-hero-photo" src="{{ (heroPost.data.featuredImage or heroPost.data.thumbnailImage) | url }}" alt="{{ heroPost.data.imageAlt or heroPost.data.title }}" loading="eager" fetchpriority="high" decoding="async">
     {% endif %}
     <div class="tt-hero-shade"></div>
     <div class="tt-hero-inner tt-shell">
