@@ -22,10 +22,10 @@ permalink: "/team/index.html"
               {% else %}
                 <span class="tt-team-card-avatar">{{ author.name[0] | upper }}</span>
               {% endif %}
-              <span>
+              <div class="tt-team-card-profile-info">
                 <h3>{{ author.name }}</h3>
                 {% if author.role %}<span class="tt-team-card-role">{{ author.role }}</span>{% endif %}
-              </span>
+              </div>
             </a>
             {% if author.shortBio %}
               <p class="tt-team-card-bio">{{ author.shortBio }}</p>
