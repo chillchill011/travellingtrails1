@@ -3,17 +3,16 @@ layout: base
 title: Explore by Category | Travelling Trails
 permalink: "/categories/index.html"
 ---
-
-<div class="max-w-7xl mx-auto">
-  <header class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Explore by Category</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-300">Discover adventures by your interests</p>
+<div class="tt-categories-page">
+  <header class="tt-page-header">
+    <p class="tt-eyebrow">Discover your kind of adventure</p>
+    <h1>Follow your curiosity.</h1>
+    <p>Find journeys by the experiences that call to you — from mountain roads to slow coastal escapes.</p>
   </header>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {%- for category in collections.categories -%}
+  <div class="tt-list-grid">
+    {% for category in collections.categories %}
       {% from "components/category-card.njk" import categoryCard %}
       {{ categoryCard(category) }}
-    {%- endfor -%}
+    {% endfor %}
   </div>
 </div>
