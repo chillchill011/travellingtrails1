@@ -67,7 +67,7 @@ body>main.container>div:not(.tt-home){max-width:min(calc(100% - 104px),1160px);m
 .tt-hero h1 span{color:#fff}
 .tt-hero-description{font-size:clamp(1rem,1.45vw,1.3rem);line-height:1.75;color:rgba(255,255,255,.88);max-width:510px}
 .tt-hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2rem}
-.tt-hero-feature{align-self:end;position:relative;min-width:225px;max-width:290px;padding:1.45rem 1.5rem;border:1px solid rgba(255,255,255,.42);border-radius:22px;background:rgba(255,255,255,.12);backdrop-filter:blur(18px);color:#fff;transition:background .25s,transform .25s}
+.tt-hero-feature{align-self:end;position:relative;margin-bottom:120px;min-width:225px;max-width:290px;padding:1.45rem 1.5rem;border:1px solid rgba(255,255,255,.42);border-radius:22px;background:rgba(255,255,255,.12);backdrop-filter:blur(18px);color:#fff;transition:background .25s,transform .25s}
 .tt-hero-feature:hover{background:rgba(255,255,255,.21);transform:translateY(-3px)}
 .tt-hero-feature>span:first-child{display:block;font-size:.69rem;letter-spacing:.13em;text-transform:uppercase;opacity:.8}
 .tt-hero-feature strong{display:block;font-family:Outfit,sans-serif;line-height:1.3;font-size:1.25rem;letter-spacing:-.02em;margin-top:.6rem;margin-right:1.7rem}
@@ -182,7 +182,7 @@ body>main.container>div:not(.tt-home){max-width:min(calc(100% - 104px),1160px);m
 .dark .tt-nav,.dark .tt-mobile-menu{background:#242526;border-color:#383a3c;color:#f5f3ee}
 .dark .tt-nav-links a,.dark .tt-mobile-menu a{color:#f5f3ee}
 .dark .tt-mobile-menu a:hover{background:#323435}
-.dark .tt-home-page .tt-site-header:not(.is-scrolled) .tt-nav{background:rgba(5,20,32,.16);border-color:rgba(255,255,255,.24)}
+.dark .tt-home-page .tt-site-header:not(.is-scrolled) .tt-nav{background:rgba(18,18,19,.21);border-color:rgba(255,255,255,.24)}
 .dark .tt-section-top h2,.dark .tt-page-header h1,.dark .tt-card h2 a,.dark .tt-category-card h3,.dark .tt-article-header h1,.dark .tt-article .prose h2,.dark .tt-article .prose h3{color:#f5f3ee!important}
 .dark .tt-card,.dark .tt-category-card,.dark .destination-card{background:#242527;border-color:#393b3d}
 .dark .tt-card-content p,.dark .tt-page-header p:not(.tt-eyebrow),.dark .tt-section-aside p,.dark .tt-card-eyebrow,.dark .tt-article-meta,.dark .tt-article-lead{color:#bab8b4}
@@ -194,7 +194,7 @@ body>main.container>div:not(.tt-home){max-width:min(calc(100% - 104px),1160px);m
 .dark .tt-newsletter h2{color:#f5f3ee}
 .dark .tt-newsletter-copy>p:last-child{color:#bdbbb7}
 .dark .tt-article .prose{color:#e5e2dd}
-.dark .tt-article-chips span,.dark .tt-article-chips a{color:#edf5fa;border-color:#454648}
+.dark .tt-article-chips span,.dark .tt-article-chips a{color:#f5f3ee;border-color:#454648}
 .dark .tt-article .author-bio{background:#252627!important;border-color:#404142}
 .dark .tt-page-panel input,.dark .tt-page-panel select,.dark .search-container input,.dark .search-container select{background:#2c2d2e;color:#f3f1ed;border-color:#464748!important}
 @media (max-width:1080px){
@@ -238,7 +238,7 @@ body>main.container>div:not(.tt-home){max-width:min(calc(100% - 104px),1160px);m
  .tt-hero{width:calc(100% - 28px);margin:9px auto 0;min-height:660px;height:85svh;border-radius:16px}
  .tt-hero-inner{align-items:center;padding-top:85px;padding-bottom:90px}
  .tt-hero-photo{object-position:center}
- .tt-hero-shade{background:linear-gradient(90deg,rgba(4,18,27,.77),rgba(4,20,31,.26)),linear-gradient(0deg,rgba(3,14,23,.66),transparent 65%)}
+ .tt-hero-shade{background:linear-gradient(90deg,rgba(15,15,16,.73),rgba(15,15,16,.28)),linear-gradient(0deg,rgba(15,15,16,.62),transparent 65%)}
  .tt-hero-overline{font-size:.61rem;letter-spacing:.15em}
  .tt-hero h1{font-size:clamp(3.45rem,15vw,5.4rem);line-height:1.02;margin:1rem 0 1.15rem}
  .tt-hero-description{font-size:.92rem;line-height:1.75;max-width:300px}
@@ -362,7 +362,7 @@ body>main.container>div:not(.tt-home){max-width:min(calc(100% - 104px),1160px);m
 .tt-page-panel #resetFilters{border-radius:999px!important;padding:.75rem 1.35rem;font-size:.78rem;font-weight:800;color:var(--tt-night)}
 .tt-page-panel #resetFilters:hover{background:#e0eef7}
 .dark .blog-card.tt-card h2 a{color:#f5f3ee!important}
-.dark .tt-page-panel #resetFilters{background:#334956;color:#f5f3ee}
+.dark .tt-page-panel #resetFilters{background:#333435;color:#f5f3ee}
 
 /* Gallery rhythm: preserve full photographs and give captions breathing room */
 .tt-article .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1.45rem;padding:.3rem 0 0!important}
