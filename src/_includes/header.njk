@@ -1,7 +1,10 @@
 <header class="tt-site-header" id="tt-site-header">
   <nav class="tt-nav tt-shell" aria-label="Main navigation">
     <a href="{{ '/' | url }}" class="tt-brand" aria-label="Travelling Trails — home">
-      <img id="header-logo" class="tt-original-logo" src="{{ '/assets/images/logo-white.png' | url }}" alt="" width="56" height="56">
+      <span class="tt-logo-variants" aria-hidden="true">
+        <img class="tt-original-logo tt-logo-standard" src="{{ '/assets/images/logo.png' | url }}" alt="" width="56" height="56">
+        <img class="tt-original-logo tt-logo-inverse" src="{{ '/assets/images/logo-white.png' | url }}" alt="" width="56" height="56">
+      </span>
       <span class="tt-brand-name">Travelling Trails</span>
     </a>
     <div class="tt-nav-links">
