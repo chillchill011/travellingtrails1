@@ -1,5 +1,6 @@
 ---
 layout: 'base.njk'
+isArticle: true
 ---
 {% from "components/table-of-contents.njk" import tableOfContents %}
 {% from "components/author-bio.njk" import authorBio %}
@@ -9,7 +10,13 @@ layout: 'base.njk'
 {% from "components/share-buttons.njk" import shareButtons as shareButtonsComponent%}
 
 <article class="tt-article max-w-4xl mx-auto px-4 py-8">
-  <header class="tt-article-header">
+  {% if featuredImage %}
+  <div class="tt-article-cover">
+    <img class="tt-article-cover-photo" src="{{ featuredImage | url }}" alt="{{ imageAlt or title }}" fetchpriority="high" loading="eager" decoding="async">
+    <span class="tt-article-cover-shade" aria-hidden="true"></span>
+  {% endif %}
+  <header class="tt-article-header{% if featuredImage %} tt-article-cover-content{% endif %}">
+
     <p class="tt-eyebrow">Travelling Trails / The Journal</p>
     <h1>{{ title }}</h1>
     {% if description %}<p class="tt-article-lead">{{ description }}</p>{% endif %}
@@ -20,6 +27,12 @@ layout: 'base.njk'
       {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | postDate }}</time>{% endif %}
       <span>{{ content | striptags | readingTime }}</span>
     </div>
+  </header>
+  {% if featuredImage %}
+  </div>
+  {% endif %}
+
+  <div class="tt-article-identity">
     <div class="tt-article-chips">
       {% if categories %}
         <a href="{{ ('/categories/' + (categories | lower | replace(' ', '-')) + '/') | url }}">{{ categories }}</a>
@@ -27,17 +40,12 @@ layout: 'base.njk'
       {% if destination %}<span>⌖ &nbsp;{{ destination }}</span>{% endif %}
       {% if duration %}<span>◷ &nbsp;{{ duration }}</span>{% endif %}
     </div>
-  </header>
-  {% if featuredImage %}
-    <figure class="tt-article-hero">
-      <img src="{{ featuredImage | url }}" alt="{{ imageAlt or title }}" fetchpriority="high" loading="eager" decoding="async">
-      {% if imageAlt or imageCredit %}
-        <figcaption>
-          {% if imageAlt %}{{ imageAlt }}{% endif %}
-          {% if imageCredit %}<span class="block">Photo: {% if imageCreditLink %}<a href="{{ imageCreditLink }}" rel="noopener noreferrer" target="_blank">{{ imageCredit }}</a>{% else %}{{ imageCredit }}{% endif %}</span>{% endif %}
-        </figcaption>
-      {% endif %}
-    </figure>
+  </div>
+  {% if featuredImage and (imageAlt or imageCredit) %}
+    <p class="tt-article-photo-credit">
+      {% if imageAlt %}{{ imageAlt }}{% endif %}
+      {% if imageCredit %}<span>Photo: {% if imageCreditLink %}<a href="{{ imageCreditLink }}" rel="noopener noreferrer" target="_blank">{{ imageCredit }}</a>{% else %}{{ imageCredit }}{% endif %}</span>{% endif %}
+    </p>
   {% endif %}
 
   {% set contentData = content | extractHeadings %}
