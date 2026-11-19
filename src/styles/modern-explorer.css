@@ -267,3 +267,53 @@ body>main.container>div:not(.tt-home){max-width:min(100% - 72px,1340px);margin-i
  .tt-article .prose{font-size:.99rem;line-height:1.82}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tt-card,.tt-card img,.tt-pill,.tt-destination-tile img,.tt-inline-link span{transition:none!important}}
+
+/* Discovery, profile, and utility pages */
+.tt-destination-collection-card{display:block;color:white;text-decoration:none}
+.tt-destination-collection-photo{position:relative;display:block;width:100%;height:300px;overflow:hidden;background:linear-gradient(140deg,#8aafb9,#293d50)}
+.tt-destination-collection-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.tt-destination-collection-card:hover img{transform:scale(1.055)}
+.tt-destination-collection-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,17,27,.75),rgba(4,17,27,0) 72%)}
+.tt-destination-collection-caption{position:absolute;bottom:22px;left:23px;right:60px;display:flex;flex-direction:column;gap:.5rem;color:white}
+.tt-destination-collection-caption small{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.tt-destination-collection-caption strong{font-family:Outfit,sans-serif;font-size:clamp(1.45rem,2.5vw,2.15rem);line-height:1.1;font-weight:600}
+.tt-destination-collection-arrow{position:absolute;bottom:22px;right:23px;display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(9px);color:white}
+.tt-destination-page-hero{margin:0 0 4rem;border-radius:28px;overflow:hidden}
+.tt-destination-page-hero img{width:100%;height:clamp(300px,48vw,570px);object-fit:cover;display:block}
+.tt-explore-page #destinations-map,.tt-destination-page #destination-map{border-radius:24px;overflow:hidden}
+.tt-explore-page .tt-page-panel{margin-top:2rem}
+.tt-explore-page #destinationsSection .tt-section-top h2{font-size:clamp(2rem,3.7vw,3.65rem)}
+.tt-search-page{max-width:900px!important;margin:0 auto}
+.tt-search-page .tt-page-header{margin-bottom:2rem}
+.tt-team-card{border:1px solid var(--tt-stroke);border-radius:24px;background:white;box-shadow:none;transition:transform .25s,box-shadow .25s}
+.tt-team-card:hover{transform:translateY(-5px);box-shadow:var(--tt-shadow)}
+.tt-team-card h3{color:var(--tt-night);font-size:1.5rem;font-weight:600}
+.tt-team-card img{object-fit:cover}
+.tt-author-header{background:var(--tt-cloud);border-radius:26px;padding:2.5rem}
+.tt-author-header h1{font-size:clamp(2.6rem,4vw,4.5rem)!important;color:var(--tt-night)!important}
+.tt-author-header p{color:var(--tt-muted);line-height:1.8}
+.tt-contact-page{max-width:1060px!important;margin:0 auto}
+.tt-contact-card{border:1px solid var(--tt-stroke);border-radius:25px;background:#fff;box-shadow:none}
+.tt-contact-card h2{font-size:1.7rem;color:var(--tt-night)}
+.tt-contact-card input,.tt-contact-card textarea{width:100%;background:var(--tt-cloud)!important;border:1px solid var(--tt-stroke)!important;border-radius:15px!important;color:var(--tt-night)!important;padding:.85rem 1rem}
+.tt-contact-card label{color:var(--tt-night)!important;font-size:.82rem;font-weight:700}
+.tt-about-page{max-width:980px!important;margin-inline:auto}
+.tt-about-page .tt-page-header{max-width:900px}
+.tt-about-image .image-container{border-radius:28px!important;overflow:hidden;aspect-ratio:auto}
+.tt-about-image .image-container img{position:static!important;width:100%!important;height:auto!important;display:block!important;border-radius:28px!important}
+.tt-about-page>.prose{max-width:780px!important;margin:4rem auto}
+.tt-about-page .prose h2,.tt-about-page .prose h3{color:var(--tt-night)!important}
+.tt-about-page .prose p{line-height:1.9}
+.tt-page .container nav[aria-label="Breadcrumb"]{font-size:.75rem;margin:0;color:var(--tt-muted)}
+.tt-page .container nav[aria-label="Breadcrumb"] a{color:var(--tt-blue)!important;font-weight:700}
+.tt-page .container nav[aria-label="Breadcrumb"] ol{gap:.15rem}
+.tt-blog-all{margin-top:2rem}
+.tt-pagination-item{height:100%}
+.tt-pagination-item .tt-card{height:100%}
+.load-more-btn[hidden]{display:none!important}
+.dark .tt-team-card,.dark .tt-contact-card{background:#20313d;border-color:#354a58}
+.dark .tt-team-card h3,.dark .tt-contact-card h2,.dark .tt-contact-card label,.dark .tt-author-header h1,.dark .tt-about-page .prose h2,.dark .tt-about-page .prose h3{color:#f1f6f9!important}
+.dark .tt-author-header{background:#223746}
+.dark .tt-author-header p,.dark .tt-about-page .prose{color:#c3d2db}
+.dark .tt-contact-card input,.dark .tt-contact-card textarea{background:#2b4050!important;color:white!important;border-color:#455a68!important}
+@media(max-width:580px){.tt-destination-collection-photo{height:265px}.tt-contact-card{padding:1.25rem!important}.tt-author-header{padding:1.4rem}.tt-destination-page-hero{margin:0 0 2.5rem;border-radius:20px}.tt-team-card{border-radius:20px}}
