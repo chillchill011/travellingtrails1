@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * Create reset button
      */
     function createResetButton() {
-      var filterSection = document.querySelector('.bg-white.dark\\:bg-gray-800.rounded-lg.shadow-md.p-6.mb-8');
+      var filterSection = document.querySelector('.tt-page-panel');
       
       if (filterSection) {
         var buttonContainer = document.createElement('div');
