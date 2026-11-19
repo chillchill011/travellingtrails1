@@ -8,98 +8,39 @@ layout: 'base.njk'
 {% from "components/affiliate-gallery.njk" import affiliateGallery as affiliateGalleryComponent %}
 {% from "components/share-buttons.njk" import shareButtons as shareButtonsComponent%}
 
-<article class="max-w-4xl mx-auto px-4 py-8">
-    <header class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {{ title }}
-        </h1>
-
-        <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
-            {% if author %}
-            <div>Author: 
-                <a href="{{ '/authors/' + author + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
-                    {% if authors[author] and authors[author].name %}
-                        {{ authors[author].name }}
-                    {% else %}
-                        {{ author }}
-                    {% endif %}
-                </a>
-                {% if page.date %}
-                | <span class="text-gray-500 dark:text-gray-400">{{ page.date | postDate }}</span>
-                {% endif %}
-            </div>
-            {% endif %}
-            
-
-            <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{ content | striptags | readingTime }}</span>
-            </div>    
-
-            {% if categories %}
-            <div class="flex items-center gap-2">
-                <span>Categories:</span>
-                <div class="flex flex-wrap gap-2">
-                    <a href="{{ '/categories/' + categories | lower | replace(' ', '-') + '/' | url }}"
-                       class="category-tag inline-block px-3 py-1 text-sm bg-travel-600 text-white dark:bg-travel-700 rounded-full hover:bg-travel-700 dark:hover:bg-travel-600 transition-colors duration-200">
-                        {{ categories }}
-                    </a>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-
-        {% if destination %}
-        <div class="mb-4">
-        <span class="inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-0.5 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-            </svg>
-            {{ destination }}
-        </span>
-        
-        {% if duration %}
-        <span class="ml-2 inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-0.5 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
-            </svg>
-            {{ duration }}
-        </span>
-        {% endif %}
-        </div>
-        {% endif %}
-    </header>
-
-    {% if featuredImage %}
-    <figure class="mb-8">
-        <img src="{{ featuredImage | url }}" 
-            alt="{{ imageAlt if imageAlt else title }}"
-            class="w-full h-auto rounded-lg shadow-lg object-cover">
-        {% if imageAlt or imageCredit %}
-        <figcaption class="text-center text-gray-600 dark:text-gray-400 mt-2">
-            {% if imageAlt %}
-            {{ imageAlt }}
-            {% endif %}
-            {% if imageCredit %}
-            <span class="block text-sm mt-1">
-                Photo by: 
-                {% if imageCreditLink %}
-                <a href="{{ imageCreditLink }}" target="_blank" rel="noopener noreferrer" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
-                    {{ imageCredit }}
-                </a>
-                {% else %}
-                {{ imageCredit }}
-                {% endif %}
-            </span>
-            {% endif %}
+<article class="tt-article max-w-4xl mx-auto px-4 py-8">
+  <header class="tt-article-header">
+    <p class="tt-eyebrow">Travelling Trails / The Journal</p>
+    <h1>{{ title }}</h1>
+    {% if description %}<p class="tt-article-lead">{{ description }}</p>{% endif %}
+    <div class="tt-article-meta">
+      {% if author %}
+      <span>By <a href="{{ ('/authors/' + author + '/') | url }}">{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}</a></span>
+      {% endif %}
+      {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | postDate }}</time>{% endif %}
+      <span>{{ content | striptags | readingTime }}</span>
+    </div>
+    <div class="tt-article-chips">
+      {% if categories %}
+        <a href="{{ ('/categories/' + (categories | lower | replace(' ', '-')) + '/') | url }}">{{ categories }}</a>
+      {% endif %}
+      {% if destination %}<span>⌖ &nbsp;{{ destination }}</span>{% endif %}
+      {% if duration %}<span>◷ &nbsp;{{ duration }}</span>{% endif %}
+    </div>
+  </header>
+  {% if featuredImage %}
+    <figure class="tt-article-hero">
+      <img src="{{ featuredImage | url }}" alt="{{ imageAlt or title }}" fetchpriority="high" loading="eager" decoding="async">
+      {% if imageAlt or imageCredit %}
+        <figcaption>
+          {% if imageAlt %}{{ imageAlt }}{% endif %}
+          {% if imageCredit %}<span class="block">Photo: {% if imageCreditLink %}<a href="{{ imageCreditLink }}" rel="noopener noreferrer" target="_blank">{{ imageCredit }}</a>{% else %}{{ imageCredit }}{% endif %}</span>{% endif %}
         </figcaption>
-        {% endif %}
+      {% endif %}
     </figure>
-    {% endif %}
+  {% endif %}
 
-    {% set contentData = content | extractHeadings %}
+  {% set contentData = content | extractHeadings %}
     {% if showTableOfContents !== false and contentData.headings.length >= (tocMinHeadings or 3) %}
         {{ tableOfContents(contentData.headings, content) }}
     {% endif %}
