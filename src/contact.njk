@@ -4,15 +4,12 @@ title: Contact Us | Travelling Trails
 permalink: /contact/index.html
 ---
 
-<div class="max-w-4xl mx-auto px-4 py-8">
-  <header class="mb-8 text-center">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Contact Us</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-300">Get in touch with our team</p>
-  </header>
+<div class="tt-contact-page">
+  <header class="tt-page-header"><p class="tt-eyebrow">Start a conversation</p><h1>Say hello.</h1><p>Have a story to share or a question about a journey? We'd love to hear from you.</p></header>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
     <!-- Contact Form -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+    <div class="tt-contact-card bg-white dark:bg-gray-800 p-6">
       <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Send us a message</h2>
       
       <form name="contact" method="POST" action="/success/" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
@@ -66,7 +63,7 @@ permalink: /contact/index.html
         
         <button 
             type="submit" 
-            class="w-full px-6 py-3 bg-travel-600 text-white rounded-md hover:bg-travel-700 transition-colors duration-200"
+            class="tt-pill tt-pill-dark w-full"
         >
             Send Message
         </button>
@@ -75,7 +72,7 @@ permalink: /contact/index.html
     
     <!-- Contact Information -->
     <div>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+      <div class="tt-contact-card bg-white dark:bg-gray-800 p-6 mb-6">
         <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Contact Information</h2>
         
         <div class="space-y-4">
@@ -109,7 +106,7 @@ permalink: /contact/index.html
       </div>
       
       <!-- Social Media -->
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+      <div class="tt-contact-card bg-white dark:bg-gray-800 p-6">
         <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Follow Us</h2>
         
         <div class="flex space-x-4">
