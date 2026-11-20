@@ -2,13 +2,14 @@
 layout: base
 title: Privacy Policy | Travelling Trails
 permalink: /privacy-policy/index.html
+description: "Read how Travelling Trails handles information provided through forms, cookies and analytics, and find out how to contact us."
 ---
 
 <div class="max-w-4xl mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Privacy Policy</h1>
   
   <div class="prose prose-lg dark:prose-invert max-w-none">
-    <p>Last updated: {{ site.buildTime | date }}</p>
+    {# Do not claim a policy revision occurred merely because Netlify rebuilt the site. #}
     
     <h2>Introduction</h2>
     <p>This Privacy Policy explains how Travelling Trails ("we", "us", or "our") collects, uses, and shares information about you when you use our website travellingtrails.in ("the Site").</p>
@@ -46,9 +47,9 @@ permalink: /privacy-policy/index.html
     <p>You can manage your cookie preferences through your browser settings. Most browsers allow you to block or delete cookies. However, if you do so, some features of the Site may not function properly.</p>
     
     <h2>Changes to This Privacy Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+    <p>We may update this Privacy Policy from time to time. If we make changes to this Privacy Policy, we will publish the revised text here with an accurate revision date.</p>
     
     <h2>Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, please contact us at [your contact email].</p>
+    <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:{{ site.contactEmail }}">{{ site.contactEmail }}</a>.</p>
   </div>
 </div>

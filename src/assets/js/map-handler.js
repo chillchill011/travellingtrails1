@@ -97,27 +97,39 @@ document.addEventListener('DOMContentLoaded', function() {
         maxZoom: 18
       }).addTo(map);
       
-      const bounds = [];
-      
-      // Add markers for each destination
-      destinationsData.forEach(destination => {
-        if (destination.lat && destination.lng) {
-          console.log(`Adding marker for ${destination.title} at ${destination.lat},${destination.lng}`);
-          
-          L.marker([destination.lat, destination.lng])
-            .addTo(map)
-            .bindPopup(`<strong><a href="${destination.url}">${destination.title}</a></strong>
-                        <p>${destination.count} adventures</p>`);
-                        
-          bounds.push([destination.lat, destination.lng]);
+      const markerLayer = L.layerGroup().addTo(map);
+
+      function drawMarkers(destinations) {
+        markerLayer.clearLayers();
+        const bounds = [];
+        destinations.forEach(destination => {
+          const latitude = Number(destination.lat);
+          const longitude = Number(destination.lng);
+          if (!Number.isFinite(latitude) || !Number.isFinite(longitude) || !latitude || !longitude) return;
+          const popup = document.createElement('div');
+          const link = document.createElement('a');
+          link.href = destination.url || '/explore/';
+          link.textContent = destination.title || 'Destination';
+          link.style.fontWeight = '700';
+          popup.appendChild(link);
+          const info = document.createElement('p');
+          info.textContent = (destination.count || 0) + ' adventures';
+          popup.appendChild(info);
+          L.marker([latitude, longitude]).addTo(markerLayer).bindPopup(popup);
+          bounds.push([latitude, longitude]);
+        });
+        if (bounds.length) {
+          map.fitBounds(bounds, { padding: [45, 45], maxZoom: 12 });
         }
-      });
-      
-      // If we have destinations, fit the map to show all markers
-      if (bounds.length > 0) {
-        map.fitBounds(bounds, { padding: [50, 50] });
       }
-      
+
+      drawMarkers(destinationsData);
+      container.addEventListener('tt:destinations-filtered', event => {
+        const titles = event.detail && Array.isArray(event.detail.titles) ? event.detail.titles : [];
+        const visibleNames = new Set(titles.map(name => name.toLowerCase()));
+        drawMarkers(destinationsData.filter(destination => visibleNames.has(String(destination.title || '').toLowerCase())));
+      });
+
       // Refresh map after loading
       setTimeout(() => { 
         map.invalidateSize(); 

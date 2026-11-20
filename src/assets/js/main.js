@@ -34,8 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Setup load more functionality
   setupLoadMore();
   
-  // Setup analytics tracking
-  setupAnalyticsTracking();
+  // Analytics is handled by analytics-events.js on production builds.
 });
 
 // Function to setup theme toggle
@@ -67,8 +66,8 @@ function setupThemeToggle() {
         document.documentElement.classList.add('dark');
         localStorage.setItem('color-theme', 'dark');
         // Track dark mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'dark'
           });
         }
@@ -76,8 +75,8 @@ function setupThemeToggle() {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('color-theme', 'light');
         // Track light mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'light'
           });
         }
@@ -87,8 +86,8 @@ function setupThemeToggle() {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('color-theme', 'light');
         // Track light mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'light'
           });
         }
@@ -96,8 +95,8 @@ function setupThemeToggle() {
         document.documentElement.classList.add('dark');
         localStorage.setItem('color-theme', 'dark');
         // Track dark mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'dark'
           });
         }
@@ -130,140 +129,24 @@ function toggleLogoDarkMode() {
 
 // Function to setup load more functionality
 function setupLoadMore() {
-  const loadMoreBtns = document.querySelectorAll('.load-more-btn');
-  
-  loadMoreBtns.forEach(btn => {
-    let currentPage = 1;
-    btn.addEventListener('click', function() {
-      currentPage++;
-      const container = this.closest('section').querySelector('.posts-container .grid');
-      const postsGrid = container.querySelector('.grid');
-      
-      // Get all posts that are currently hidden
-      const allPosts = Array.from(document.querySelectorAll('.blog-card[data-page="' + currentPage + '"]'));
-      
-      if (allPosts.length === 0) {
-        // No more posts to show
-        this.style.display = 'none';
-        return;
-      }
-      
-      // Show next set of posts
-      allPosts.slice(0, 9).forEach(post => {
-        post.classList.remove('hidden');
-        container.appendChild(post);
-      });
-      
-      // Hide button if no more posts
-      if (allPosts.length <= 9) {
-        this.style.display = 'none';
-      }
-
-      // Track load more click in analytics
-      if (typeof gtag === 'function') {
-        gtag('event', 'load_more_posts', {
-          'event_category': 'engagement',
-          'event_label': 'Page ' + currentPage
-        });
+  document.querySelectorAll('.load-more-btn').forEach(btn => {
+    const section = btn.closest('section');
+    const container = section && section.querySelector('.posts-container');
+    if (!container) return;
+    const cards = Array.from(container.querySelectorAll('.tt-pagination-item[data-page]'));
+    if (!cards.length) return;
+    let page = 1;
+    btn.addEventListener('click', () => {
+      page++;
+      const nextCards = cards.filter(card => Number(card.dataset.page) === page);
+      nextCards.forEach(card => card.classList.remove('hidden'));
+      btn.dataset.currentPage = String(page);
+      if (!cards.some(card => Number(card.dataset.page) > page)) btn.hidden = true;
+      if (typeof window.ttTrack === 'function') {
+        window.ttTrack('load_more_posts', {event_category: 'engagement', event_label: 'Page ' + page});
       }
     });
   });
-}
-
-
-// Function to setup analytics tracking
-function setupAnalyticsTracking() {
-  // Only run if gtag is defined (analytics is loaded)
-  if (typeof gtag !== 'function') return;
-  
-  // Track outbound link clicks
-  document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.host + '"])').forEach(link => {
-    link.addEventListener('click', function(e) {
-      gtag('event', 'click', {
-        'event_category': 'outbound',
-        'event_label': this.href,
-        'transport_type': 'beacon'
-      });
-    });
-  });
-  
-  // Track category clicks
-  document.querySelectorAll('a[href^="/categories/"]').forEach(link => {
-    link.addEventListener('click', function() {
-      const category = this.textContent.trim();
-      gtag('event', 'category_click', {
-        'event_category': 'engagement',
-        'event_label': category
-      });
-    });
-  });
-  
-  // Track search usage
-  const searchInput = document.getElementById('searchInput');
-  if (searchInput) {
-    let searchTimeout;
-    searchInput.addEventListener('input', function() {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        if (this.value.length > 2) {
-          gtag('event', 'search', {
-            'search_term': this.value
-          });
-        }
-      }, 1000);
-    });
-  }
-
-  // Track dark mode usage
-  gtag('event', 'page_view', {
-    'user_dark_mode': document.documentElement.classList.contains('dark') ? 'dark' : 'light'
-  });
-  
-  // Track post categories on article pages
-  const articleCategories = document.querySelectorAll('article .category-tag');
-  if (articleCategories.length > 0) {
-    const categories = Array.from(articleCategories).map(tag => tag.textContent.trim()).join(',');
-    gtag('event', 'page_view', {
-      'post_category': categories
-    });
-  }
-
-  // Track newsletter signups
-  const newsletterForms = document.querySelectorAll('form');
-  newsletterForms.forEach(form => {
-    const emailInput = form.querySelector('input[type="email"]');
-    const submitButton = form.querySelector('button[type="submit"]');
-    
-    if (emailInput && submitButton && submitButton.textContent.includes('Subscribe')) {
-      form.addEventListener('submit', function(e) {
-        gtag('event', 'newsletter_signup', {
-          'event_category': 'conversion'
-        });
-      });
-    }
-  });
-
-  // Track scroll depth on article pages
-  const articleContent = document.querySelector('article.max-w-4xl');
-  if (articleContent) {
-    let scrollMarkers = [25, 50, 75, 100];
-    let scrollMarkersHit = [];
-    
-    window.addEventListener('scroll', function() {
-      const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
-      
-      scrollMarkers.forEach(marker => {
-        if (scrollPercent >= marker && !scrollMarkersHit.includes(marker)) {
-          scrollMarkersHit.push(marker);
-          gtag('event', 'scroll_depth', {
-            'event_category': 'engagement',
-            'event_label': `${marker}%`,
-            'non_interaction': true
-          });
-        }
-      });
-    });
-  }
 }
 
 // Watch for changes to dark mode

@@ -1,38 +1,23 @@
 {% macro googleAnalytics(measurementId) %}
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics 4: automatic page views and Enhanced Measurement stay owned by GA4. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ measurementId }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){ dataLayer.push(arguments); }
   gtag('js', new Date());
-
-  // Configure with custom dimensions
-  gtag('config', '{{ measurementId }}', {
-    'custom_map': {
-      'dimension1': 'user_dark_mode',
-      'dimension2': 'post_category'
-    }
+  // Read the existing cookie-banner choice before GA4 config is issued.
+  // Consent is denied until the visitor explicitly accepts.
+  var ttAnalyticsConsent = 'denied';
+  try {
+    ttAnalyticsConsent = localStorage.getItem('cookie-consent') === 'accepted'
+      ? 'granted' : 'denied';
+  } catch (error) { /* storage may be disabled */ }
+  gtag('consent', 'default', {
+    analytics_storage: ttAnalyticsConsent,
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
   });
-  
-  // Track initial page load
-  document.addEventListener('DOMContentLoaded', function() {
-    // Track dark mode
-    const isDarkMode = document.documentElement.classList.contains('dark');
-    gtag('event', 'dark_mode_status', {
-      'user_dark_mode': isDarkMode ? 'dark' : 'light'
-    });
-    
-    // Track post categories
-    const categories = [];
-    document.querySelectorAll('.category-tag').forEach(cat => {
-      categories.push(cat.textContent.trim());
-    });
-    
-    if (categories.length > 0) {
-      gtag('event', 'view_post_category', {
-        'post_category': categories.join(',')
-      });
-    }
-  });
+  gtag('config', '{{ measurementId }}');
 </script>
 {% endmacro %}

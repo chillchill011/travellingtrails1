@@ -1,5 +1,6 @@
 ---
 layout: 'base.njk'
+isArticle: true
 ---
 {% from "components/table-of-contents.njk" import tableOfContents %}
 {% from "components/author-bio.njk" import authorBio %}
@@ -8,98 +9,46 @@ layout: 'base.njk'
 {% from "components/affiliate-gallery.njk" import affiliateGallery as affiliateGalleryComponent %}
 {% from "components/share-buttons.njk" import shareButtons as shareButtonsComponent%}
 
-<article class="max-w-4xl mx-auto px-4 py-8">
-    <header class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {{ title }}
-        </h1>
+<article class="tt-article max-w-4xl mx-auto px-4 py-8">
+  {% if featuredImage %}
+  <div class="tt-article-cover">
+    <img class="tt-article-cover-photo" src="{{ featuredImage | url }}" alt="{{ imageAlt or title }}" fetchpriority="high" loading="eager" decoding="async">
+    <span class="tt-article-cover-shade" aria-hidden="true"></span>
+  {% endif %}
+  <header class="tt-article-header{% if featuredImage %} tt-article-cover-content{% endif %}">
 
-        <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
-            {% if author %}
-            <div>Author: 
-                <a href="{{ '/authors/' + author + '/' | url }}" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
-                    {% if authors[author] and authors[author].name %}
-                        {{ authors[author].name }}
-                    {% else %}
-                        {{ author }}
-                    {% endif %}
-                </a>
-                {% if page.date %}
-                | <span class="text-gray-500 dark:text-gray-400">{{ page.date | postDate }}</span>
-                {% endif %}
-            </div>
-            {% endif %}
-            
+    <p class="tt-eyebrow">Travelling Trails / The Journal</p>
+    <h1>{{ title }}</h1>
+    {% if description %}<p class="tt-article-lead">{{ description }}</p>{% endif %}
+    <div class="tt-article-meta">
+      {% if author %}
+      <span>By <a href="{{ ('/authors/' + author + '/') | url }}">{% if authors[author] and authors[author].name %}{{ authors[author].name }}{% else %}{{ author }}{% endif %}</a></span>
+      {% endif %}
+      {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | postDate }}</time>{% endif %}
+      <span>{{ content | striptags | readingTime }}</span>
+    </div>
+  </header>
+  {% if featuredImage %}
+  </div>
+  {% endif %}
 
-            <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{ content | striptags | readingTime }}</span>
-            </div>    
+  <div class="tt-article-identity">
+    <div class="tt-article-chips">
+      {% if categories %}
+        <a href="{{ ('/categories/' + (categories | lower | replace(' ', '-')) + '/') | url }}">{{ categories }}</a>
+      {% endif %}
+      {% if destination %}<span>⌖ &nbsp;{{ destination }}</span>{% endif %}
+      {% if duration %}<span>◷ &nbsp;{{ duration }}</span>{% endif %}
+    </div>
+  </div>
+  {% if featuredImage and (imageAlt or imageCredit) %}
+    <p class="tt-article-photo-credit">
+      {% if imageAlt %}{{ imageAlt }}{% endif %}
+      {% if imageCredit %}<span>Photo: {% if imageCreditLink %}<a href="{{ imageCreditLink }}" rel="noopener noreferrer" target="_blank">{{ imageCredit }}</a>{% else %}{{ imageCredit }}{% endif %}</span>{% endif %}
+    </p>
+  {% endif %}
 
-            {% if categories %}
-            <div class="flex items-center gap-2">
-                <span>Categories:</span>
-                <div class="flex flex-wrap gap-2">
-                    <a href="{{ '/categories/' + categories | lower | replace(' ', '-') + '/' | url }}"
-                       class="category-tag inline-block px-3 py-1 text-sm bg-travel-600 text-white dark:bg-travel-700 rounded-full hover:bg-travel-700 dark:hover:bg-travel-600 transition-colors duration-200">
-                        {{ categories }}
-                    </a>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-
-        {% if destination %}
-        <div class="mb-4">
-        <span class="inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-0.5 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-            </svg>
-            {{ destination }}
-        </span>
-        
-        {% if duration %}
-        <span class="ml-2 inline-flex items-center bg-travel-100 text-travel-800 text-sm font-medium px-3 py-0.5 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
-            </svg>
-            {{ duration }}
-        </span>
-        {% endif %}
-        </div>
-        {% endif %}
-    </header>
-
-    {% if featuredImage %}
-    <figure class="mb-8">
-        <img src="{{ featuredImage | url }}" 
-            alt="{{ imageAlt if imageAlt else title }}"
-            class="w-full h-auto rounded-lg shadow-lg object-cover">
-        {% if imageAlt or imageCredit %}
-        <figcaption class="text-center text-gray-600 dark:text-gray-400 mt-2">
-            {% if imageAlt %}
-            {{ imageAlt }}
-            {% endif %}
-            {% if imageCredit %}
-            <span class="block text-sm mt-1">
-                Photo by: 
-                {% if imageCreditLink %}
-                <a href="{{ imageCreditLink }}" target="_blank" rel="noopener noreferrer" class="text-travel-600 hover:text-travel-700 dark:text-travel-400 dark:hover:text-travel-500">
-                    {{ imageCredit }}
-                </a>
-                {% else %}
-                {{ imageCredit }}
-                {% endif %}
-            </span>
-            {% endif %}
-        </figcaption>
-        {% endif %}
-    </figure>
-    {% endif %}
-
-    {% set contentData = content | extractHeadings %}
+  {% set contentData = content | extractHeadings %}
     {% if showTableOfContents !== false and contentData.headings.length >= (tocMinHeadings or 3) %}
         {{ tableOfContents(contentData.headings, content) }}
     {% endif %}
@@ -137,15 +86,13 @@ layout: 'base.njk'
     {% endif %}
 
     <!-- Share Buttons Section -->
-    <div class="share-buttons-container mt-6 mb-8">
-        <div class="flex flex-wrap gap-2 md:gap-3">
-            {{ shareButtonsComponent(title, page.url, description, "travellingtrails,travel") }}
-        </div>
-    </div>
+    <section class="tt-article-share" aria-label="Share this article">
+        {{ shareButtonsComponent(title, page.url, description, "travellingtrails,travel") }}
+    </section>
 
     <!-- Author Bio Section -->
     {% if author %}
-    <div class="author-bio bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-12 flex items-start">
+    <div class="author-bio tt-article-author bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-12 flex items-start">
         {% if authors[author] and authors[author].avatar %}
             <img src="{{ authors[author].avatar | url }}" alt="{{ authors[author].name }}" class="w-16 h-16 rounded-full mr-4 flex-shrink-0">
         {% else %}
@@ -218,7 +165,7 @@ layout: 'base.njk'
 
     <!-- Travel Info Box (if applicable) -->
     {% if destination or duration or travelType %}
-    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8 shadow-sm">
+    <div class="tt-trip-overview bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Trip Overview</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
@@ -301,11 +248,11 @@ layout: 'base.njk'
     {% if categories %}
         {% set relatedPosts = page | getRelatedPosts(collections.post, categories) %}
         {% if relatedPosts.length > 0 %}
-        <section class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <section class="tt-related-section mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Related Adventures</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="tt-related-grid{% if relatedPosts.length == 1 %} tt-related-single{% endif %}">
                 {% for post in relatedPosts %}
-                <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                <article class="tt-related-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
                     {% if post.data.featuredImage %}
                     <div class="relative h-48">
                         <img

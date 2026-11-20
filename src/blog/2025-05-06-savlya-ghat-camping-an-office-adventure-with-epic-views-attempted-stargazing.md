@@ -5,9 +5,7 @@ date: 2025-04-27T23:12:00.000Z
 lastModified: 2025-05-06T16:54:00.000Z
 title: "Savlya Ghat Camping: An Office Adventure with Epic Views & Attempted
   Stargazing"
-description: Discover Savlya Ghat near Tamhini on our office camping adventure!
-  Read about the trek, breathtaking Sahyadri views, challenges of night camping,
-  team bonding, and our mixed success with stargazing.
+description: "An office camping trip to Savlya Ghat mixed familiar views, good company and a stargazing plan that didn't quite work out as expected."
 author: aniket
 destination: "Savlya Ghat, Tamhini, Maharashtra, India "
 coordinates:
@@ -106,9 +104,9 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-Sometimes, a fleeting moment plants a seed for a future adventure. Back in [November 2024, on the way during an office trip, a couple of friends and I spent about an hour at Savlya Ghat](https://travellingtrails.in/savlya-ghat-hidden-paradise-in-sahyadri-with-breathtaking-valley-views/). The view was simply breathtaking – a true hidden gem nestled in the Sahyadri mountains. I left wishing I could return, a thought that lingered until an opportunity arose.
+I first visited Savlya Ghat in November 2024 during a short detour on an office trip, and I kept thinking about going back. This time, a few colleagues wanted to trek and camp somewhere quiet. Savlya came to mind almost immediately—not least because we hoped the night sky would be clear enough for stargazing.
 
-A few colleagues were keen on a small trek and camping trip, somewhere peaceful. Suddenly, Savlya Ghat clicked back into my mind. It felt perfect – relatively isolated, offering potential for incredible stargazing, especially during the clear skies often seen in April and May. The idea quickly gained traction: an overnight stay in tents, complete with dinner under the stars (or so we hoped!). With our office generously sponsoring the trip, we finalized the dates – April 25th and 26th. My second, much-awaited visit to this spot was finally happening, this time with a fantastic group.
+The plan grew into an overnight camping trip for April 25 and 26, with dinner and tents on the hill. Our office sponsored it, and a group of colleagues signed up. I was looking forward to seeing Savlya Ghat again, this time with more than an hour to spend there. As it turned out, the people and the plans that didn't quite work would become as much of the story as the viewpoint.
 
 ### Assembling the Crew & Hitting the Road
 
@@ -116,7 +114,7 @@ Our rendezvous point was near Chandni Chowk in Pune. Sixteen enthusiastic collea
 
 We set off around 3:30 PM, heading towards Tamhini Ghat. The traffic was manageable, and within an hour, we neared Nivhe Village. A quick regroup and tea break at [Hotel Jai Malhar](https://maps.app.goo.gl/oZynwMxr6n4HAgKX8), just before the turn-off from the main Tamhini road, revitalized us for the final leg to our base. By 5:30 PM, we reached [Paratewadi](https://maps.app.goo.gl/RqkbG3XJix6ianJN6) and parked near our starting point, the Devkund View Hotel & Home Stay. After a quick freshen-up, we wasted no time starting the trek towards the Savlya Ghat viewpoint. Our immediate goal: reach the spot before sunset to familiarize ourselves with the surroundings and soak in the initial views.
 
-### The Uphill Battle (Literally!)
+### Carrying the Gear Up the Trail
 
 The trek itself is generally considered beginner-friendly, usually taking about 40 minutes. However, our journey clocked in closer to 90 minutes. Why the delay? Supplies. We were hauling three massive 18-litre water cans – a decision that prompted much laughter later – along with snacks, five tents, our personal backpacks, torches, a hefty solar-powered light for backup, Odomos to fend off mosquitoes, and a necessary medical kit. Descending one hill and ascending another, laden with gear, tested our endurance but fueled our anticipation.
 
@@ -137,7 +135,7 @@ The trek itself is generally considered beginner-friendly, usually taking about 
   </figure>
 </div>
 
-### An Amphitheater of Valleys
+### The View from the Ridge
 
 Reaching the [viewpoint](https://maps.app.goo.gl/556Fx5AWFFwb4ofMA) just as the light began to fade was worth every drop of sweat. Savlya Ghat isn't a vast plateau; it's a relatively small rock outcrop, protruding boldly from the hillside, yet easily capable of accommodating around 50 people. It commands a truly spectacular position, acting as a natural balcony overlooking an amphitheater of three valleys.
 
@@ -199,12 +197,12 @@ As the first hints of light painted the eastern sky around 5:30 AM, the rest of 
 
 By 8:30 AM, we were back at the parking area in Paratewadi, ready for the drive home. We stopped en route for breakfast at [Hotel Sharda Pure Veg](https://maps.app.goo.gl/7biVLvtNrJsJTGYq8), but unfortunately, the experience wasn't great – both food quality and service left something to be desired, and it's not a place I'd readily recommend. Thankfully, the drive back to the office near Chandni Chowk was smooth, with minimal traffic, taking just about an hour.
 
-### Reflections on a Rewarding Escape
+### What Worked and What Didn't
 
-The trip was undeniably exhausting, but the beauty of the night out, the camaraderie, and the sheer magnificence of Savlya Ghat made it incredibly rewarding. We shared good food, strengthened team bonds, captured countless photos, and created lasting memories.
+The trip was tiring, and our stargazing plans didn't work out quite as we'd hoped. Still, the evening together, the early morning at the viewpoint and the chance to spend time with colleagues outside the office made it worthwhile.
 
 Would I recommend Savlya Ghat? Absolutely, for the views. It’s a fantastic spot for a day trip or a simple overnight camp to soak in the scenery. Visit anytime outside the two heaviest monsoon months. However, if your primary goal is serious stargazing, be aware of the limitations: the altitude isn't exceptionally high, light pollution from the MIDC is a factor, and the local weather patterns, especially cloud cover, can be unpredictable.
 
-But even with the stargazing challenges, the view from that rocky outcrop? It truly captures your heart.
+I'd return for the view and the company. I just wouldn't promise anyone a sky full of stars.
 
 For more details on reaching Savlya Ghat, particularly if you're planning a bike trip, and for insights from a previous visit, check out this article: https://travellingtrails.in/savlya-ghat-hidden-paradise-in-sahyadri-with-breathtaking-valley-views/

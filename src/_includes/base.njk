@@ -10,16 +10,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if title %}{{ title }}{% else %}Travelling Trails{% endif %}</title>
+    {% set seoTitle = title if title else site.title %}
+    {% set seoDescription = description if description else site.description %}
+    {% set seoCanonical = site.url ~ (page.url | url) %}
+    {% set seoImage = featuredImage if featuredImage else site.socialImage %}
+    {% set seoImageAlt = imageAlt if imageAlt else site.socialImageAlt %}
+    {% if page.url == "/" %}
+      {% set homeStory = collections.homeFeatured[0] if collections.homeFeatured.length > 0 else collections.homeRecent[0] %}
+      {% if homeStory and (homeStory.data.featuredImage or homeStory.data.thumbnailImage) %}
+        {% set seoImage = homeStory.data.featuredImage if homeStory.data.featuredImage else homeStory.data.thumbnailImage %}
+        {% set seoImageAlt = homeStory.data.imageAlt if homeStory.data.imageAlt else homeStory.data.title %}
+      {% endif %}
+    {% endif %}
+    <title>{{ seoTitle | escape }}</title>
+    <meta name="description" content="{{ seoDescription | striptags | escape }}">
+    <link rel="canonical" href="{{ seoCanonical | escape }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <meta property="og:type" content="{% if isArticle %}article{% else %}website{% endif %}">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:title" content="{{ seoTitle | escape }}">
+    <meta property="og:description" content="{{ seoDescription | striptags | escape }}">
+    <meta property="og:url" content="{{ seoCanonical | escape }}">
+    <meta name="twitter:title" content="{{ seoTitle | escape }}">
+    <meta name="twitter:description" content="{{ seoDescription | striptags | escape }}">
+    {% if seoImage %}
+    <meta property="og:image" content="{{ site.url }}{{ seoImage | url }}">
+    <meta property="og:image:alt" content="{{ seoImageAlt | escape }}">
+    <meta name="twitter:image" content="{{ site.url }}{{ seoImage | url }}">
+    <meta name="twitter:card" content="{% if featuredImage or page.url == "/" %}summary_large_image{% else %}summary{% endif %}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
+    {% endif %}
+    {% if isArticle and page.date %}
+    <meta property="article:published_time" content="{{ page.date | isoDate }}">
+      {% if lastModified %}<meta property="article:modified_time" content="{{ lastModified | isoDate }}">{% endif %}
+    {% endif %}
+    {% if site.isPreview or noindex or page.url == "/search/" or page.url == "/success/" or page.url == "/404.html" %}
+    <meta name="robots" content="noindex, follow">
+    {% endif %}
 
     {{ faviconMeta() }}
 
-    {% if site.analyticsId and site.url == "https://travellingtrails.in" %}
+    {% if site.analyticsId and not site.isPreview and site.url == "https://travellingtrails.in" %}
       {{ googleAnalytics(site.analyticsId) }}
     {% endif %}
 
-    <!-- Add this before your search.js script -->
-    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    {# The journal search index is only needed on the Search page. #}
+    {% if page.url == "/search/" %}
+    <script defer src="https://unpkg.com/lunr/lunr.js"></script>
+    {% endif %}
 
     <!-- Dark mode detection script - Must be at the top -->
     <script>
@@ -119,9 +158,6 @@
         
         {% if featuredImage %}
         <link rel="preload" as="image" href="{{ featuredImage | url }}">
-        <meta property="og:image" content="{{ featuredImage | url }}">
-        <meta name="twitter:image" content="{{ featuredImage | url }}">
-        <meta name="twitter:card" content="summary_large_image">
         {% endif %}
 
         <!-- Structured Data -->
@@ -401,30 +437,32 @@
         }
       </style>
 
+    <!-- Travelling Trails Design System 2.0: shared visual language -->
+    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=9">
 </head>
-<body class="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-100">
+<body class="min-h-screen tt-page{% if page.url == '/' %} tt-home-page{% endif %}{% if isArticle %} tt-article-page{% endif %}">
     {# Add navigation enhancements at the start of body #}
     {{ navigationEnhancements() }}
     
     {% include "header.njk" %}
 
-    <!-- Add breadcrumb after header -->
-    {% if page.url !== "/" and page.url !== "/about/" and page.url !== "/contact/" %}
-    <div class="container mx-auto">
-        {{ breadcrumb(page, title, category.title) }}
-    </div>
-    {% endif %}
-
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% if not isArticle and page.url !== "/" and page.url !== "/about/" and page.url !== "/contact/" %}
+        <div class="tt-breadcrumb-shell">
+            {{ breadcrumb(page, title, category.title) }}
+        </div>
+        {% endif %}
         {{ content | safe }}
     </main>
 
     {% include "footer.njk" %}
 
     <!-- Scripts -->
-    <script src="{{ '/assets/js/main.js' | url }}"></script>
+    <script src="{{ '/assets/js/main.js' | url }}?v=2"></script>
     <script src="{{ '/assets/js/navigation.js' | url }}"></script>
-    <script src="{{ '/assets/js/search.js' | url }}"></script>
+    {% if page.url == "/search/" %}
+    <script defer src="{{ '/assets/js/search.js' | url }}?v=3"></script>
+    {% endif %}
     <script src="{{ '/assets/js/toc.js' | url }}"></script>
     
 
@@ -454,34 +492,14 @@
         });
     </script>
 
-    <!-- Dark mode image handling -->
-    <script>
-        function adjustImageBrightness() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.querySelectorAll('img:not(.no-dark-adjust)').forEach(img => {
-                    img.style.filter = 'brightness(0.8)';
-                });
-            } else {
-                document.querySelectorAll('img').forEach(img => {
-                    img.style.filter = '';
-                });
-            }
-        }
 
-        document.addEventListener('DOMContentLoaded', adjustImageBrightness);
-        const darkModeObserver = new MutationObserver(adjustImageBrightness);
-        darkModeObserver.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['class']
-        });
-    </script>
 
-  <!-- Add this just before the closing body tag -->
-  {% if page.url.includes("/blog/") and not page.url.endsWith("/blog/") %}
-  <script src="{{ '/assets/js/analytics-enhancement.js' | url }}"></script>
-  {% endif %}  
+  {# GA4 custom events are distinct from automatic page views, scrolls and form submits. #}
+  {% if site.analyticsId and not site.isPreview and site.url == "https://travellingtrails.in" %}
+  <script defer src="{{ '/assets/js/analytics-events.js' | url }}?v=1"></script>
+  {% endif %}
 
-  <script src="{{ '/assets/js/logo-switcher.js' | url }}"></script>
+  {# Original brand images switch via CSS with the scroll-responsive header #}
 
 
     <!-- Add this right before the closing </body> tag in your base.njk template -->

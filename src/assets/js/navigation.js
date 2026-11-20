@@ -1,99 +1,53 @@
-// src/assets/js/navigation.js
-document.addEventListener('DOMContentLoaded', function() {
-  const backToTopButton = document.getElementById('back-to-top');
-  const progressBar = document.getElementById('progress-bar');
-  
-  if (backToTopButton && progressBar) {
-      // Back to Top functionality
-      window.addEventListener('scroll', () => {
-          // Show button when user scrolls down 200px
-          if (window.scrollY > 200) {
-              backToTopButton.classList.remove('translate-y-24', 'opacity-0');
-              backToTopButton.classList.add('translate-y-0', 'opacity-100');
-          } else {
-              backToTopButton.classList.add('translate-y-24', 'opacity-0');
-              backToTopButton.classList.remove('translate-y-0', 'opacity-100');
-          }
-          
-          // Update progress bar
-          const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const scrolled = (window.scrollY / windowHeight) * 100;
-          progressBar.style.width = `${scrolled}%`;
-      });
-  
-      // Smooth scroll to top when button is clicked
-      backToTopButton.addEventListener('click', () => {
-          window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-          });
-      });
-  
-      // Initial progress bar width
-      progressBar.style.width = '0%';
-  }
-  
-  // Mobile menu functionality
-  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+// Travelling Trails — accessible modern navigation
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.getElementById('tt-site-header');
+  const menuButton = document.querySelector('.mobile-menu-button');
   const mobileMenu = document.querySelector('.mobile-menu');
-  
-  if (mobileMenuButton && mobileMenu) {
-      console.log('Mobile menu button found:', mobileMenuButton);
-      console.log('Mobile menu found:', mobileMenu);
-      
-      mobileMenuButton.addEventListener('click', function(e) {
-          console.log('Mobile menu button clicked');
-          e.preventDefault(); // Prevent any default action
-          
-          // CHANGE: Instead of toggling hidden class, use open class
-          mobileMenu.classList.toggle('open');
-          
-          // CHANGE: Set inline style to ensure visibility
-          if (mobileMenu.classList.contains('open')) {
-              mobileMenu.style.display = 'block';
-          } else {
-              mobileMenu.style.display = 'none';
-          }
-          
-          console.log('Menu toggled, current classes:', mobileMenu.className);
-      });
-  } else {
-      console.log('Mobile menu button or menu not found');
+  const toTop = document.getElementById('back-to-top');
+
+  function syncScrollUI() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    if (header) header.classList.toggle('is-scrolled', scrollTop > 45);
+    if (toTop) {
+      toTop.classList.toggle('translate-y-24', scrollTop <= 200);
+      toTop.classList.toggle('opacity-0', scrollTop <= 200);
+      toTop.classList.toggle('translate-y-0', scrollTop > 200);
+      toTop.classList.toggle('opacity-100', scrollTop > 200);
+    }
+
   }
-  
-  // Mobile dropdowns
-  const mobileDropdownButtons = document.querySelectorAll('.mobile-dropdown button');
-  
-  if (mobileDropdownButtons && mobileDropdownButtons.length > 0) {
-      console.log('Found mobile dropdown buttons:', mobileDropdownButtons.length);
-      
-      mobileDropdownButtons.forEach(button => {
-          button.addEventListener('click', function(e) {
-              console.log('Dropdown button clicked');
-              e.preventDefault(); // Prevent any default action
-              
-              // Find the dropdown content associated with this button
-              const dropdownContent = this.nextElementSibling;
-              console.log('Dropdown content found:', dropdownContent);
-              
-              // Toggle visibility
-              dropdownContent.classList.toggle('hidden');
-              
-              // CHANGE: Set display style explicitly
-              if (dropdownContent.classList.contains('hidden')) {
-                  dropdownContent.style.display = 'none';
-              } else {
-                  dropdownContent.style.display = 'block';
-              }
-              
-              // Toggle icon rotation
-              const icon = this.querySelector('.mobile-dropdown-icon');
-              if (icon) {
-                  icon.classList.toggle('rotate-180');
-              }
-          });
-      });
-  } else {
-      console.log('No mobile dropdown buttons found');
+
+  function setMenu(open) {
+    if (!mobileMenu || !menuButton) return;
+    mobileMenu.hidden = !open;
+    mobileMenu.classList.toggle('open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
   }
+
+  if (menuButton && mobileMenu) {
+    setMenu(false);
+    menuButton.addEventListener('click', () => setMenu(mobileMenu.hidden));
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !mobileMenu.hidden) {
+        setMenu(false);
+        menuButton.focus();
+      }
+    });
+    document.addEventListener('click', event => {
+      if (!mobileMenu.hidden && !mobileMenu.contains(event.target) && !menuButton.contains(event.target)) setMenu(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && !mobileMenu.hidden) setMenu(false);
+    });
+  }
+
+  if (toTop) {
+    toTop.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+    });
+  }
+  window.addEventListener('scroll', syncScrollUI, {passive: true});
+  syncScrollUI();
 });

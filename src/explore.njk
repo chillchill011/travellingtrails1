@@ -1,68 +1,43 @@
 ---
 layout: base
-title: Explore Destinations | Travelling Trails
+title: "Destinations and Scenic Routes | Travelling Trails"
 permalink: /explore/index.html
+description: "Discover places featured on Travelling Trails, from scenic ghats and historic forts to coastal roads, through personal stories and route inspiration."
 ---
-
 {% include "components/map-dependencies.njk" %}
 {% from "components/destination-card.njk" import destinationCard %}
-
-<div class="max-w-7xl mx-auto px-4 py-8">
-  <header class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Explore Travel Destinations</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-300">Discover adventures by location, activity, and more</p>
+<div class="tt-explore-page">
+  <header class="tt-page-header">
+    <p class="tt-eyebrow">Find your next detour</p>
+    <h1>Places worth exploring.</h1>
+    <p>Scenic routes, memorable stops and destinations discovered along the way.</p>
   </header>
 
-  <!-- Search and Filter Section -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Search Input -->
-      <div class="md:col-span-3">
-        <div class="relative">
-          <input 
-            type="text" 
-            id="searchInput"
-            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                  focus:ring-2 focus:ring-travel-500 focus:border-travel-500"
-            placeholder="Search destinations, activities, or experiences..."
-          >
-          <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-          <div id="searchSuggestions" 
-               class="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-200 
-                    dark:border-gray-700 rounded-lg shadow-lg hidden">
-          </div>
+  <section class="tt-explore-filters tt-page-panel" aria-label="Filter destinations">
+    <div class="tt-explore-filter-grid">
+      <div class="tt-explore-search-field">
+        <label for="searchInput">Search destinations</label>
+        <div class="tt-search-field">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></svg>
+          <input id="searchInput" type="search" placeholder="Search places or activities…" autocomplete="off">
         </div>
       </div>
-      
-      <!-- Filters -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Destination</label>
-        <select id="categoryFilter" 
-                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
-                       rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-          <option value="">All Destinations</option>
+      <div><label for="categoryFilter">Destination</label>
+        <select id="categoryFilter">
+          <option value="">All destinations</option>
           {% for destination in collections.destinations %}
-          <option value="{{ destination.title }}">{{ destination.title }} ({{ destination.count }})</option>
+          <option value="{{ destination.title }}">{{ destination.title }}</option>
           {% endfor %}
         </select>
       </div>
-      
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Activity Type</label>
-        <select id="activityFilter" 
-                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
-                       rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-          <option value="">All Activities</option>
+      <div><label for="activityFilter">Activity</label>
+        <select id="activityFilter">
+          <option value="">All activities</option>
           {% set allActivities = [] %}
           {% for post in collections.post %}
             {% if post.data.activities %}
               {% if post.data.activities is string %}
-                {% if post.data.activities and not allActivities.includes(post.data.activities) %}
+                {% if not allActivities.includes(post.data.activities) %}
                   {% set allActivities = (allActivities.push(post.data.activities), allActivities) %}
                 {% endif %}
               {% else %}
@@ -79,103 +54,44 @@ permalink: /explore/index.html
           {% endfor %}
         </select>
       </div>
-      
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Duration</label>
-        <select id="dateFilter" 
-                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 
-                       rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
-          <option value="">Any Duration</option>
-          <option value="7">Last Week</option>
-          <option value="30">Last Month</option>
-          <option value="365">Last Year</option>
+      <div><label for="dateFilter">Published</label>
+        <select id="dateFilter">
+          <option value="">Any date</option>
+          <option value="7">Last 7 days</option>
+          <option value="30">Last 30 days</option>
+          <option value="365">Last year</option>
         </select>
       </div>
-      
-      <!-- Reset Filters button will be added by JS -->
     </div>
-  </div>
-
-  <!-- Destinations Map -->
-  <div 
-  id="destinations-map" 
-  class="map-container loading mb-12"
-  data-destinations="{{ collections.destinations | getDestinationsMapData | dump }}"
-  aria-label="Map of all destinations"
-  style="height: 400px; width: 100%; z-index: 10; position: relative; background-color: #f3f4f6; display: block !important; overflow: hidden;">
-  </div>
-
-  <!-- Search Results Section (Initially Hidden) -->
-  <div id="searchResultsSection" class="mb-8 hidden">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Search Results</h2>
-    <div id="searchResults" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-    <div id="noResults" class="text-center text-gray-600 dark:text-gray-400 hidden py-8">
-      No destinations found matching your criteria. <button id="clearSearch" class="text-travel-600 hover:text-travel-700 underline focus:outline-none">Clear filters</button>
+    <div class="tt-explore-filter-actions">
+      <p id="exploreCount" role="status" aria-live="polite">Browse our destination guides.</p>
+      <button id="resetFilters" type="button" class="tt-search-clear">Reset filters</button>
     </div>
-  </div>
+  </section>
 
-  <!-- Results Section -->
-  <div class="mb-8" id="destinationsSection">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Explore All Destinations</h2>
-    <div id="explorePosts" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <section class="tt-explore-map-section" aria-labelledby="tt-explore-map-title">
+    <div class="tt-section-top">
+      <div><p class="tt-eyebrow">Find your bearings</p><h2 id="tt-explore-map-title">The map of our journeys.</h2></div>
+      <div class="tt-section-aside"><p>See the places we've explored and discover where your next route might lead.</p></div>
+    </div>
+    <div id="destinations-map"
+         class="map-container loading"
+         data-destinations="{{ collections.destinations | getDestinationsMapData | dump }}"
+         aria-label="Map of Travelling Trails destinations"
+         style="height: 400px; width: 100%;"></div>
+  </section>
+
+  <section class="tt-explore-results-section" aria-labelledby="tt-explore-all-title">
+    <div class="tt-section-top">
+      <div><p class="tt-eyebrow">Browse by location</p><h2 id="tt-explore-all-title">Explore all destinations.</h2></div>
+    </div>
+    <div id="explorePosts" class="tt-list-grid">
       {% for destination in collections.destinations %}
         {{ destinationCard(destination) }}
       {% endfor %}
     </div>
-  </div>
+    <div id="noResults" class="tt-search-empty hidden">No destinations matched those filters. Try a different search or reset the filters.</div>
+  </section>
 </div>
-
 <script src="{{ '/assets/js/map-handler.js' | url }}"></script>
-<script src="{{ '/assets/js/filter-handler.js' | url }}"></script>
-
-<script>
-  // Force map resize after a short delay
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      const mapContainer = document.getElementById('destinations-map');
-      if (mapContainer && typeof L !== 'undefined') {
-        console.log('Forcing map invalidation and resize');
-        const mapInstance = L.DomUtil.get('destinations-map')._leaflet_map;
-        if (mapInstance) {
-          mapInstance.invalidateSize(true);
-        }
-      }
-    }, 1000);
-    
-    // Add click handler for clear search button
-    const clearSearchBtn = document.getElementById('clearSearch');
-    if (clearSearchBtn) {
-      clearSearchBtn.addEventListener('click', function() {
-        // Reset search input
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-          searchInput.value = '';
-          
-          // Clear search results
-          const searchResults = document.getElementById('searchResults');
-          if (searchResults) {
-            searchResults.innerHTML = '';
-          }
-          
-          // Hide search results section
-          const searchResultsSection = document.getElementById('searchResultsSection');
-          if (searchResultsSection) {
-            searchResultsSection.classList.add('hidden');
-          }
-          
-          // Show destinations section
-          const destinationsSection = document.getElementById('destinationsSection');
-          if (destinationsSection) {
-            destinationsSection.classList.remove('hidden');
-          }
-        }
-        
-        // Reset filters
-        const resetBtn = document.getElementById('resetFilters');
-        if (resetBtn) {
-          resetBtn.click();
-        }
-      });
-    }
-  });
-</script>
+<script src="{{ '/assets/js/filter-handler.js' | url }}?v=2"></script>

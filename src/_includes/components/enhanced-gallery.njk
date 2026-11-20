@@ -1,8 +1,8 @@
 {% macro enhancedGallery(items, title, type="photo") %}
 {% if items and items.length > 0 %}
-<div class="gallery-container my-8">
+<section class="gallery-container tt-article-gallery {% if type == 'route' %}tt-route-gallery{% else %}tt-photo-gallery{% endif %} my-8" aria-label="{{ title }}">
   <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{{ title }}</h2>
-  <div class="gallery-grid">
+  <div class="gallery-grid {% if items.length == 1 %}tt-single-gallery{% endif %}">
     {% for item in items %}
     <figure class="gallery-item {% if type == 'route' %}route-item{% endif %}">
       <div class="gallery-image-wrapper">
@@ -83,6 +83,6 @@
     </figure>
     {% endfor %}
   </div>
-</div>
+</section>
 {% endif %}
 {% endmacro %}

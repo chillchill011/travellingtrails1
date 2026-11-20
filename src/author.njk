@@ -7,10 +7,11 @@ pagination:
 permalink: "{{ authorPage.permalink }}"
 eleventyComputed:
   title: "{{ authorPage.name }} | Travelling Trails"
+  description: "Read firsthand travel stories by {{ authorPage.name }} on Travelling Trails, including motorcycle journeys, photographs and travel experiences."
 ---
 
-<div class="max-w-4xl mx-auto px-4 py-8">
-  <header class="mb-12">
+<div class="tt-author-page max-w-4xl mx-auto px-4 py-8">
+  <header class="tt-author-header mb-12">
     <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
       {% if authorPage.avatar %}
         <img src="{{ authorPage.avatar | url }}" alt="{{ authorPage.name }}" class="w-24 h-24 md:w-32 md:h-32 rounded-full">
@@ -72,7 +73,7 @@ eleventyComputed:
 
   <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Articles by {{ authorPage.name }}</h2>
   
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="tt-list-grid">
     <!-- Improved post filtering -->
     {% set allPosts = collections.post | reverse %}
     {% set filteredPosts = [] %}

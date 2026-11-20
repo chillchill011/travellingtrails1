@@ -3,27 +3,23 @@
 {
   "@context": "https://schema.org",
   "@type": "TouristAttraction",
-  "name": "{{ title }}",
-  "description": "{{ description }}",
-  "url": "{{ site.url }}{{ url }}",
-  {% if image %}"image": "{{ site.url }}{{ image }}",{% endif %}
-  {% if address %}
-  "address": {
+  "name": {{ title | json | safe }},
+  "description": {{ description | json | safe }},
+  "url": {{ (site.url ~ url) | json | safe }}
+  {% if image %},"image": {{ (site.url ~ image) | json | safe }}{% endif %}
+  {% if address %},"address": {
     "@type": "PostalAddress",
-    "addressCountry": "{{ address.country }}",
-    "addressLocality": "{{ address.locality }}",
-    "addressRegion": "{{ address.region }}"
-  },
-  {% endif %}
-  {% if latitude and longitude %}
-  "geo": {
+    "addressCountry": {{ address.country | json | safe }},
+    "addressLocality": {{ address.locality | json | safe }},
+    "addressRegion": {{ address.region | json | safe }}
+  }{% endif %}
+  {% if latitude and longitude %},"geo": {
     "@type": "GeoCoordinates",
-    "latitude": "{{ latitude }}",
-    "longitude": "{{ longitude }}"
-  },
-  {% endif %}
-  {% if openingHours %}"openingHours": "{{ openingHours }}",{% endif %}
-  {% if priceRange %}"priceRange": "{{ priceRange }}"{% endif %}
+    "latitude": {{ latitude }},
+    "longitude": {{ longitude }}
+  }{% endif %}
+  {% if openingHours %},"openingHours": {{ openingHours | json | safe }}{% endif %}
+  {% if priceRange %},"priceRange": {{ priceRange | json | safe }}{% endif %}
 }
 </script>
 {% endmacro %}
@@ -33,21 +29,20 @@
 {
   "@context": "https://schema.org",
   "@type": "TouristDestination",
-  "name": "{{ title }}",
-  "description": "{{ description }}",
-  "url": "{{ site.url }}{{ url }}",
-  {% if image %}"image": "{{ site.url }}{{ image }}",{% endif %}
-  {% if containsAttractions %}
+  "name": {{ title | json | safe }},
+  "description": {{ description | json | safe }},
+  "url": {{ (site.url ~ url) | json | safe }}
+  {% if image %},"image": {{ (site.url ~ image) | json | safe }}{% endif %}
+  {% if containsAttractions and containsAttractions.length > 0 %},
   "containsAttraction": [
     {% for attraction in containsAttractions %}
     {
       "@type": "TouristAttraction",
-      "name": "{{ attraction.name }}",
-      "url": "{{ site.url }}{{ attraction.url }}"
+      "name": {{ attraction.name | json | safe }},
+      "url": {{ (site.url ~ attraction.url) | json | safe }}
     }{% if not loop.last %},{% endif %}
     {% endfor %}
-  ]
-  {% endif %}
+  ]{% endif %}
 }
 </script>
 {% endmacro %}

@@ -3,11 +3,7 @@ draft: false
 featured: true
 date: 2025-02-21T06:45:00.000Z
 title: "Ancient Wonders: Motorcycle Journey to Ellora Caves & Devgiri Fort"
-description: Experience an exhilarating two-day motorcycle ride from Pune to the
-  UNESCO World Heritage Ellora Caves and majestic Devgiri Fort in Sambhaji
-  Nagar. Discover the awe-inspiring Kailasa Temple carved from a single rock,
-  explore ancient Buddhist and Jain caves, and witness the engineering marvel of
-  medieval fortifications while riding through Maharashtra's scenic highways.
+description: "Two days riding from Pune to Ellora Caves and Devgiri Fort, exploring the Kailasa Temple, ancient carvings and the history of Sambhaji Nagar."
 author: aniket
 destination: Ellora Caves & Devgiri Fort, Sambhaji Nagar
 coordinates:
@@ -177,9 +173,7 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-Chasing Ancient Dreams: A Motorcycle Adventure to Ellora and Devgiri
-
-Since childhood, I've been fascinated by ancient temples and historical structures. There's something mysteriously captivating about standing in a place where countless generations have stood before, marveling at the same stone carvings and architectural wonders. The Ellora Caves near Sambhaji Nagar (formerly Aurangabad) and the mighty Devgiri Fort had been on my bucket list for years, particularly the legendary Kailasa Temple—a massive structure carved from a single rock that I had first seen in a school textbook over two decades ago.
+I first came across Ellora's Kailasa Temple in a school textbook more than twenty years ago. The idea of an enormous temple carved out of rock stayed with me long after that lesson. So when two friends and I finally planned a ride from Pune to Sambhaji Nagar, seeing Kailasa for myself was the part I looked forward to most. Devgiri Fort was the other place I had wanted to explore for years.
 
 This February, that childhood dream transformed into reality as two fellow riders and I embarked on a weekend motorcycle adventure to these historical marvels. I rode my Triumph Scrambler 400X while my companions mounted their Triumph Speed 400s. We deliberately planned our trip for Friday and Saturday to avoid the weekend crowds that often flood these popular destinations.
 
@@ -187,7 +181,7 @@ This February, that childhood dream transformed into reality as two fellow rider
 
 ### The Highway Ride
 
-We kickstarted our journey from Pune at approximately 6:45 AM, with the cool morning air providing perfect riding conditions. The 230-kilometer route to Sambhaji Nagar took us through Shikrapur, Shirur, Ahilya Nagar, and past the famous Shani Shingnapur temple. The smooth highways allowed us to maintain a comfortable cruising speed between 80-100 kmph, occasionally touching 125 kmph on open stretches.
+We set off from Pune at approximately 6:45 AM, with the cool morning air providing perfect riding conditions. The 230-kilometer route to Sambhaji Nagar took us through Shikrapur, Shirur, Ahilya Nagar, and past the famous Shani Shingnapur temple. The smooth highways allowed us to maintain a comfortable cruising speed between 80-100 kmph, occasionally touching 125 kmph on open stretches.
 
 We took several short breaks for hydration, tea, and stretching, making the journey enjoyable rather than exhausting. The Scrambler 400X handled the highway brilliantly, offering a comfortable riding position even after hours in the saddle. By noon, we reached Sambhaji Nagar, making good time despite our relaxed pace.
 
@@ -197,7 +191,7 @@ We took several short breaks for hydration, tea, and stretching, making the jour
 
 After checking in, we enjoyed a satisfying lunch at the hotel restaurant before taking a short but essential power nap to rejuvenate ourselves for the afternoon exploration.
 
-### Ellora Caves: Confronting Magnificence
+### Arriving at Ellora Caves
 
 By 3:30 PM, we were at the Ellora Caves complex, approximately 30 kilometers from our hotel. On the way, we passed Devgiri Fort (another historical gem we'd save for day 2) but remained focused on our primary destination. The afternoon timing proved strategic—the tourist crowds had thinned considerably, allowing us a more intimate experience with these ancient wonders.
 
@@ -255,7 +249,7 @@ By 3:30 PM, we were at the Ellora Caves complex, approximately 30 kilometers fro
   * ₹600 per person for other foreign tourists
   * ₹25 for video camera usage
 
-#### The Magnificent Kailasa Temple (Cave 16)
+#### Kailasa Temple (Cave 16)
 
 We made a beeline for Cave 16—the iconic Kailasa Temple—the largest monolithic rock-cut temple in the world. As I stood before this colossal structure, emotions flooded through me. The textbook image that had captivated my young mind decades ago was now before me in its full, three-dimensional grandeur.
 
@@ -490,4 +484,4 @@ For motorcycle enthusiasts with an appreciation for history and culture, this ro
 
 As we rode back to our everyday lives, we carried with us not just photographs but a deep connection to our cultural roots—a connection formed by touching the same stones that countless generations have touched, by standing in the same spaces where history unfolded, and by experiencing firsthand the genius of ancient India.
 
-*The mountains may erode, empires may fall, but the stories carved in stone at Ellora and Devgiri continue to inspire, reminding us that true greatness transcends time.*
+I had waited a long time to see the Kailasa Temple outside a textbook. Two days were enough to take in some extraordinary places, but not enough to explore everything. That gives me a very good reason to return.
