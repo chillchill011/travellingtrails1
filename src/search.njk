@@ -16,7 +16,16 @@ description: "Find Travelling Trails stories by destination or experience, from 
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></svg>
       <input id="searchInput" type="search" placeholder="Try Kolhapur, waterfalls, motorcycle rides…" autocomplete="off" aria-describedby="searchHelp">
     </div>
-    <p id="searchHelp" class="tt-search-help">Enter at least two characters or use the filters to explore stories.</p>
+    <p id="searchHelp" class="tt-search-help">Results appear below as you type. Press Enter to see the complete results.</p>
+    <div class="tt-search-live" id="searchLive" hidden>
+      <div class="tt-search-live-header">
+        <p class="tt-search-live-summary" id="searchQuickTitle" aria-live="polite"></p>
+        <button type="button" id="jumpToResults" class="tt-search-jump">
+          View all results <svg class="tt-arrow-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div id="searchQuickResults" class="tt-search-quick-results" aria-label="Matching story previews"></div>
+    </div>
     <div class="tt-search-filters">
       <div>
         <label for="categoryFilter">Category</label>
@@ -39,7 +48,7 @@ description: "Find Travelling Trails stories by destination or experience, from 
       <button id="clearSearch" type="button" class="tt-search-clear">Clear filters</button>
     </div>
   </section>
-  <section class="tt-search-results-section" aria-label="Search results">
+  <section class="tt-search-results-section" id="allSearchResults" aria-label="Search results">
     <div class="tt-search-result-header">
       <p class="tt-eyebrow">From the journal</p>
       <h2 id="searchResultsHeading">Discover the stories</h2>
