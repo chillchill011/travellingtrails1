@@ -101,9 +101,7 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-Unearthing History: The Call of the Submerged Temple
-
-There's something undeniably alluring about visiting places that exist only temporarily—locations that nature reclaims for most of the year, revealing their secrets during brief windows of opportunity. The ancient Wagheshwar Temple near Pawana Dam is precisely such a treasure—a Chalukya-era monument that spends most of its life submerged beneath dam waters, visible only during the peak summer months when water levels recede.
+Wagheshwar Temple near Pawana Dam is easy to miss for much of the year: when the water is high, the old temple is submerged. I'd heard that falling water levels had exposed it again, and that was enough to make me curious. I wanted to see the structure while it was accessible, so I asked two riding friends to join me for an early departure the next morning.
 
 When I learned that this historic temple was currently exposed due to falling water levels, I immediately reached out to two riding companions, proposing an early morning motorcycle adventure to witness this rarely-seen relic. The opportunity to combine a scenic dawn ride with historical exploration proved irresistible, and plans quickly fell into place for a 5:45 AM departure the following morning.
 
@@ -213,4 +211,4 @@ This experience reinforced what many motorcycle enthusiasts already know—somet
 
 For those who appreciate the confluence of natural beauty, history, and adventure, this hidden temple emerging from receding waters offers a unique opportunity to witness a place that exists in its accessible form for only a brief window each year. Like many of life's most meaningful experiences, its ephemeral nature only enhances its value.
 
-When the monsoon rains return and Wagheshwar Temple slips back beneath the rising waters of Pawana Dam, it will carry with it the echoes of our visit—one brief moment in its centuries-long story of emergence and submergence, remembering and forgetting, that continues with each passing year.
+When the dam fills again, the temple will disappear from view. I was glad we went while we could, even if the roads and the ride through the hills stayed with me just as much as the temple itself.
