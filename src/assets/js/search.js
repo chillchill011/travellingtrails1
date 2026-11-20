@@ -111,6 +111,13 @@
     if (browsing) matches = matches.slice(0, 6);
     resultsEl.replaceChildren(...matches.map(createCard));
     if (emptyEl) emptyEl.classList.toggle('hidden', matches.length > 0);
+    // Notify the editorial analytics listener only; it debounces user queries
+    // and will never transmit a form field or other personal information.
+    if (query.length >= 2) {
+      window.dispatchEvent(new CustomEvent('tt:journal-search', {
+        detail: {query: query, resultCount: matches.length}
+      }));
+    }
     if (headingEl) headingEl.textContent = browsing ? 'Recent adventures' : 'Search results';
     countEl.textContent = browsing
       ? 'Explore the latest stories or search for a particular destination.'
