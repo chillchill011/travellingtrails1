@@ -4,11 +4,7 @@ featured: false
 date: 2024-11-03T22:34:00.000Z
 lastModified: 2025-03-19T08:41:00.000Z
 title: "Tamhini Ghat to Tiger Point: A Thrilling One-Day Motorcycle Adventure"
-description: Experience the exhilarating 170km motorcycle journey from Pune
-  through Tamhini Ghat to Tiger Point, featuring off-road adventures,
-  breathtaking valley views, and camaraderie among Triumph riders. Discover the
-  perfect one-day escape with riding tips and must-visit spots along this scenic
-  route.
+description: "A 170 km motorcycle ride from Pune through Tamhini Ghat to Tiger Point, with off-road stretches, valley views and a day out with fellow riders."
 author: aniket
 destination: Tiger Point, Lonavla
 coordinates:
