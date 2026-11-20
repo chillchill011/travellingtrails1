@@ -18,8 +18,10 @@
       {{ googleAnalytics(site.analyticsId) }}
     {% endif %}
 
-    <!-- Add this before your search.js script -->
-    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    {# The journal search index is only needed on the Search page. #}
+    {% if page.url == "/search/" %}
+    <script defer src="https://unpkg.com/lunr/lunr.js"></script>
+    {% endif %}
 
     <!-- Dark mode detection script - Must be at the top -->
     <script>
@@ -402,7 +404,7 @@
       </style>
 
     <!-- Travelling Trails Design System 2.0: shared visual language -->
-    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=6">
+    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=7">
 </head>
 <body class="min-h-screen tt-page{% if page.url == '/' %} tt-home-page{% endif %}{% if isArticle %} tt-article-page{% endif %}">
     {# Add navigation enhancements at the start of body #}
@@ -424,7 +426,9 @@
     <!-- Scripts -->
     <script src="{{ '/assets/js/main.js' | url }}"></script>
     <script src="{{ '/assets/js/navigation.js' | url }}"></script>
-    <script src="{{ '/assets/js/search.js' | url }}"></script>
+    {% if page.url == "/search/" %}
+    <script src="{{ '/assets/js/search.js' | url }}?v=2"></script>
+    {% endif %}
     <script src="{{ '/assets/js/toc.js' | url }}"></script>
     
 
