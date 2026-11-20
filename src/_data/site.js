@@ -9,7 +9,6 @@ module.exports = {
     ? "https://travellingtrails.in"
     : "http://localhost:8080",
   author: "Travelling Trails Team",
-  authorTwitter: "@traveltrails",
   buildTime: new Date(),
   language: "en",
   navigation: [
