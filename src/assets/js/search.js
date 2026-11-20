@@ -10,6 +10,11 @@
   const countEl = document.getElementById('searchStatus');
   const headingEl = document.getElementById('searchResultsHeading');
   const emptyEl = document.getElementById('noResults');
+  const liveEl = document.getElementById('searchLive');
+  const quickEl = document.getElementById('searchQuickResults');
+  const quickTitle = document.getElementById('searchQuickTitle');
+  const jumpBtn = document.getElementById('jumpToResults');
+  const allResults = document.getElementById('allSearchResults');
   if (!input || !resultsEl || !categoryEl || !dateEl || !countEl) return;
   let posts = [];
   let index = null;
@@ -76,6 +81,38 @@
     return card;
   }
 
+  function createQuickResult(post) {
+    const link = element('a', 'tt-search-quick-card');
+    link.href = post.url;
+    const src = post.thumbnailImage || post.featuredImage;
+    if (src) {
+      const image = element('img');
+      image.src = src;
+      image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      link.appendChild(image);
+    }
+    const copy = element('span', 'tt-search-quick-copy');
+    copy.appendChild(element('strong', '', post.title || 'Travel story'));
+    const firstCategory = categories(post)[0];
+    if (firstCategory) copy.appendChild(element('small', '', firstCategory));
+    link.appendChild(copy);
+    const arrow = element('span', 'tt-search-quick-arrow');
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = '›';
+    link.appendChild(arrow);
+    return link;
+  }
+
+  function goToResults() {
+    if (!allResults) return;
+    allResults.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'start'
+    });
+  }
+
   function queryMatches(query) {
     if (!query) return posts.slice();
     const terms = query.toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
@@ -110,6 +147,21 @@
     const browsing = !query && !chosenCategory && !dayLimit;
     if (browsing) matches = matches.slice(0, 6);
     resultsEl.replaceChildren(...matches.map(createCard));
+    // Keep a short, visibly updated preview beside the input so visitors do
+    // not need to scroll just to discover whether their search matched.
+    if (liveEl && quickEl && quickTitle) {
+      liveEl.hidden = browsing;
+      if (!browsing) {
+        quickTitle.textContent = matches.length
+          ? matches.length + (matches.length === 1 ? ' matching story' : ' matching stories')
+          : 'No matching stories';
+        if (jumpBtn) jumpBtn.hidden = matches.length === 0;
+        quickEl.replaceChildren(...matches.slice(0, 2).map(createQuickResult));
+        if (!matches.length) {
+          quickEl.appendChild(element('p', 'tt-search-quick-empty', 'Try a different place, route or category.'));
+        }
+      }
+    }
     if (emptyEl) emptyEl.classList.toggle('hidden', matches.length > 0);
     // Notify the editorial analytics listener only; it debounces user queries
     // and will never transmit a form field or other personal information.
@@ -170,6 +222,13 @@
   });
   input.addEventListener('keydown', e => {
     if (e.key === 'Escape') { input.value = ''; update(); }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      clearTimeout(debounceId);
+      update();
+      if (resultsEl.children.length > 0) goToResults();
+    }
   });
+  if (jumpBtn) jumpBtn.addEventListener('click', goToResults);
   initialize();
 }());
