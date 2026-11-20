@@ -122,9 +122,7 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-Two-Day Motorcycle Journey: Exploring Kolhapur & Khidrapur's Ancient Temples
-
-There's something incredibly liberating about the open road, the rumble of a motorcycle beneath you, and the promise of ancient temples waiting to be discovered. After years of planning and multiple failed attempts, my wife and I finally embarked on our first motorcycle journey together—a 650km adventure through Western Maharashtra that would test our endurance, patience, and relationship in equal measure.
+My wife had wanted to visit Kolhapur's Mahalakshmi Temple for years, but our plans had never quite worked out. After I bought the Triumph Scrambler 400X, we decided to try the journey together on two wheels. It would be our first long motorcycle trip as a couple: roughly 650 km, ancient temples, a few navigation mistakes and, as it turned out, plenty to talk about afterward.
 
 ## Planning Our Long-Awaited Journey
 
@@ -234,6 +232,6 @@ The road quality varies significantly along this route. Until Satara, conditions
 4. **Breaks**: Plan for regular breaks every 60-90 minutes to prevent fatigue.
 5. **Traffic Planning**: If possible, avoid Sunday evening return journeys when traffic heading back to major cities is at its peak.
 
-Looking back, despite the exhaustion and occasional disagreements about navigation, this journey has only strengthened our resolve to explore more of India's hidden treasures on two wheels. There's simply no better way to experience the diverse landscapes, ancient architecture, and cultural richness of our country than with the wind in your face and the freedom of the open road.
+Looking back, the tiring return and our occasional disagreements over navigation are as much a part of the memory as the temples. We came home knowing a little more about what works for us on a long ride—and with plenty of ideas for the next one.
 
 Next time though, I'll definitely remember who's supposed to be checking the map.
