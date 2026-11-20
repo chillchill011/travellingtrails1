@@ -77,7 +77,7 @@ The Aundh-Ravet BRTS Road surprised me with its excellent condition—smooth asp
 Tonight's ride had a different quality than most of my nocturnal excursions. There were no deep emotional reflections or nostalgic musings—just the pure joy of riding on open, smooth roads. The focus was entirely on the experience: carefully managing the throttle, maintaining awareness in both city traffic and highway conditions, and enjoying the sensation of movement through the night air.
 
 
-I reached Chandni Chowk around 12:30 AM, having started just past 11:15 PM. Before heading home, I paused at the Chandni Chowk bridge to take in the city skyline—a tapestry of lights against the dark canvas of night. This final moment of contemplation completed the circuit, providing the perfect ending to an impromptu adventure.
+I reached Chandni Chowk around 12:30 AM, having started just past 11:15 PM. Before heading home, I paused at the Chandni Chowk bridge to take in the city skyline—city lights spread across the night sky. This final moment of contemplation completed the circuit, providing the perfect ending to an impromptu adventure.
 
 
 With the peaceful image of Pune's illuminated skyline in my mind, I returned home ready for a restful sleep, already looking forward to the next time the night would call me to explore.
