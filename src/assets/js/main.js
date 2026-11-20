@@ -34,8 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Setup load more functionality
   setupLoadMore();
   
-  // Setup analytics tracking
-  setupAnalyticsTracking();
+  // Analytics is handled by analytics-events.js on production builds.
 });
 
 // Function to setup theme toggle
@@ -148,101 +147,6 @@ function setupLoadMore() {
       }
     });
   });
-}
-
-// Function to setup analytics tracking
-function setupAnalyticsTracking() {
-  // Only run if gtag is defined (analytics is loaded)
-  if (typeof gtag !== 'function') return;
-  
-  // Track outbound link clicks
-  document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.host + '"])').forEach(link => {
-    link.addEventListener('click', function(e) {
-      gtag('event', 'click', {
-        'event_category': 'outbound',
-        'event_label': this.href,
-        'transport_type': 'beacon'
-      });
-    });
-  });
-  
-  // Track category clicks
-  document.querySelectorAll('a[href^="/categories/"]').forEach(link => {
-    link.addEventListener('click', function() {
-      const category = this.textContent.trim();
-      gtag('event', 'category_click', {
-        'event_category': 'engagement',
-        'event_label': category
-      });
-    });
-  });
-  
-  // Track search usage
-  const searchInput = document.getElementById('searchInput');
-  if (searchInput) {
-    let searchTimeout;
-    searchInput.addEventListener('input', function() {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        if (this.value.length > 2) {
-          gtag('event', 'search', {
-            'search_term': this.value
-          });
-        }
-      }, 1000);
-    });
-  }
-
-  // Track dark mode usage
-  gtag('event', 'page_view', {
-    'user_dark_mode': document.documentElement.classList.contains('dark') ? 'dark' : 'light'
-  });
-  
-  // Track post categories on article pages
-  const articleCategories = document.querySelectorAll('article .category-tag');
-  if (articleCategories.length > 0) {
-    const categories = Array.from(articleCategories).map(tag => tag.textContent.trim()).join(',');
-    gtag('event', 'page_view', {
-      'post_category': categories
-    });
-  }
-
-  // Track newsletter signups
-  const newsletterForms = document.querySelectorAll('form');
-  newsletterForms.forEach(form => {
-    const emailInput = form.querySelector('input[type="email"]');
-    const submitButton = form.querySelector('button[type="submit"]');
-    
-    if (emailInput && submitButton && submitButton.textContent.includes('Subscribe')) {
-      form.addEventListener('submit', function(e) {
-        gtag('event', 'newsletter_signup', {
-          'event_category': 'conversion'
-        });
-      });
-    }
-  });
-
-  // Track scroll depth on article pages
-  const articleContent = document.querySelector('article.max-w-4xl');
-  if (articleContent) {
-    let scrollMarkers = [25, 50, 75, 100];
-    let scrollMarkersHit = [];
-    
-    window.addEventListener('scroll', function() {
-      const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
-      
-      scrollMarkers.forEach(marker => {
-        if (scrollPercent >= marker && !scrollMarkersHit.includes(marker)) {
-          scrollMarkersHit.push(marker);
-          gtag('event', 'scroll_depth', {
-            'event_category': 'engagement',
-            'event_label': `${marker}%`,
-            'non_interaction': true
-          });
-        }
-      });
-    });
-  }
 }
 
 // Watch for changes to dark mode
