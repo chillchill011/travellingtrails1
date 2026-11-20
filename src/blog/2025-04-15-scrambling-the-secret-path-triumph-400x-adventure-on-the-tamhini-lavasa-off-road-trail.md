@@ -136,7 +136,7 @@ I'd been wanting to take my Triumph Scrambler 400X on a proper off-road ride for
 
 Well, the opportunity knocked sooner than expected, though the "adventure" turned out a little different, and perhaps even better, than anticipated.
 
-### The Call of the Unknown Trail
+### A Trail I Hadn't Tried Before
 
 A week ago, a message popped up in our riding group: a plan to ride through Tamhini Ghat, tackle the narrow Tamhini Khind, and then venture through a jungle and dusty track emerging near the back of Lavasa city. This was news to me! I'd ridden the beautiful Tamhini Ghat road countless times, but the idea of a hidden, two-wheeler-only path connecting Tamhini village to Lavasa? Intriguing.
 
@@ -190,7 +190,7 @@ As I rolled up, I looked out at the vista they were admiring. And then I saw it.
 
 From there, the route home was again familiar territory, winding past the Temghar dam – another spot I visit frequently. Within an hour, I was back home, the clock reading 11:30 AM.
 
-### Reflections: More Than Just Off-Roading
+### What Made the Ride Worth It
 
 This ride turned out differently than the hardcore off-roading fantasy I initially had. The challenging section was brief, the majority being manageable paths. But the experience was richer for it. We discovered a hidden connector route, found an incredible natural playground in the dry riverbed, shared laughs and helped each other through tricky spots, and stumbled upon a truly awe-inspiring, unexpected view of historic forts.
 
