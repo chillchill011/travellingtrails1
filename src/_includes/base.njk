@@ -15,6 +15,13 @@
     {% set seoCanonical = site.url ~ (page.url | url) %}
     {% set seoImage = featuredImage if featuredImage else site.socialImage %}
     {% set seoImageAlt = imageAlt if imageAlt else site.socialImageAlt %}
+    {% if page.url == "/" %}
+      {% set homeStory = collections.homeFeatured[0] if collections.homeFeatured.length > 0 else collections.homeRecent[0] %}
+      {% if homeStory and (homeStory.data.featuredImage or homeStory.data.thumbnailImage) %}
+        {% set seoImage = homeStory.data.featuredImage if homeStory.data.featuredImage else homeStory.data.thumbnailImage %}
+        {% set seoImageAlt = homeStory.data.imageAlt if homeStory.data.imageAlt else homeStory.data.title %}
+      {% endif %}
+    {% endif %}
     <title>{{ seoTitle | escape }}</title>
     <meta name="description" content="{{ seoDescription | striptags | escape }}">
     <link rel="canonical" href="{{ seoCanonical | escape }}">
@@ -30,7 +37,7 @@
     <meta property="og:image" content="{{ site.url }}{{ seoImage | url }}">
     <meta property="og:image:alt" content="{{ seoImageAlt | escape }}">
     <meta name="twitter:image" content="{{ site.url }}{{ seoImage | url }}">
-    <meta name="twitter:card" content="{% if featuredImage %}summary_large_image{% else %}summary{% endif %}">
+    <meta name="twitter:card" content="{% if featuredImage or page.url == "/" %}summary_large_image{% else %}summary{% endif %}">
     {% else %}
     <meta name="twitter:card" content="summary">
     {% endif %}
