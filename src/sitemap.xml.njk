@@ -4,87 +4,32 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Main Pages -->
-  <url>
-    <loc>{{ site.url }}/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-  <url>
-    <loc>{{ site.url }}/blog/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>{{ site.url }}/categories/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>{{ site.url }}/about/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>{{ site.url }}/contact/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Blog Posts -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {# Public entry points only. Do not include noindex utilities such as search or form success. #}
+  {% set mainPaths = ["/", "/blog/", "/explore/", "/categories/", "/about/", "/team/", "/contact/", "/sitemap/", "/privacy-policy/", "/gear-guide/"] %}
+  {% for entry in mainPaths %}
+  <url><loc>{{ site.url }}{{ entry }}</loc></url>
+  {% endfor %}
+
+  {# Blog posts have a genuine publication or modification date, unlike a build timestamp. #}
   {% for post in collections.post %}
-  {% if not post.data.excludeFromSitemap %}
+    {% if not post.data.excludeFromSitemap %}
   <url>
     <loc>{{ site.url }}{{ post.url | url }}</loc>
-    <lastmod>{{ post.date | isoDate }}</lastmod>
-    <changefreq>{{ post.data.sitemapChangefreq | default("monthly") }}</changefreq>
-    <priority>{{ post.data.sitemapPriority | default(0.8) }}</priority>
+    <lastmod>{{ (post.data.lastModified or post.date) | isoDate }}</lastmod>
   </url>
-  {% endif %}
+    {% endif %}
   {% endfor %}
-  
-  <!-- Category Pages -->
+
+  {% for destination in collections.destinations %}
+  <url><loc>{{ site.url }}/destinations/{{ destination.slug }}/</loc></url>
+  {% endfor %}
+
   {% for category in collections.categories %}
-  <url>
-    <loc>{{ site.url }}/categories/{{ category.slug }}/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <url><loc>{{ site.url }}/categories/{{ category.slug }}/</loc></url>
   {% endfor %}
-  
-  <!-- Other Pages -->
-  <url>
-    <loc>{{ site.url }}/privacy-policy/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>{{ site.url }}/search/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>{{ site.url }}/sitemap/</loc>
-    <lastmod>{{ site.buildTime | isoDate }}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
+
+  {% for authorPage in collections.authorPages %}
+  <url><loc>{{ site.url }}/authors/{{ authorPage.slug }}/</loc></url>
+  {% endfor %}
 </urlset>
