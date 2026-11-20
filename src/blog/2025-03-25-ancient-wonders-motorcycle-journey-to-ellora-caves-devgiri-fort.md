@@ -173,9 +173,7 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-Chasing Ancient Dreams: A Motorcycle Adventure to Ellora and Devgiri
-
-Since childhood, I've been fascinated by ancient temples and historical structures. There's something mysteriously captivating about standing in a place where countless generations have stood before, marveling at the same stone carvings and architectural wonders. The Ellora Caves near Sambhaji Nagar (formerly Aurangabad) and the mighty Devgiri Fort had been on my bucket list for years, particularly the legendary Kailasa Temple—a massive structure carved from a single rock that I had first seen in a school textbook over two decades ago.
+I first came across Ellora's Kailasa Temple in a school textbook more than twenty years ago. The idea of an enormous temple carved out of rock stayed with me long after that lesson. So when two friends and I finally planned a ride from Pune to Sambhaji Nagar, seeing Kailasa for myself was the part I looked forward to most. Devgiri Fort was the other place I had wanted to explore for years.
 
 This February, that childhood dream transformed into reality as two fellow riders and I embarked on a weekend motorcycle adventure to these historical marvels. I rode my Triumph Scrambler 400X while my companions mounted their Triumph Speed 400s. We deliberately planned our trip for Friday and Saturday to avoid the weekend crowds that often flood these popular destinations.
 
@@ -486,4 +484,4 @@ For motorcycle enthusiasts with an appreciation for history and culture, this ro
 
 As we rode back to our everyday lives, we carried with us not just photographs but a deep connection to our cultural roots—a connection formed by touching the same stones that countless generations have touched, by standing in the same spaces where history unfolded, and by experiencing firsthand the genius of ancient India.
 
-*The mountains may erode, empires may fall, but the stories carved in stone at Ellora and Devgiri continue to inspire, reminding us that true greatness transcends time.*
+I had waited a long time to see the Kailasa Temple outside a textbook. Two days were enough to take in some extraordinary places, but not enough to explore everything. That gives me a very good reason to return.
