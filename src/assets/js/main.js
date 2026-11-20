@@ -66,8 +66,8 @@ function setupThemeToggle() {
         document.documentElement.classList.add('dark');
         localStorage.setItem('color-theme', 'dark');
         // Track dark mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'dark'
           });
         }
@@ -75,8 +75,8 @@ function setupThemeToggle() {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('color-theme', 'light');
         // Track light mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'light'
           });
         }
@@ -86,8 +86,8 @@ function setupThemeToggle() {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('color-theme', 'light');
         // Track light mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'light'
           });
         }
@@ -95,8 +95,8 @@ function setupThemeToggle() {
         document.documentElement.classList.add('dark');
         localStorage.setItem('color-theme', 'dark');
         // Track dark mode toggle in analytics
-        if (typeof gtag === 'function') {
-          gtag('event', 'dark_mode_toggle', {
+        if (typeof window.ttTrack === 'function') {
+          window.ttTrack('dark_mode_toggle', {
             'user_dark_mode': 'dark'
           });
         }
@@ -142,8 +142,8 @@ function setupLoadMore() {
       nextCards.forEach(card => card.classList.remove('hidden'));
       btn.dataset.currentPage = String(page);
       if (!cards.some(card => Number(card.dataset.page) > page)) btn.hidden = true;
-      if (typeof gtag === 'function') {
-        gtag('event', 'load_more_posts', {event_category: 'engagement', event_label: 'Page ' + page});
+      if (typeof window.ttTrack === 'function') {
+        window.ttTrack('load_more_posts', {event_category: 'engagement', event_label: 'Page ' + page});
       }
     });
   });
