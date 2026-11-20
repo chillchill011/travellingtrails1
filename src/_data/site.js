@@ -1,6 +1,7 @@
 // src/_data/site.js
 module.exports = {
   title: "Travelling Trails",
+  contactEmail: "hello@travellingtrails.in",
   description: "First-person motorcycle rides, weekend escapes and honest travel stories from Maharashtra, with photographs, route notes and moments worth remembering.",
   socialImage: "/assets/images/logo.png",
   socialImageAlt: "Travelling Trails logo",
