@@ -757,70 +757,6 @@ body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-logo-inverse{display:
 @media(max-width:580px){.tt-form-contact-note{font-size:.78rem}}
 
 
-/* 2026-11 — Deliberate liquid-glass trial, limited to the homepage hero. */
-/* Glass uses real backdrop blur and saturation plus fine inner reflections.
-   Keep editorial copy, forms and regular story cards opaque for contrast. */
-.tt-home-page .tt-site-header:not(.is-scrolled) .tt-nav{
-  background:linear-gradient(128deg,rgba(255,255,255,.22) 0%,rgba(225,234,245,.075) 48%,rgba(255,255,255,.12) 100%)!important;
-  border:1px solid rgba(255,255,255,.52)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(255,255,255,.12),0 16px 44px rgba(5,13,18,.18)!important;
-  -webkit-backdrop-filter:blur(26px) saturate(185%) brightness(1.08);
-  backdrop-filter:blur(26px) saturate(185%) brightness(1.08);
-}
-.tt-home-page .tt-site-header.is-scrolled .tt-nav{
-  background:rgba(255,255,255,.78)!important;
-  border-color:rgba(255,255,255,.76)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 12px 34px rgba(15,20,24,.1)!important;
-  -webkit-backdrop-filter:blur(25px) saturate(180%);
-  backdrop-filter:blur(25px) saturate(180%);
-}
-.dark .tt-home-page .tt-site-header.is-scrolled .tt-nav{
-  background:rgba(31,33,35,.72)!important;
-  border-color:rgba(255,255,255,.22)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 12px 36px rgba(0,0,0,.22)!important;
-}
-.tt-home .tt-hero-feature{
-  border-radius:18px!important;
-  overflow:hidden;
-  background:linear-gradient(130deg,rgba(255,255,255,.26),rgba(232,240,247,.10) 51%,rgba(15,22,29,.32))!important;
-  border:1px solid rgba(255,255,255,.55)!important;
-  -webkit-backdrop-filter:blur(30px) saturate(195%) brightness(1.07);
-  backdrop-filter:blur(30px) saturate(195%) brightness(1.07);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.56),inset 0 -1px 0 rgba(255,255,255,.09),0 17px 35px rgba(0,0,0,.22)!important;
-  text-shadow:0 1px 4px rgba(4,8,12,.38);
-}
-.tt-home .tt-hero-feature::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(160deg,rgba(255,255,255,.12),transparent 44%,rgba(255,255,255,.055) 100%);
-}
-.tt-home .tt-hero-feature:hover{background:linear-gradient(125deg,rgba(255,255,255,.31),rgba(240,245,250,.15) 50%,rgba(15,22,29,.22))!important}
-.tt-home .tt-hero-controls{
-  background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(24,29,35,.40))!important;
-  border:1px solid rgba(255,255,255,.50)!important;
-  border-radius:18px!important;
-  -webkit-backdrop-filter:blur(28px) saturate(190%);
-  backdrop-filter:blur(28px) saturate(190%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 12px 34px rgba(0,0,0,.20);
-}
-.tt-home .tt-pill-glass{
-  background:linear-gradient(135deg,rgba(255,255,255,.24),rgba(255,255,255,.09) 50%,rgba(10,16,21,.23))!important;
-  border:1px solid rgba(255,255,255,.61)!important;
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  backdrop-filter:blur(24px) saturate(180%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.43),0 9px 20px rgba(0,0,0,.14);
-  text-shadow:0 1px 3px rgba(0,0,0,.42);
-}
-.tt-home .tt-pill-light{
-  background:linear-gradient(140deg,rgba(255,255,255,.98),rgba(244,250,254,.86))!important;
-  -webkit-backdrop-filter:blur(18px) saturate(150%);
-  backdrop-filter:blur(18px) saturate(150%);
-  box-shadow:inset 0 1px 0 #fff,0 10px 24px rgba(0,0,0,.15);
-}
-@supports not ((-webkit-backdrop-filter:blur(10px)) or (backdrop-filter:blur(10px))){
-  .tt-home-page .tt-site-header:not(.is-scrolled) .tt-nav{background:rgba(25,32,38,.86)!important}
-  .tt-home .tt-hero-feature,.tt-home .tt-hero-controls,.tt-home .tt-pill-glass{background:rgba(26,31,36,.88)!important}
-}
-
 /* Search: immediately visible feedback, not results hidden a screen away. */
 .tt-search-page .tt-page-header{margin:.45rem auto 1.35rem!important;max-width:850px!important}
 .tt-search-page .tt-page-header h1{font-size:clamp(2.65rem,5.3vw,4.65rem)!important;margin:.35rem 0 .6rem!important;line-height:1.1!important}
@@ -865,8 +801,4 @@ body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-logo-inverse{display:
  .tt-search-live-header{align-items:flex-start}
  .tt-search-jump{font-size:.76rem}
  .tt-search-quick-card img{height:54px;width:64px;flex-basis:64px}
-}
-@media(prefers-reduced-transparency:reduce){
- .tt-home-page .tt-site-header:not(.is-scrolled) .tt-nav{background:rgba(25,32,38,.90)!important}
- .tt-home .tt-hero-feature,.tt-home .tt-hero-controls,.tt-home .tt-pill-glass{background:rgba(24,28,32,.9)!important}
 }
