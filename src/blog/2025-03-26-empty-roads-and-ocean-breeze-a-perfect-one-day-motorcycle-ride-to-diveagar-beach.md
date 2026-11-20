@@ -4,10 +4,7 @@ featured: false
 date: 2024-09-24T05:45:00.000Z
 title: "Empty Roads and Ocean Breeze: A Perfect One-Day Motorcycle Ride to
   Diveagar Beach"
-description: Experience the ultimate coastal escape on a motorcycle journey from
-  Pune to Diveagar Beach, featuring empty roads, stunning landscapes, and
-  delicious seafood. This comprehensive guide shows how to plan the perfect
-  one-day beach trip through Maharashtra's most scenic routes.
+description: "A one-day ride from Pune to Diveagar Beach on Ganpati Visarjan day, with unexpectedly quiet roads, coastal scenery and a memorable food stop."
 author: aniket
 destination: Diveagar Beach
 coordinates:
