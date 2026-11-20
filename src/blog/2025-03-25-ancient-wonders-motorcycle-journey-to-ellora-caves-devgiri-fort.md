@@ -181,7 +181,7 @@ This February, that childhood dream transformed into reality as two fellow rider
 
 ### The Highway Ride
 
-We kickstarted our journey from Pune at approximately 6:45 AM, with the cool morning air providing perfect riding conditions. The 230-kilometer route to Sambhaji Nagar took us through Shikrapur, Shirur, Ahilya Nagar, and past the famous Shani Shingnapur temple. The smooth highways allowed us to maintain a comfortable cruising speed between 80-100 kmph, occasionally touching 125 kmph on open stretches.
+We set off from Pune at approximately 6:45 AM, with the cool morning air providing perfect riding conditions. The 230-kilometer route to Sambhaji Nagar took us through Shikrapur, Shirur, Ahilya Nagar, and past the famous Shani Shingnapur temple. The smooth highways allowed us to maintain a comfortable cruising speed between 80-100 kmph, occasionally touching 125 kmph on open stretches.
 
 We took several short breaks for hydration, tea, and stretching, making the journey enjoyable rather than exhausting. The Scrambler 400X handled the highway brilliantly, offering a comfortable riding position even after hours in the saddle. By noon, we reached Sambhaji Nagar, making good time despite our relaxed pace.
 
@@ -191,7 +191,7 @@ We took several short breaks for hydration, tea, and stretching, making the jour
 
 After checking in, we enjoyed a satisfying lunch at the hotel restaurant before taking a short but essential power nap to rejuvenate ourselves for the afternoon exploration.
 
-### Ellora Caves: Confronting Magnificence
+### Arriving at Ellora Caves
 
 By 3:30 PM, we were at the Ellora Caves complex, approximately 30 kilometers from our hotel. On the way, we passed Devgiri Fort (another historical gem we'd save for day 2) but remained focused on our primary destination. The afternoon timing proved strategic—the tourist crowds had thinned considerably, allowing us a more intimate experience with these ancient wonders.
 
@@ -249,7 +249,7 @@ By 3:30 PM, we were at the Ellora Caves complex, approximately 30 kilometers fro
   * ₹600 per person for other foreign tourists
   * ₹25 for video camera usage
 
-#### The Magnificent Kailasa Temple (Cave 16)
+#### Kailasa Temple (Cave 16)
 
 We made a beeline for Cave 16—the iconic Kailasa Temple—the largest monolithic rock-cut temple in the world. As I stood before this colossal structure, emotions flooded through me. The textbook image that had captivated my young mind decades ago was now before me in its full, three-dimensional grandeur.
 
