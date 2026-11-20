@@ -3,11 +3,7 @@ draft: false
 featured: true
 date: 2024-06-01T06:04:00.000Z
 title: "Exploring Kolhapur & Khidrapur's Ancient Temples : Two-Day Motorcycle Journey"
-description: Experience our 650km adventure on a Triumph Scrambler 400X through
-  Maharashtra's historic sites, from Kolhapur's majestic Mahalakshmi Temple to
-  the ancient Khidrapur Kopeshwar Temple, featuring stunning architecture,
-  unexpected detours, and the joys of traveling as a couple on our first
-  motorcycle journey together.
+description: "Our first two-day motorcycle journey together took us from Pune to Kolhapur and Khidrapur for ancient temples, unexpected detours and time on the road."
 author: aniket
 destination: Kolhapur & Khidrapur
 coordinates:
@@ -31,8 +27,7 @@ tags:
   - roadside-stop
   - first-time-experience
 featuredImage: /assets/images/khidrapur-kopeshwar-temple-swargamandapa.jpg
-imageAlt: Kopeshwar temple Swargamandapa and it's open top. We can see the
-  surrounding trees and sky with pre-mansoon clouds.
+imageAlt: Kopeshwar Temple's open-roofed Swargamandapa, with surrounding trees and clouds visible through the opening.
 imageCredit: Gauri
 imageCreditLink: https://www.instagram.com/gaurid2009
 thumbnailImage: /assets/images/khidrapur-kopeshwar-temple-swargamandapa-thumb.jpg
