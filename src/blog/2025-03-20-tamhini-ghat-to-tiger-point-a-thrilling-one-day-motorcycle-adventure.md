@@ -114,7 +114,7 @@ Six of us set off from Pune before seven in the morning, bound for Tamhini Ghat 
 
 ## The Gathering and Early Morning Departure
 
-Our adventure began at the crack of dawn, with six riders astride equally divided Triumph motorcycles—three Speed 400s and three Scrambler 400X models. At 6:45 AM on a crisp November morning, we set out from Pune, the air still carrying the chill of dawn.
+Our group had six Triumphs: three Speed 400s and three Scrambler 400Xs. At 6:45 AM on a crisp November morning, we set out from Pune, the air still carrying the chill of dawn.
 
 The early start was intentional, allowing us to cover significant distance before the day heated up. As experienced riders know, you don't feel the heat while riding, but you certainly feel the cold. Despite this, it's crucial to stay hydrated as the body loses water even when you don't feel thirsty—a simple but vital riding tip that becomes especially important on longer journeys.
 
@@ -124,7 +124,7 @@ The early start was intentional, allowing us to cover significant distance befor
 
 The road conditions from Pune to Tamhini were excellent, allowing us to maintain a good pace. Tamhini Ghat itself was in prime condition—a motorcyclist's dream with its smooth tarmac and sweeping curves. This section became one of the highlights of our trip, as we leaned into corners and enjoyed the rhythmic flow of the ghat road.
 
-A significant turning point in our journey came at Paratewadi Village in Tamhini Ghat. Here, we deviated from the main route, heading toward what would become a more adventurous section of our ride. We stopped at the parking area of Savlya Ghat in Paratewadi, where the view was nothing short of breathtaking. The panoramic vista of the ghats stretching into the distance was so captivating that I made a mental note to return and explore Savlya Ghat more thoroughly in the future.
+We took a different turn at Paratewadi village in Tamhini Ghat. Here, we deviated from the main route, heading toward what would become a more adventurous section of our ride. We stopped at the parking area of Savlya Ghat in Paratewadi, where the view was nothing short of breathtaking. The panoramic vista of the ghats stretching into the distance was so captivating that I made a mental note to return and explore Savlya Ghat more thoroughly in the future.
 
 ## Off-Road Adventures and Scenic Detours
 
