@@ -7,6 +7,7 @@ pagination:
 permalink: "{% if category.slug %}categories/{{ category.slug }}/{% endif %}"
 eleventyComputed:
   title: "{{ category.title }} Adventures | Travelling Trails"
+  description: "Browse {{ category.count }} Travelling Trails stories about {{ category.title | lower }}, with personal experiences, photographs and travel notes."
 ---
 <div class="tt-category-page">
   <header class="tt-page-header">
