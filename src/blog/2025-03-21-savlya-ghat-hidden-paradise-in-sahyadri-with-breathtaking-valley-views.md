@@ -3,10 +3,7 @@ draft: false
 featured: true
 date: 2024-11-16T08:17:00.000Z
 title: "Savlya Ghat: Hidden Paradise in Sahyadri with Breathtaking Valley Views"
-description: Discover Savlya Ghat, a hidden gem in Maharashtra's Sahyadri range
-  offering panoramic views of Kundalika Valley, Bhira Dam, and surrounding
-  waterfalls. Perfect for motorcyclists and trekkers seeking serene landscapes
-  just a short trek from Tamhini Ghat via Paratewadi village.
+description: "A visit to Savlya Ghat for views of Kundalika Valley and Bhira Dam, with a short trek from Paratewadi and a destination that surprised me."
 author: aniket
 destination: "Savlya Ghat, Tamhini, Maharashtra, India "
 coordinates:
