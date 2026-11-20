@@ -79,9 +79,9 @@ layout: article.njk
 ---
 On Ganpati Visarjan day, September 18, 2024, a friend and I rode from Pune to Diveagar Beach. We'd picked the day partly because we thought the roads might be quieter while much of the city was busy with the festival. We were right—far more right than I expected. Even the cattle resting on the road seemed to have plenty of space to themselves.
 
-## The Perfect Timing: Riding on Ganpati Visarjan Day
+## Why the Roads Were So Quiet
 
-Our decision to ride on Ganpati Visarjan day proved to be a stroke of genius. We had speculated that the roads would be relatively empty as most people would be occupied with the festivities—and we couldn't have been more right. In all my years of riding, I've never experienced such gloriously empty roads. Even the cattle lounging on the roads seemed puzzled by the unusual lack of traffic!
+We hoped the festival would mean lighter traffic, and that was exactly what we found. We had speculated that the roads would be relatively empty as most people would be occupied with the festivities—and we couldn't have been more right. In all my years of riding, I've never experienced such gloriously empty roads. Even the cattle lounging on the roads seemed puzzled by the unusual lack of traffic!
 
 This fortuitous timing allowed us to maintain a consistent cruising speed of 80-100 kmph, barely touching our brakes except for the occasional tea break or to navigate around those bewildered cattle. The result was not just a smooth journey but also exceptional fuel efficiency—both our motorcycles (my Triumph Scrambler 400X and my friend's RE Scram 411) delivered an impressive 40+ kmpl, far exceeding our expectations.
 
