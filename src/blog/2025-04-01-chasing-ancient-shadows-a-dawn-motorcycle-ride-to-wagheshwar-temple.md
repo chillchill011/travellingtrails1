@@ -190,7 +190,7 @@ After spending about 40 minutes at the temple and engaging in an impromptu stone
 
 At Javan village, our paths diverged—our Chandkhed-based companion headed home while my remaining riding partner and I continued via Paud. This route offered superior road conditions and less traffic, winding through familiar Tamhini mountain landscapes. After passing through Paud, the final stretch back to Pune felt almost effortless despite growing heat, our minds still processing the morning's discoveries.
 
-## Practical Tips for Fellow Temple Seekers
+## What to Know Before Visiting
 
 If you're inspired to undertake your own pilgrimage to the submerged temple, here are some practical recommendations based on our experience:
 
