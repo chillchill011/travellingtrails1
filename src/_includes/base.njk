@@ -458,7 +458,7 @@
     {% include "footer.njk" %}
 
     <!-- Scripts -->
-    <script src="{{ '/assets/js/main.js' | url }}"></script>
+    <script src="{{ '/assets/js/main.js' | url }}?v=2"></script>
     <script src="{{ '/assets/js/navigation.js' | url }}"></script>
     {% if page.url == "/search/" %}
     <script defer src="{{ '/assets/js/search.js' | url }}?v=2"></script>
@@ -494,10 +494,10 @@
 
 
 
-  <!-- Add this just before the closing body tag -->
-  {% if page.url.includes("/blog/") and not page.url.endsWith("/blog/") %}
-  <script src="{{ '/assets/js/analytics-enhancement.js' | url }}"></script>
-  {% endif %}  
+  {# GA4 custom events are distinct from automatic page views, scrolls and form submits. #}
+  {% if site.analyticsId and not site.isPreview and site.url == "https://travellingtrails.in" %}
+  <script defer src="{{ '/assets/js/analytics-events.js' | url }}?v=1"></script>
+  {% endif %}
 
   {# Original brand images switch via CSS with the scroll-responsive header #}
 
