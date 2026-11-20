@@ -564,3 +564,24 @@ body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-logo-inverse{display:
  .tt-card-eyebrow{font-size:.72rem}
  .tt-section-aside p{font-size:.92rem}
 }
+
+
+/* Final small-type checks for navigation, story labels, metadata and mobile. */
+.tt-card-featured{font-size:.73rem;letter-spacing:.055em}
+.tt-hero-feature>span:first-child{font-size:.76rem;letter-spacing:.1em;opacity:.96}
+.tt-hero-counter{font-size:.78rem}
+.tt-destination-label small,.tt-destination-collection-caption small{font-size:.75rem;letter-spacing:.075em}
+.tt-article .tt-article-cover-content .tt-eyebrow{white-space:normal}
+.tt-article .prose h2,.tt-article .prose h3{letter-spacing:-.02em}
+.tt-article .prose li{line-height:1.8}
+.tt-article .tt-trip-overview .text-gray-600,.tt-article .tt-article-author .text-gray-600{color:#50575c}
+.dark .tt-article .tt-trip-overview .text-gray-600,.dark .tt-article .tt-article-author .text-gray-600{color:#d1d0cd}
+@media(min-width:801px) and (max-width:1080px){.tt-nav-links a{font-size:.755rem}}
+@media(max-width:580px){
+ .tt-hero-overline{font-size:.72rem;letter-spacing:.11em}
+ .tt-destination-label small{font-size:.68rem}
+ .tt-article .tt-article-cover-content .tt-eyebrow{font-size:.72rem}
+ .tt-article .tt-article-cover-content .tt-article-meta{font-size:.78rem}
+ .tt-article .tt-article-author{flex-direction:column}
+ .tt-article .tt-article-author img{margin-right:0}
+}
