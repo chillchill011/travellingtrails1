@@ -3,11 +3,7 @@ draft: false
 featured: false
 date: 2025-03-29T05:45:00.000Z
 title: "Chasing Ancient Shadows: A Dawn Motorcycle Ride to Wagheshwar Temple"
-description: Experience a thrilling early morning motorcycle adventure to the
-  ancient Wagheshwar Temple, normally submerged underwater in Pawana Dam.
-  Discover this Chalukya-era relic amid stunning landscapes of Tikona Fort and
-  Sahyadri mountains, with practical tips for finding this hidden historical
-  treasure.
+description: "An early motorcycle ride to Wagheshwar Temple near Pawana Dam, where a usually submerged shrine reappears amid the Sahyadri hills."
 author: aniket
 destination: Wagheshwar Temple, Pawana Dam
 coordinates:
