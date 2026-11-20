@@ -3,11 +3,7 @@ draft: false
 featured: true
 date: 2025-02-21T06:45:00.000Z
 title: "Ancient Wonders: Motorcycle Journey to Ellora Caves & Devgiri Fort"
-description: Experience an exhilarating two-day motorcycle ride from Pune to the
-  UNESCO World Heritage Ellora Caves and majestic Devgiri Fort in Sambhaji
-  Nagar. Discover the awe-inspiring Kailasa Temple carved from a single rock,
-  explore ancient Buddhist and Jain caves, and witness the engineering marvel of
-  medieval fortifications while riding through Maharashtra's scenic highways.
+description: "Two days riding from Pune to Ellora Caves and Devgiri Fort, exploring the Kailasa Temple, ancient carvings and the history of Sambhaji Nagar."
 author: aniket
 destination: Ellora Caves & Devgiri Fort, Sambhaji Nagar
 coordinates:
