@@ -172,7 +172,7 @@ Given the ghat conditions and potential for landslides (warning signs are posted
 
 Perhaps most importantly, there is no network connectivity between Panshet and Gunjavne Dam, and human presence in the area is minimal. While there are scattered farmhouses, the region is largely isolated. This makes group riding essential for safety, as assistance would be difficult to obtain in case of emergency.
 
-## Conclusion: Short Distance, Long on Experience
+## What Stayed with Me
 
 This 110 km breakfast ride packed an impressive amount of discovery and enjoyment into a morning. Beyond the spectacular views and riding enjoyment, the journey offered valuable opportunities to meet new people, share experiences, and visit locations I had previously only seen from afar.
 
