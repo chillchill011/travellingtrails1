@@ -3,11 +3,7 @@ draft: false
 featured: false
 date: 2025-04-06T06:00:00.000Z
 title: "Kadve Ghat Expedition: Discovering Three Marvels in One Motorcycle Journey"
-description: Experience an exhilarating motorcycle journey to Kadve Ghat
-  revealing panoramic views of Torna and Rajgad forts alongside serene Gunjavne
-  Dam. This 110km breakfast ride through Maharashtra's twisty roads offers
-  perfect early morning adventure with practical tips for riders seeking offbeat
-  destinations near Pune.
+description: "A breakfast ride to Kadve Ghat brought Torna and Rajgad forts into the same view, with Gunjavne Dam and familiar roads taking on a new perspective."
 author: aniket
 destination: Kadve Ghat
 coordinates:
