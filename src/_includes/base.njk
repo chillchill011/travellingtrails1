@@ -51,7 +51,7 @@
 
     {{ faviconMeta() }}
 
-    {% if site.analyticsId and site.url == "https://travellingtrails.in" %}
+    {% if site.analyticsId and not site.isPreview and site.url == "https://travellingtrails.in" %}
       {{ googleAnalytics(site.analyticsId) }}
     {% endif %}
 
