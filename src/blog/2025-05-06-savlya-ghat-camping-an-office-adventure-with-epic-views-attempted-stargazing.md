@@ -5,9 +5,7 @@ date: 2025-04-27T23:12:00.000Z
 lastModified: 2025-05-06T16:54:00.000Z
 title: "Savlya Ghat Camping: An Office Adventure with Epic Views & Attempted
   Stargazing"
-description: Discover Savlya Ghat near Tamhini on our office camping adventure!
-  Read about the trek, breathtaking Sahyadri views, challenges of night camping,
-  team bonding, and our mixed success with stargazing.
+description: "An office camping trip to Savlya Ghat mixed familiar views, good company and a stargazing plan that didn't quite work out as expected."
 author: aniket
 destination: "Savlya Ghat, Tamhini, Maharashtra, India "
 coordinates:
