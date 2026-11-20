@@ -114,7 +114,7 @@ Our rendezvous point was near Chandni Chowk in Pune. Sixteen enthusiastic collea
 
 We set off around 3:30 PM, heading towards Tamhini Ghat. The traffic was manageable, and within an hour, we neared Nivhe Village. A quick regroup and tea break at [Hotel Jai Malhar](https://maps.app.goo.gl/oZynwMxr6n4HAgKX8), just before the turn-off from the main Tamhini road, revitalized us for the final leg to our base. By 5:30 PM, we reached [Paratewadi](https://maps.app.goo.gl/RqkbG3XJix6ianJN6) and parked near our starting point, the Devkund View Hotel & Home Stay. After a quick freshen-up, we wasted no time starting the trek towards the Savlya Ghat viewpoint. Our immediate goal: reach the spot before sunset to familiarize ourselves with the surroundings and soak in the initial views.
 
-### The Uphill Battle (Literally!)
+### Carrying the Gear Up the Trail
 
 The trek itself is generally considered beginner-friendly, usually taking about 40 minutes. However, our journey clocked in closer to 90 minutes. Why the delay? Supplies. We were hauling three massive 18-litre water cans – a decision that prompted much laughter later – along with snacks, five tents, our personal backpacks, torches, a hefty solar-powered light for backup, Odomos to fend off mosquitoes, and a necessary medical kit. Descending one hill and ascending another, laden with gear, tested our endurance but fueled our anticipation.
 
@@ -135,7 +135,7 @@ The trek itself is generally considered beginner-friendly, usually taking about 
   </figure>
 </div>
 
-### An Amphitheater of Valleys
+### The View from the Ridge
 
 Reaching the [viewpoint](https://maps.app.goo.gl/556Fx5AWFFwb4ofMA) just as the light began to fade was worth every drop of sweat. Savlya Ghat isn't a vast plateau; it's a relatively small rock outcrop, protruding boldly from the hillside, yet easily capable of accommodating around 50 people. It commands a truly spectacular position, acting as a natural balcony overlooking an amphitheater of three valleys.
 
@@ -197,7 +197,7 @@ As the first hints of light painted the eastern sky around 5:30 AM, the rest of 
 
 By 8:30 AM, we were back at the parking area in Paratewadi, ready for the drive home. We stopped en route for breakfast at [Hotel Sharda Pure Veg](https://maps.app.goo.gl/7biVLvtNrJsJTGYq8), but unfortunately, the experience wasn't great – both food quality and service left something to be desired, and it's not a place I'd readily recommend. Thankfully, the drive back to the office near Chandni Chowk was smooth, with minimal traffic, taking just about an hour.
 
-### Reflections on a Rewarding Escape
+### What Worked and What Didn't
 
 The trip was tiring, and our stargazing plans didn't work out quite as we'd hoped. Still, the evening together, the early morning at the viewpoint and the chance to spend time with colleagues outside the office made it worthwhile.
 
