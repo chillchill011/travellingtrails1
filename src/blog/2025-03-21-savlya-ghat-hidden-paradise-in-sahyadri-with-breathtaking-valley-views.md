@@ -104,7 +104,7 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-There are journeys where the destination surpasses the ride, and my recent adventure to Savlya Ghat was precisely that kind of experience. While I typically find more joy in the journey than the destination, this hidden gem in Maharashtra's Sahyadri range captivated my heart in unexpected ways.
+I usually remember a motorcycle ride for the roads, but Savlya Ghat surprised me for a different reason. We had squeezed in a short detour before an office outing, and I had no idea what waited beyond the parking area at Paratewadi. The walk down to the viewpoint changed the focus of the whole morning.
 
 ## An Impromptu Adventure
 
@@ -175,4 +175,4 @@ As someone who typically finds more joy in the journey than the destination, Sav
 
 The combination of a smooth motorcycle ride through Tamhini Ghat followed by a moderate trek leading to such a spectacular reward makes this journey particularly satisfying. Whether you're a photography enthusiast, nature lover, trekker, or motorcycle tourer looking to discover Maharashtra's hidden gems, Savlya Ghat deserves a place on your must-visit list.
 
-As we rode back toward Jalbaug Resort to join our office colleagues, I carried with me not just photographs but a mental image of those valleys and cliffs that would stay with me far longer than the soreness in my legs. In the crowded landscape of Western Ghat destinations, Savlya Ghat stands out as a peaceful plateau of perfection, waiting to be discovered by those willing to make the descent.
+As we rode back toward Jalbaug Resort to join our office colleagues, I carried with me not just photographs but a mental image of those valleys and cliffs that would stay with me far longer than the soreness in my legs. The view at the end of the descent is still the part of that morning I remember most. I'd happily make the walk again.
