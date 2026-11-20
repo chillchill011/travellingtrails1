@@ -86,15 +86,13 @@ isArticle: true
     {% endif %}
 
     <!-- Share Buttons Section -->
-    <div class="share-buttons-container mt-6 mb-8">
-        <div class="flex flex-wrap gap-2 md:gap-3">
-            {{ shareButtonsComponent(title, page.url, description, "travellingtrails,travel") }}
-        </div>
-    </div>
+    <section class="tt-article-share" aria-label="Share this article">
+        {{ shareButtonsComponent(title, page.url, description, "travellingtrails,travel") }}
+    </section>
 
     <!-- Author Bio Section -->
     {% if author %}
-    <div class="author-bio bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-12 flex items-start">
+    <div class="author-bio tt-article-author bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-12 flex items-start">
         {% if authors[author] and authors[author].avatar %}
             <img src="{{ authors[author].avatar | url }}" alt="{{ authors[author].name }}" class="w-16 h-16 rounded-full mr-4 flex-shrink-0">
         {% else %}
@@ -167,7 +165,7 @@ isArticle: true
 
     <!-- Travel Info Box (if applicable) -->
     {% if destination or duration or travelType %}
-    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8 shadow-sm">
+    <div class="tt-trip-overview bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8 shadow-sm">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Trip Overview</h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
