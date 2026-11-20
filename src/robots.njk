@@ -5,7 +5,7 @@ eleventyExcludeFromCollections: true
 # www.robotstxt.org
 
 User-agent: *
-{% if site.url == "https://travellingtrails.in" %}
+{% if not site.isPreview and site.url == "https://travellingtrails.in" %}
 Allow: /
 Sitemap: {{ site.url }}/sitemap.xml
 {% else %}
