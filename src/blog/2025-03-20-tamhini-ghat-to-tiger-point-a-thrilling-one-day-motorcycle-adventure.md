@@ -110,7 +110,7 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-The call of the open road is irresistible to any motorcycle enthusiast, especially when that road winds through the Western Ghats of Maharashtra. Recently, I embarked on an unforgettable one-day ride that took us from Pune to Tamhini Ghat, then onward to Tiger Point in Lonavla via Aamby Valley, before returning via the old Pune-Mumbai Highway. This approximately 170-kilometer journey offered everything a rider could ask for—challenging terrain, breathtaking views, and the companionship of like-minded enthusiasts.
+Six of us set off from Pune before seven in the morning, bound for Tamhini Ghat and then Tiger Point via Aamby Valley. The roughly 170-kilometre loop sounded straightforward on paper. In practice, the switch from smooth ghat curves to rougher tracks—and the company of five other riders—made it a day worth writing about.
 
 ## The Gathering and Early Morning Departure
 
@@ -175,4 +175,4 @@ Beyond the riding itself, the day was enriched by the camaraderie among our grou
 
 For anyone with a capable motorcycle and a free day, this route offers an accessible adventure that delivers the perfect balance of challenge and enjoyment. The early start and efficient route planning allowed us to complete the journey and return home by mid-afternoon, making it an ideal weekend escape without extending into the night.
 
-As I parked my Triumph at the end of the day, I was already planning when I could return to further explore Savlya Ghat and perhaps venture deeper into the areas we had only briefly visited. That's the beauty of motorcycling—each journey ends with the promise of another adventure waiting just around the corner.
+By the time I parked the Triumph at home, I already had one reason to do part of the route again: Savlya Ghat. We had only stopped briefly, and I wanted to see what we had missed.
