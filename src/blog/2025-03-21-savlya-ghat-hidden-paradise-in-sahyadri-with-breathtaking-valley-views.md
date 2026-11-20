@@ -108,7 +108,7 @@ I usually remember a motorcycle ride for the roads, but Savlya Ghat surprised me
 
 ## An Impromptu Adventure
 
-It began as a spontaneous morning ride on November 16th, 2024. Before our scheduled office trip to Jalbaug Resort, two friends and I decided to squeeze in a quick motorcycle adventure. Our small convoy consisted of three bikes—my Triumph, a Royal Enfield Scram 411, and a Yamaha R15 V3. Little did I know that this impromptu excursion would lead to one of the most memorable views I've experienced in the Western Ghats.
+It began as a spontaneous morning ride on November 16th, 2024. Before our scheduled office trip to Jalbaug Resort, two friends and I decided to squeeze in a quick motorcycle adventure. Our small convoy consisted of three bikes—my Triumph, a Royal Enfield Scram 411, and a Yamaha R15 V3. I hadn't expected this brief detour to stay in my mind so clearly afterward.
 
 ## The Journey to Paratewadi
 
@@ -128,7 +128,7 @@ At the parking area, the owner collected Rs. 50 per motorcycle—a reasonable fe
 
 The descent into the valley took approximately 20 minutes. Though the path wasn't marked with official signage, previous visitors had tied colorful ribbons on tree trunks, creating a makeshift but effective trail marker system. The route involved a series of descents and small ascents before the final descent to reach the plateau of Savlya Ghat.
 
-## The Revelation: Panoramic Bliss
+## Reaching the Viewpoint
 
 Nothing could have prepared me for what awaited us. As we emerged onto the plateau, a panoramic vista unfolded before my eyes—an expansive view that seemed to encompass the entirety of this section of the Sahyadri range.
 
