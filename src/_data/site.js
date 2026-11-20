@@ -1,7 +1,10 @@
 // src/_data/site.js
 module.exports = {
   title: "Travelling Trails",
-  description: "Discover amazing travel stories and adventures from around the world. Travel tips, guides, and inspiration for your next journey.",
+  description: "First-person motorcycle rides, weekend escapes and honest travel stories from Maharashtra, with photographs, route notes and moments worth remembering.",
+  socialImage: "/assets/images/logo.png",
+  socialImageAlt: "Travelling Trails logo",
+  isPreview: ["deploy-preview", "branch-deploy"].includes(process.env.CONTEXT || ""),
   url: process.env.ELEVENTY_ENV === "production" 
     ? "https://travellingtrails.in"
     : "http://localhost:8080",
