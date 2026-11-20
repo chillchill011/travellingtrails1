@@ -3,9 +3,7 @@ draft: false
 featured: false
 date: 2025-04-20T17:13:00.000Z
 title: A Triumph Breakfast Ride to Mahabaleshwar & Mapro Garden
-description: Join my first exhilarating group ride with Triumph Riders Pune
-  (TRP) to Mahabaleshwar! Experience the thunder of diverse Triumphs, highway
-  cruising, Khambatki Ghat twisties, and a memorable breakfast at Mapro Garden.
+description: "My first group ride with Triumph Riders Pune led to Mahabaleshwar, Khambatki Ghat and a well-earned breakfast stop at Mapro Garden."
 author: aniket
 destination: Mahabaleshwar, India
 coordinates:
