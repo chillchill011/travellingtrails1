@@ -3,15 +3,7 @@ draft: false
 featured: false
 date: 2025-03-29T23:41:00.000Z
 title: "Night Rides Through Pune: A Nocturnal Chronicle"
-description: Experience Pune's captivating transformation after dark through
-  this nocturnal motorcycle journey. As streetlights illuminate the urban
-  landscape, the city reveals its alternative personality—where daytime chaos
-  gives way to serene thoroughfares and unexpected pockets of activity. This
-  nighttime exploration captures the essence of Maharashtra's cultural capital
-  when most residents sleep, offering a unique perspective on familiar landmarks
-  bathed in the glow of artificial light. Perfect for night owls and urban
-  adventurers seeking to discover the hidden rhythms of Pune's after-hours
-  atmosphere.
+description: "Pune looks different after dark. I took to familiar streets on short motorcycle rides to discover a quieter side of the city and its nighttime atmosphere."
 author: aniket
 destination: Pune
 coordinates:
