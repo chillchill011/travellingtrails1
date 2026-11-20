@@ -438,7 +438,7 @@
       </style>
 
     <!-- Travelling Trails Design System 2.0: shared visual language -->
-    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=9">
+    <link rel="stylesheet" href="{{ '/styles/modern-explorer.css' | url }}?v=10">
 </head>
 <body class="min-h-screen tt-page{% if page.url == '/' %} tt-home-page{% endif %}{% if isArticle %} tt-article-page{% endif %}">
     {# Add navigation enhancements at the start of body #}
@@ -447,7 +447,8 @@
     {% include "header.njk" %}
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {% if not isArticle and page.url !== "/" and page.url !== "/about/" and page.url !== "/contact/" %}
+        {# Breadcrumb navigation only on the Journal landing page. Individual stories have their own compact trail. #}
+        {% if page.url == "/blog/" %}
         <div class="tt-breadcrumb-shell">
             {{ breadcrumb(page, title, category.title) }}
         </div>
@@ -461,7 +462,7 @@
     <script src="{{ '/assets/js/main.js' | url }}?v=2"></script>
     <script src="{{ '/assets/js/navigation.js' | url }}"></script>
     {% if page.url == "/search/" %}
-    <script defer src="{{ '/assets/js/search.js' | url }}?v=3"></script>
+    <script defer src="{{ '/assets/js/search.js' | url }}?v=4"></script>
     {% endif %}
     <script src="{{ '/assets/js/toc.js' | url }}"></script>
     

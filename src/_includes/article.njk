@@ -16,8 +16,11 @@ isArticle: true
     <span class="tt-article-cover-shade" aria-hidden="true"></span>
   {% endif %}
   <header class="tt-article-header{% if featuredImage %} tt-article-cover-content{% endif %}">
-
-    <p class="tt-eyebrow">Travelling Trails / The Journal</p>
+    <nav class="tt-article-trail" aria-label="Breadcrumb">
+      <a href="{{ '/' | url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{ '/blog/' | url }}">Journal</a>
+    </nav>
     <h1>{{ title }}</h1>
     {% if description %}<p class="tt-article-lead">{{ description }}</p>{% endif %}
     <div class="tt-article-meta">

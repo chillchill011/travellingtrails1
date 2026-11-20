@@ -755,3 +755,50 @@ body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-logo-inverse{display:
 .tt-contact-card .tt-form-contact-note{margin-top:1.25rem}
 .tt-newsletter .tt-form-contact-note{grid-column:1/-1}
 @media(max-width:580px){.tt-form-contact-note{font-size:.78rem}}
+
+
+/* Search: immediately visible feedback, not results hidden a screen away. */
+.tt-search-page .tt-page-header{margin:.45rem auto 1.35rem!important;max-width:850px!important}
+.tt-search-page .tt-page-header h1{font-size:clamp(2.65rem,5.3vw,4.65rem)!important;margin:.35rem 0 .6rem!important;line-height:1.1!important}
+.tt-search-page .tt-page-header p:not(.tt-eyebrow){font-size:.96rem!important;line-height:1.65!important}
+.tt-search-page .tt-search-panel{padding:clamp(1rem,2.4vw,1.65rem)!important}
+.tt-search-page .tt-search-help{margin:.55rem 0 1.05rem!important}
+.tt-search-page .tt-search-results-section{padding:clamp(1.8rem,3vw,2.7rem) 0 4rem!important;scroll-margin-top:110px}
+.tt-search-live{margin:0 0 1.15rem;background:rgba(255,255,255,.82);border:1px solid #dce4e8;border-radius:12px;padding:.75rem;box-shadow:0 8px 25px rgba(22,37,45,.06)}
+.tt-search-live[hidden],.tt-search-jump[hidden]{display:none!important}
+.tt-search-live-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0 0 .5rem;padding:0 .25rem}
+.tt-search-live-summary{font-size:.83rem;font-weight:800;line-height:1.4;color:var(--tt-night);margin:0}
+.tt-search-jump{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .1rem;border:0;background:transparent;color:#285d7b;font-size:.78rem;font-weight:800;cursor:pointer;white-space:nowrap;text-underline-offset:3px}
+.tt-search-jump:hover{text-decoration:underline}
+.tt-search-jump:focus-visible{outline:2px solid #2d8cbc;outline-offset:3px;border-radius:4px}
+.tt-search-quick-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
+.tt-search-quick-card{display:flex;align-items:center;min-width:0;gap:.7rem;padding:.55rem;border-radius:9px;background:#f7f9fa;border:1px solid #edf0f2;transition:background .2s,border-color .2s}
+.tt-search-quick-card:hover{background:#edf4f8;border-color:#d1e1ea}
+.tt-search-quick-card img{flex:0 0 68px;width:68px;height:58px;object-fit:cover;border-radius:6px}
+.tt-search-quick-copy{display:flex;flex:1;flex-direction:column;gap:.2rem;min-width:0}
+.tt-search-quick-copy strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--tt-night);font-size:.8rem;line-height:1.36;font-weight:700;overflow-wrap:anywhere}
+.tt-search-quick-copy small{font-size:.71rem;color:var(--tt-muted);line-height:1.3}
+.tt-search-quick-arrow{flex:0 0 auto;font-size:1.4rem;line-height:1;color:#376782}
+.tt-search-quick-empty{padding:.8rem .4rem;color:var(--tt-muted);font-size:.86rem}
+.dark .tt-search-live{background:rgba(31,32,34,.92);border-color:#51565a}
+.dark .tt-search-live-summary,.dark .tt-search-quick-copy strong{color:#f5f3ee}
+.dark .tt-search-quick-card{background:#292c2e;border-color:#43484b}
+.dark .tt-search-quick-card:hover{background:#34383c}
+.dark .tt-search-jump,.dark .tt-search-quick-arrow{color:#9ed4f0}
+.dark .tt-search-quick-copy small{color:#c9cecf}
+
+/* Breadcrumbs retained only for the Journal archive and individual articles. */
+.tt-article .tt-article-trail{display:flex;align-items:center;justify-content:center;gap:.7rem;margin:0 auto .85rem;font-size:.78rem;line-height:1.5;font-weight:700;letter-spacing:.05em;color:#f7f7f5}
+.tt-article .tt-article-trail a{color:inherit;text-decoration:none;text-underline-offset:3px}
+.tt-article .tt-article-trail a:hover{text-decoration:underline}
+.tt-article .tt-article-header:not(.tt-article-cover-content) .tt-article-trail{color:var(--tt-night)}
+.dark .tt-article .tt-article-header:not(.tt-article-cover-content) .tt-article-trail{color:#f5f3ee}
+@media(max-width:720px){
+ .tt-search-quick-results{grid-template-columns:1fr}
+ .tt-search-page .tt-page-header{margin:.2rem auto 1.15rem!important}
+ .tt-search-page .tt-page-header h1{font-size:clamp(2.6rem,9vw,3.8rem)!important}
+ .tt-search-page .tt-search-panel{padding:1rem!important}
+ .tt-search-live-header{align-items:flex-start}
+ .tt-search-jump{font-size:.76rem}
+ .tt-search-quick-card img{height:54px;width:64px;flex-basis:64px}
+}
