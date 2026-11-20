@@ -107,7 +107,7 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-Raigad Fort has long held a special place in my heart. Memories of visiting during monsoon season as a child with my parents, riding the ropeway to the summit, and exploring the historic fortress have stayed with me over the years. This majestic fort, which served as the capital of the Maratha Empire from 1674, is filled with the echoes of history and the legacy of Chhatrapati Shivaji Maharaj's remarkable fortification engineering.
+I still remember visiting Raigad Fort with my parents during the monsoon: the ropeway ride, the old fortress, and the excitement of being somewhere with so much history. Years later, I wanted to return on my motorcycle. This time the plan was simpler—a solo ride to see Raigad again, even if I didn't have time to go up.
 
 ## Planning a Spontaneous Solo Ride
 
@@ -170,4 +170,4 @@ If you're inspired to visit Raigad Fort, here are some practical tips based on m
 
 This solo motorcycle journey reminded me that sometimes the most fulfilling adventures are those undertaken spontaneously, with an open mind to discover whatever the road presents. While I may not have climbed Raigad Fort this time, the journey has only strengthened my resolve to return—next time, earlier in the day, ready to ascend to the historic heights of the Maratha Empire's capital.
 
-Until then, the memories of winding roads, historical discoveries, and that perfect sunset in Tamhini Ghat will sustain my wanderlust.
+Until I make that return trip, what I'll remember most is the unexpected sunset stop at Tamhini Ghat—and the lesson to leave home a little earlier next time.
