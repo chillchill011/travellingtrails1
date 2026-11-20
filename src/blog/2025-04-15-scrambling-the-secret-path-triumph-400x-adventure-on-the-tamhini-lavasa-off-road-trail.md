@@ -4,9 +4,7 @@ featured: false
 date: 2025-04-12T21:02:00.000Z
 title: "Scrambling the Secret Path: Triumph 400x Adventure on the Tamhini-Lavasa
   Off-Road Trail"
-description: Discover the hidden off-road trail from Tamhini to Lavasa near
-  Pune! A first-hand account of a Triumph Scrambler 400x adventure ride,
-  tackling dusty paths, dry riverbeds, and enjoying unexpected views.
+description: "I took a Triumph Scrambler 400X off-road between Tamhini and Lavasa, testing dusty tracks and dry riverbeds on a ride I'd been curious about for ages."
 author: aniket
 destination: Tamhini Ghat - Lavasa Backroute, Pune, India
 coordinates:
