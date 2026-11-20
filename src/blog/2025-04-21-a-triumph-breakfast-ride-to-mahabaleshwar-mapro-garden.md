@@ -116,9 +116,9 @@ showTableOfContents: true
 tocMinHeadings: 3
 layout: article.njk
 ---
-The rumble of a Triumph engine is something special. Ever since getting my own bike, I'd heard about the Triumph Riders Pune (TRP) group. Joining them for a ride became a goal, a chance to connect with fellow enthusiasts and learn from more seasoned riders piloting the bigger machines – the 1200cc beasts, the versatile 900s, and the sporty 600s, alongside riders on the newer 400cc platform like mine.
+Ever since I bought my Triumph, I'd wanted to ride with the Triumph Riders Pune group. I was curious about the larger bikes, but also about what it would be like to join a well-organised group ride. When a breakfast trip to Mapro Garden in Mahabaleshwar came up, it looked like a good first chance.
 
-These groups often have strict rules, which, while seeming tricky at first, are fundamentally about ensuring everyone's safety. Gearing up properly wasn't an overnight affair; I acquired my safety armour piece by piece over three to four months, building anticipation for that first ride. Finally, the day arrived – a breakfast ride planned for Mahabaleshwar's famous Mapro Garden, with a side trip to Lingmala Waterfall and plenty of photo opportunities pencilled in. The initial plan aimed for roughly 260+ km in about 6 hours, though fate, as it often does on rides, had other ideas.
+The group's safety requirements meant I spent three or four months buying the protective gear I needed. By the time the Mahabaleshwar ride was scheduled, I was ready to join. The plan included breakfast at Mapro Garden and, if time allowed, Lingmala Waterfall. We had roughly six hours in mind; the actual morning would run rather differently.
 
 ### Joining the Thundering Herd
 
@@ -152,4 +152,4 @@ The ride down saw slightly more traffic until we reached the Joshi Vihir turn-of
 
 I might have pushed myself a bit too hard on that return leg. Focused on getting back, I skipped a water break, riding straight through. By the time I reached home around 12 pm, the effects were noticeable. Despite the wind blast, the heat had taken its toll, leaving me feeling tired and distinctly dehydrated.
 
-Even so, the exhaustion couldn't completely erase the morning's experience. The thrill of riding with the TRP group, the symphony of engines, the scenic ghat roads, and yes, even the lingering sweet taste of Mapro strawberries, made it a memorable first ride with the clan. A reminder, perhaps, to always stay hydrated, but also a confirmation that the journey, even with its unexpected turns, is always worth it.
+By the time I reached home around noon, I was tired and dehydrated after skipping a water break. That wasn't a part of the ride I'd repeat. But I was glad I had finally joined the TRP group—and I won't forget the unexpected wait for breakfast at a place I'd visited so many times.
