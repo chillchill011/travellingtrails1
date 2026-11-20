@@ -1,321 +1,168 @@
-// Remove the import since we'll use the global lunr variable
-let searchIndex;
-let searchData;
-let currentFilters = {
-    category: '',
-    dateRange: ''
-};
+/* Travelling Trails — journal search, one UI owner per page.
+   Categories are normalized as complete names (never per-character tags). */
+(function () {
+  'use strict';
+  const input = document.getElementById('searchInput');
+  const resultsEl = document.getElementById('searchResults');
+  const categoryEl = document.getElementById('categoryFilter');
+  const dateEl = document.getElementById('dateFilter');
+  const clearBtn = document.getElementById('clearSearch');
+  const countEl = document.getElementById('searchStatus');
+  const headingEl = document.getElementById('searchResultsHeading');
+  const emptyEl = document.getElementById('noResults');
+  if (!input || !resultsEl || !categoryEl || !dateEl || !countEl) return;
+  let posts = [];
+  let index = null;
+  let debounceId;
 
-// Get the path prefix based on environment
-const pathPrefix = '';  // Empty for production
+  function categories(post) {
+    const raw = post.categories;
+    if (Array.isArray(raw)) return raw.filter(x => typeof x === 'string' && x.trim()).map(x => x.trim());
+    return typeof raw === 'string' && raw.trim() ? [raw.trim()] : [];
+  }
 
-console.log('Search script loaded');
+  function element(tag, className, text) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (text !== undefined && text !== null) el.textContent = String(text);
+    return el;
+  }
 
-async function initializeSearch() {
-    // Check if we're on a page that has search functionality
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) {
-        console.log('Search input not found, skipping search initialization');
-        return; // Exit if search input doesn't exist on this page
+  function createCard(post) {
+    const card = element('article', 'tt-search-card');
+    const imgSrc = post.thumbnailImage || post.featuredImage;
+    if (imgSrc) {
+      const imageLink = element('a', 'tt-search-card-photo');
+      imageLink.href = post.url;
+      imageLink.setAttribute('aria-label', 'Read ' + (post.title || 'travel story'));
+      const img = element('img');
+      img.src = imgSrc;
+      img.alt = post.title || 'Travel photograph';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      imageLink.appendChild(img);
+      card.appendChild(imageLink);
     }
-    
+    const body = element('div', 'tt-search-card-body');
+    const cats = categories(post);
+    if (cats.length) {
+      const category = element('span', 'tt-search-category', cats[0]);
+      body.appendChild(category);
+    }
+    const title = element('h3');
+    const titleLink = element('a', '', post.title || 'Travel story');
+    titleLink.href = post.url;
+    title.appendChild(titleLink);
+    body.appendChild(title);
+    if (post.description) body.appendChild(element('p', 'tt-search-card-description', post.description));
+    const footer = element('div', 'tt-search-card-meta');
+    if (post.author) footer.appendChild(element('span', '', 'By ' + post.author));
+    if (post.date) {
+      const date = new Date(post.date);
+      if (!Number.isNaN(date.getTime())) {
+        const time = element('time', '', date.toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'}));
+        time.dateTime = date.toISOString().slice(0, 10);
+        footer.appendChild(time);
+      }
+    }
+    if (footer.children.length) body.appendChild(footer);
+    const more = element('a', 'tt-search-read', 'Read the story');
+    more.href = post.url;
+    const icon = element('span', 'tt-search-read-icon');
+    icon.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M7 5h12v12"/></svg>';
+    more.appendChild(icon);
+    body.appendChild(more);
+    card.appendChild(body);
+    return card;
+  }
+
+  function queryMatches(query) {
+    if (!query) return posts.slice();
+    const terms = query.toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
+    if (terms.length === 0) return posts.slice();
+    if (index && typeof window.lunr === 'function') {
+      try {
+        const refs = index.search(terms.map(t => t + '*').join(' ')).map(x => x.ref);
+        const lookup = new Map(posts.map(p => [p.url, p]));
+        return refs.map(ref => lookup.get(ref)).filter(Boolean);
+      } catch (err) {
+        // A plain-text fallback works for punctuation and malformed searches.
+      }
+    }
+    return posts.filter(post => {
+      const body = [post.title, post.description, post.content, post.destination, ...categories(post)]
+        .filter(Boolean).join(' ').toLowerCase();
+      return terms.every(term => body.includes(term));
+    });
+  }
+
+  function update() {
+    const query = input.value.trim();
+    const chosenCategory = categoryEl.value.trim().toLowerCase();
+    const dayLimit = Number(dateEl.value);
+    const now = Date.now();
+    let matches = queryMatches(query);
+    if (chosenCategory) matches = matches.filter(post => categories(post).some(cat => cat.toLowerCase() === chosenCategory));
+    if (dayLimit) matches = matches.filter(post => {
+      const date = new Date(post.date).getTime();
+      return Number.isFinite(date) && date <= now && now - date <= dayLimit * 86400000;
+    });
+    const browsing = !query && !chosenCategory && !dayLimit;
+    if (browsing) matches = matches.slice(0, 6);
+    resultsEl.replaceChildren(...matches.map(createCard));
+    if (emptyEl) emptyEl.classList.toggle('hidden', matches.length > 0);
+    if (headingEl) headingEl.textContent = browsing ? 'Recent adventures' : 'Search results';
+    countEl.textContent = browsing
+      ? 'Explore the latest stories or search for a particular destination.'
+      : matches.length + (matches.length === 1 ? ' story found' : ' stories found');
+  }
+
+  async function initialize() {
     try {
-        console.log('Initializing search...');
-        const response = await fetch('/search-data.json');
-        console.log('Search response:', response);
-        
-        if (!response.ok) {
-            throw new Error(`Failed to fetch search data: ${response.status} ${response.statusText}`);
-        }
-        
-        searchData = await response.json();
-        console.log('Search data loaded:', searchData);
-
-        // Create Lunr index
-        searchIndex = lunr(function() {
-            this.field('title', { boost: 10 });
-            this.field('content');
-            this.field('description', { boost: 5 });
-            this.field('categories', { boost: 5 });
-            this.ref('url');
-
-            searchData.posts.forEach(post => {
-                console.log('Indexing post:', post.title);
-                this.add({
-                    title: post.title || '',
-                    content: post.content || '',
-                    description: post.description || '',
-                    categories: post.categories ? post.categories.join(' ') : '',
-                    url: post.url
-                });
-            });
+      countEl.textContent = 'Loading travel stories…';
+      const response = await fetch('/search-data.json');
+      if (!response.ok) throw new Error('Search index unavailable');
+      const data = await response.json();
+      posts = (Array.isArray(data.posts) ? data.posts : []).filter(p => p && p.url && p.title);
+      posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      if (typeof window.lunr === 'function') {
+        index = window.lunr(function () {
+          this.ref('url');
+          this.field('title', {boost: 10});
+          this.field('description', {boost: 5});
+          this.field('categories', {boost: 4});
+          this.field('destination', {boost: 3});
+          this.field('content');
+          posts.forEach(post => this.add({
+            url: post.url, title: post.title || '', description: post.description || '',
+            destination: post.destination || '', categories: categories(post).join(' '),
+            content: post.content || ''
+          }));
         });
-        console.log('Search index created');
-
-        setupEventListeners();
-    } catch (error) {
-        console.error('Error initializing search:', error);
+      }
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('q')) input.value = params.get('q') || '';
+      update();
+    } catch (err) {
+      countEl.textContent = 'Search is temporarily unavailable. Please try again later.';
     }
-}
+  }
 
-function setupEventListeners() {
-    const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
-    const dateFilter = document.getElementById('dateFilter');
-    const searchSuggestions = document.getElementById('searchSuggestions');
-
-    if (!searchInput || !searchSuggestions) {
-        console.error('Required search elements not found');
-        return;
-    }
-
-    let debounceTimeout;
-
-    searchInput.addEventListener('input', (e) => {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(() => {
-            const query = e.target.value;
-            if (query.length >= 2) {
-                performSearch(query);
-                showSuggestions(query);
-            } else {
-                clearResults();
-                hideSuggestions();
-            }
-        }, 300);
-    });
-
-    if (categoryFilter) {
-        categoryFilter.addEventListener('change', (e) => {
-            currentFilters.category = e.target.value;
-            const searchQuery = searchInput.value;
-            if (searchQuery.length >= 2) {
-                performSearch(searchQuery);
-            }
-        });
-    }
-
-    if (dateFilter) {
-        dateFilter.addEventListener('change', (e) => {
-            currentFilters.dateRange = e.target.value;
-            const searchQuery = searchInput.value;
-            if (searchQuery.length >= 2) {
-                performSearch(searchQuery);
-            }
-        });
-    }
-
-    document.addEventListener('click', (e) => {
-        if (searchSuggestions && !searchSuggestions.contains(e.target) && e.target !== searchInput) {
-            hideSuggestions();
-        }
-    });
-}
-
-function performSearch(query) {
-    if (!searchIndex) {
-        console.error('Search index not initialized');
-        return;
-    }
-    
-    const resultsContainer = document.getElementById('searchResults');
-    const noResults = document.getElementById('noResults');
-    
-    if (!resultsContainer || !noResults) {
-        console.error('Search results containers not found');
-        return;
-    }
-    
-    try {
-        console.log('Performing search for:', query);
-        const results = searchIndex.search(query);
-        console.log('Search results:', results);
-        const filteredResults = filterResults(results);
-        console.log('Filtered results:', filteredResults);
-        displayResults(filteredResults);
-    } catch (error) {
-        console.error('Error performing search:', error);
-    }
-}
-
-function filterResults(results) {
-    return results.filter(result => {
-        const post = searchData.posts.find(p => p.url === result.ref);
-        if (!post) return false;
-        
-        if (currentFilters.category && (!post.categories || 
-            !post.categories.includes(currentFilters.category))) {
-            return false;
-        }
-
-        if (currentFilters.dateRange) {
-            const postDate = new Date(post.date);
-            const daysAgo = (new Date() - postDate) / (1000 * 60 * 60 * 24);
-            if (daysAgo > parseInt(currentFilters.dateRange)) {
-                return false;
-            }
-        }
-
-        return true;
-    });
-}
-
-function displayResults(results) {
-    const resultsContainer = document.getElementById('searchResults');
-    const noResults = document.getElementById('noResults');
-    
-    if (!resultsContainer || !noResults) return;
-    
-    resultsContainer.innerHTML = '';
-
-    if (results.length === 0) {
-        noResults.classList.remove('hidden');
-        return;
-    }
-
-    noResults.classList.add('hidden');
-
-    results.forEach(result => {
-        const post = searchData.posts.find(p => p.url === result.ref);
-        if (post) {
-            const article = createResultCard(post);
-            resultsContainer.appendChild(article);
-        }
-    });
-}
-
-function createResultCard(post) {
-    const article = document.createElement('article');
-    article.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md p-6';
-    
-    // Determine the image source - use thumbnail if available, otherwise featured image
-    const imageUrl = post.thumbnailImage || post.featuredImage;
-    
-    // Fix the URL construction - don't add pathPrefix as we're in production
-    let cardHTML = '';
-    
-    // Add image section if an image is available
-    if (imageUrl) {
-        cardHTML += `
-        <div class="relative h-48 mb-4">
-            <img 
-                src="${imageUrl}" 
-                alt="${post.title}" 
-                class="w-full h-full object-cover rounded-lg"
-                loading="lazy"
-                onerror="if (!this.src.includes('placeholder.jpg')) { this.src = '/assets/images/placeholder.jpg'; this.alt = 'Image not available'; this.onerror = null; }"
-            >
-        </div>`;
-    }
-    
-    // Add the rest of the card content
-    cardHTML += `
-        <h2 class="text-xl font-semibold mb-2">
-            <a href="${post.url}" class="text-gray-900 dark:text-white hover:text-travel-700 
-                                       dark:hover:text-travel-500">
-                ${post.title}
-            </a>
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">${post.description || ''}</p>
-        <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-600 dark:text-gray-400">
-                By ${post.author || 'Anonymous'}
-            </span>
-            <time class="text-sm text-gray-500 dark:text-gray-400">
-                ${new Date(post.date).toLocaleDateString()}
-            </time>
-        </div>
-        ${post.categories ? `
-        <div class="mt-4 flex flex-wrap gap-2">
-            ${post.categories.map(category => `
-                <a href="/categories/${category.toLowerCase().replace(/\s+/g, '-')}/"
-                   class="inline-block px-3 py-1 text-sm bg-travel-100 text-travel-700 
-                          dark:bg-travel-900 dark:text-travel-100 rounded-full">
-                    ${category}
-                </a>
-            `).join('')}
-        </div>
-        ` : ''}
-    `;
-    
-    article.innerHTML = cardHTML;
-    return article;
-}
-
-function showSuggestions(query) {
-    if (!searchIndex) return;
-    
-    const suggestionsContainer = document.getElementById('searchSuggestions');
-    if (!suggestionsContainer) return;
-    
-    const results = searchIndex.search(query).slice(0, 5);
-    
-    if (results.length === 0) {
-        hideSuggestions();
-        return;
-    }
-
-    suggestionsContainer.innerHTML = '';
-    results.forEach(result => {
-        const post = searchData.posts.find(p => p.url === result.ref);
-        if (!post) return;
-        
-        const div = document.createElement('div');
-        div.className = 'p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer';
-        
-        // Use thumbnail if available, otherwise use featured image
-        const imageUrl = post.thumbnailImage || post.featuredImage;
-        
-        let suggestionHTML = '';
-        if (imageUrl) {
-            suggestionHTML += `
-            <div class="flex items-center">
-                <div class="flex-shrink-0 w-12 h-12 mr-3">
-                    <img src="${imageUrl}" alt="${post.title}" class="w-full h-full object-cover rounded-sm">
-                </div>
-            `;
-        }
-        
-        suggestionHTML += `
-            <div>
-                <div class="font-medium">${post.title}</div>
-                <div class="text-sm text-gray-600 dark:text-gray-400">${post.description || ''}</div>
-            </div>
-        `;
-        
-        if (imageUrl) {
-            suggestionHTML += `</div>`;
-        }
-        
-        div.innerHTML = suggestionHTML;
-        
-        div.addEventListener('click', () => {
-            window.location.href = post.url;
-        });
-        suggestionsContainer.appendChild(div);
-    });
-    
-    suggestionsContainer.classList.remove('hidden');
-}
-
-function hideSuggestions() {
-    const suggestionsContainer = document.getElementById('searchSuggestions');
-    if (suggestionsContainer) {
-        suggestionsContainer.classList.add('hidden');
-    }
-}
-
-function clearResults() {
-    const resultsContainer = document.getElementById('searchResults');
-    const noResults = document.getElementById('noResults');
-    
-    if (resultsContainer) {
-        resultsContainer.innerHTML = '';
-    }
-    
-    if (noResults) {
-        noResults.classList.add('hidden');
-    }
-}
-
-document.addEventListener('DOMContentLoaded', initializeSearch);
+  input.addEventListener('input', () => {
+    clearTimeout(debounceId);
+    debounceId = setTimeout(update, 180);
+  });
+  categoryEl.addEventListener('change', update);
+  dateEl.addEventListener('change', update);
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    input.value = '';
+    categoryEl.value = '';
+    dateEl.value = '';
+    update();
+    input.focus();
+  });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { input.value = ''; update(); }
+  });
+  initialize();
+}());
