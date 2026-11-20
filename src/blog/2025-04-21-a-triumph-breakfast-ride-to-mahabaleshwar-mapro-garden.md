@@ -120,7 +120,7 @@ Ever since I bought my Triumph, I'd wanted to ride with the Triumph Riders Pune 
 
 The group's safety requirements meant I spent three or four months buying the protective gear I needed. By the time the Mahabaleshwar ride was scheduled, I was ready to join. The plan included breakfast at Mapro Garden and, if time allowed, Lingmala Waterfall. We had roughly six hours in mind; the actual morning would run rather differently.
 
-### Joining the Thundering Herd
+### Meeting the Triumph Riders Pune Group
 
 While the official start was the Triumph Showroom in Pashan, like a few others, I joined the ride at the second regrouping point – the Shell petrol pump at Varve, about 25km down the road. It's common practice for riders coming from different parts of the city.
 
@@ -144,7 +144,7 @@ After freshening up, we headed to order, only to encounter a bit of a setback. T
 
 ![A ginger and white cat lies stretched out on its side, basking in the sun on a brick pathway at Mapro Garden, with potted plants and a colourful structure partially visible behind it.](/assets/images/cat-nap-on-the-bricks-at-mapro.jpg "Sunbathing Cat at Mapro Garden")
 
-### The Homeward Stretch: Racing the Sun
+### Riding Home in the Heat
 
 Given the significant delay at Mapro, the decision was made to skip the Lingmala Waterfall visit. The priority shifted to getting back home before the midday sun reached its peak intensity, especially knowing the pleasant coolness of Mahabaleshwar's altitude wouldn't last once we descended back to the highway plains during this unusually hot summer.
 
