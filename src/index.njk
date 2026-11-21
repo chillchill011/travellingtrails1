@@ -13,10 +13,10 @@ description: "First-person motorcycle journeys, forts, ghats and coastal escapes
       {% for slide in heroSlides | limit(3) %}
         {% if slide.data.featuredImage or slide.data.thumbnailImage %}
         <img class="tt-hero-photo tt-hero-slide{% if loop.first %} is-active{% endif %}"
-             src="{{ (slide.data.featuredImage or slide.data.thumbnailImage) | url }}"
+             {% if loop.first %}src{% else %}data-src{% endif %}="{{ (slide.data.featuredImage or slide.data.thumbnailImage) | url }}"
              alt=""
              loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
-             {% if loop.first %}fetchpriority="high"{% endif %}
+             {% if loop.first %}fetchpriority="high"{% else %}fetchpriority="low"{% endif %}
              decoding="async"
              data-story-title="{{ slide.data.destination or slide.data.title }}"
              data-story-url="{{ slide.url | url }}">
@@ -130,4 +130,4 @@ description: "First-person motorcycle journeys, forts, ghats and coastal escapes
   </div>
 </div>
 
-<script defer src="{{ '/assets/js/featured-hero.js' | url }}"></script>
+<script defer src="{{ '/assets/js/featured-hero.js' | url }}?v=2"></script>
