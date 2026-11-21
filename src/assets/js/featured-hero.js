@@ -25,8 +25,51 @@
     let focused = false;
     let visible = true;
 
-    function showSlide(index, announce) {
-      current = (index + slides.length) % slides.length;
+    let requestId = 0;
+    let changing = false;
+    const pendingImages = new WeakMap();
+
+    // Fetch original, full-quality photos only when requested. Keep the
+    // existing slide visible until the next photo is loaded and decoded.
+    function prepareSlide(img) {
+      if (img.complete && img.naturalWidth > 0) return Promise.resolve(true);
+      if (pendingImages.has(img)) return pendingImages.get(img);
+      const pending = new Promise(resolve => {
+        const finish = ok => {
+          img.removeEventListener('load', loaded);
+          img.removeEventListener('error', failed);
+          if (ok && typeof img.decode === 'function') {
+            img.decode().then(() => resolve(true), () => resolve(img.naturalWidth > 0));
+          } else resolve(ok);
+        };
+        const loaded = () => finish(true);
+        const failed = () => finish(false);
+        img.addEventListener('load', loaded);
+        img.addEventListener('error', failed);
+        if (img.dataset.src) {
+          img.loading = 'eager';
+          img.fetchPriority = 'auto';
+          img.src = img.dataset.src;
+          delete img.dataset.src;
+        }
+        if (img.complete && img.naturalWidth > 0) finish(true);
+      });
+      pendingImages.set(img, pending);
+      pending.then(() => pendingImages.delete(img));
+      return pending;
+    }
+
+    async function showSlide(index, announce) {
+      const target = (index + slides.length) % slides.length;
+      const ticket = ++requestId;
+      changing = true;
+      if (target !== current && !await prepareSlide(slides[target])) {
+        if (ticket === requestId) changing = false;
+        return;
+      }
+      if (ticket !== requestId) return;
+      changing = false;
+      current = target;
       slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
 
       const active = slides[current];
@@ -51,7 +94,7 @@
     function start() {
       stop();
       if (motionQuery.matches || hovered || focused || !visible || document.hidden) return;
-      timer = window.setInterval(() => showSlide(current + 1, false), 7000);
+      timer = window.setInterval(() => { if (!changing) showSlide(current + 1, false); }, 7000);
     }
 
     previous.addEventListener('click', () => {
