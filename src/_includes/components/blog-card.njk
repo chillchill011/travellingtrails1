@@ -1,8 +1,13 @@
 <article class="blog-card tt-card">
   <a class="tt-card-image" href="{{ post.url | url }}" aria-label="Read {{ post.data.title }}">
     {% if post.data.thumbnailImage or post.data.featuredImage %}
-      <img src="{{ (post.data.featuredImage or post.data.thumbnailImage) | url }}"
-        {% if post.data.thumbnailImage and post.data.featuredImage %}
+      {% set cardImage = (post.data.featuredImage or post.data.thumbnailImage) | url %}
+      {% set cardSrcset = cardImage | responsiveSrcset([400, 640, 800, 1024, 1600]) %}
+      <img src="{{ cardImage }}"
+        {% if cardSrcset %}
+        srcset="{{ cardSrcset }}"
+        sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1024px) 50vw, 33vw"
+        {% elif post.data.thumbnailImage and post.data.featuredImage %}
         srcset="{{ post.data.thumbnailImage | url }} 400w, {{ post.data.featuredImage | url }} 1600w"
         sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1024px) 50vw, 33vw"
         {% endif %}
