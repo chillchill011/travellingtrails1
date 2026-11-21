@@ -13,7 +13,7 @@ description: "First-person motorcycle journeys, forts, ghats and coastal escapes
       {% for slide in heroSlides | limit(3) %}
         {% if slide.data.featuredImage or slide.data.thumbnailImage %}
         <img class="tt-hero-photo tt-hero-slide{% if loop.first %} is-active{% endif %}"
-             src="{{ (slide.data.featuredImage or slide.data.thumbnailImage) | url }}"
+             {% if loop.first %}src{% else %}data-src{% endif %}="{{ (slide.data.featuredImage or slide.data.thumbnailImage) | url }}"
              alt=""
              loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
              {% if loop.first %}fetchpriority="high"{% else %}fetchpriority="low"{% endif %}
@@ -80,9 +80,7 @@ description: "First-person motorcycle journeys, forts, ghats and coastal escapes
           {% set destinationLink = '/destinations/' + destination.slug + '/' %}
           <a class="tt-destination-tile" href="{{ destinationLink | url }}">
             {% if destination.posts[0] and (destination.posts[0].data.featuredImage or destination.posts[0].data.thumbnailImage) %}
-              {% set tileImage = (destination.posts[0].data.featuredImage or destination.posts[0].data.thumbnailImage) | url %}
-              {% set tileSrcset = tileImage | responsiveSrcset([400, 640, 800, 1024, 1600]) %}
-              <img src="{{ tileImage }}" {% if tileSrcset %}srcset="{{ tileSrcset }}" sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1024px) 50vw, 25vw"{% endif %} alt="Explore {{ destination.title }}" loading="lazy" decoding="async">
+              <img src="{{ (destination.posts[0].data.featuredImage or destination.posts[0].data.thumbnailImage) | url }}" alt="Explore {{ destination.title }}" loading="lazy" decoding="async">
             {% endif %}
             <span class="tt-destination-shade"></span>
             <span class="tt-destination-label"><small>{{ destination.count }} {% if destination.count == 1 %}story{% else %}stories{% endif %}</small><strong>{{ destination.title }}</strong></span>
@@ -132,4 +130,4 @@ description: "First-person motorcycle journeys, forts, ghats and coastal escapes
   </div>
 </div>
 
-<script defer src="{{ '/assets/js/featured-hero.js' | url }}"></script>
+<script defer src="{{ '/assets/js/featured-hero.js' | url }}?v=2"></script>
