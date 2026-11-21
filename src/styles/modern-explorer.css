@@ -1,5 +1,4 @@
 /* Travelling Trails / Design System 2.0 — Cinematic + Clean Modern */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 :root{--tt-white:#fff;--tt-cloud:#f6f6f4;--tt-night:#202326;--tt-blue:#487b99;--tt-coral:#cd987b;--tt-muted:#676b6e;--tt-stroke:#e7e7e4;--tt-radius:16px;--tt-page-surface:#fff;--tt-shadow:0 18px 52px rgba(15,18,21,.07)}
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif!important;background:var(--tt-white)!important;color:var(--tt-night);-webkit-font-smoothing:antialiased}
@@ -802,3 +801,7 @@ body.tt-article-page .tt-site-header:not(.is-scrolled) .tt-logo-inverse{display:
  .tt-search-jump{font-size:.76rem}
  .tt-search-quick-card img{height:54px;width:64px;flex-basis:64px}
 }
+
+/* Performance audit: keep the existing palette but improve small-label contrast. */
+html:not(.dark) .tt-statement .tt-eyebrow,html:not(.dark) .tt-newsletter .tt-eyebrow{color:#376782}
+#accept-cookies{background-color:#0369a1!important}#accept-cookies:hover{background-color:#075985!important}
