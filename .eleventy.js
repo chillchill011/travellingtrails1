@@ -7,6 +7,14 @@ const path = require('path');
 
 module.exports = function(eleventyConfig) {
   
+    // Responsive variants on Netlify; keep original images for Eleventy local builds.
+    eleventyConfig.addFilter("responsiveSrcset", function(src, widths) {
+      if (process.env.NETLIFY !== "true" || typeof src !== "string" ||
+          !/^\/assets\/images\/[^?#]+\.(?:jpe?g|png|webp)$/i.test(src)) return "";
+      return widths.map(width => "/.netlify/images?url=" + encodeURIComponent(src) +
+        "&w=" + width + "&q=82 " + width + "w").join(", ");
+    });
+
     // Passthrough copies
     eleventyConfig.addPassthroughCopy({"src/assets/js": "assets/js"});
     eleventyConfig.addPassthroughCopy({"src/assets/images": "assets/images"});
