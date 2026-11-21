@@ -425,20 +425,13 @@
             
             // Improved error handling
             document.querySelectorAll('img').forEach(img => {
-                function recoverImage() {
-                    if (img.hasAttribute('srcset')) {
-                        // An unavailable responsive variant must not hide the original photo.
-                        img.removeAttribute('srcset');
-                        img.removeAttribute('sizes');
-                        return;
+                img.addEventListener('error', function() {
+                    if (!this.src.includes('placeholder.jpg')) { // Prevent infinite loop
+                        this.src = '/assets/images/placeholder.jpg';
+                        this.alt = 'Image not available';
+                        this.onerror = null; // Prevent further error events
                     }
-                    if (!img.src.includes('placeholder.jpg')) {
-                        img.src = '/assets/images/placeholder.jpg';
-                        img.alt = 'Image not available';
-                    }
-                }
-                img.addEventListener('error', recoverImage);
-                if (img.complete && img.currentSrc && img.naturalWidth === 0) recoverImage();
+                });
             });
         });
     </script>
