@@ -16,7 +16,7 @@ description: "First-person motorcycle journeys, forts, ghats and coastal escapes
              src="{{ (slide.data.featuredImage or slide.data.thumbnailImage) | url }}"
              alt=""
              loading="{% if loop.first %}eager{% else %}lazy{% endif %}"
-             {% if loop.first %}fetchpriority="high"{% endif %}
+             {% if loop.first %}fetchpriority="high"{% else %}fetchpriority="low"{% endif %}
              decoding="async"
              data-story-title="{{ slide.data.destination or slide.data.title }}"
              data-story-url="{{ slide.url | url }}">
@@ -80,7 +80,9 @@ description: "First-person motorcycle journeys, forts, ghats and coastal escapes
           {% set destinationLink = '/destinations/' + destination.slug + '/' %}
           <a class="tt-destination-tile" href="{{ destinationLink | url }}">
             {% if destination.posts[0] and (destination.posts[0].data.featuredImage or destination.posts[0].data.thumbnailImage) %}
-              <img src="{{ (destination.posts[0].data.featuredImage or destination.posts[0].data.thumbnailImage) | url }}" alt="Explore {{ destination.title }}" loading="lazy" decoding="async">
+              {% set tileImage = (destination.posts[0].data.featuredImage or destination.posts[0].data.thumbnailImage) | url %}
+              {% set tileSrcset = tileImage | responsiveSrcset([400, 640, 800, 1024, 1600]) %}
+              <img src="{{ tileImage }}" {% if tileSrcset %}srcset="{{ tileSrcset }}" sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1024px) 50vw, 25vw"{% endif %} alt="Explore {{ destination.title }}" loading="lazy" decoding="async">
             {% endif %}
             <span class="tt-destination-shade"></span>
             <span class="tt-destination-label"><small>{{ destination.count }} {% if destination.count == 1 %}story{% else %}stories{% endif %}</small><strong>{{ destination.title }}</strong></span>
